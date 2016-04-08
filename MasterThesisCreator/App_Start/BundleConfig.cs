@@ -9,10 +9,11 @@ namespace MasterThesisCreator
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/bower_components/jquery/jquery.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/bower_components/jquery.validate/dist/jquery.validate.js",
+                        "~/bower_components/jquery.validate/dist/additional-methods.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -20,23 +21,23 @@ namespace MasterThesisCreator
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/bower_components/bootstrap/bootstrap/dist/js.js",
+                      "~/bower_components/respond/dest/respond.src.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-datepicker").Include(
-        "~/Scripts/Vendors/bootstrap-datepicker/bootstrap-datetimepicker.js"));
+        "~/bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-wysihtml5").Include(
-        "~/Scripts/Vendors/bootstrap-wysihtml5/dist/bootstrap-wysihtml5-0.0.2.js"));
+        "~/bower_components/bootstrap-wysihtml5/dist/bootstrap-wysihtml5-0.0.2.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/bower_components/bootstrap/dist/css/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Scripts/Vendors/bootstrap-datepicker/datetimepicker.css",
-                      "~/Scripts/Vendors/bootstrap-wysihtml5/dist/bootstrap-wysihtml5-0.0.2.css"));
+                      "~/bower_components/eonasdan-bootstrap-datetimepicker/src/_bootstrap-datetimepicker.less",
+                      "~/bower_components/bootstrap-wysihtml5/dist/bootstrap-wysihtml5-0.0.2.css"));
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
         }
     }
 }
