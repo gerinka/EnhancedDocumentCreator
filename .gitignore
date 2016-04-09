@@ -22,3 +22,4 @@ _ReSharper*/
 bower_components/
 MasterThesisCreator/node_modules/*
 packages/*
+mockups/*

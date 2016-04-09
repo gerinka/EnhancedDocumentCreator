@@ -24,9 +24,13 @@ namespace WebClient
                       "~/Scripts/respond.js",
                       "~/bower_components/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/common").Include(
+                     "~/Scripts/ApplicationScripts/rootWizard.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/bootstrap-theme.css"));
         }
     }
 }
