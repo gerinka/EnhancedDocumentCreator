@@ -7,4 +7,8 @@
             $('#rootwizard .progress-bar').css({ width: $percent + '%' });
         }
     });
+    $('#deadline').datetimepicker({
+        locale: 'bg',
+        format: 'DD MMMM YYYY'
+    });
 });

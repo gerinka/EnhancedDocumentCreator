@@ -22,7 +22,10 @@ namespace WebClient
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
-                      "~/bower_components/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js"));
+                      "~/bower_components/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js",
+                      "~/bower_components/moment/moment.js",
+                      "~/bower_components/moment/locale/bg.js",
+                      "~/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
                      "~/Scripts/ApplicationScripts/rootWizard.js"));
@@ -30,7 +33,8 @@ namespace WebClient
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/bootstrap-theme.css"));
+                      "~/Content/bootstrap-theme.css",
+                      "~/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css"));
         }
     }
 }
