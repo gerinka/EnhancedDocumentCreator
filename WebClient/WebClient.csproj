@@ -160,6 +160,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ThesisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -172,6 +173,18 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\css\bootstrap.css" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\css\bootstrap.min.css" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\js\bootstrap.js" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\js\bootstrap.min.js" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\js\npm.js" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\jquery.bootstrap.wizard.js" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\jquery.bootstrap.wizard.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -182,6 +195,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\.bower.json" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\css\bootstrap.css.map" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="bower_components\twitter-bootstrap-wizard\bower.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -229,6 +249,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Thesis\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
