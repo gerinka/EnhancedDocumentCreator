@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterThesisCreator", "MasterThesisCreator\MasterThesisCreator.csproj", "{5B3B29EC-38C7-4968-8653-DE50DE6FBD2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebClient.csproj", "{D7A6AE9A-7A27-4EDD-8347-CFEB7988F285}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient.Tests", "WebClient.Tests\WebClient.Tests.csproj", "{9A403D71-8697-43B6-887F-9210EBE87D50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{5B3B29EC-38C7-4968-8653-DE50DE6FBD2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B3B29EC-38C7-4968-8653-DE50DE6FBD2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B3B29EC-38C7-4968-8653-DE50DE6FBD2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7A6AE9A-7A27-4EDD-8347-CFEB7988F285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7A6AE9A-7A27-4EDD-8347-CFEB7988F285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7A6AE9A-7A27-4EDD-8347-CFEB7988F285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7A6AE9A-7A27-4EDD-8347-CFEB7988F285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A403D71-8697-43B6-887F-9210EBE87D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A403D71-8697-43B6-887F-9210EBE87D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A403D71-8697-43B6-887F-9210EBE87D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A403D71-8697-43B6-887F-9210EBE87D50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
