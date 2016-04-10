@@ -9,8 +9,8 @@
             <div class="navbar-inner">
                 <div class="container">
                     <ul class="nav nav-pills">
-                        <li class="active"><a href="#tab1" data-toggle="tab">Задай тема</a></li>
-                        <li class="invisible"><a href="#tab2" data-toggle="tab">Избери структура</a></li>
+                        <li class="invisible"><a href="#tab1" data-toggle="tab">Задай тема</a></li>
+                        <li class="active"><a href="#tab2" data-toggle="tab">Избери структура</a></li>
                         <li class="invisible"><a href="#tab3" data-toggle="tab">Избери структура II</a></li>
                         <li class="invisible"><a href="#tab4" data-toggle="tab">Генериране на задачи</a></li>
                     </ul>
@@ -19,7 +19,7 @@
         </div>
         
         <div class="tab-content">
-            <div class="tab-pane active" id="tab1">
+            <div class="tab-pane" id="tab1">
                 <form class="form-horizontal">
                     <div class="form-group">
                         <label for="mainTopic" class="col-sm-2 control-label">Въведи тема</label>
@@ -58,8 +58,34 @@
                     </div>
                 </form>
             </div>
-            <div class="tab-pane" id="tab2">
-                2
+            <div class="tab-pane active" id="tab2">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Увод
+                    </label>
+                </div>
+                <div class="innercheckboxlist">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Цел и задачи на дипломната работа
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Актуалност на проблема и мотивация
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Очаквани ползи от реализацията
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Структура на дипломната работа
+                        </label>
+                    </div>
+                </div>
             </div>
             <div class="tab-pane" id="tab3">
                 3

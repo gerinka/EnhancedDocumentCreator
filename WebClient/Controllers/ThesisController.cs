@@ -12,6 +12,9 @@ namespace WebClient.Controllers
         {
             return View();
         }
-
+        public ActionResult PanelStructure()
+        {
+            return View();
+        }
     }
 }

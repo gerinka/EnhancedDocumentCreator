@@ -28,7 +28,7 @@ namespace WebClient
                       "~/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
-                     "~/Scripts/ApplicationScripts/rootWizard.js"));
+                     "~/Scripts/ApplicationScripts/*.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
