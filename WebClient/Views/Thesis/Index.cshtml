@@ -9,13 +9,10 @@
             <div class="navbar-inner">
                 <div class="container">
                     <ul class="nav nav-pills">
-                        <li class="active"><a href="#tab1" data-toggle="tab">First</a></li>
-                        <li class=""><a href="#tab2" data-toggle="tab">Second</a></li>
-                        <li class=""><a href="#tab3" data-toggle="tab">Third</a></li>
-                        <li class=""><a href="#tab4" data-toggle="tab">Forth</a></li>
-                        <li class=""><a href="#tab5" data-toggle="tab">Fifth</a></li>
-                        <li><a href="#tab6" data-toggle="tab">Sixth</a></li>
-                        <li><a href="#tab7" data-toggle="tab">Seventh</a></li>
+                        <li class="active"><a href="#tab1" data-toggle="tab">Задай тема</a></li>
+                        <li class="invisible"><a href="#tab2" data-toggle="tab">Избери структура</a></li>
+                        <li class="invisible"><a href="#tab3" data-toggle="tab">Избери структура II</a></li>
+                        <li class="invisible"><a href="#tab4" data-toggle="tab">Генериране на задачи</a></li>
                     </ul>
                 </div>
             </div>
@@ -34,7 +31,7 @@
                         <label for="mainTopic" class="col-sm-2 control-label">Въведи краен срок</label>
                         <div class="col-sm-3">
                             <div class='input-group date' id='deadline'>
-                                <input type='text' class="form-control" />
+                                <input type='text' class="form-control"/>
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -50,7 +47,7 @@
                                     Избери
                                     <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <ul class="dropdown-menu" aria-labelledby="templateDropdownMenu">
                                     <li><a href="#">Дипломен софтуерен проект</a></li>
                                     <li class="disabled"><a href="#">Спецификация на софтуерни изисквания</a></li>
                                     <li role="separator" class="divider"></li>
@@ -70,22 +67,13 @@
             <div class="tab-pane" id="tab4">
                 4
             </div>
-            <div class="tab-pane" id="tab5">
-                5
-            </div>
-            <div class="tab-pane" id="tab6">
-                6
-            </div>
-            <div class="tab-pane" id="tab7">
-                7
             </div>
             <ul class="pager wizard">
-                <li class="previous first" style="display:none;"><a href="javascript:;">First</a></li>
-                <li class="previous"><a href="javascript:;">Previous</a></li>
-                <li class="next last" style="display:none;"><a href="javascript:;">Last</a></li>
-                <li class="next"><a href="javascript:;">Next</a></li>
+                <li class="previous first" style="display:none;"><a href="javascript:;">Първи</a></li>
+                <li class="previous"><a href="javascript:;">Назад</a></li>
+                <li class="next last" style="display:none;"><a href="javascript:;">Последен</a></li>
+                <li class="next"><a href="javascript:;">Напред</a></li>
             </ul>
-        </div>
         <div id="bar" class="progress">
             <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
         </div>
