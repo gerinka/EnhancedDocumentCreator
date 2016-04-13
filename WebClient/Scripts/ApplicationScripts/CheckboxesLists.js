@@ -1,5 +1,5 @@
 ﻿$(document).ready(function() {
-    $('.collapse').collapse('hide').on('hide.bs.collapse', function() {
+    $('#collapseOne').collapse('hide').on('hide.bs.collapse', function () {
         console.log(this);
     });
 
