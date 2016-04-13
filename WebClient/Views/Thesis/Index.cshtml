@@ -59,12 +59,15 @@
             </div>
             <div class="tab-pane active" id="tab2">
                 <div class="chapter">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Увод
-                        </label>
+                    
+                    <div class="checkbox" id="topic1">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <label>
+                                <input type="checkbox"> Увод
+                            </label>
+                        </a>
                     </div>
-                    <div class="innercheckboxlist">
+                    <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox"> Цел и задачи на дипломната работа
