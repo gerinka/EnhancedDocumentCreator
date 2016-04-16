@@ -39,3 +39,18 @@ textarea {
 .label-panel {
     color: #428bca;
 }
+
+input[type="checkbox"].styled:checked + label:after,
+input[type="radio"].styled:checked + label:after,
+.checkbox input[type=checkbox]:checked + label:after {
+    font-family: 'Glyphicons Halflings' !important;
+    content: "\e013" !important;
+}
+
+input[type="checkbox"].styled:checked label:after,
+input[type="radio"].styled:checked label:after,
+.checkbox label:after {
+    padding-left: 4px !important;
+    padding-top: 2px !important;
+    font-size: 9px !important;
+}

@@ -173,6 +173,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bower_components\awesome-bootstrap-checkbox\awesome-bootstrap-checkbox.css" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\demo\bootstrap.css" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\demo\build.css" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\demo\build.less.css" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\demo\index.html" />
     <Content Include="bower_components\eonasdan-bootstrap-datetimepicker\build\css\bootstrap-datetimepicker-standalone.css" />
     <Content Include="bower_components\eonasdan-bootstrap-datetimepicker\build\css\bootstrap-datetimepicker.css" />
     <Content Include="bower_components\eonasdan-bootstrap-datetimepicker\build\css\bootstrap-datetimepicker.min.css" />
@@ -547,6 +552,16 @@
     <Content Include="bower_components\moment\CHANGELOG.md" />
     <Content Include="bower_components\moment\LICENSE" />
     <Content Include="bower_components\moment\README.md" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\.bower.json" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\awesome-bootstrap-checkbox.less" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\awesome-bootstrap-checkbox.scss" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\bower.json" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\demo\bootstrap.scss" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\demo\build.less" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\demo\build.scss" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\LICENSE" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\package.json" />
+    <Content Include="bower_components\awesome-bootstrap-checkbox\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

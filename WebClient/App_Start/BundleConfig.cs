@@ -34,7 +34,8 @@ namespace MTC.WebClient
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap-theme.css",
-                      "~/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css"));
+                      "~/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css",
+                      "~/bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css"));
         }
     }
 }
