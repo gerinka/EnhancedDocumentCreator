@@ -1,4 +1,19 @@
-﻿$(document).ready(function() {
+﻿$(document).ready(function () {
+
+    function init() {
+        var index = parseInt($(".panel-heading h3.active")[0].dataset.section);
+        var total = $(".panel-heading h3").length;
+        var percent = Math.round((index / total) * 100);
+        $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').html(percent + '%');
+        if (index == 1) {
+            $(".previous").addClass("disabled");
+        } else if (index == total) {
+            $(".next").addClass("disabled");
+        }
+
+    };
+
+    init();
     $(".next").on("click", function() {
         var index = parseInt($(".panel-heading h3.active")[0].dataset.section);
         var total = $(".panel-heading h3").length;
@@ -20,6 +35,15 @@
                     $(this).removeClass("hidden");
                 }
             });
+            var futureIndex = index + 1;
+            var percent = Math.round((futureIndex / total) * 100);
+            $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').html(percent + '%');
+
+            if (futureIndex == total) {
+                $(".next").addClass("disabled");
+            } else if (futureIndex - 1 > 0) {
+                $(".previous").removeClass("disabled");
+            }
         }
     });
 
@@ -44,6 +68,16 @@
                     $(this).removeClass("hidden");
                 }
             });
+
+            var futureIndex = index - 1;
+
+            var percent = Math.round((futureIndex / total) * 100);
+            $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').html(percent + '%');
+            if (futureIndex == 1) {
+                $(".previous").addClass("disabled");
+            } else if (futureIndex < total) {
+                $(".next").removeClass("disabled");
+            }
         }
     });
 });
