@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using WebClient.Models;
+using MTC.WebClient.Models;
 
-namespace WebClient.Controllers
+namespace MTC.WebClient.Controllers
 {
     [Authorize]
     public class ManageController : Controller

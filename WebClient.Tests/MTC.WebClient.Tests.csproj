@@ -92,9 +92,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebClient\WebClient.csproj">
+    <ProjectReference Include="..\WebClient\MTC.WebClient.csproj">
       <Project>{D7A6AE9A-7A27-4EDD-8347-CFEB7988F285}</Project>
-      <Name>WebClient</Name>
+      <Name>MTC.WebClient</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

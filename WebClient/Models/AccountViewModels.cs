@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebClient.Models
+namespace MTC.WebClient.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

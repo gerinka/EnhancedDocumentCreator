@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebClient.csproj", "{D7A6AE9A-7A27-4EDD-8347-CFEB7988F285}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTC.WebClient", "WebClient\MTC.WebClient.csproj", "{D7A6AE9A-7A27-4EDD-8347-CFEB7988F285}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient.Tests", "WebClient.Tests\WebClient.Tests.csproj", "{9A403D71-8697-43B6-887F-9210EBE87D50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTC.WebClient.Tests", "WebClient.Tests\MTC.WebClient.Tests.csproj", "{9A403D71-8697-43B6-887F-9210EBE87D50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

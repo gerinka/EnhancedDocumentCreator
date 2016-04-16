@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using WebClient.Models;
+using MTC.WebClient.Models;
 
-namespace WebClient
+namespace MTC.WebClient
 {
     public class EmailService : IIdentityMessageService
     {

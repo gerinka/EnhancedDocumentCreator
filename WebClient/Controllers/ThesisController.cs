@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WebClient.Controllers
+namespace MTC.WebClient.Controllers
 {
     public class ThesisController : Controller
     {
