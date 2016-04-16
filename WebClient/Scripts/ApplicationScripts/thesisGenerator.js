@@ -6,9 +6,9 @@
         var percent = Math.round((index / total) * 100);
         $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').html(percent + '%');
         if (index == 1) {
-            $(".previous").addClass("disabled");
+            $(".previous").addClass("hidden");
         } else if (index == total) {
-            $(".next").addClass("disabled");
+            $(".next").addClass("hidden");
         }
 
     };
@@ -40,9 +40,9 @@
             $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').html(percent + '%');
 
             if (futureIndex == total) {
-                $(".next").addClass("disabled");
+                $(".next").addClass("hidden");
             } else if (futureIndex - 1 > 0) {
-                $(".previous").removeClass("disabled");
+                $(".previous").removeClass("hidden");
             }
         }
     });
@@ -74,9 +74,9 @@
             var percent = Math.round((futureIndex / total) * 100);
             $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').html(percent + '%');
             if (futureIndex == 1) {
-                $(".previous").addClass("disabled");
+                $(".previous").addClass("hidden");
             } else if (futureIndex < total) {
-                $(".next").removeClass("disabled");
+                $(".next").removeClass("hidden");
             }
         }
     });

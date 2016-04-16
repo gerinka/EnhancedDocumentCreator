@@ -9,9 +9,12 @@
             $(".nav-pills li.active").removeClass("invisible");
         }
     });
+    var minDate = new Date();
+    minDate.setDate(minDate.getDate() + 7);
     $('#deadline').datetimepicker({
         locale: 'bg',
-        format: 'DD MMMM YYYY'
+        format: 'DD MMMM YYYY',
+        minDate: minDate
     });
 
     $('.dropdown-menu a').on('click', function() {
