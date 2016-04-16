@@ -505,6 +505,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ApplicationScripts\checkboxesLists.js" />
     <Content Include="Scripts\ApplicationScripts\rootWizard.js" />
+    <Content Include="Scripts\ApplicationScripts\thesisGenerator.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="bower_components\twitter-bootstrap-wizard\.bower.json" />

@@ -3,5 +3,90 @@
     ViewBag.Title = "PanelStructure";
 }
 
-<h2>PanelStructure</h2>
-
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title active" data-section="1">Задай тема</h3>
+        <h3 class="panel-title hidden" data-section="2">Структура - глава 1</h3>
+        <h3 class="panel-title hidden" data-section="3">Структура - глава 2</h3>
+        <h3 class="panel-title hidden" data-section="4">Структура - глава 3</h3>
+        <h3 class="panel-title hidden" data-section="5">Структура - глава 4</h3>
+        <h3 class="panel-title hidden" data-section="6">Структура - глава 5</h3>
+        <h3 class="panel-title hidden" data-section="7">Структура - глава 6</h3>
+        <h3 class="panel-title hidden" data-section="8">Структура - глава 7</h3>
+        <h3 class="panel-title hidden" data-section="9">Структура - глава 8</h3>
+        <h3 class="panel-title hidden" data-section="10">Структура - глава 9</h3>
+        <h3 class="panel-title hidden" data-section="11">Потвърди</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <div class="form-group" data-section="1">
+                <label for="mainTopic" class="col-sm-2 control-label label-panel">Въведи тема</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="mainTopic" placeholder="Заглавие">
+                </div>
+            </div>
+            <div class="form-group" data-section="1">
+                <label for="mainTopic" class="col-sm-2 control-label label-panel">Въведи краен срок</label>
+                <div class="col-sm-3">
+                    <div class='input-group date' id='deadline'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" data-section="1">
+                <label for="templateDropdown" class="col-sm-2 control-label label-panel">Избери шаблон</label>
+                <div class="col-sm-10">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="templateDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Избери
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="templateDropdownMenu">
+                            <li><a href="#">Дипломен софтуерен проект</a></li>
+                            <li class="disabled"><a href="#">Спецификация на софтуерни изисквания</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="disabled"><a href="#">Други шаблони...</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" data-section="2">
+            </div>
+            <div class="form-group" data-section="3">
+            </div>
+            <div class="form-group" data-section="4">
+            </div>
+            <div class="form-group" data-section="5">
+            </div>
+            <div class="form-group" data-section="6">
+            </div>
+            <div class="form-group" data-section="7">
+            </div>
+            <div class="form-group" data-section="8">
+            </div>
+            <div class="form-group" data-section="9">
+            </div>
+            <div class="form-group" data-section="10">
+            </div>
+            <div class="form-group" data-section="11">
+            </div>
+        </form>
+        <nav>
+            <ul class="pager">
+                <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Назад</a></li>
+                <li class="next"><a href="#">Напред <span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+        </nav>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                    60%
+                </div>
+            </div>
+        </div>
+    </div>
+@section scripts{
+    @Scripts.Render("~/bundles/common")
+}
