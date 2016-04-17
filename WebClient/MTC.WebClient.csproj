@@ -737,6 +737,7 @@
     <Content Include="Views\Thesis\Index.cshtml" />
     <Content Include="Views\Thesis\PanelStructure.cshtml" />
     <Content Include="Views\Thesis\TaskBoard.cshtml" />
+    <Content Include="Views\Thesis\TaskList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

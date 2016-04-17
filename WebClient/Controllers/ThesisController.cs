@@ -20,5 +20,9 @@ namespace MTC.WebClient.Controllers
         {
             return View();
         }
+        public ActionResult TaskList()
+        {
+            return View();
+        }
     }
 }
