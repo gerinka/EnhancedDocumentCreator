@@ -736,7 +736,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Thesis\Index.cshtml" />
     <Content Include="Views\Thesis\PanelStructure.cshtml" />
-    <Content Include="Views\Thesis\Dashboard.cshtml" />
+    <Content Include="Views\Thesis\TaskBoard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,7 +16,7 @@ namespace MTC.WebClient.Controllers
         {
             return View();
         }
-        public ActionResult Dashboard()
+        public ActionResult TaskBoard()
         {
             return View();
         }
