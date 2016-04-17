@@ -20,7 +20,7 @@ namespace MTC.WebClient
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                      "~/bower_components/bootstrap/dist/js/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/bower_components/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js",
                       "~/bower_components/moment/moment.js",
@@ -31,9 +31,9 @@ namespace MTC.WebClient
                      "~/Scripts/ApplicationScripts/*.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/bower_components/bootstrap/dist/css/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/bootstrap-theme.css",
+                      "~/bower_components/bootstrap/dist/css/bootstrap-theme.css",
                       "~/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css",
                       "~/bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css"));
         }
