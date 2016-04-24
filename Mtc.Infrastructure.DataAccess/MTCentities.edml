@@ -4,19 +4,303 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="MtcModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:devart="http://devart.com/schemas/edml/StorageSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="MtcEntitiesStoreContainer" />
+        <EntityContainer Name="MtcEntitiesStoreContainer">
+          <EntitySet Name="structurecontents" EntityType="MtcModel.Store.structurecontent" store:Type="Tables" Schema="mtc" Table="structurecontent" />
+          <EntitySet Name="structureelements" EntityType="MtcModel.Store.structureelement" store:Type="Tables" Schema="mtc" Table="structureelement" />
+          <EntitySet Name="structurerelations" EntityType="MtcModel.Store.structurerelation" store:Type="Tables" Schema="mtc" Table="structurerelation" />
+          <EntitySet Name="structuretypes" EntityType="MtcModel.Store.structuretype" store:Type="Tables" Schema="mtc" Table="structuretype" />
+          <EntitySet Name="users" EntityType="MtcModel.Store.user" store:Type="Tables" Schema="mtc" Table="user" />
+          <AssociationSet Name="FK_StructureElement_ID" Association="MtcModel.Store.FK_StructureElement_ID">
+            <End Role="structureelement" EntitySet="structureelements" />
+            <End Role="structurecontent" EntitySet="structurecontents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StructureType" Association="MtcModel.Store.FK_StructureType">
+            <End Role="structuretype" EntitySet="structuretypes" />
+            <End Role="structureelement" EntitySet="structureelements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StructureElement_Child" Association="MtcModel.Store.FK_StructureElement_Child">
+            <End Role="structureelement" EntitySet="structureelements" />
+            <End Role="structurerelation" EntitySet="structurerelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StructureElement_Parent" Association="MtcModel.Store.FK_StructureElement_Parent">
+            <End Role="structureelement" EntitySet="structureelements" />
+            <End Role="structurerelation" EntitySet="structurerelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_ID" Association="MtcModel.Store.FK_User_ID">
+            <End Role="user" EntitySet="users" />
+            <End Role="structurecontent" EntitySet="structurecontents" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="structurecontent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StructureElementId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="Content" Type="longblob" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Order" Type="int" />
+        </EntityType>
+        <EntityType Name="structureelement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="StructureTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="structurerelation">
+          <Key>
+            <PropertyRef Name="strctureelementparent" />
+            <PropertyRef Name="structureelementchild" />
+          </Key>
+          <Property Name="strctureelementparent" Type="int" Nullable="false" />
+          <Property Name="structureelementchild" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="structuretype">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+        </EntityType>
+        <Association Name="FK_StructureElement_ID">
+          <End Role="structureelement" Type="MtcModel.Store.structureelement" Multiplicity="1" />
+          <End Role="structurecontent" Type="MtcModel.Store.structurecontent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="structureelement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="structurecontent">
+              <PropertyRef Name="StructureElementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StructureType">
+          <End Role="structuretype" Type="MtcModel.Store.structuretype" Multiplicity="1" />
+          <End Role="structureelement" Type="MtcModel.Store.structureelement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="structuretype">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="structureelement">
+              <PropertyRef Name="StructureTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StructureElement_Child">
+          <End Role="structureelement" Type="MtcModel.Store.structureelement" Multiplicity="1" />
+          <End Role="structurerelation" Type="MtcModel.Store.structurerelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="structureelement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="structurerelation">
+              <PropertyRef Name="structureelementchild" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StructureElement_Parent">
+          <End Role="structureelement" Type="MtcModel.Store.structureelement" Multiplicity="1" />
+          <End Role="structurerelation" Type="MtcModel.Store.structurerelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="structureelement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="structurerelation">
+              <PropertyRef Name="strctureelementparent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_ID">
+          <End Role="user" Type="MtcModel.Store.user" Multiplicity="1" />
+          <End Role="structurecontent" Type="MtcModel.Store.structurecontent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="structurecontent">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MtcModel" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="MtcEntities" annotation:LazyLoadingEnabled="true" ed:Guid="37279360-19a5-4121-89b8-90629ecef19b" />
+        <EntityContainer Name="MtcEntities" annotation:LazyLoadingEnabled="true" ed:Guid="37279360-19a5-4121-89b8-90629ecef19b">
+          <EntitySet Name="Structurecontents" EntityType="MtcModel.Structurecontent" />
+          <EntitySet Name="Structureelements" EntityType="MtcModel.Structureelement" />
+          <EntitySet Name="Structuretypes" EntityType="MtcModel.Structuretype" />
+          <EntitySet Name="Users" EntityType="MtcModel.User" />
+          <AssociationSet Name="FK_StructureElement_IDSet" Association="MtcModel.FK_StructureElement_ID">
+            <End Role="Structureelement" EntitySet="Structureelements" />
+            <End Role="Structurecontents" EntitySet="Structurecontents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StructureTypeSet" Association="MtcModel.FK_StructureType">
+            <End Role="Structuretype" EntitySet="Structuretypes" />
+            <End Role="Structureelements" EntitySet="Structureelements" />
+          </AssociationSet>
+          <AssociationSet Name="Structureelement_StructureelementSet" Association="MtcModel.Structureelement_Structureelement">
+            <End Role="Structureelements1" EntitySet="Structureelements" />
+            <End Role="Structureelements_structureelementchild" EntitySet="Structureelements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_IDSet" Association="MtcModel.FK_User_ID">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Structurecontents" EntitySet="Structurecontents" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Structurecontent" ed:Guid="0c6ba9ce-a181-47c7-a875-a8ea7b6f047d">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="17848fdd-6cc6-442a-b502-e4799e674e94" />
+          <Property Name="StructureElementId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="da3861e0-564c-496a-8411-091cd1b13cea" />
+          <Property Name="Title" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="d8d2dd75-81ac-4a45-ad3c-90bcba0b8faf" />
+          <Property Name="Content" Type="Binary" ed:ValidateRequired="false" ed:Guid="6a2fbde4-ace3-4233-aae0-dbe836914685" />
+          <Property Name="UserId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="430366a4-acfa-4c7e-915b-11d0482641cc" />
+          <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="9a8e3151-d2e3-44c2-94c3-1ee3b171c342" />
+          <NavigationProperty Name="Structureelement" Relationship="MtcModel.FK_StructureElement_ID" FromRole="Structurecontents" ToRole="Structureelement" ed:Guid="3f75eda8-f650-4195-8433-4e61b4a5fc40" />
+          <NavigationProperty Name="User" Relationship="MtcModel.FK_User_ID" FromRole="Structurecontents" ToRole="User" ed:Guid="12ab059c-c4ee-4bd3-8c0c-5cee0c638412" />
+        </EntityType>
+        <EntityType Name="Structureelement" ed:Guid="b99c0c78-baab-49c5-9471-4cfcab16d914">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="51963fd4-01af-43d7-8654-6198986c86e0" />
+          <Property Name="Title" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="b31e81ac-16db-4fd8-9982-8f88830d7382" />
+          <Property Name="StructureTypeId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="68e56a4b-86e2-49b5-b7cd-f287bcd93b8f" />
+          <NavigationProperty Name="Structurecontents" Relationship="MtcModel.FK_StructureElement_ID" FromRole="Structureelement" ToRole="Structurecontents" ed:Guid="0cd802fb-4b87-4b5c-8d7e-f8c6d53f6cd3" />
+          <NavigationProperty Name="Structuretype" Relationship="MtcModel.FK_StructureType" FromRole="Structureelements" ToRole="Structuretype" ed:Guid="c7b77f31-75f7-47bf-a850-3b310c5e46f8" />
+          <NavigationProperty Name="Structureelements_structureelementchild" Relationship="MtcModel.Structureelement_Structureelement" FromRole="Structureelements1" ToRole="Structureelements_structureelementchild" ed:Guid="838fd184-a468-44e0-b922-404707058558" />
+          <NavigationProperty Name="Structureelements1" Relationship="MtcModel.Structureelement_Structureelement" FromRole="Structureelements_structureelementchild" ToRole="Structureelements1" ed:Guid="138ab00e-a381-4d74-ad14-c426c2aa49a7" />
+        </EntityType>
+        <EntityType Name="Structuretype" ed:Guid="8b771512-8b7e-4073-baf6-c6cf230ff621">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="4cb343d1-7483-4e53-8ac7-cacccd958f40" />
+          <Property Name="Name" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="e3a9928f-22c2-4965-a892-b16931ef5cdf" />
+          <NavigationProperty Name="Structureelements" Relationship="MtcModel.FK_StructureType" FromRole="Structuretype" ToRole="Structureelements" ed:Guid="0084487f-c4f7-40ca-8c5d-1f4363d1e744" />
+        </EntityType>
+        <EntityType Name="User" ed:Guid="f5bb2a0d-f37a-4506-9766-f9ba54eab588">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="39c26164-27b0-44db-a36b-a744f050ae16" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="9b83c03c-b56b-4bec-b714-6f973d81134f" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="e73bee4b-d628-46b1-8e78-82636e4a5edc" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="0b841d84-dacd-44a3-952a-833097234d93" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="fb7250b8-cfda-4505-aeba-1ff0e4f528a0" />
+          <NavigationProperty Name="Structurecontents" Relationship="MtcModel.FK_User_ID" FromRole="User" ToRole="Structurecontents" ed:Guid="3623a32c-581b-4be5-9a29-d6f5b79a3607" />
+        </EntityType>
+        <Association Name="FK_StructureElement_ID" ed:Guid="9adc33ac-70aa-48c2-bef3-45da715cb071">
+          <End Role="Structureelement" Type="MtcModel.Structureelement" Multiplicity="1" />
+          <End Role="Structurecontents" Type="MtcModel.Structurecontent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Structureelement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Structurecontents">
+              <PropertyRef Name="StructureElementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StructureType" ed:Guid="8082ed5b-d8f4-4f08-a637-300fb5b62ea1">
+          <End Role="Structuretype" Type="MtcModel.Structuretype" Multiplicity="1" />
+          <End Role="Structureelements" Type="MtcModel.Structureelement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Structuretype">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Structureelements">
+              <PropertyRef Name="StructureTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Structureelement_Structureelement" ed:Guid="bb0c6ed7-7544-47d1-904a-ae9ed1954be4">
+          <End Role="Structureelements1" Type="MtcModel.Structureelement" Multiplicity="*" />
+          <End Role="Structureelements_structureelementchild" Type="MtcModel.Structureelement" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_User_ID" ed:Guid="f1c89e1b-a933-45cc-8f01-9bce5effcb8c">
+          <End Role="User" Type="MtcModel.User" Multiplicity="1" />
+          <End Role="Structurecontents" Type="MtcModel.Structurecontent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Structurecontents">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- MSL content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MtcEntitiesStoreContainer" CdmEntityContainer="MtcEntities" />
+        <EntityContainerMapping StorageEntityContainer="MtcEntitiesStoreContainer" CdmEntityContainer="MtcEntities">
+          <EntitySetMapping Name="Structurecontents">
+            <EntityTypeMapping TypeName="MtcModel.Structurecontent">
+              <MappingFragment StoreEntitySet="structurecontents">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StructureElementId" ColumnName="StructureElementId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Structureelements">
+            <EntityTypeMapping TypeName="MtcModel.Structureelement">
+              <MappingFragment StoreEntitySet="structureelements">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="StructureTypeId" ColumnName="StructureTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Structuretypes">
+            <EntityTypeMapping TypeName="MtcModel.Structuretype">
+              <MappingFragment StoreEntitySet="structuretypes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MtcModel.User">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Structureelement_StructureelementSet" TypeName="MtcModel.Structureelement_Structureelement" StoreEntitySet="structurerelations">
+            <EndProperty Name="Structureelements1">
+              <ScalarProperty Name="ID" ColumnName="structureelementchild" />
+            </EndProperty>
+            <EndProperty Name="Structureelements_structureelementchild">
+              <ScalarProperty Name="ID" ColumnName="strctureelementparent" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
