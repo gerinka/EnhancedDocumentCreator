@@ -2,7 +2,11 @@
 <EntityDeveloper Version="5.8.742.0">
   <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" AppConnectionStringName="MtcEntitiesConnectionString" ConnectionStringInAppConfig="True" RegenareteConnectionStringInAppConfig="True" TargetFramework="Net45" DetectTPTInheritance="False" EntityFrameworkVersion="Version6" IncludeForeignKeysInModel="true" DetectFunctionBasedColumnDefault="false">
     <Connection ConnectionString="persistsecurityinfo=True;server=localhost;user id=root;password=toor;database=mtc" Provider="MySql.Data.MySqlClient" />
-    <Generation />
+    <Generation>
+      <GeneratedFiles>
+        <File Name="MtcEntities.Designer.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+      </GeneratedFiles>
+    </Generation>
     <DatabaseFirstNamingRules>
       <EntitySet PluralizationName="Pluralize" />
       <Class UseSchemaAsPrefix="False" PluralizeCollectionNavigationPropertyName="True" RemoveUnderscores="True" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Singularize" />
@@ -37,15 +41,15 @@
         </ed:Property>
         <ed:Property Name="EntitiesOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=5.8.742.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <OutputInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <Project />
-            <ProjectFolder />
+            <Project>Mtc.Infrastructure.DataAccess</Project>
+            <ProjectFolder>GeneratedEntities</ProjectFolder>
             <DestinationFolder />
           </OutputInfo>
         </ed:Property>
         <ed:Property Name="ContextOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=5.8.742.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <OutputInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <Project />
-            <ProjectFolder />
+            <Project>Mtc.Infrastructure.DataAccess</Project>
+            <ProjectFolder>GeneratedEntities</ProjectFolder>
             <DestinationFolder />
           </OutputInfo>
         </ed:Property>

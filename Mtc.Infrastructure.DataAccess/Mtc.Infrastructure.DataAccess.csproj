@@ -49,25 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="MTCentities.Designer.cs">
+    <Compile Include="GeneratedEntities\MtcEntities.Designer.cs" />
+    <Compile Include="MtcEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MTCentities.edml</DependentUpon>
+      <DependentUpon>MtcEntities.edml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="MTCentities.Diagram1.view">
-      <DependentUpon>MTCentities.edml</DependentUpon>
+    <None Include="MtcEntities.Diagram1.view">
+      <DependentUpon>MtcEntities.edml</DependentUpon>
     </None>
-    <DevartEntityDeploy Include="MTCentities.edml">
+    <DevartEntityDeploy Include="MtcEntities.edml">
       <Generator>DevartEfGenerator</Generator>
-      <LastGenOutput>MTCentities.Designer.cs</LastGenOutput>
+      <LastGenOutput>MtcEntities.Designer.cs</LastGenOutput>
     </DevartEntityDeploy>
-    <None Include="MTCentities.edps">
-      <DependentUpon>MTCentities.edml</DependentUpon>
+    <None Include="MtcEntities.edps">
+      <DependentUpon>MtcEntities.edml</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
