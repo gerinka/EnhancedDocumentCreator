@@ -48,6 +48,7 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="Deadline" Type="datetime" Nullable="false" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="100" Collation="utf8_general_ci" />
+          <Property Name="CurrentProgress" Type="int" />
         </EntityType>
         <EntityType Name="structurecontent">
           <Key>
@@ -59,6 +60,7 @@
           <Property Name="Content" Type="longblob" />
           <Property Name="DocumentId" Type="int" Nullable="false" />
           <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="CurrentProgress" Type="int" />
         </EntityType>
         <EntityType Name="structureelement">
           <Key>
@@ -89,6 +91,7 @@
           <Property Name="DocumentId" Type="int" Nullable="false" />
           <Property Name="Order" Type="int" />
           <Property Name="TaskType" Type="int" Nullable="false" />
+          <Property Name="IsLocked" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -99,6 +102,8 @@
           <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
           <Property Name="Email" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
           <Property Name="Password" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="ExperiencePoints" Type="int" />
+          <Property Name="Level" Type="smallint" />
         </EntityType>
         <Association Name="FK_DIplomasUser_ID">
           <End Role="user" Type="MtcModel.Store.user" Multiplicity="1" />
@@ -228,6 +233,7 @@
           <Property Name="UserId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="186a67e2-0543-4cfb-9c33-7cb6b25fdfc7" />
           <Property Name="Deadline" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="b020c537-90c8-4be8-a4ff-183cd8a58d7a" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="100" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="7813adb8-2bb9-4431-8e4a-879e3d958115" />
+          <Property Name="CurrentProgress" Type="Int32" ed:ValidateRequired="false" ed:Guid="1823e95c-388d-445f-8e2a-f13602bff66b" />
           <NavigationProperty Name="User" Relationship="MtcModel.FK_DIplomasUser_ID" FromRole="Documents" ToRole="User" ed:Guid="9bd702ad-d6ab-4f40-8aae-3173e3e4a122" />
           <NavigationProperty Name="StructureContents" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="Document" ToRole="StructureContents" ed:Guid="dfb15c93-9c74-4378-b488-6056ed75feb1" />
           <NavigationProperty Name="Tasks" Relationship="MtcModel.FK_TaskDocument_Id" FromRole="Document" ToRole="Tasks" ed:Guid="f88571c3-7b3d-46d3-9aec-93aa5acc20c3" />
@@ -242,6 +248,7 @@
           <Property Name="Content" Type="Binary" ed:ValidateRequired="false" ed:Guid="e2db0c4e-3e88-4ae1-9a51-18fe42bd0d4a" />
           <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="3f6e5b9d-7e75-4969-a5e5-2ef17d95ec4e" />
           <Property Name="Order" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="21f8c7f5-4a63-4a07-a835-eda65609aca5" />
+          <Property Name="CurrentProgress" Type="Int32" ed:ValidateRequired="false" ed:Guid="1867e8de-01ff-451b-8469-7417d62ef5f5" />
           <NavigationProperty Name="Document" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="StructureContents" ToRole="Document" ed:Guid="3f815930-1b1a-4010-acda-bdfd1f25268b" />
           <NavigationProperty Name="StructureElement" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="StructureContents" ToRole="StructureElement" ed:Guid="a1b7c887-9f20-44fb-82e0-88f5e1e5a631" />
         </EntityType>
@@ -269,6 +276,7 @@
           <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="951b32ec-d6c0-41a3-bc18-b15fdde897bc" />
           <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="d851b8b9-6682-497b-9f69-b261b0471a47" />
           <Property Name="TaskType" Type="MtcModel.TaskType" Nullable="false" ed:ValidateRequired="true" ed:Guid="b4a5bbb0-d76f-4200-9173-956f659bd0c8" />
+          <Property Name="IsLocked" Type="SByte" Nullable="false" ed:ValidateRequired="true" ed:Guid="5e16295e-87f1-4f44-a31e-ce7a347c7c53" />
           <NavigationProperty Name="Document" Relationship="MtcModel.FK_TaskDocument_Id" FromRole="Tasks" ToRole="Document" ed:Guid="89f9d245-8cd9-4222-bd56-665f9b1a1366" />
           <NavigationProperty Name="User" Relationship="MtcModel.FK_TaskUser_Id" FromRole="Tasks" ToRole="User" ed:Guid="7524d930-eb0d-4968-ac23-e8b2c221dd3f" />
         </EntityType>
@@ -281,6 +289,8 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="f2fb2e41-85bb-4269-8c24-b59daf4df82f" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="8209d04a-2d79-41f3-8cbe-65fd6d9f1856" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="6cef0e68-7576-4747-a5e2-e2dad215f580" />
+          <Property Name="ExperiencePoints" Type="Int32" ed:ValidateRequired="false" ed:Guid="a80f0c21-6f98-4721-9724-400f6c37817a" />
+          <Property Name="Level" Type="Int16" ed:ValidateRequired="false" ed:Guid="ce912d7d-c986-426c-9cca-87d6541f3347" />
           <NavigationProperty Name="Documents" Relationship="MtcModel.FK_DIplomasUser_ID" FromRole="User" ToRole="Documents" ed:Guid="e7e014f8-a18e-4ccc-a003-54b47f63a470" />
           <NavigationProperty Name="Tasks" Relationship="MtcModel.FK_TaskUser_Id" FromRole="User" ToRole="Tasks" ed:Guid="800d2858-89b5-4a99-a1bf-75ce488429fc" />
         </EntityType>
@@ -376,6 +386,7 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Deadline" ColumnName="Deadline" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CurrentProgress" ColumnName="CurrentProgress" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -388,6 +399,7 @@
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="CurrentProgress" ColumnName="CurrentProgress" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -412,6 +424,7 @@
                 <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="TaskType" ColumnName="TaskType" />
+                <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -423,6 +436,8 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ExperiencePoints" ColumnName="ExperiencePoints" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
