@@ -7,15 +7,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.WebClient", "Mtc.WebCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.WebClient.Tests", "Mtc.WebClient.Tests\Mtc.WebClient.Tests.csproj", "{9A403D71-8697-43B6-887F-9210EBE87D50}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mtc.WebClient", "Mtc.WebClient", "{12E2EEC6-FC09-4B6F-9605-1A4E680C8EB5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - WebClient", "4 - WebClient", "{12E2EEC6-FC09-4B6F-9605-1A4E680C8EB5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mtc.Api", "Mtc.Api", "{65CEF453-4F12-4C07-8C06-B561CB9B80A9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Api", "3 - Api", "{65CEF453-4F12-4C07-8C06-B561CB9B80A9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mtc.Infrastructure", "Mtc.Infrastructure", "{EF88967D-5B5F-4C67-A28C-7F8C7B98D651}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Infrastructure", "1 - Infrastructure", "{EF88967D-5B5F-4C67-A28C-7F8C7B98D651}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mtc.Domain", "Mtc.Domain", "{BED3A00C-7EE6-4E66-A720-EDBA9EEED42D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{BED3A00C-7EE6-4E66-A720-EDBA9EEED42D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Domain", "Mtc.Domain\Mtc.Domain.csproj", "{F3793531-0EBA-4D4A-AD4D-3745B2804DD3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Others", "5 - Others", "{97D071DC-1DE1-41BA-9EDA-DCB46AF34665}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
