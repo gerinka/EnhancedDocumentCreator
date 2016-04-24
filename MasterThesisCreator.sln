@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Domain", "Mtc.Domain\Mt
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Others", "5 - Others", "{97D071DC-1DE1-41BA-9EDA-DCB46AF34665}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Infrastructure.DataAccess", "Mtc.Infrastructure.DataAccess\Mtc.Infrastructure.DataAccess.csproj", "{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{F3793531-0EBA-4D4A-AD4D-3745B2804DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3793531-0EBA-4D4A-AD4D-3745B2804DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3793531-0EBA-4D4A-AD4D-3745B2804DD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,5 +51,6 @@ Global
 		{D7A6AE9A-7A27-4EDD-8347-CFEB7988F285} = {12E2EEC6-FC09-4B6F-9605-1A4E680C8EB5}
 		{9A403D71-8697-43B6-887F-9210EBE87D50} = {12E2EEC6-FC09-4B6F-9605-1A4E680C8EB5}
 		{F3793531-0EBA-4D4A-AD4D-3745B2804DD3} = {BED3A00C-7EE6-4E66-A720-EDBA9EEED42D}
+		{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0} = {EF88967D-5B5F-4C67-A28C-7F8C7B98D651}
 	EndGlobalSection
 EndGlobal
