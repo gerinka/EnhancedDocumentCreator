@@ -214,9 +214,9 @@
       <Schema Namespace="MtcModel" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="MtcEntities" annotation:LazyLoadingEnabled="true" ed:Guid="01ffdfce-cf00-453c-90f5-d004098eafef">
           <EntitySet Name="Documents" EntityType="MtcModel.Document" />
-          <EntitySet Name="Structurecontents" EntityType="MtcModel.Structurecontent" />
-          <EntitySet Name="Structureelements" EntityType="MtcModel.Structureelement" />
-          <EntitySet Name="Structuretypes" EntityType="MtcModel.Structuretype" />
+          <EntitySet Name="StructureContents" EntityType="MtcModel.StructureContent" />
+          <EntitySet Name="StructureElements" EntityType="MtcModel.StructureElement" />
+          <EntitySet Name="StructureTypes" EntityType="MtcModel.StructureType" />
           <EntitySet Name="Tasks" EntityType="MtcModel.Task" />
           <EntitySet Name="Users" EntityType="MtcModel.User" />
           <AssociationSet Name="FK_DIplomasUser_IDSet" Association="MtcModel.FK_DIplomasUser_ID">
@@ -225,15 +225,15 @@
           </AssociationSet>
           <AssociationSet Name="FK_StructureContentDocument_IdSet" Association="MtcModel.FK_StructureContentDocument_Id">
             <End Role="Document" EntitySet="Documents" />
-            <End Role="Structurecontents" EntitySet="Structurecontents" />
+            <End Role="StructureContents" EntitySet="StructureContents" />
           </AssociationSet>
           <AssociationSet Name="FK_StructureElementDocument_IdSet" Association="MtcModel.FK_StructureElementDocument_Id">
-            <End Role="Structureelement" EntitySet="Structureelements" />
-            <End Role="Structurecontents" EntitySet="Structurecontents" />
+            <End Role="StructureElement" EntitySet="StructureElements" />
+            <End Role="StructureContents" EntitySet="StructureContents" />
           </AssociationSet>
           <AssociationSet Name="FK_StructureElementType_IdSet" Association="MtcModel.FK_StructureElementType_Id">
-            <End Role="Structuretype" EntitySet="Structuretypes" />
-            <End Role="Structureelements" EntitySet="Structureelements" />
+            <End Role="StructureType" EntitySet="StructureTypes" />
+            <End Role="StructureElements" EntitySet="StructureElements" />
           </AssociationSet>
           <AssociationSet Name="FK_TaskDocument_IdSet" Association="MtcModel.FK_TaskDocument_Id">
             <End Role="Document" EntitySet="Documents" />
@@ -244,8 +244,8 @@
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
           <AssociationSet Name="Structureelement_StructureelementSet" Association="MtcModel.Structureelement_Structureelement">
-            <End Role="Structureelements1" EntitySet="Structureelements" />
-            <End Role="Structureelements" EntitySet="Structureelements" />
+            <End Role="StructureElements1" EntitySet="StructureElements" />
+            <End Role="StructureElements" EntitySet="StructureElements" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Document" ed:Guid="99991a11-bcde-4618-89f1-87451f50a4d5">
@@ -257,10 +257,10 @@
           <Property Name="Deadline" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="b020c537-90c8-4be8-a4ff-183cd8a58d7a" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="100" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="7813adb8-2bb9-4431-8e4a-879e3d958115" />
           <NavigationProperty Name="User" Relationship="MtcModel.FK_DIplomasUser_ID" FromRole="Documents" ToRole="User" ed:Guid="9bd702ad-d6ab-4f40-8aae-3173e3e4a122" />
-          <NavigationProperty Name="Structurecontents" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="Document" ToRole="Structurecontents" ed:Guid="dfb15c93-9c74-4378-b488-6056ed75feb1" />
+          <NavigationProperty Name="StructureContents" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="Document" ToRole="StructureContents" ed:Guid="dfb15c93-9c74-4378-b488-6056ed75feb1" />
           <NavigationProperty Name="Tasks" Relationship="MtcModel.FK_TaskDocument_Id" FromRole="Document" ToRole="Tasks" ed:Guid="f88571c3-7b3d-46d3-9aec-93aa5acc20c3" />
         </EntityType>
-        <EntityType Name="Structurecontent" ed:Guid="5e43c785-98a7-446b-9e43-fa8e47b0c5e6">
+        <EntityType Name="StructureContent" ed:Guid="5e43c785-98a7-446b-9e43-fa8e47b0c5e6">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -270,10 +270,10 @@
           <Property Name="Content" Type="Binary" ed:ValidateRequired="false" ed:Guid="e2db0c4e-3e88-4ae1-9a51-18fe42bd0d4a" />
           <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="3f6e5b9d-7e75-4969-a5e5-2ef17d95ec4e" />
           <Property Name="Order" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="21f8c7f5-4a63-4a07-a835-eda65609aca5" />
-          <NavigationProperty Name="Document" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="Structurecontents" ToRole="Document" ed:Guid="3f815930-1b1a-4010-acda-bdfd1f25268b" />
-          <NavigationProperty Name="Structureelement" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="Structurecontents" ToRole="Structureelement" ed:Guid="a1b7c887-9f20-44fb-82e0-88f5e1e5a631" />
+          <NavigationProperty Name="Document" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="StructureContents" ToRole="Document" ed:Guid="3f815930-1b1a-4010-acda-bdfd1f25268b" />
+          <NavigationProperty Name="StructureElement" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="StructureContents" ToRole="StructureElement" ed:Guid="a1b7c887-9f20-44fb-82e0-88f5e1e5a631" />
         </EntityType>
-        <EntityType Name="Structureelement" ed:Guid="2ab5a69c-ad10-4945-8969-4522ac6c1d19">
+        <EntityType Name="StructureElement" ed:Guid="2ab5a69c-ad10-4945-8969-4522ac6c1d19">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -281,18 +281,18 @@
           <Property Name="Title" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="4bb090a4-e683-494a-883c-e9e24124627d" />
           <Property Name="StructureTypeId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="7a0f1ee4-b817-4dee-a5f5-909fbc6789bd" />
           <Property Name="Description" Type="String" MaxLength="455" ed:ValidateMaxLength="455" ed:ValidateRequired="false" ed:Guid="44e23069-2270-47da-afbb-e2888508e072" />
-          <NavigationProperty Name="Structurecontents" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="Structureelement" ToRole="Structurecontents" ed:Guid="80d747dd-48c3-4c8b-a07b-af590c659496" />
-          <NavigationProperty Name="Structuretype" Relationship="MtcModel.FK_StructureElementType_Id" FromRole="Structureelements" ToRole="Structuretype" ed:Guid="2302fdd4-572b-468d-b490-2757379c6a62" />
-          <NavigationProperty Name="Structureelements" Relationship="MtcModel.Structureelement_Structureelement" FromRole="Structureelements1" ToRole="Structureelements" ed:Guid="b4997fe9-937b-410c-863a-8cadb3fdcbdb" />
-          <NavigationProperty Name="Structureelements1" Relationship="MtcModel.Structureelement_Structureelement" FromRole="Structureelements" ToRole="Structureelements1" ed:Guid="50d69f84-0d7a-45fc-970b-e7d64de3451e" />
+          <NavigationProperty Name="StructureContents" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="StructureElement" ToRole="StructureContents" ed:Guid="80d747dd-48c3-4c8b-a07b-af590c659496" />
+          <NavigationProperty Name="StructureType" Relationship="MtcModel.FK_StructureElementType_Id" FromRole="StructureElements" ToRole="StructureType" ed:Guid="2302fdd4-572b-468d-b490-2757379c6a62" />
+          <NavigationProperty Name="StructureElements" Relationship="MtcModel.Structureelement_Structureelement" FromRole="StructureElements1" ToRole="StructureElements" ed:Guid="b4997fe9-937b-410c-863a-8cadb3fdcbdb" />
+          <NavigationProperty Name="StructureElements1" Relationship="MtcModel.Structureelement_Structureelement" FromRole="StructureElements" ToRole="StructureElements1" ed:Guid="50d69f84-0d7a-45fc-970b-e7d64de3451e" />
         </EntityType>
-        <EntityType Name="Structuretype" ed:Guid="5b70b3e6-e846-4521-b1cc-b82052b0c74e">
+        <EntityType Name="StructureType" ed:Guid="5b70b3e6-e846-4521-b1cc-b82052b0c74e">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="64ced0eb-3412-4d21-8d75-db90433165b8" />
           <Property Name="Name" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="7231bd9b-c586-4d20-829a-8a984ae9f907" />
-          <NavigationProperty Name="Structureelements" Relationship="MtcModel.FK_StructureElementType_Id" FromRole="Structuretype" ToRole="Structureelements" ed:Guid="864b8877-fdb1-4297-a9d5-c7cedd5a5584" />
+          <NavigationProperty Name="StructureElements" Relationship="MtcModel.FK_StructureElementType_Id" FromRole="StructureType" ToRole="StructureElements" ed:Guid="864b8877-fdb1-4297-a9d5-c7cedd5a5584" />
         </EntityType>
         <EntityType Name="Task" ed:Guid="f4a5c013-73a8-4210-92af-06b74fd641be">
           <Key>
@@ -334,36 +334,36 @@
         </Association>
         <Association Name="FK_StructureContentDocument_Id" ed:Guid="0af5c696-61b6-4b67-a2e9-f963650543da">
           <End Role="Document" Type="MtcModel.Document" Multiplicity="1" />
-          <End Role="Structurecontents" Type="MtcModel.Structurecontent" Multiplicity="*" />
+          <End Role="StructureContents" Type="MtcModel.StructureContent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Document">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Structurecontents">
+            <Dependent Role="StructureContents">
               <PropertyRef Name="DocumentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StructureElementDocument_Id" ed:Guid="b86741a3-7c2a-41da-aedf-69da924c4de4">
-          <End Role="Structureelement" Type="MtcModel.Structureelement" Multiplicity="1" />
-          <End Role="Structurecontents" Type="MtcModel.Structurecontent" Multiplicity="*" />
+          <End Role="StructureElement" Type="MtcModel.StructureElement" Multiplicity="1" />
+          <End Role="StructureContents" Type="MtcModel.StructureContent" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Structureelement">
+            <Principal Role="StructureElement">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Structurecontents">
+            <Dependent Role="StructureContents">
               <PropertyRef Name="StructureElementId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StructureElementType_Id" ed:Guid="ca816fd2-7a99-4376-97bf-b3db4b48b14d">
-          <End Role="Structuretype" Type="MtcModel.Structuretype" Multiplicity="1" />
-          <End Role="Structureelements" Type="MtcModel.Structureelement" Multiplicity="*" />
+          <End Role="StructureType" Type="MtcModel.StructureType" Multiplicity="1" />
+          <End Role="StructureElements" Type="MtcModel.StructureElement" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Structuretype">
+            <Principal Role="StructureType">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Structureelements">
+            <Dependent Role="StructureElements">
               <PropertyRef Name="StructureTypeId" />
             </Dependent>
           </ReferentialConstraint>
@@ -393,8 +393,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Structureelement_Structureelement" ed:Guid="3d98b7fa-04c9-4e8f-81c4-39881daaa5c7">
-          <End Role="Structureelements1" Type="MtcModel.Structureelement" Multiplicity="*" />
-          <End Role="Structureelements" Type="MtcModel.Structureelement" Multiplicity="*" />
+          <End Role="StructureElements1" Type="MtcModel.StructureElement" Multiplicity="*" />
+          <End Role="StructureElements" Type="MtcModel.StructureElement" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -412,8 +412,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Structurecontents">
-            <EntityTypeMapping TypeName="MtcModel.Structurecontent">
+          <EntitySetMapping Name="StructureContents">
+            <EntityTypeMapping TypeName="MtcModel.StructureContent">
               <MappingFragment StoreEntitySet="structurecontents">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StructureElementId" ColumnName="StructureElementId" />
@@ -424,8 +424,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Structureelements">
-            <EntityTypeMapping TypeName="MtcModel.Structureelement">
+          <EntitySetMapping Name="StructureElements">
+            <EntityTypeMapping TypeName="MtcModel.StructureElement">
               <MappingFragment StoreEntitySet="structureelements">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -434,8 +434,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Structuretypes">
-            <EntityTypeMapping TypeName="MtcModel.Structuretype">
+          <EntitySetMapping Name="StructureTypes">
+            <EntityTypeMapping TypeName="MtcModel.StructureType">
               <MappingFragment StoreEntitySet="structuretypes">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -467,10 +467,10 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="Structureelement_StructureelementSet" TypeName="MtcModel.Structureelement_Structureelement" StoreEntitySet="structurerelations">
-            <EndProperty Name="Structureelements1">
+            <EndProperty Name="StructureElements1">
               <ScalarProperty Name="Id" ColumnName="StructureElementChildId" />
             </EndProperty>
-            <EndProperty Name="Structureelements">
+            <EndProperty Name="StructureElements">
               <ScalarProperty Name="Id" ColumnName="StructureElementParentId" />
             </EndProperty>
           </AssociationSetMapping>
