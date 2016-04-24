@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace MTC.WebClient
+namespace Mtc.WebClient
 {
     public class RouteConfig
     {

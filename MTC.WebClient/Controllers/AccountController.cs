@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using MTC.WebClient.Models;
+using Mtc.WebClient.Models;
 
-namespace MTC.WebClient.Controllers
+namespace Mtc.WebClient.Controllers
 {
     [Authorize]
     public class AccountController : Controller

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.WebClient", "MTC.WebClient\Mtc.WebClient.csproj", "{D7A6AE9A-7A27-4EDD-8347-CFEB7988F285}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.WebClient", "Mtc.WebClient\Mtc.WebClient.csproj", "{D7A6AE9A-7A27-4EDD-8347-CFEB7988F285}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.WebClient.Tests", "MTC.WebClient.Tests\Mtc.WebClient.Tests.csproj", "{9A403D71-8697-43B6-887F-9210EBE87D50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.WebClient.Tests", "Mtc.WebClient.Tests\Mtc.WebClient.Tests.csproj", "{9A403D71-8697-43B6-887F-9210EBE87D50}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mtc.WebClient", "Mtc.WebClient", "{12E2EEC6-FC09-4B6F-9605-1A4E680C8EB5}"
 EndProject
