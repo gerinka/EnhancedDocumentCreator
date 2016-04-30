@@ -11,7 +11,7 @@ namespace DocumentCreation
     {
         static void Main(string[] args)
         {
-            DocumentGenerator.GenerateDocument("Създаване на света част 1");
+            DocumentGenerator.GenerateComplexDocument("Създаване на света част 1");
         }
     }
 }

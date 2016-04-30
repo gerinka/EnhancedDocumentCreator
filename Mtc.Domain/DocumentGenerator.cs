@@ -1,152 +1,49 @@
-﻿using System;
+﻿using Mtc.Domain.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
-using Mtc.Domain.Interfaces;
-using TemplateEngine.Docx;
+using System.Linq;
+using System.Threading.Tasks;
+using Novacode;
+using Image = Novacode.Image;
 
 namespace Mtc.Domain
 {
     public class DocumentGenerator : IDocumentGenerator
     {
-        public static void GenerateDocument(string title)
-        {				
-            File.Delete("OutputDocument.docx");
-            File.Copy("InputTemplate.docx", "OutputDocument.docx");
+    
 
-		
-	        var valuesToFill = new Content(
-		        // Add field.
-		        new FieldContent("Report date", DateTime.Now.ToString()),
-                new FieldContent("DocumentTitle", title),
-		        // Add table.
-		        new TableContent("Team Members Table")
-			        .AddRow(
-				        new FieldContent("Name", "Eric"),
-				        new FieldContent("Role", "Program Manager"))
-			        .AddRow(
-				        new FieldContent("Name", "Bob"),
-				        new FieldContent("Role", "Developer")),
-
-				// Add field inside table that not to propagate.
-		        new FieldContent("Count", "2"),
-
-				// Add list.	
-				new ListContent("Team Members List")
-					.AddItem(
-						new FieldContent("Name", "Eric"), 
-						new FieldContent("Role", "Program Manager"))
-					.AddItem(
-						new FieldContent("Name", "Bob"),
-						new FieldContent("Role", "Developer")),
-
-				// Add nested list.	
-				new ListContent("Team Members Nested List")
-					.AddItem(new ListItemContent("Role", "Program Manager")
-						.AddNestedItem(new FieldContent("Name", "Eric"))
-						.AddNestedItem(new FieldContent("Name", "Ann")))
-					.AddItem(new ListItemContent("Role", "Developer")
-						.AddNestedItem(new FieldContent("Name", "Bob"))
-						.AddNestedItem(new FieldContent("Name", "Richard"))),
-
-				// Add list inside table.	
-				new TableContent("Projects Table")
-					.AddRow(
-						new FieldContent("Name", "Eric"), 
-						new FieldContent("Role", "Program Manager"), 
-						new ListContent("Projects")
-							.AddItem(new FieldContent("Project", "Project one"))
-							.AddItem(new FieldContent("Project", "Project two")))
-					.AddRow(
-						new FieldContent("Name", "Bob"),
-						new FieldContent("Role", "Developer"),
-						new ListContent("Projects")
-							.AddItem(new FieldContent("Project", "Project one"))
-							.AddItem(new FieldContent("Project", "Project three"))),
-		      
-				// Add table inside list.	
-				new ListContent("Projects List")
-					.AddItem(new ListItemContent("Project", "Project one")
-						.AddTable(TableContent.Create("Team members")
-							.AddRow(
-								new FieldContent("Name", "Eric"), 
-								new FieldContent("Role", "Program Manager"))
-							.AddRow(
-								new FieldContent("Name", "Bob"), 
-								new FieldContent("Role", "Developer"))))
-					.AddItem(new ListItemContent("Project", "Project two")
-						.AddTable(TableContent.Create("Team members")
-							.AddRow(
-								new FieldContent("Name", "Eric"),
-								new FieldContent("Role", "Program Manager"))))
-					.AddItem(new ListItemContent("Project", "Project three")
-						.AddTable(TableContent.Create("Team members")
-							.AddRow(
-								new FieldContent("Name", "Bob"),
-								new FieldContent("Role", "Developer")))),
-
-
-				// Add table with several blocks.	
-				new TableContent("Team Members Statistics")
-					.AddRow(
-						new FieldContent("Name", "Eric"),
-						new FieldContent("Role", "Program Manager"))
-					.AddRow(
-					    new FieldContent("Name", "Richard"),
-						new FieldContent("Role", "Program Manager"))
-					.AddRow(
-						new FieldContent("Name", "Bob"),
-						new FieldContent("Role", "Developer")),
-
-					new TableContent("Team Members Statistics")
-					.AddRow(
-						new FieldContent("Statistics Role", "Program Manager"),
-						new FieldContent("Statistics Role Count", "2"))						
-					.AddRow(
-						new FieldContent("Statistics Role", "Developer"),
-						new FieldContent("Statistics Role Count", "1")),
-						
-				// Add table with merged rows
-				new TableContent("Team members info")
-					.AddRow(
-						new FieldContent("Name", "Eric"),
-						new FieldContent("Role", "Program Manager"),
-						new FieldContent("Age", "37"),
-						new FieldContent("Gender", "Male"))
-					.AddRow(
-						new FieldContent("Name", "Bob"),
-						new FieldContent("Role", "Developer"),
-						new FieldContent("Age", "33"),
-						new FieldContent("Gender", "Male"))
-					.AddRow(
-						new FieldContent("Name", "Ann"),
-						new FieldContent("Role", "Developer"),
-						new FieldContent("Age", "34"),
-						new FieldContent("Gender", "Female")),
-						
-				// Add table with merged columns
-				new TableContent("Team members projects")
-					.AddRow(
-						new FieldContent("Name", "Eric"),
-						new FieldContent("Role", "Program Manager"),
-						new FieldContent("Age", "37"),
-						new FieldContent("Projects", "Project one, Project two"))
-					.AddRow(
-						new FieldContent("Name", "Bob"),
-						new FieldContent("Role", "Developer"),
-						new FieldContent("Age", "33"),
-						new FieldContent("Projects", "Project one"))
-					.AddRow(
-						new FieldContent("Name", "Ann"),
-						new FieldContent("Role", "Developer"),
-						new FieldContent("Age", "34"),
-						new FieldContent("Projects", "Project two")));
-
-            using(var outputDocument = new TemplateProcessor("OutputDocument.docx")
-				.SetRemoveContentControls(true))
+        public static void GenerateComplexDocument(string title)
+        {
+            using (var document = DocX.Create("Toc.docx"))
             {
-                outputDocument.FillContent(valuesToFill);
-                outputDocument.SaveChanges();
+                // Insert a new Paragraph into the document.
+                Paragraph titleParagraph = document.InsertParagraph().Append(title).FontSize(20).Font(new FontFamily("Comic Sans MS"));
+                titleParagraph.Alignment = Alignment.center;
+                titleParagraph.InsertPageBreakAfterSelf();
+
+                document.InsertTableOfContents("I can haz table of contentz", TableOfContentsSwitches.O | TableOfContentsSwitches.U | TableOfContentsSwitches.Z | TableOfContentsSwitches.H, "Heading2");
+                document.InsertSectionPageBreak();
+                var h1 = document.InsertParagraph("Heading 1");
+                h1.StyleName = "Heading1";
+
+                document.InsertParagraph("Some very interesting content here");
+                document.InsertSectionPageBreak();
+                var h2 = document.InsertParagraph("Heading 2");
+                document.InsertSectionPageBreak();
+                h2.StyleName = "Heading1";
+                document.InsertParagraph("Some very interesting content here as well");
+                var h3 = document.InsertParagraph("Heading 2.1");
+                h3.StyleName = "Heading2";
+                document.InsertParagraph("Not so very interesting....");
+
+                document.Save();
             }
         }
+
     }
 }
 
