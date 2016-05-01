@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mtc.Domain.Models
 {
-    public class Section
+    public class DocumentState
     {
     }
 }
