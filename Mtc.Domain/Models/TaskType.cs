@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mtc.Domain.Models
 {
-    public class TaskState
+    public class TaskType
     {
     }
 }

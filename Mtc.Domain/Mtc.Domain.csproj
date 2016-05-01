@@ -58,6 +58,7 @@
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\TaskState.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\TaskType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

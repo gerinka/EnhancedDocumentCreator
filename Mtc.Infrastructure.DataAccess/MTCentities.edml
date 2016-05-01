@@ -43,6 +43,10 @@
             <End Role="user" EntitySet="users" />
             <End Role="document" EntitySet="documents" />
           </AssociationSet>
+          <AssociationSet Name="FK_TaskStructureContent_Id" Association="MtcModel.Store.FK_TaskStructureContent_Id">
+            <End Role="structurecontent" EntitySet="structurecontents" />
+            <End Role="task" EntitySet="tasks" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="document">
           <Key>
@@ -97,6 +101,7 @@
           <Property Name="Order" Type="int" />
           <Property Name="TaskType" Type="int" Nullable="false" />
           <Property Name="IsLocked" Type="tinyint" Nullable="false" />
+          <Property Name="StrucktureContentId" Type="int" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -208,6 +213,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TaskStructureContent_Id">
+          <End Role="structurecontent" Type="MtcModel.Store.structurecontent" Multiplicity="0..1" />
+          <End Role="task" Type="MtcModel.Store.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="structurecontent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="StrucktureContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
@@ -247,6 +264,10 @@
             <End Role="User_MentorId" EntitySet="Users" />
             <End Role="Documents_MentorId" EntitySet="Documents" />
           </AssociationSet>
+          <AssociationSet Name="FK_TaskStructureContent_IdSet" Association="MtcModel.FK_TaskStructureContent_Id">
+            <End Role="StructureContent" EntitySet="StructureContents" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Document" ed:Guid="99991a11-bcde-4618-89f1-87451f50a4d5">
           <Key>
@@ -276,6 +297,7 @@
           <Property Name="CurrentProgress" Type="Int32" ed:ValidateRequired="false" ed:Guid="1867e8de-01ff-451b-8469-7417d62ef5f5" />
           <NavigationProperty Name="Document" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="StructureContents" ToRole="Document" ed:Guid="3f815930-1b1a-4010-acda-bdfd1f25268b" />
           <NavigationProperty Name="StructureElement" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="StructureContents" ToRole="StructureElement" ed:Guid="a1b7c887-9f20-44fb-82e0-88f5e1e5a631" />
+          <NavigationProperty Name="Tasks" Relationship="MtcModel.FK_TaskStructureContent_Id" FromRole="StructureContent" ToRole="Tasks" ed:Guid="2d9f6b48-179d-4188-9751-3a48087f1fe9" />
         </EntityType>
         <EntityType Name="StructureElement" ed:Guid="2ab5a69c-ad10-4945-8969-4522ac6c1d19">
           <Key>
@@ -302,8 +324,10 @@
           <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="d851b8b9-6682-497b-9f69-b261b0471a47" />
           <Property Name="TaskType" Type="MtcModel.TaskType" Nullable="false" ed:ValidateRequired="true" ed:Guid="b4a5bbb0-d76f-4200-9173-956f659bd0c8" />
           <Property Name="IsLocked" Type="SByte" Nullable="false" ed:ValidateRequired="true" ed:Guid="5e16295e-87f1-4f44-a31e-ce7a347c7c53" />
+          <Property Name="StrucktureContentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="95abb184-cf1b-4875-a67d-1fd9d3c6247d" />
           <NavigationProperty Name="Document" Relationship="MtcModel.FK_TaskDocument_Id" FromRole="Tasks" ToRole="Document" ed:Guid="89f9d245-8cd9-4222-bd56-665f9b1a1366" />
           <NavigationProperty Name="User" Relationship="MtcModel.FK_TaskUser_Id" FromRole="Tasks" ToRole="User" ed:Guid="7524d930-eb0d-4968-ac23-e8b2c221dd3f" />
+          <NavigationProperty Name="StructureContent" Relationship="MtcModel.FK_TaskStructureContent_Id" FromRole="Tasks" ToRole="StructureContent" ed:Guid="ee8ace87-6e8c-4c2e-a60d-fce71ce4ad7d" />
         </EntityType>
         <EntityType Name="User" ed:Guid="6be6e57e-0b60-4b8e-a5f4-6b4d5cace47f">
           <Key>
@@ -413,6 +437,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TaskStructureContent_Id" ed:Guid="d153eb14-db8e-410f-9009-f9524f3871ca">
+          <End Role="StructureContent" Type="MtcModel.StructureContent" Multiplicity="0..1" />
+          <End Role="Tasks" Type="MtcModel.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StructureContent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="StrucktureContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- MSL content -->
@@ -466,6 +502,7 @@
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="TaskType" ColumnName="TaskType" />
                 <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+                <ScalarProperty Name="StrucktureContentId" ColumnName="StrucktureContentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
