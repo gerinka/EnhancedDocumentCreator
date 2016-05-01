@@ -39,6 +39,10 @@
             <End Role="user" EntitySet="users" />
             <End Role="task" EntitySet="tasks" />
           </AssociationSet>
+          <AssociationSet Name="FK_DocumentMentor_ID" Association="MtcModel.Store.FK_DocumentMentor_ID">
+            <End Role="user" EntitySet="users" />
+            <End Role="document" EntitySet="documents" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="document">
           <Key>
@@ -49,6 +53,7 @@
           <Property Name="Deadline" Type="datetime" Nullable="false" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="100" Collation="utf8_general_ci" />
           <Property Name="CurrentProgress" Type="int" />
+          <Property Name="MentorId" Type="int" />
         </EntityType>
         <EntityType Name="structurecontent">
           <Key>
@@ -98,7 +103,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="FamilyName" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
           <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
           <Property Name="Email" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
           <Property Name="Password" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
@@ -189,6 +196,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DocumentMentor_ID">
+          <End Role="user" Type="MtcModel.Store.user" Multiplicity="0..1" />
+          <End Role="document" Type="MtcModel.Store.document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="document">
+              <PropertyRef Name="MentorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
@@ -224,6 +243,10 @@
             <End Role="StructureElements1" EntitySet="StructureElements" />
             <End Role="StructureElements" EntitySet="StructureElements" />
           </AssociationSet>
+          <AssociationSet Name="FK_DocumentMentor_IDSet" Association="MtcModel.FK_DocumentMentor_ID">
+            <End Role="User_MentorId" EntitySet="Users" />
+            <End Role="Documents_MentorId" EntitySet="Documents" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Document" ed:Guid="99991a11-bcde-4618-89f1-87451f50a4d5">
           <Key>
@@ -234,9 +257,11 @@
           <Property Name="Deadline" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="b020c537-90c8-4be8-a4ff-183cd8a58d7a" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="100" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="7813adb8-2bb9-4431-8e4a-879e3d958115" />
           <Property Name="CurrentProgress" Type="Int32" ed:ValidateRequired="false" ed:Guid="1823e95c-388d-445f-8e2a-f13602bff66b" />
+          <Property Name="MentorId" Type="Int32" ed:ValidateRequired="false" ed:Guid="333fe438-1479-4e1e-b399-0a1ec5d9d32c" />
           <NavigationProperty Name="User" Relationship="MtcModel.FK_DIplomasUser_ID" FromRole="Documents" ToRole="User" ed:Guid="9bd702ad-d6ab-4f40-8aae-3173e3e4a122" />
           <NavigationProperty Name="StructureContents" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="Document" ToRole="StructureContents" ed:Guid="dfb15c93-9c74-4378-b488-6056ed75feb1" />
           <NavigationProperty Name="Tasks" Relationship="MtcModel.FK_TaskDocument_Id" FromRole="Document" ToRole="Tasks" ed:Guid="f88571c3-7b3d-46d3-9aec-93aa5acc20c3" />
+          <NavigationProperty Name="User_MentorId" Relationship="MtcModel.FK_DocumentMentor_ID" FromRole="Documents_MentorId" ToRole="User_MentorId" ed:Guid="51422154-6719-4ece-96d0-254be6223dcc" />
         </EntityType>
         <EntityType Name="StructureContent" ed:Guid="5e43c785-98a7-446b-9e43-fa8e47b0c5e6">
           <Key>
@@ -285,7 +310,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="1c68899a-91bc-4f72-bb19-c9a442754530" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="ca35f308-299f-4393-bb97-b29267a92750" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="10626ba0-59e9-42d3-bf15-9067ba3a48ea" />
+          <Property Name="MiddleName" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="3b0d6b65-f437-49db-bdd8-d4412bd6a087" />
+          <Property Name="FamilyName" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="be4a71c8-2016-408d-8709-941b920a5959" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="f2fb2e41-85bb-4269-8c24-b59daf4df82f" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="8209d04a-2d79-41f3-8cbe-65fd6d9f1856" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="6cef0e68-7576-4747-a5e2-e2dad215f580" />
@@ -293,6 +320,7 @@
           <Property Name="Level" Type="Int16" ed:ValidateRequired="false" ed:Guid="ce912d7d-c986-426c-9cca-87d6541f3347" />
           <NavigationProperty Name="Documents" Relationship="MtcModel.FK_DIplomasUser_ID" FromRole="User" ToRole="Documents" ed:Guid="e7e014f8-a18e-4ccc-a003-54b47f63a470" />
           <NavigationProperty Name="Tasks" Relationship="MtcModel.FK_TaskUser_Id" FromRole="User" ToRole="Tasks" ed:Guid="800d2858-89b5-4a99-a1bf-75ce488429fc" />
+          <NavigationProperty Name="Documents_MentorId" Relationship="MtcModel.FK_DocumentMentor_ID" FromRole="User_MentorId" ToRole="Documents_MentorId" ed:Guid="3d1b8de6-6feb-4890-8801-04d0f2a308c5" />
         </EntityType>
         <EnumType Name="TaskState" ed:Guid="3be8b22c-5a29-436f-905b-a2e5cf07e245">
           <Member Name="Waiting" Value="1" ed:Guid="d2cf0b9c-e401-4b54-a4bd-b9c4b28cec29" />
@@ -373,6 +401,18 @@
           <End Role="StructureElements1" Type="MtcModel.StructureElement" Multiplicity="*" />
           <End Role="StructureElements" Type="MtcModel.StructureElement" Multiplicity="*" />
         </Association>
+        <Association Name="FK_DocumentMentor_ID" ed:Guid="61582680-18aa-4a22-ad87-c479783f689d">
+          <End Role="User_MentorId" Type="MtcModel.User" Multiplicity="0..1" />
+          <End Role="Documents_MentorId" Type="MtcModel.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_MentorId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Documents_MentorId">
+              <PropertyRef Name="MentorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- MSL content -->
@@ -387,6 +427,7 @@
                 <ScalarProperty Name="Deadline" ColumnName="Deadline" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="CurrentProgress" ColumnName="CurrentProgress" />
+                <ScalarProperty Name="MentorId" ColumnName="MentorId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -432,12 +473,14 @@
             <EntityTypeMapping TypeName="MtcModel.User">
               <MappingFragment StoreEntitySet="users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ExperiencePoints" ColumnName="ExperiencePoints" />
                 <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FamilyName" ColumnName="FamilyName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
