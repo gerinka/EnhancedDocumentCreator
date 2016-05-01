@@ -1,15 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EntityDeveloper Version="5.8.742.0">
-  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" AppConnectionStringName="MtcEntitiesConnectionString" ConnectionStringInAppConfig="True" RegenareteConnectionStringInAppConfig="True" TargetFramework="Net45" DetectTPTInheritance="False" EntityFrameworkVersion="Version6" IncludeForeignKeysInModel="true" DetectFunctionBasedColumnDefault="false">
+  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" AppConnectionStringName="MTCEntitiesConnectionString" ConnectionStringInAppConfig="True" RegenareteConnectionStringInAppConfig="True" TargetFramework="Net45" DetectTPTInheritance="False" EntityFrameworkVersion="Version6" IncludeForeignKeysInModel="true" DetectFunctionBasedColumnDefault="false">
     <Connection ConnectionString="persistsecurityinfo=True;server=localhost;user id=root;password=toor;database=mtc" Provider="MySql.Data.MySqlClient" />
     <Generation>
       <GeneratedFiles>
-        <File Name="MtcEntities.Designer.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="Mtc.MTCEntities.cs" Project="Mtc.Infrastructure.DataAccess" />
+        <File Name="Mtc.DOCUMENT.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
+        <File Name="Mtc.DOCUMENT.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="Mtc.STRUCTURECONTENT.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
+        <File Name="Mtc.STRUCTURECONTENT.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="Mtc.STRUCTUREELEMENT.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
+        <File Name="Mtc.STRUCTUREELEMENT.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="Mtc.TASK.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
+        <File Name="Mtc.TASK.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="Mtc.USER.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
+        <File Name="Mtc.USER.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
       </GeneratedFiles>
     </Generation>
     <DatabaseFirstNamingRules>
       <EntitySet PluralizationName="Pluralize" />
-      <Class UseSchemaAsPrefix="False" PluralizeCollectionNavigationPropertyName="True" RemoveUnderscores="True" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Singularize" />
+      <Class UseSchemaAsPrefix="False" PluralizeCollectionNavigationPropertyName="True" RemoveUnderscores="True" RemoveInvalidCharacters="True" CodeCase="Upper" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Singularize" />
       <Property RemoveUnderscores="True" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" />
     </DatabaseFirstNamingRules>
     <ModelFirst StorageSynchronizationEnabled="False" TargetSchema="mtc" TargetProviderName="MySql.Data.MySqlClient">
@@ -31,7 +41,7 @@
           <ValidationErrorMessages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
         </ed:Property>
         <ed:Property Name="FilePerClass" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <boolean>false</boolean>
+          <boolean>true</boolean>
         </ed:Property>
         <ed:Property Name="ModelNameAsFilesPrefix" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <boolean>true</boolean>
@@ -49,12 +59,12 @@
         <ed:Property Name="ContextOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=5.8.742.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <OutputInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <Project>Mtc.Infrastructure.DataAccess</Project>
-            <ProjectFolder>GeneratedEntities</ProjectFolder>
+            <ProjectFolder />
             <DestinationFolder />
           </OutputInfo>
         </ed:Property>
         <ed:Property Name="GeneratePartialClass" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <boolean>false</boolean>
+          <boolean>true</boolean>
         </ed:Property>
         <ed:Property Name="ImplementCloneable" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <boolean>false</boolean>

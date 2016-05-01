@@ -49,26 +49,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GeneratedEntities\MtcEntities.Designer.cs" />
-    <Compile Include="MtcEntities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MtcEntities.edml</DependentUpon>
+    <Compile Include="GeneratedEntities\Mtc.DOCUMENT.cs" />
+    <Compile Include="GeneratedEntities\Mtc.DOCUMENT.Generated.cs">
+      <DependentUpon>Mtc.DOCUMENT.cs</DependentUpon>
     </Compile>
+    <Compile Include="GeneratedEntities\Mtc.STRUCTURECONTENT.cs" />
+    <Compile Include="GeneratedEntities\Mtc.STRUCTURECONTENT.Generated.cs">
+      <DependentUpon>Mtc.STRUCTURECONTENT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratedEntities\Mtc.STRUCTUREELEMENT.cs" />
+    <Compile Include="GeneratedEntities\Mtc.STRUCTUREELEMENT.Generated.cs">
+      <DependentUpon>Mtc.STRUCTUREELEMENT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratedEntities\Mtc.TASK.cs" />
+    <Compile Include="GeneratedEntities\Mtc.TASK.Generated.cs">
+      <DependentUpon>Mtc.TASK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratedEntities\Mtc.USER.cs" />
+    <Compile Include="GeneratedEntities\Mtc.USER.Generated.cs">
+      <DependentUpon>Mtc.USER.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mtc.MTCEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\DocumentRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="MtcEntities.Diagram1.view">
-      <DependentUpon>MtcEntities.edml</DependentUpon>
+    <None Include="Mtc.Diagram1.view">
+      <DependentUpon>Mtc.edml</DependentUpon>
     </None>
-    <DevartEntityDeploy Include="MtcEntities.edml">
+    <DevartEntityDeploy Include="Mtc.edml">
       <Generator>DevartEfGenerator</Generator>
-      <LastGenOutput>MtcEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>Mtc.info</LastGenOutput>
     </DevartEntityDeploy>
-    <None Include="MtcEntities.edps">
-      <DependentUpon>MtcEntities.edml</DependentUpon>
+    <None Include="Mtc.edps">
+      <DependentUpon>Mtc.edml</DependentUpon>
+    </None>
+    <None Include="Mtc.info">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mtc.edml</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
