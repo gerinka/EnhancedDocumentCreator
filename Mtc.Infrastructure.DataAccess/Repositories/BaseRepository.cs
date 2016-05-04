@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace Mtc.Infrastructure.DataAccess.Repositories
 {
-    class BaseRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity> where TEntity : class
     {
         private readonly DbContext _context;
         internal DbSet<TEntity> DbSet;

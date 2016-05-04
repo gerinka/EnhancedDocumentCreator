@@ -8,12 +8,10 @@ using MtcContextModel;
 
 namespace Mtc.Infrastructure.DataAccess.Repositories
 {
-    class DocumentRepository : BaseRepository<DOCUMENT>, IDocumentRepository
+    public class TaskRepository : BaseRepository<TASK>, ITaskRepository
     {
-        public DocumentRepository(MtcEntities context)
-            : base(context)
+        public TaskRepository(MtcEntities context) : base(context)
         {
         }
-
     }
 }

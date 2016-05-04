@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mtc.Infrastructure.DataAccess.Interfaces
 {
-    public interface IDocumentRepository
+    public interface IUserRepository
     {
     }
 }
