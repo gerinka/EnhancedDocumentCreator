@@ -21,7 +21,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Core.Objects.DataClasses;
 
-namespace MTCModel
+namespace MtcContextModel
 {
 
     /// <summary>
@@ -30,9 +30,9 @@ namespace MTCModel
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
-    [EdmEntityTypeAttribute(NamespaceName="MTCModel", Name="TASK")]
+    [EdmEntityType(NamespaceName="MTCModel", Name="TASK")]
     [Serializable()]
-    [DataContractAttribute(IsReference=true)]
+    [DataContract(IsReference=true)]
     public partial class TASK : EntityObject    {
         #region Factory Method
 
@@ -66,8 +66,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for Id in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
+        [EdmScalarProperty(EntityKeyProperty=true, IsNullable=false)]
+        [DataMember()]
         public int Id
         {
             get
@@ -96,8 +96,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for Title in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
+        [EdmScalarProperty(IsNullable=false)]
+        [DataMember()]
         public string Title
         {
             get
@@ -126,8 +126,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for AssignTo in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute()]
-        [DataMemberAttribute()]
+        [EdmScalarProperty()]
+        [DataMember()]
         public global::System.Nullable<int> AssignTo
         {
             get
@@ -156,8 +156,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for State in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
+        [EdmScalarProperty(IsNullable=false)]
+        [DataMember()]
         public int State
         {
             get
@@ -186,8 +186,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for Deadline in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
+        [EdmScalarProperty(IsNullable=false)]
+        [DataMember()]
         public global::System.DateTime Deadline
         {
             get
@@ -216,8 +216,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for DocumentId in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
+        [EdmScalarProperty(IsNullable=false)]
+        [DataMember()]
         public int DocumentId
         {
             get
@@ -246,8 +246,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for Order in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute()]
-        [DataMemberAttribute()]
+        [EdmScalarProperty()]
+        [DataMember()]
         public global::System.Nullable<int> Order
         {
             get
@@ -276,8 +276,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for TaskType in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
+        [EdmScalarProperty(IsNullable=false)]
+        [DataMember()]
         public int TaskType
         {
             get
@@ -306,8 +306,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for IsLocked in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
+        [EdmScalarProperty(IsNullable=false)]
+        [DataMember()]
         public sbyte IsLocked
         {
             get
@@ -336,8 +336,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for StrucktureContentId in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute()]
-        [DataMemberAttribute()]
+        [EdmScalarProperty()]
+        [DataMember()]
         public global::System.Nullable<int> StrucktureContentId
         {
             get
@@ -370,10 +370,10 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for STRUCTURECONTENT in the schema.
         /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MTCModel", "FK_TaskStructureContent_Id", "STRUCTURECONTENT")]
+        [XmlIgnore()]
+        [SoapIgnore()]
+        [DataMember()]
+        [EdmRelationshipNavigationProperty("MTCModel", "FK_TaskStructureContent_Id", "STRUCTURECONTENT")]
         public STRUCTURECONTENT STRUCTURECONTENT
         {
             get
@@ -389,8 +389,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for STRUCTURECONTENT in the schema.
         /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
+        [Browsable(false)]
+        [DataMember()]
         public EntityReference<STRUCTURECONTENT> STRUCTURECONTENTReference
         {
             get
@@ -413,10 +413,10 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for DOCUMENT in the schema.
         /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MTCModel", "FK_TaskDocument_Id", "DOCUMENT")]
+        [XmlIgnore()]
+        [SoapIgnore()]
+        [DataMember()]
+        [EdmRelationshipNavigationProperty("MTCModel", "FK_TaskDocument_Id", "DOCUMENT")]
         public DOCUMENT DOCUMENT
         {
             get
@@ -432,8 +432,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for DOCUMENT in the schema.
         /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
+        [Browsable(false)]
+        [DataMember()]
         public EntityReference<DOCUMENT> DOCUMENTReference
         {
             get
@@ -456,10 +456,10 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for USER in the schema.
         /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MTCModel", "FK_TaskUser_Id", "USER")]
+        [XmlIgnore()]
+        [SoapIgnore()]
+        [DataMember()]
+        [EdmRelationshipNavigationProperty("MTCModel", "FK_TaskUser_Id", "USER")]
         public USER USER
         {
             get
@@ -475,8 +475,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for USER in the schema.
         /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
+        [Browsable(false)]
+        [DataMember()]
         public EntityReference<USER> USERReference
         {
             get

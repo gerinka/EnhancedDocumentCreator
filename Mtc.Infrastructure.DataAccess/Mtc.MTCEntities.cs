@@ -8,69 +8,60 @@
 // the code is regenerated.
 //------------------------------------------------------------------------------
 
-using System;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Xml.Serialization;
-using System.Reflection;
-using System.Linq.Expressions;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Core.Objects.DataClasses;
+using MtcContextModel;
 
-[assembly: EdmSchemaAttribute()]
+[assembly: EdmSchema()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("MTCModel", "FK_DocumentUser_ID", "USER_UserId", RelationshipMultiplicity.One, typeof(MTCModel.USER), "DOCUMENTs_UserId", RelationshipMultiplicity.Many, typeof(MTCModel.DOCUMENT), true)]
-[assembly: EdmRelationshipAttribute("MTCModel", "FK_DocumentMentor_ID", "USER_MentorId", RelationshipMultiplicity.ZeroOrOne, typeof(MTCModel.USER), "DOCUMENTs_MentorId", RelationshipMultiplicity.Many, typeof(MTCModel.DOCUMENT), true)]
-[assembly: EdmRelationshipAttribute("MTCModel", "FK_StructureContentDocument_Id", "DOCUMENT", RelationshipMultiplicity.One, typeof(MTCModel.DOCUMENT), "STRUCTURECONTENTs", RelationshipMultiplicity.Many, typeof(MTCModel.STRUCTURECONTENT), true)]
-[assembly: EdmRelationshipAttribute("MTCModel", "FK_StructureElementDocument_Id", "STRUCTUREELEMENT", RelationshipMultiplicity.One, typeof(MTCModel.STRUCTUREELEMENT), "STRUCTURECONTENTs", RelationshipMultiplicity.Many, typeof(MTCModel.STRUCTURECONTENT), true)]
-[assembly: EdmRelationshipAttribute("MTCModel", "FK_TaskStructureContent_Id", "STRUCTURECONTENT", RelationshipMultiplicity.ZeroOrOne, typeof(MTCModel.STRUCTURECONTENT), "TASKs", RelationshipMultiplicity.Many, typeof(MTCModel.TASK), true)]
-[assembly: EdmRelationshipAttribute("MTCModel", "FK_TaskDocument_Id", "DOCUMENT", RelationshipMultiplicity.One, typeof(MTCModel.DOCUMENT), "TASKs", RelationshipMultiplicity.Many, typeof(MTCModel.TASK), true)]
-[assembly: EdmRelationshipAttribute("MTCModel", "FK_TaskUser_Id", "USER", RelationshipMultiplicity.ZeroOrOne, typeof(MTCModel.USER), "TASKs", RelationshipMultiplicity.Many, typeof(MTCModel.TASK), true)]
-[assembly: EdmRelationshipAttribute("MTCModel", "STRUCTUREELEMENT_STRUCTUREELEMENT", "STRUCTUREELEMENTs1", RelationshipMultiplicity.Many, typeof(MTCModel.STRUCTUREELEMENT), "STRUCTUREELEMENTs", RelationshipMultiplicity.Many, typeof(MTCModel.STRUCTUREELEMENT))]
+[assembly: EdmRelationship("MTCModel", "FK_DocumentUser_ID", "USER_UserId", RelationshipMultiplicity.One, typeof(MtcContextModel.USER), "DOCUMENTs_UserId", RelationshipMultiplicity.Many, typeof(MtcContextModel.DOCUMENT), true)]
+[assembly: EdmRelationship("MTCModel", "FK_DocumentMentor_ID", "USER_MentorId", RelationshipMultiplicity.ZeroOrOne, typeof(MtcContextModel.USER), "DOCUMENTs_MentorId", RelationshipMultiplicity.Many, typeof(MtcContextModel.DOCUMENT), true)]
+[assembly: EdmRelationship("MTCModel", "FK_StructureContentDocument_Id", "DOCUMENT", RelationshipMultiplicity.One, typeof(MtcContextModel.DOCUMENT), "STRUCTURECONTENTs", RelationshipMultiplicity.Many, typeof(MtcContextModel.STRUCTURECONTENT), true)]
+[assembly: EdmRelationship("MTCModel", "FK_StructureElementDocument_Id", "STRUCTUREELEMENT", RelationshipMultiplicity.One, typeof(MtcContextModel.STRUCTUREELEMENT), "STRUCTURECONTENTs", RelationshipMultiplicity.Many, typeof(MtcContextModel.STRUCTURECONTENT), true)]
+[assembly: EdmRelationship("MTCModel", "FK_TaskStructureContent_Id", "STRUCTURECONTENT", RelationshipMultiplicity.ZeroOrOne, typeof(MtcContextModel.STRUCTURECONTENT), "TASKs", RelationshipMultiplicity.Many, typeof(MtcContextModel.TASK), true)]
+[assembly: EdmRelationship("MTCModel", "FK_TaskDocument_Id", "DOCUMENT", RelationshipMultiplicity.One, typeof(MtcContextModel.DOCUMENT), "TASKs", RelationshipMultiplicity.Many, typeof(MtcContextModel.TASK), true)]
+[assembly: EdmRelationship("MTCModel", "FK_TaskUser_Id", "USER", RelationshipMultiplicity.ZeroOrOne, typeof(MtcContextModel.USER), "TASKs", RelationshipMultiplicity.Many, typeof(MtcContextModel.TASK), true)]
+[assembly: EdmRelationship("MTCModel", "STRUCTUREELEMENT_STRUCTUREELEMENT", "STRUCTUREELEMENTs1", RelationshipMultiplicity.Many, typeof(MtcContextModel.STRUCTUREELEMENT), "STRUCTUREELEMENTs", RelationshipMultiplicity.Many, typeof(MtcContextModel.STRUCTUREELEMENT))]
 
 #endregion
 
-namespace MTCModel
+namespace Mtc.Infrastructure.DataAccess
 {
 
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    public partial class MTCEntities : ObjectContext
+    public partial class MtcEntities : ObjectContext
     {
         #region Constructors
 
         /// <summary>
-        /// Initialize a new MTCEntities object.
+        /// Initialize a new MtcEntities object.
         /// </summary>
-        public MTCEntities() : 
-                base(@"name=MTCEntitiesConnectionString", "MTCEntities")
+        public MtcEntities() : 
+                base(@"name=MTCEntitiesConnectionString", "MtcEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
 
         /// <summary>
-        /// Initializes a new MTCEntities object using the connection string found in the 'MTCEntities' section of the application configuration file.
+        /// Initializes a new MtcEntities object using the connection string found in the 'MtcEntities' section of the application configuration file.
         /// </summary>
-        public MTCEntities(string connectionString) : 
-                base(connectionString, "MTCEntities")
+        public MtcEntities(string connectionString) : 
+                base(connectionString, "MtcEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
 
         /// <summary>
-        /// Initialize a new MTCEntities object.
+        /// Initialize a new MtcEntities object.
         /// </summary>
-        public MTCEntities(EntityConnection connection) : base(connection, "MTCEntities")
+        public MtcEntities(EntityConnection connection) : base(connection, "MtcEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();

@@ -21,7 +21,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Core.Objects.DataClasses;
 
-namespace MTCModel
+namespace MtcContextModel
 {
 
     /// <summary>
@@ -30,9 +30,9 @@ namespace MTCModel
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
-    [EdmEntityTypeAttribute(NamespaceName="MTCModel", Name="STRUCTUREELEMENT")]
+    [EdmEntityType(NamespaceName="MTCModel", Name="STRUCTUREELEMENT")]
     [Serializable()]
-    [DataContractAttribute(IsReference=true)]
+    [DataContract(IsReference=true)]
     public partial class STRUCTUREELEMENT : EntityObject    {
         #region Factory Method
 
@@ -56,8 +56,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for Id in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
+        [EdmScalarProperty(EntityKeyProperty=true, IsNullable=false)]
+        [DataMember()]
         public int Id
         {
             get
@@ -86,8 +86,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for Title in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute()]
-        [DataMemberAttribute()]
+        [EdmScalarProperty()]
+        [DataMember()]
         public string Title
         {
             get
@@ -116,8 +116,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for StructureTypeId in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
+        [EdmScalarProperty(IsNullable=false)]
+        [DataMember()]
         public int StructureTypeId
         {
             get
@@ -146,8 +146,8 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for Description in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute()]
-        [DataMemberAttribute()]
+        [EdmScalarProperty()]
+        [DataMember()]
         public string Description
         {
             get
@@ -180,10 +180,10 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for STRUCTURECONTENTs in the schema.
         /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MTCModel", "FK_StructureElementDocument_Id", "STRUCTURECONTENTs")]
+        [XmlIgnore()]
+        [SoapIgnore()]
+        [DataMember()]
+        [EdmRelationshipNavigationProperty("MTCModel", "FK_StructureElementDocument_Id", "STRUCTURECONTENTs")]
         public EntityCollection<STRUCTURECONTENT> STRUCTURECONTENTs
         {
             get
@@ -202,10 +202,10 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for STRUCTUREELEMENTs in the schema.
         /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MTCModel", "STRUCTUREELEMENT_STRUCTUREELEMENT", "STRUCTUREELEMENTs")]
+        [XmlIgnore()]
+        [SoapIgnore()]
+        [DataMember()]
+        [EdmRelationshipNavigationProperty("MTCModel", "STRUCTUREELEMENT_STRUCTUREELEMENT", "STRUCTUREELEMENTs")]
         public EntityCollection<STRUCTUREELEMENT> STRUCTUREELEMENTs
         {
             get
@@ -224,10 +224,10 @@ namespace MTCModel
         /// <summary>
         /// There are no comments for STRUCTUREELEMENTs1 in the schema.
         /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MTCModel", "STRUCTUREELEMENT_STRUCTUREELEMENT", "STRUCTUREELEMENTs1")]
+        [XmlIgnore()]
+        [SoapIgnore()]
+        [DataMember()]
+        [EdmRelationshipNavigationProperty("MTCModel", "STRUCTUREELEMENT_STRUCTUREELEMENT", "STRUCTUREELEMENTs1")]
         public EntityCollection<STRUCTUREELEMENT> STRUCTUREELEMENTs1
         {
             get
