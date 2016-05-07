@@ -7,8 +7,8 @@
     <ProjectGuid>{E5ADF44A-C693-4F0E-9AD6-2913AB7E69AD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mtc.Infrastructure.Services</RootNamespace>
-    <AssemblyName>Mtc.Infrastructure.Services</AssemblyName>
+    <RootNamespace>Mtc.Domain.Services</RootNamespace>
+    <AssemblyName>Mtc.Domain.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

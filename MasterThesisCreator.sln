@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Others", "5 - Others", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Infrastructure.DataAccess", "Mtc.Infrastructure.DataAccess\Mtc.Infrastructure.DataAccess.csproj", "{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Infrastructure.Services", "Mtc.Infrastructure.Services\Mtc.Infrastructure.Services.csproj", "{E5ADF44A-C693-4F0E-9AD6-2913AB7E69AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Domain.Services", "Mtc.Infrastructure.Services\Mtc.Domain.Services.csproj", "{E5ADF44A-C693-4F0E-9AD6-2913AB7E69AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Api", "Mtc.Api\Mtc.Api.csproj", "{61239BAB-0860-421B-8E7D-C313D2588FC3}"
 EndProject
