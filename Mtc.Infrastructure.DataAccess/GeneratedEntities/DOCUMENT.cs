@@ -11,10 +11,10 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Core.Objects.DataClasses;
 
-namespace MtcContextModel
+namespace MtcModel
 {
 
-    public partial class TASK
+    public partial class DOCUMENT
     {
     }
 }

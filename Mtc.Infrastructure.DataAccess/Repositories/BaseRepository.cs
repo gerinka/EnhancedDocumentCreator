@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using MtcModel;
 
 namespace Mtc.Infrastructure.DataAccess.Repositories
 {

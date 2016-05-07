@@ -4,17 +4,23 @@
     <Connection ConnectionString="persistsecurityinfo=True;server=localhost;user id=root;password=toor;database=mtc" Provider="MySql.Data.MySqlClient" />
     <Generation>
       <GeneratedFiles>
-        <File Name="Mtc.MTCEntities.cs" Project="Mtc.Infrastructure.DataAccess" />
-        <File Name="Mtc.DOCUMENT.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
-        <File Name="Mtc.DOCUMENT.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
-        <File Name="Mtc.STRUCTURECONTENT.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
-        <File Name="Mtc.STRUCTURECONTENT.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
-        <File Name="Mtc.STRUCTUREELEMENT.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
-        <File Name="Mtc.STRUCTUREELEMENT.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
-        <File Name="Mtc.TASK.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
-        <File Name="Mtc.TASK.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
-        <File Name="Mtc.USER.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
-        <File Name="Mtc.USER.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="Mtc.MtcEntities.cs" Project="Mtc.Infrastructure.DataAccess" />
+        <File Name="DOCUMENT.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
+        <File Name="DOCUMENT.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="REFERENCE.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
+        <File Name="REFERENCE.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="STRUCTURECONTENT.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
+        <File Name="STRUCTURECONTENT.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="STRUCTUREELEMENT.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
+        <File Name="STRUCTUREELEMENT.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="TASK.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
+        <File Name="TASK.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="USER.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
+        <File Name="USER.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="TaskType.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="TaskState.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="ReferenceType.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="StructureType.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
       </GeneratedFiles>
     </Generation>
     <DatabaseFirstNamingRules>
@@ -44,7 +50,7 @@
           <boolean>true</boolean>
         </ed:Property>
         <ed:Property Name="ModelNameAsFilesPrefix" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <boolean>true</boolean>
+          <boolean>false</boolean>
         </ed:Property>
         <ed:Property Name="HeaderTimestampVersionControlTag" Type="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <string d6p1:nil="true" xmlns:d6p1="http://www.w3.org/2001/XMLSchema-instance" />

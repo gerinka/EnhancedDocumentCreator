@@ -49,32 +49,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GeneratedEntities\Mtc.DOCUMENT.cs" />
-    <Compile Include="GeneratedEntities\Mtc.DOCUMENT.Generated.cs">
-      <DependentUpon>Mtc.DOCUMENT.cs</DependentUpon>
+    <Compile Include="GeneratedEntities\DOCUMENT.cs" />
+    <Compile Include="GeneratedEntities\DOCUMENT.Generated.cs">
+      <DependentUpon>DOCUMENT.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeneratedEntities\Mtc.STRUCTURECONTENT.cs" />
-    <Compile Include="GeneratedEntities\Mtc.STRUCTURECONTENT.Generated.cs">
-      <DependentUpon>Mtc.STRUCTURECONTENT.cs</DependentUpon>
+    <Compile Include="GeneratedEntities\REFERENCE.cs" />
+    <Compile Include="GeneratedEntities\REFERENCE.Generated.cs">
+      <DependentUpon>REFERENCE.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeneratedEntities\Mtc.STRUCTUREELEMENT.cs" />
-    <Compile Include="GeneratedEntities\Mtc.STRUCTUREELEMENT.Generated.cs">
-      <DependentUpon>Mtc.STRUCTUREELEMENT.cs</DependentUpon>
+    <Compile Include="GeneratedEntities\ReferenceType.cs" />
+    <Compile Include="GeneratedEntities\STRUCTURECONTENT.cs" />
+    <Compile Include="GeneratedEntities\STRUCTURECONTENT.Generated.cs">
+      <DependentUpon>STRUCTURECONTENT.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeneratedEntities\Mtc.TASK.cs" />
-    <Compile Include="GeneratedEntities\Mtc.TASK.Generated.cs">
-      <DependentUpon>Mtc.TASK.cs</DependentUpon>
+    <Compile Include="GeneratedEntities\STRUCTUREELEMENT.cs" />
+    <Compile Include="GeneratedEntities\STRUCTUREELEMENT.Generated.cs">
+      <DependentUpon>STRUCTUREELEMENT.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeneratedEntities\Mtc.USER.cs" />
-    <Compile Include="GeneratedEntities\Mtc.USER.Generated.cs">
-      <DependentUpon>Mtc.USER.cs</DependentUpon>
+    <Compile Include="GeneratedEntities\StructureType.cs" />
+    <Compile Include="GeneratedEntities\TASK.cs" />
+    <Compile Include="GeneratedEntities\TASK.Generated.cs">
+      <DependentUpon>TASK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratedEntities\TaskState.cs" />
+    <Compile Include="GeneratedEntities\TaskType.cs" />
+    <Compile Include="GeneratedEntities\USER.cs" />
+    <Compile Include="GeneratedEntities\USER.Generated.cs">
+      <DependentUpon>USER.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IDocumentRepository.cs" />
     <Compile Include="Interfaces\IStructureContentRepository.cs" />
     <Compile Include="Interfaces\IStructureElementRepository.cs" />
     <Compile Include="Interfaces\ITaskRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
-    <Compile Include="Mtc.MTCEntities.cs" />
+    <Compile Include="Mtc.MtcEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\DocumentRepository.cs" />
