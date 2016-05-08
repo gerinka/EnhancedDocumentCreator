@@ -1,18 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
+using Mtc.Infrastructure.DataAccess.Repositories;
+using MtcModel;
 
 namespace Mtc.Domain.Services
 {
-    class PersonService : IPersonService
+    public class PersonService : IPersonService
     {
-        public Person GetPersonById()
+        private readonly UserRepository _userRepository;
+
+        public PersonService(UserRepository userRepository)
         {
-            throw new NotImplementedException();
+            _userRepository = userRepository;
+        }
+
+        public Person GetPersonById(long id)
+        {
+            var person = new Person();
+            USER user = _userRepository.GetById(id);
+            return person;
         }
 
         public Person GetPersonByName(string name)

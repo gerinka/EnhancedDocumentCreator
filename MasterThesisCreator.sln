@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Api.Tests", "Mtc.Api.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentCreation", "DocumentCreation\DocumentCreation.csproj", "{553E0FCB-C5B2-496B-8D61-6F9360F7FBD4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Domain.Services.Tests", "Mtc.Domain.Services.Tests\Mtc.Domain.Services.Tests.csproj", "{E77583D3-3E12-4A71-89FF-9DFB177056D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{553E0FCB-C5B2-496B-8D61-6F9360F7FBD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{553E0FCB-C5B2-496B-8D61-6F9360F7FBD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{553E0FCB-C5B2-496B-8D61-6F9360F7FBD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E77583D3-3E12-4A71-89FF-9DFB177056D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E77583D3-3E12-4A71-89FF-9DFB177056D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E77583D3-3E12-4A71-89FF-9DFB177056D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E77583D3-3E12-4A71-89FF-9DFB177056D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,5 +86,6 @@ Global
 		{61239BAB-0860-421B-8E7D-C313D2588FC3} = {65CEF453-4F12-4C07-8C06-B561CB9B80A9}
 		{7C982901-5BFD-4EAC-B2EE-1926A2902A47} = {65CEF453-4F12-4C07-8C06-B561CB9B80A9}
 		{553E0FCB-C5B2-496B-8D61-6F9360F7FBD4} = {BED3A00C-7EE6-4E66-A720-EDBA9EEED42D}
+		{E77583D3-3E12-4A71-89FF-9DFB177056D8} = {BED3A00C-7EE6-4E66-A720-EDBA9EEED42D}
 	EndGlobalSection
 EndGlobal

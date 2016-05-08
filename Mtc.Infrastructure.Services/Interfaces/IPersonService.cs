@@ -2,9 +2,9 @@
 
 namespace Mtc.Domain.Services.Interfaces
 {
-    interface IPersonService
+    public interface IPersonService
     {
-        Person GetPersonById();
+        Person GetPersonById(long id);
         Person GetPersonByName(string name);
         Person CreatePerson(Person person);
         Person UpdatePerson(Person person);
