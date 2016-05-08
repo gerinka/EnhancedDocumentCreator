@@ -43,7 +43,14 @@
     <Compile Include="Interfaces\IPersonService.cs" />
     <Compile Include="Interfaces\ISection.cs" />
     <Compile Include="Interfaces\ITaskService.cs" />
+    <Compile Include="PersonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mtc.Domain\Mtc.Domain.csproj">
+      <Project>{F3793531-0EBA-4D4A-AD4D-3745B2804DD3}</Project>
+      <Name>Mtc.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
