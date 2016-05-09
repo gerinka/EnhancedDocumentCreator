@@ -258,8 +258,8 @@
               </Model>
             </Children>
             <Location>
-              <X>249 px</X>
-              <Y>504 px</Y>
+              <X>232 px</X>
+              <Y>432 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
@@ -435,8 +435,8 @@
               </Model>
             </Children>
             <Location>
-              <X>40 px</X>
-              <Y>548 px</Y>
+              <X>-48 px</X>
+              <Y>408 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
@@ -688,8 +688,8 @@
               </Model>
             </Children>
             <Location>
-              <X>383 px</X>
-              <Y>829 px</Y>
+              <X>576 px</X>
+              <Y>496 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
@@ -884,8 +884,8 @@
               </Model>
             </Children>
             <Location>
-              <X>175 px</X>
-              <Y>855 px</Y>
+              <X>160 px</X>
+              <Y>760 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
@@ -1194,8 +1194,8 @@
               </Model>
             </Children>
             <Location>
-              <X>517 px</X>
-              <Y>365 px</Y>
+              <X>536 px</X>
+              <Y>32 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
@@ -1542,6 +1542,16 @@
                 </CustomProperties>
               </Port>
             </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>254.772727272727 px</X>
+                <Y>344 px</Y>
+              </PointD>
+              <PointD>
+                <X>237.772727272727 px</X>
+                <Y>344 px</Y>
+              </PointD>
+            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
               <Path>9d38093a-1a41-47c4-b9d9-6c176b48682c</Path>
@@ -1583,6 +1593,16 @@
                 </CustomProperties>
               </Port>
             </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>322.954545454545 px</X>
+                <Y>344 px</Y>
+              </PointD>
+              <PointD>
+                <X>305.954545454545 px</X>
+                <Y>344 px</Y>
+              </PointD>
+            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
               <Path>37db359b-3afe-453b-84c8-b13e8fa4ecb5</Path>
@@ -1624,6 +1644,16 @@
                 </CustomProperties>
               </Port>
             </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>229 px</X>
+                <Y>564.590909090909 px</Y>
+              </PointD>
+              <PointD>
+                <X>229 px</X>
+                <Y>496.590909090909 px</Y>
+              </PointD>
+            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
               <Path>4c80337a-8f1a-4dd7-a7cb-86e0b2b8d1b3</Path>
@@ -1642,20 +1672,8 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>74.6136363636363 px</X>
-                  <Y>0.204545454545269 px</Y>
-                </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Top</Align>
-                <CustomProperties>
-                  <OID>89</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
-              <Port>
-                <Location>
-                  <X>Undefined</X>
-                  <Y>151.340909090909 px</Y>
+                  <X>0 px</X>
+                  <Y>60 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
@@ -1664,11 +1682,27 @@
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
+              <Port>
+                <Location>
+                  <X>0 px</X>
+                  <Y>68 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>89</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>457.613636363636 px</X>
-                <Y>655.340909090909 px</Y>
+                <X>402 px</X>
+                <Y>492 px</Y>
+              </PointD>
+              <PointD>
+                <X>402 px</X>
+                <Y>564 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
@@ -1712,7 +1746,17 @@
                 </CustomProperties>
               </Port>
             </PortAnchors>
-            <IsManuallyRouted>false</IsManuallyRouted>
+            <BendPoints>
+              <PointD>
+                <X>460.5 px</X>
+                <Y>856.931818181818 px</Y>
+              </PointD>
+              <PointD>
+                <X>460.5 px</X>
+                <Y>618.931818181818 px</Y>
+              </PointD>
+            </BendPoints>
+            <IsManuallyRouted>true</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
               <Path>313e9082-9166-4356-9bc3-32267d83a186</Path>
               <TypeName>EntityDeveloper.EntityFramework.EntityAssociation</TypeName>
@@ -1753,6 +1797,16 @@
                 </CustomProperties>
               </Port>
             </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>419 px</X>
+                <Y>445.272727272727 px</Y>
+              </PointD>
+              <PointD>
+                <X>419 px</X>
+                <Y>184.272727272727 px</Y>
+              </PointD>
+            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
               <Path>0ee5920d-23a6-4986-a777-55b5a331dd1c</Path>
@@ -1771,8 +1825,20 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>75.2727272727273 px</X>
-                  <Y>302.272727272727 px</Y>
+                  <X>82.5 px</X>
+                  <Y>0 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Top</Align>
+                <CustomProperties>
+                  <OID>97</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>122.5 px</X>
+                  <Y>0 px</Y>
                 </Location>
                 <Anchors>Left Right</Anchors>
                 <Align>Bottom</Align>
@@ -1781,25 +1847,7 @@
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>Undefined</X>
-                  <Y>122.931818181818 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
-                <CustomProperties>
-                  <OID>97</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>592.272727272727 px</X>
-                <Y>951.931818181818 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
               <Path>e0649130-0a2d-4197-8183-c32eb137fc9a</Path>
@@ -1818,20 +1866,8 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>75.2727272727273 px</X>
-                  <Y>0.568181818181756 px</Y>
-                </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Top</Align>
-                <CustomProperties>
-                  <OID>101</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
-              <Port>
-                <Location>
-                  <X>Undefined</X>
-                  <Y>13.6363636363636 px</Y>
+                  <X>0 px</X>
+                  <Y>213 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
@@ -1840,13 +1876,19 @@
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
+              <Port>
+                <Location>
+                  <X>0 px</X>
+                  <Y>221 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>101</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>592.272727272727 px</X>
-                <Y>53.6363636363636 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
               <Path>1e01afc6-5049-4c4c-9ff6-0bcb267ffd54</Path>
@@ -1890,12 +1932,12 @@
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>156 px</X>
-                <Y>952 px</Y>
+                <X>141 px</X>
+                <Y>857 px</Y>
               </PointD>
               <PointD>
-                <X>156 px</X>
-                <Y>1000.5 px</Y>
+                <X>141 px</X>
+                <Y>905.5 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
@@ -1908,10 +1950,10 @@
         <GridSize>8 px</GridSize>
         <ViewPort>
           <ScaleMode>Free</ScaleMode>
-          <Scale>0.85</Scale>
+          <Scale>0.49</Scale>
           <Location>
-            <X>-108.235291081729 px</X>
-            <Y>314.264722315911 px</Y>
+            <X>-628.571416337706 px</X>
+            <Y>-85.7142840460508 px</Y>
           </Location>
         </ViewPort>
         <Oid xsi:type="SchemaModelOID">
