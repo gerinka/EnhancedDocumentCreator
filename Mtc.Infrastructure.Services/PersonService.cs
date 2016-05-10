@@ -1,6 +1,7 @@
 ﻿using System;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
+using Mtc.Infrastructure.DataAccess.Interfaces;
 using Mtc.Infrastructure.DataAccess.Repositories;
 using MtcModel;
 
@@ -8,9 +9,9 @@ namespace Mtc.Domain.Services
 {
     public class PersonService : IPersonService
     {
-        private readonly UserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
 
-        public PersonService(UserRepository userRepository)
+        public PersonService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }

@@ -77,6 +77,7 @@
     <Compile Include="GeneratedEntities\USER.Generated.cs">
       <DependentUpon>USER.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IBaseRepository.cs" />
     <Compile Include="Interfaces\IDocumentRepository.cs" />
     <Compile Include="Interfaces\IStructureContentRepository.cs" />
     <Compile Include="Interfaces\IStructureElementRepository.cs" />

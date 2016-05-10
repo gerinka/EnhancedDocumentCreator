@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MtcModel;
 
 namespace Mtc.Infrastructure.DataAccess.Interfaces
 {
-    public interface IStructureContentRepository
+    public interface IStructureContentRepository : IBaseRepository<STRUCTURECONTENT>
     {
     }
 }

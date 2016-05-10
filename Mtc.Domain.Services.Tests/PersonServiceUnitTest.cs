@@ -20,7 +20,9 @@ namespace Mtc.Domain.Services.Tests
                 FirstName = "Ivan",
                 FamilyName = "Marinov"
             };
+
             var dbContext = new Mock<MtcEntities>();
+            dbContext.Setup(db => db.USERs);
             var userRepo = new Mock<UserRepository>(dbContext.Object);
             userRepo.Setup(u => u.GetById(Arg.Any<long>())).Returns(user);
             var personService = new PersonService(userRepo.Object);
