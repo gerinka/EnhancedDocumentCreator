@@ -13,7 +13,7 @@ namespace Mtc.Domain.Models
         public string MiddleName { get; set; }
         public string FamilyName { get; set; }
         public string Email { get; set; }
-        public long ExperiencePoints { get; set; }
-        public Level Level { get; set; }
+        public int? ExperiencePoints { get; set; }
+        public short? Level { get; set; }
     }
 }

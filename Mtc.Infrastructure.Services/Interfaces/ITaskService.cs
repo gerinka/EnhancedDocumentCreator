@@ -1,6 +1,8 @@
-﻿namespace Mtc.Domain.Services.Interfaces
+﻿using Mtc.Domain.Models;
+
+namespace Mtc.Domain.Services.Interfaces
 {
-    interface ITaskService
+    interface ITaskService : IBaseService<Task>
     {
     }
 }

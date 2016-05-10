@@ -12,23 +12,23 @@ namespace Mtc.Domain.Services.Tests
     [TestFixture]
     public class PersonServiceUnitTest
     {
-        private TransactionScope scope;
+        private TransactionScope _scope;
 
         [SetUp]
         public void SetUp()
         {
-            scope = new TransactionScope();
+            _scope = new TransactionScope();
         }
 
         [TearDown]
         public void TearDown()
         {
-            scope.Dispose();
+            _scope.Dispose();
         }
 
 
         [Test]
-        public void YourTest()
+        public void TestMapperPerson_properId_returnSth()
         {
             var user = new USER()
             {
@@ -36,17 +36,13 @@ namespace Mtc.Domain.Services.Tests
                 FirstName = "Ivan",
                 FamilyName = "Marinov"
             };
-            var mockSet = new Mock<ObjectSet<USER>>();
 
             var mockContext = new Mock<MtcEntities>();
-            mockContext.Setup(m => m.USERs).Returns(mockSet.Object);
-            var userrepo2 = new Mock<IUserRepository>(mockContext.Object);
-            var dbContext = new Mock<MtcEntities>();
-         
-            var userRepo = new Mock<IUserRepository>(dbContext.Object);
+
+            var userRepo = new Mock<IUserRepository>(mockContext.Object);
             userRepo.Setup(u => u.GetById(Arg.Any<long>())).Returns(user);
             var personService = new PersonService(userRepo.Object);
-            personService.GetPersonById(5);
+            personService.GetById(5);
         }
     }
 }

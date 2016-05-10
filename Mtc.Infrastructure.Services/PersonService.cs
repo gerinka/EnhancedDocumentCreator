@@ -16,31 +16,42 @@ namespace Mtc.Domain.Services
             _userRepository = userRepository;
         }
 
-        public Person GetPersonById(long id)
+        public Person GetById(long id)
         {
-            var person = new Person();
-            USER user = _userRepository.GetById(id);
-            return person;
+            return Mapper(_userRepository.GetById(id));
         }
 
-        public Person GetPersonByName(string name)
+        public Person GetByName(string name)
         {
             throw new NotImplementedException();
         }
 
-        public Person CreatePerson(Person person)
+        public Person Create(Person entity)
         {
             throw new NotImplementedException();
         }
 
-        public Person UpdatePerson(Person person)
+        public Person Update(Person entity)
         {
             throw new NotImplementedException();
         }
 
-        public Person DeletePerson(Person person)
+        public Person Delete(Person entity)
         {
             throw new NotImplementedException();
+        }
+
+        private Person Mapper(USER user)
+        {
+            return new Person()
+            {
+                Email = user.Email,
+                FamilyName = user.FamilyName,
+                FirstName = user.FirstName,
+                Id = user.Id,
+                ExperiencePoints = user.ExperiencePoints,
+                Level = user.Level,
+            };
         }
     }
 }
