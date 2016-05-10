@@ -739,7 +739,6 @@
     <Content Include="Views\Thesis\TaskBoard.cshtml" />
     <Content Include="Views\Thesis\TaskList.cshtml" />
     <Content Include="Views\Thesis\WritingModule.cshtml" />
-    <Content Include="WebClientDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
