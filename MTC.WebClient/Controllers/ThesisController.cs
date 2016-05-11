@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Mtc.Domain.Models;
 
 namespace Mtc.WebClient.Controllers
 {
@@ -28,6 +29,15 @@ namespace Mtc.WebClient.Controllers
         public ActionResult WritingModule()
         {
             return View();
+        }
+
+        //
+        // POST: /Thesis/CreateDocument
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult CreateDocument(Document model)
+        {
+            return View("TaskBoard");
         }
     }
 }
