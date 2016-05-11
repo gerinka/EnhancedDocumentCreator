@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
 using Mtc.Infrastructure.DataAccess.Interfaces;
@@ -37,6 +40,11 @@ namespace Mtc.Domain.Services
         }
 
         public Person Delete(Person entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Person> GetAll(Expression<Func<Person, bool>> filter = null, Func<IQueryable<Person>, IOrderedQueryable<Person>> orderBy = null, string includeProperties = "")
         {
             throw new NotImplementedException();
         }

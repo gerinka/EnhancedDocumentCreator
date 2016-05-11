@@ -162,7 +162,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
           <Property Name="Description" Type="varchar" MaxLength="100" Collation="utf8_general_ci" />
-          <Property Name="IsActive" Type="tinyint" />
+          <Property Name="IsActive" Type="tinyint" Nullable="false" />
         </EntityType>
         <Association Name="FK_DocumentMentor_ID">
           <End Role="user" Type="MtcModel.Store.user" Multiplicity="0..1" />
@@ -477,7 +477,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="cd29bdd2-13cc-460a-8273-cba9e5589931" />
           <Property Name="Name" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="e14ec5d7-a83f-42ae-bf3c-d0bb5314ccae" />
           <Property Name="Description" Type="String" MaxLength="100" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="c0c5bae7-fe63-42a3-b60c-fa619c25678f" />
-          <Property Name="IsActive" Type="SByte" ed:ValidateRequired="false" ed:Guid="2eb0f289-89d5-4d4d-b852-dec6d672145b" />
+          <Property Name="IsActive" Type="SByte" Nullable="false" ed:ValidateRequired="true" ed:Guid="2eb0f289-89d5-4d4d-b852-dec6d672145b" />
           <NavigationProperty Name="DOCUMENTs" Relationship="MtcModel.FK_DocumentDocumentTemplate_ID" FromRole="DOCUMENTTEMPLATE" ToRole="DOCUMENTs" ed:Guid="8267f669-2052-4c91-bb13-659054126cea" />
           <NavigationProperty Name="STRUCTUREELEMENTs" Relationship="MtcModel.DOCUMENTTEMPLATE_STRUCTUREELEMENT" FromRole="DOCUMENTTEMPLATEs" ToRole="STRUCTUREELEMENTs" ed:Guid="c8aa2e23-3189-4265-8130-3c7475b2fc71" />
         </EntityType>

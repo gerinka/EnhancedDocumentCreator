@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Mtc.Domain.Models;
@@ -31,6 +32,11 @@ namespace Mtc.Domain.Services
         }
 
         public Document Delete(Document entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Document> GetAll(Expression<Func<Document, bool>> filter = null, Func<IQueryable<Document>, IOrderedQueryable<Document>> orderBy = null, string includeProperties = "")
         {
             throw new NotImplementedException();
         }

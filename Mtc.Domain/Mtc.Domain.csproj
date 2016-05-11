@@ -51,6 +51,7 @@
     <Compile Include="Interfaces\IDocumentGenerator.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\DocumentState.cs" />
+    <Compile Include="Models\DocumentTemplate.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Level.cs" />
     <Compile Include="Models\Reference.cs" />

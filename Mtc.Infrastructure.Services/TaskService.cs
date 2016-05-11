@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Mtc.Domain.Services.Interfaces;
@@ -31,6 +32,11 @@ namespace Mtc.Domain.Services
         }
 
         public Task Delete(Task entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Task> GetAll(Expression<Func<Task, bool>> filter = null, Func<IQueryable<Task>, IOrderedQueryable<Task>> orderBy = null, string includeProperties = "")
         {
             throw new NotImplementedException();
         }

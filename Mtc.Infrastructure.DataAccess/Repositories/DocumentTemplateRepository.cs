@@ -8,9 +8,9 @@ using MtcModel;
 
 namespace Mtc.Infrastructure.DataAccess.Repositories
 {
-    public class DocumentRepository : BaseRepository<DOCUMENT>, IDocumentRepository
+    public class DocumentTemplateRepository : BaseRepository<DOCUMENTTEMPLATE>, IDocumentTemplateRepository
     {
-        public DocumentRepository(MtcEntities context)
+        public DocumentTemplateRepository(MtcEntities context)
             : base(context)
         {
         }
