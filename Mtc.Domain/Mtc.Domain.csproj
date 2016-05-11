@@ -50,39 +50,21 @@
     </Compile>
     <Compile Include="Interfaces\IDocumentGenerator.cs" />
     <Compile Include="Models\Document.cs" />
-    <Compile Include="Models\Document.Generated.cs">
-      <DependentUpon>Document.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Documenttemplate.cs" />
-    <Compile Include="Models\Documenttemplate.Generated.cs">
-      <DependentUpon>Documenttemplate.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Models\DocumentState.cs" />
+    <Compile Include="Models\DocumentTemplate.cs" />
+    <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\Level.cs" />
     <Compile Include="Models\Reference.cs" />
-    <Compile Include="Models\Reference.Generated.cs">
-      <DependentUpon>Reference.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Structurecontent.cs" />
-    <Compile Include="Models\Structurecontent.Generated.cs">
-      <DependentUpon>Structurecontent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Structureelement.cs" />
-    <Compile Include="Models\Structureelement.Generated.cs">
-      <DependentUpon>Structureelement.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Section.cs" />
     <Compile Include="Models\Task.cs" />
-    <Compile Include="Models\Task.Generated.cs">
-      <DependentUpon>Task.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\User.Generated.cs">
-      <DependentUpon>User.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Models\TaskState.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\TaskType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
