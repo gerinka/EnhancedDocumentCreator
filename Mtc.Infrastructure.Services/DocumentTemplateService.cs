@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Mtc.Domain.Common;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
 using Mtc.Infrastructure.DataAccess.Interfaces;
@@ -44,20 +45,21 @@ namespace Mtc.Domain.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<DocumentTemplate> GetAll(Expression<Func<DocumentTemplate, bool>> filter = null, Func<IQueryable<DocumentTemplate>, IOrderedQueryable<DocumentTemplate>> orderBy = null, string includeProperties = "")
+        public IEnumerable<DocumentTemplate> GetAll(BaseSearchCommand<DocumentTemplate> searchCommand)
         {
-            Expression<Func<DOCUMENTTEMPLATE, bool>> mappedFilter = null;
-            Func<IQueryable<DOCUMENTTEMPLATE>, IOrderedQueryable<DOCUMENTTEMPLATE>> mappedOrderBy = null;
-           return _documentTemplateRepository.Get(mappedFilter, mappedOrderBy, includeProperties).Select(Mapper);
+
+            //Expression<Func<DOCUMENTTEMPLATE, bool>> mappedFilter = d => d.Name == searchCommand.Filter;
+            //Func<IQueryable<DOCUMENTTEMPLATE>, IOrderedQueryable<DOCUMENTTEMPLATE>> mappedOrderBy = null;
+           return _documentTemplateRepository.Get(null, null).Select(Mapper);
         }
 
         private DocumentTemplate Mapper(DOCUMENTTEMPLATE documentTemplate)
         {
-            return new DocumentTemplate()
+            return new DocumentTemplate
             {
                 Id = documentTemplate.Id,
                 Description = documentTemplate.Description,
-                IsActive = documentTemplate.IsActive == 1? true: false,
+                IsActive = documentTemplate.IsActive == 1,
                 Name = documentTemplate.Name
             };
         }

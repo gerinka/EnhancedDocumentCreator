@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Mtc.Domain.Common;
 
 namespace Mtc.Domain.Services.Interfaces
 {
@@ -14,8 +15,6 @@ namespace Mtc.Domain.Services.Interfaces
         T Create(T entity);
         T Update(T entity);
         T Delete(T entity);
-        IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            string includeProperties = "");
+        IEnumerable<T> GetAll(BaseSearchCommand<T> searchCommand);
     }
 }

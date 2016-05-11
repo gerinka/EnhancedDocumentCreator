@@ -2,7 +2,7 @@
 
 namespace Mtc.Domain.Services.Interfaces
 {
-    interface ITaskService : IBaseService<Task>
+    public interface ITaskService : IBaseService<Task>
     {
     }
 }

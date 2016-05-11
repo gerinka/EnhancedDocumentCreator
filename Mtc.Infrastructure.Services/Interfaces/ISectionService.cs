@@ -2,7 +2,7 @@
 
 namespace Mtc.Domain.Services.Interfaces
 {
-    interface ISectionService : IBaseService<Section>
+    public interface ISectionService : IBaseService<Section>
     {
     }
 }

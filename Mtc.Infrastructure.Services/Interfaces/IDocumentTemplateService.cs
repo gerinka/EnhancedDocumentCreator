@@ -2,7 +2,7 @@
 
 namespace Mtc.Domain.Services.Interfaces
 {
-    interface IDocumentTemplateService : IBaseService<DocumentTemplate>
+    public interface IDocumentTemplateService : IBaseService<DocumentTemplate>
     {
     }
 }

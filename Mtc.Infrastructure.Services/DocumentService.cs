@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Mtc.Domain.Common;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
 
@@ -36,7 +37,7 @@ namespace Mtc.Domain.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Document> GetAll(Expression<Func<Document, bool>> filter = null, Func<IQueryable<Document>, IOrderedQueryable<Document>> orderBy = null, string includeProperties = "")
+        public IEnumerable<Document> GetAll(BaseSearchCommand<Document> searchCommand)
         {
             throw new NotImplementedException();
         }
