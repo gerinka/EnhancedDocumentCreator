@@ -53,6 +53,10 @@
     <Compile Include="GeneratedEntities\DOCUMENT.Generated.cs">
       <DependentUpon>DOCUMENT.cs</DependentUpon>
     </Compile>
+    <Compile Include="GeneratedEntities\DOCUMENTTEMPLATE.cs" />
+    <Compile Include="GeneratedEntities\DOCUMENTTEMPLATE.Generated.cs">
+      <DependentUpon>DOCUMENTTEMPLATE.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneratedEntities\REFERENCE.cs" />
     <Compile Include="GeneratedEntities\REFERENCE.Generated.cs">
       <DependentUpon>REFERENCE.cs</DependentUpon>

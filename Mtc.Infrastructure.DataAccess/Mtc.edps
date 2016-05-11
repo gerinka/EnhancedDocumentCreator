@@ -17,6 +17,8 @@
         <File Name="TASK.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="USER.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
         <File Name="USER.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="DOCUMENTTEMPLATE.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" OverwriteMode="None" />
+        <File Name="DOCUMENTTEMPLATE.Generated.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="TaskType.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="TaskState.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="ReferenceType.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
