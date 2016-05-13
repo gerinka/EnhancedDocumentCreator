@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Configuration;
 using System.Data.Common;
 using System.Data.Entity;
@@ -8,26 +8,20 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using Autofac;
-using Cpims.CDG.Infrastructure.Configuration;
-using Cpims.Common.Security;
-using Cpims.Common.UnitTest;
-using Cpims.WFM.Domain.Actors;
-using Cpims.WFM.Domain.Brands;
-using Cpims.WFM.Domain.Countries;
-using Cpims.WFM.Domain.DeliveryTypes;
-using Cpims.WFM.Domain.Languages;
-using Cpims.WFM.Domain.Productgroups;
-using Cpims.WFM.Domain.Workflows;
-using Cpims.WFM.Infrastructure.Configuration;
-using Cpims.WFM.Infrastructure.DataAccess;
-using Cpims.WFM.Infrastructure.Services;
-using Devart.Data.Oracle;
+//using Mtc.Domain.Common.Security;
+//using Mtc.Domain.Common.UnitTest;
+using Mtc.Domain.Models;
+using Mtc.Infrastructure.DataAccess;
+using Mtc.Domain.Services;
+using Devart.Data;
+using Mtc.Domain.Services.Tests;
+using MtcModel;
+using MySql.Data.MySqlClient;
 using NUnit.Framework;
-using StarTrack.Common.Messaging.Enqueue;
 
 namespace Mtc.Domain.Tests.ComponentTests
 {
-    public class MtcServiceTestsBase : BaseDatabaseComponentTests
+    public class MtcServiceTestsBase : BaseDatabaseIntegrationTests
     {
         protected IContainer _diContainer;
         private const int TEST_PCO_ID = 993939;
@@ -35,8 +29,6 @@ namespace Mtc.Domain.Tests.ComponentTests
         protected override DbContext CreateDbContext()
         {
             var entities = new MtcEntities(this.GetConnectionStringName());
-            entities.Configuration.LazyLoadingEnabled = true;
-            entities.Configuration.ProxyCreationEnabled = false;
             return entities;
         }
 
@@ -55,7 +47,7 @@ namespace Mtc.Domain.Tests.ComponentTests
             containerBuilder.RegisterType<MtcEntities>().UsingConstructor(typeof(DbConnection));
             containerBuilder.Register(c =>
             {
-                var dbConn = new OracleConnection(ConfigurationManager.ConnectionStrings[GetConnectionStringName()].ConnectionString);
+                var dbConn = new MySqlConnection(ConfigurationManager.ConnectionStrings[GetConnectionStringName()].ConnectionString);
                 dbConn.Open();
                 return dbConn;
             }).As<DbConnection>().InstancePerLifetimeScope();
@@ -66,4 +58,4 @@ namespace Mtc.Domain.Tests.ComponentTests
         }
 
     }
-}*/
+}

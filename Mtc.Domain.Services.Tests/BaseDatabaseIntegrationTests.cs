@@ -8,11 +8,11 @@ using NUnit.Framework;
 
 namespace Mtc.Domain.Services.Tests
 {
-    public abstract class BaseDatabaseComponentTests
+    public abstract class BaseDatabaseIntegrationTests
     {
 
         #region Constructor
-        protected BaseDatabaseComponentTests()
+        protected BaseDatabaseIntegrationTests()
         {
             DataTestHelper = new DataTestHelper();
         }
@@ -23,7 +23,7 @@ namespace Mtc.Domain.Services.Tests
         #endregion
 
         #region Setup / TearDown
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void TestFixtureSetup()
         {
             DataTestHelper.FixtureSetupForDb();
@@ -35,7 +35,7 @@ namespace Mtc.Domain.Services.Tests
             DataTestHelper.SetUpForDb(GetConnectionStringName(), CreateDbContext);
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void FixtureTearDown()
         {
             DataTestHelper.FixtureTearDownForDb();

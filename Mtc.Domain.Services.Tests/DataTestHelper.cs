@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Configuration;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Transactions;
 using Mtc.Infrastructure.DataAccess.Interfaces;
+using MySql.Data.MySqlClient;
 
 namespace Mtc.Domain.Services.Tests
 {
@@ -46,8 +48,8 @@ namespace Mtc.Domain.Services.Tests
                 IsolationLevel = IsolationLevel
             });
             _connectionStringName = connectionStringName;
-          //  Connection = new OracleConnection(ConfigurationManager.ConnectionStrings[_connectionStringName].ConnectionString);
-           // Connection.Open();
+            Connection = new MySqlConnection(ConfigurationManager.ConnectionStrings[_connectionStringName].ConnectionString);
+            Connection.Open();
             DbContextCreator = dbContextCreator;
             DbContext = dbContextCreator();
         }
@@ -60,7 +62,7 @@ namespace Mtc.Domain.Services.Tests
 
         public void TearDownForDb()
         {
-          //  Connection.Dispose();
+            Connection.Dispose();
             DbContext.Dispose();
             TransactionScope.Dispose();
         }

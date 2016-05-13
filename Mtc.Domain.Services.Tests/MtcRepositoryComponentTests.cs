@@ -8,7 +8,7 @@ namespace Mtc.Domain.Services.Tests
     [TestFixture]
     public abstract class MtcRepositoryComponentTests<TEntity> where TEntity : class
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void InitEffort()
         {
             try
@@ -22,15 +22,16 @@ namespace Mtc.Domain.Services.Tests
             }
         }
 
-        protected  DbContext CreateDbContext()
+        public DbContext CreateDbContext()
         {
-     //       var ctx = new MtcEntities(DataTestHelper.Connection);
-  //          ctx.Database.Log = Console.WriteLine;
-    //        return ctx;
+           /* var ctx = new MtcEntities(DataTestHelper.Connection);
+            ctx.Database.Log = Console.WriteLine;
+            return ctx;*/
             return null;
+            //check init of datatesthelper
         }
 
-        protected string GetConnectionStringName()
+        public string GetConnectionStringName()
         {
             return "MtcEntitiesConnectionString";
         }
