@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Mtc.Domain.Services.Tests
 {
     [TestFixture]
-    public abstract class MtcRepositoryComponentTests<TEntity> where TEntity : class
+    public abstract class MtcRepositoryComponentTests<TEntity>  where TEntity : class
     {
         [OneTimeSetUp]
         public void InitEffort()
@@ -28,7 +28,7 @@ namespace Mtc.Domain.Services.Tests
             ctx.Database.Log = Console.WriteLine;
             return ctx;*/
             return null;
-            //check init of datatesthelper
+            //check init of datatesthelper : BaseDatabaseIntegrationTests
         }
 
         public string GetConnectionStringName()
