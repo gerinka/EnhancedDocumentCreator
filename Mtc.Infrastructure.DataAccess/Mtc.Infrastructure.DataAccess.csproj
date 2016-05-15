@@ -53,7 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataModule.cs" />
     <Compile Include="GeneratedEntities\Mtc.DOCUMENT.cs" />
     <Compile Include="GeneratedEntities\Mtc.DOCUMENTTEMPLATE.cs" />
     <Compile Include="GeneratedEntities\Mtc.REFERENCE.cs" />

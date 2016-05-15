@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data.Common;
 using System.Data.Entity;
 using Autofac;
+using Mtc.Infrastructure.Configuration;
 using Mtc.Infrastructure.DataAccess;
 using MtcModel;
 using MySql.Data.MySqlClient;
@@ -11,10 +12,9 @@ using NUnit.Framework;
 
 namespace Mtc.Domain.Services.Tests
 {
-    public class MtcServiceTestsBase : BaseDatabaseIntegrationTests
+    public class MtcServiceBaseTests : BaseDatabaseIntegrationTests
     {
         protected IContainer _diContainer;
-        private const int TEST_PCO_ID = 993939;
 
         protected override DbContext CreateDbContext()
         {
@@ -24,15 +24,14 @@ namespace Mtc.Domain.Services.Tests
 
         protected override string GetConnectionStringName()
         {
-            return "MtcEntities";
+            return "MtcEntitiesConnectionString";
         }
 
         [OneTimeSetUp]
         public void FixtureSetup()
         {
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule(new DataModule(GetConnectionStringName()));
-            containerBuilder.RegisterModule(new ServiceModule(GetConnectionStringName()));
+            containerBuilder.RegisterModule(new MtcModule());
 
             containerBuilder.RegisterType<MtcEntities>().UsingConstructor(typeof(DbConnection));
             containerBuilder.Register(c =>

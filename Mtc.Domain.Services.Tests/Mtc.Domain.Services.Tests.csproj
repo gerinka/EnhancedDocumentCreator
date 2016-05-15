@@ -83,9 +83,9 @@
     <Compile Include="MtcRepositoryComponentTests.cs" />
     <Compile Include="BaseDatabaseIntegrationTests.cs" />
     <Compile Include="DataTestHelper.cs" />
-    <Compile Include="Class4.cs" />
+    <Compile Include="MtcServiceBaseTests.cs" />
     <Compile Include="Class5.cs" />
-    <Compile Include="PersonServiceUnitTest.cs" />
+    <Compile Include="PersonServiceIntegrationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +96,10 @@
     <ProjectReference Include="..\Mtc.Domain\Mtc.Domain.csproj">
       <Project>{F3793531-0EBA-4D4A-AD4D-3745B2804DD3}</Project>
       <Name>Mtc.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mtc.Infrastructure.Configuration\Mtc.Infrastructure.Configuration.csproj">
+      <Project>{3cd3f64c-d559-4994-b4c1-37c610a7987a}</Project>
+      <Name>Mtc.Infrastructure.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\Mtc.Infrastructure.DataAccess\Mtc.Infrastructure.DataAccess.csproj">
       <Project>{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}</Project>
