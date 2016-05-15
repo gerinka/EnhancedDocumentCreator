@@ -24,7 +24,7 @@ namespace Mtc.Domain.Services.Tests
 
         protected override string GetConnectionStringName()
         {
-            return "MtcEntitiesConnectionString";
+            return "MTCEntitiesConnectionString";
         }
 
         [OneTimeSetUp]

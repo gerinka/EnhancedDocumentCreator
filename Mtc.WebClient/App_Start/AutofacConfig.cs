@@ -8,6 +8,7 @@ using Autofac;
 using Autofac.Core;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using Mtc.Infrastructure.Configuration;
 using Mtc.Infrastructure.DataAccess;
 using MtcModel;
 using MySql.Data.MySqlClient;
@@ -21,40 +22,17 @@ namespace Mtc.WebClient
     /// </summary>
     internal static class AutofacConfig
     {
-        private const string WEBAPI_CONNSTR_NAME = "WebApi";
+        private const string ConnectionString = "MTCEntitiesConnectionString";
 
         internal static void ConfigureAutofac(HttpConfiguration config)
         {
-            RegisterWebApi(config);
-        }
-
-        public static ContainerBuilder CreateContainerBuilder()
-        {
-            ContainerBuilder builder = new ContainerBuilder();
-            //DependencyInjectionConfiguration dependencyInjectionConfiguration = Configuration.Settings.Debug.DependencyInjection;
-            return builder;
-        }
-
-        private static void RegisterWebApi(HttpConfiguration config)
-        {
-            ContainerBuilder builder = CreateContainerBuilder();
-            //builder.RegisterDomainModules();
+            var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
-            #region Entities
-
-            builder.RegisterType<MtcEntities>().UsingConstructor(typeof(DbConnection)).InstancePerRequest();
-
-
-            builder.Register(c =>
-            {
-                DbConnection dbConn = new MySqlConnection(ConfigurationManager.ConnectionStrings[WEBAPI_CONNSTR_NAME].ConnectionString);
-                dbConn.Open();
-                return dbConn;
-            }).As<DbConnection>().InstancePerRequest();
-
-            #endregion
+            builder.RegisterType<MtcEntities>().InstancePerRequest();
+            builder.RegisterModule(new MtcModule());
+  
             IContainer container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

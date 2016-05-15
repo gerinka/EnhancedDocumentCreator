@@ -31,15 +31,15 @@ namespace Mtc.Domain.Services.Tests
 
         protected override string GetConnectionStringName()
         {
-            return "MtcEntitiesConnectionString";
+            return "MTCEntitiesConnectionString";
         }
 
         [OneTimeSetUp]
         public void OneTimeSetup()
         {
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule(new MtcModule());
-            containerBuilder.RegisterType<MtcEntities>().UsingConstructor(typeof(DbConnection));
+            containerBuilder.RegisterModule(new DataModule(GetConnectionStringName()));
+          // containerBuilder.RegisterType<MtcEntities>().UsingConstructor(typeof(DbConnection));
             containerBuilder.Register(c =>
             {
                 var dbConnection =
