@@ -19,7 +19,7 @@ namespace Mtc.WebClient
     /// <summary>
     /// Configures the dependency injection system.
     /// </summary>
-    internal static class AutofacConfiguration
+    internal static class AutofacConfig
     {
         private const string WEBAPI_CONNSTR_NAME = "WebApi";
 
@@ -58,11 +58,6 @@ namespace Mtc.WebClient
             IContainer container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-
         }
-
-
-
-
     }
 }
