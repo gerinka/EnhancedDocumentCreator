@@ -48,16 +48,29 @@
       <HintPath>..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=3.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.0\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -164,7 +177,6 @@
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\Class1.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -765,6 +777,14 @@
     <ProjectReference Include="..\Mtc.Domain\Mtc.Domain.csproj">
       <Project>{F3793531-0EBA-4D4A-AD4D-3745B2804DD3}</Project>
       <Name>Mtc.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mtc.Infrastructure.Configuration\Mtc.Infrastructure.Configuration.csproj">
+      <Project>{3cd3f64c-d559-4994-b4c1-37c610a7987a}</Project>
+      <Name>Mtc.Infrastructure.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mtc.Infrastructure.DataAccess\Mtc.Infrastructure.DataAccess.csproj">
+      <Project>{dc37d0c9-3e78-41f8-8886-80e02dfb2ab0}</Project>
+      <Name>Mtc.Infrastructure.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Mtc.Infrastructure.Services\Mtc.Domain.Services.csproj">
       <Project>{e5adf44a-c693-4f0e-9ad6-2913ab7e69ad}</Project>

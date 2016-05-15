@@ -1,32 +1,68 @@
-﻿using System.Web.Mvc;
+﻿using System.Configuration;
+using System.Data.Common;
+using System.Linq;
+using System.Reflection;
+using System.Web.Http;
+using System.Web.Mvc;
 using Autofac;
+using Autofac.Core;
 using Autofac.Integration.Mvc;
-using Mtc.Domain.Services;
+using Autofac.Integration.WebApi;
+using Mtc.Infrastructure.DataAccess;
+using MtcModel;
+using MySql.Data.MySqlClient;
+using AutofacDependencyResolver = Autofac.Integration.Mvc.AutofacDependencyResolver;
 
 namespace Mtc.WebClient
 {
-    public class AutofacConfig
+
+    /// <summary>
+    /// Configures the dependency injection system.
+    /// </summary>
+    internal static class AutofacConfiguration
     {
-        public static void ConfigureContainer()
+        private const string WEBAPI_CONNSTR_NAME = "WebApi";
+
+        internal static void ConfigureAutofac(HttpConfiguration config)
         {
-            var builder = new ContainerBuilder();
-
-            // Register dependencies in controllers
-            builder.RegisterControllers(typeof(MvcApplication).Assembly);
-
-            // Register dependencies in filter attributes
-            builder.RegisterFilterProvider();
-
-            // Register dependencies in custom views
-            builder.RegisterSource(new ViewRegistrationSource());
-
-            // Register our Data dependencies
-            builder.RegisterModule(new ServiceModule("MtcEntitiesConnectionString"));
-
-            var container = builder.Build();
-
-            // Set MVC DI resolver to use our Autofac container
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            RegisterWebApi(config);
         }
+
+        public static ContainerBuilder CreateContainerBuilder()
+        {
+            ContainerBuilder builder = new ContainerBuilder();
+            //DependencyInjectionConfiguration dependencyInjectionConfiguration = Configuration.Settings.Debug.DependencyInjection;
+            return builder;
+        }
+
+        private static void RegisterWebApi(HttpConfiguration config)
+        {
+            ContainerBuilder builder = CreateContainerBuilder();
+            //builder.RegisterDomainModules();
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());
+
+            #region Entities
+
+            builder.RegisterType<MtcEntities>().UsingConstructor(typeof(DbConnection)).InstancePerRequest();
+
+
+            builder.Register(c =>
+            {
+                DbConnection dbConn = new MySqlConnection(ConfigurationManager.ConnectionStrings[WEBAPI_CONNSTR_NAME].ConnectionString);
+                dbConn.Open();
+                return dbConn;
+            }).As<DbConnection>().InstancePerRequest();
+
+            #endregion
+            IContainer container = builder.Build();
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
+        }
+
+
+
+
     }
 }
