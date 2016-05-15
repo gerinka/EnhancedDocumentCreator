@@ -14,19 +14,10 @@ namespace Mtc.Infrastructure.Configuration
     {
         protected override void Load(ContainerBuilder builder)
         {
-          /*  Assembly mtcDomainAssembly = typeof(Document).Assembly;
-            Assembly mtcDataAssembly = typeof(DocumentRepository).Assembly;
-            Assembly mtcDataTypeAssembly = typeof (DOCUMENT).Assembly;
-            Assembly mtcServiceAssembly = typeof (DocumentTemplateService).Assembly;
-            builder.RegisterAssemblyTypes(mtcDataAssembly, mtcDomainAssembly, mtcDataTypeAssembly, mtcServiceAssembly)
-                .Where(t => t.Name.EndsWith("Service"))
-                .AsImplementedInterfaces();
-            builder.RegisterAssemblyTypes(mtcDataAssembly)
-                .Where(t => t.Name.EndsWith("Repository"))
-                .AsImplementedInterfaces();*/
-
             builder.RegisterType<DocumentTemplateRepository>().As<IDocumentTemplateRepository>().InstancePerRequest();
+            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerRequest();
             builder.RegisterType<DocumentTemplateService>().As<IDocumentTemplateService>().InstancePerRequest();
+            builder.RegisterType<PersonService>().As<IPersonService>().InstancePerRequest();
             base.Load(builder);
         }
     }

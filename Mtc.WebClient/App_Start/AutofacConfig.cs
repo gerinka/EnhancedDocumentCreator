@@ -22,8 +22,6 @@ namespace Mtc.WebClient
     /// </summary>
     internal static class AutofacConfig
     {
-        private const string ConnectionString = "MTCEntitiesConnectionString";
-
         internal static void ConfigureAutofac(HttpConfiguration config)
         {
             var builder = new ContainerBuilder();

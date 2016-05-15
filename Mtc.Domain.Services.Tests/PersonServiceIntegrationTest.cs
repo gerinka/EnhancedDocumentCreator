@@ -20,7 +20,7 @@ namespace Mtc.Domain.Services.Tests
 {
     [TestFixture]
     [Category("IntegrationTest")]
-    public class PersonServiceIntegrationTest : BaseDatabaseIntegrationTests
+    public class PersonServiceIntegrationTest : MtcRepositoryComponentTests<USER>
     {
         private IContainer _diContainer;
 
@@ -38,9 +38,9 @@ namespace Mtc.Domain.Services.Tests
         public void OneTimeSetup()
         {
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule(new DataModule(GetConnectionStringName()));
-          // containerBuilder.RegisterType<MtcEntities>().UsingConstructor(typeof(DbConnection));
-            containerBuilder.Register(c =>
+            containerBuilder.RegisterModule(new MtcModule());
+           containerBuilder.RegisterType<MtcEntities>().InstancePerLifetimeScope();
+           containerBuilder.Register(c =>
             {
                 var dbConnection =
                     new MySqlConnection(
