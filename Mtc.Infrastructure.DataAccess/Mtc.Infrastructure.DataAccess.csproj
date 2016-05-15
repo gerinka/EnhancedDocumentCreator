@@ -54,38 +54,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModule.cs" />
-    <Compile Include="GeneratedEntities\DOCUMENT.cs" />
-    <Compile Include="GeneratedEntities\DOCUMENT.Generated.cs">
-      <DependentUpon>DOCUMENT.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedEntities\DOCUMENTTEMPLATE.cs" />
-    <Compile Include="GeneratedEntities\DOCUMENTTEMPLATE.Generated.cs">
-      <DependentUpon>DOCUMENTTEMPLATE.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedEntities\REFERENCE.cs" />
-    <Compile Include="GeneratedEntities\REFERENCE.Generated.cs">
-      <DependentUpon>REFERENCE.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedEntities\ReferenceType.cs" />
-    <Compile Include="GeneratedEntities\STRUCTURECONTENT.cs" />
-    <Compile Include="GeneratedEntities\STRUCTURECONTENT.Generated.cs">
-      <DependentUpon>STRUCTURECONTENT.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedEntities\STRUCTUREELEMENT.cs" />
-    <Compile Include="GeneratedEntities\STRUCTUREELEMENT.Generated.cs">
-      <DependentUpon>STRUCTUREELEMENT.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedEntities\StructureType.cs" />
-    <Compile Include="GeneratedEntities\TASK.cs" />
-    <Compile Include="GeneratedEntities\TASK.Generated.cs">
-      <DependentUpon>TASK.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GeneratedEntities\TaskState.cs" />
-    <Compile Include="GeneratedEntities\TaskType.cs" />
-    <Compile Include="GeneratedEntities\USER.cs" />
-    <Compile Include="GeneratedEntities\USER.Generated.cs">
-      <DependentUpon>USER.cs</DependentUpon>
-    </Compile>
+    <Compile Include="GeneratedEntities\Mtc.DOCUMENT.cs" />
+    <Compile Include="GeneratedEntities\Mtc.DOCUMENTTEMPLATE.cs" />
+    <Compile Include="GeneratedEntities\Mtc.REFERENCE.cs" />
+    <Compile Include="GeneratedEntities\Mtc.STRUCTURECONTENT.cs" />
+    <Compile Include="GeneratedEntities\Mtc.STRUCTUREELEMENT.cs" />
+    <Compile Include="GeneratedEntities\Mtc.TASK.cs" />
+    <Compile Include="GeneratedEntities\Mtc.USER.cs" />
     <Compile Include="Interfaces\IBaseRepository.cs" />
     <Compile Include="Interfaces\IDocumentTemplateRepository.cs" />
     <Compile Include="Interfaces\IDocumentRepository.cs" />
@@ -93,8 +68,9 @@
     <Compile Include="Interfaces\IStructureElementRepository.cs" />
     <Compile Include="Interfaces\ITaskRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
-    <Compile Include="Mtc.MtcEntities.cs" />
-    <Compile Include="MtcEntities.cs" />
+    <Compile Include="Mtc.MtcEntities.cs">
+      <DependentUpon>Mtc.edml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\DocumentTemplateRepository.cs" />
@@ -111,14 +87,9 @@
     </None>
     <DevartEntityDeploy Include="Mtc.edml">
       <Generator>DevartEfGenerator</Generator>
-      <LastGenOutput>Mtc.info</LastGenOutput>
+      <LastGenOutput>Mtc.Designer.cs</LastGenOutput>
     </DevartEntityDeploy>
     <None Include="Mtc.edps">
-      <DependentUpon>Mtc.edml</DependentUpon>
-    </None>
-    <None Include="Mtc.info">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Mtc.edml</DependentUpon>
     </None>
     <None Include="packages.config" />

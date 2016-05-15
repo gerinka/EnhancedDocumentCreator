@@ -1,0 +1,732 @@
+﻿<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MtcModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:devart="http://devart.com/schemas/edml/StorageSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="MtcEntitiesStoreContainer">
+          <EntitySet Name="documents" EntityType="MtcModel.Store.document" store:Type="Tables" Schema="mtc" Table="document" />
+          <EntitySet Name="documentstructurerelations" EntityType="MtcModel.Store.documentstructurerelation" store:Type="Tables" Schema="mtc" Table="documentstructurerelation" />
+          <EntitySet Name="documenttemplates" EntityType="MtcModel.Store.documenttemplate" store:Type="Tables" Schema="mtc" Table="documenttemplate" />
+          <EntitySet Name="references" EntityType="MtcModel.Store.reference" store:Type="Tables" Schema="mtc" Table="reference" />
+          <EntitySet Name="structurecontents" EntityType="MtcModel.Store.structurecontent" store:Type="Tables" Schema="mtc" Table="structurecontent" />
+          <EntitySet Name="structureelements" EntityType="MtcModel.Store.structureelement" store:Type="Tables" Schema="mtc" Table="structureelement" />
+          <EntitySet Name="structurerelations" EntityType="MtcModel.Store.structurerelation" store:Type="Tables" Schema="mtc" Table="structurerelation" />
+          <EntitySet Name="tasks" EntityType="MtcModel.Store.task" store:Type="Tables" Schema="mtc" Table="task" />
+          <EntitySet Name="users" EntityType="MtcModel.Store.user" store:Type="Tables" Schema="mtc" Table="user" />
+          <AssociationSet Name="FK_DocumentDocumentTemplate_ID" Association="MtcModel.Store.FK_DocumentDocumentTemplate_ID">
+            <End Role="documenttemplate" EntitySet="documenttemplates" />
+            <End Role="document" EntitySet="documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentMentor_ID" Association="MtcModel.Store.FK_DocumentMentor_ID">
+            <End Role="user" EntitySet="users" />
+            <End Role="document" EntitySet="documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentUser_ID" Association="MtcModel.Store.FK_DocumentUser_ID">
+            <End Role="user" EntitySet="users" />
+            <End Role="document" EntitySet="documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentTemplate_ID" Association="MtcModel.Store.FK_DocumentTemplate_ID">
+            <End Role="documenttemplate" EntitySet="documenttemplates" />
+            <End Role="documentstructurerelation" EntitySet="documentstructurerelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StructureElement_ID" Association="MtcModel.Store.FK_StructureElement_ID">
+            <End Role="structureelement" EntitySet="structureelements" />
+            <End Role="documentstructurerelation" EntitySet="documentstructurerelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReferenceDocument_Id" Association="MtcModel.Store.FK_ReferenceDocument_Id">
+            <End Role="document" EntitySet="documents" />
+            <End Role="reference" EntitySet="references" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StructureContentDocument_Id" Association="MtcModel.Store.FK_StructureContentDocument_Id">
+            <End Role="document" EntitySet="documents" />
+            <End Role="structurecontent" EntitySet="structurecontents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StructureElementDocument_Id" Association="MtcModel.Store.FK_StructureElementDocument_Id">
+            <End Role="structureelement" EntitySet="structureelements" />
+            <End Role="structurecontent" EntitySet="structurecontents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StructureElement_Child" Association="MtcModel.Store.FK_StructureElement_Child">
+            <End Role="structureelement" EntitySet="structureelements" />
+            <End Role="structurerelation" EntitySet="structurerelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StructureElement_Parent" Association="MtcModel.Store.FK_StructureElement_Parent">
+            <End Role="structureelement" EntitySet="structureelements" />
+            <End Role="structurerelation" EntitySet="structurerelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskDocument_Id" Association="MtcModel.Store.FK_TaskDocument_Id">
+            <End Role="document" EntitySet="documents" />
+            <End Role="task" EntitySet="tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskStructureContent_Id" Association="MtcModel.Store.FK_TaskStructureContent_Id">
+            <End Role="structurecontent" EntitySet="structurecontents" />
+            <End Role="task" EntitySet="tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskUser_Id" Association="MtcModel.Store.FK_TaskUser_Id">
+            <End Role="user" EntitySet="users" />
+            <End Role="task" EntitySet="tasks" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="document">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Deadline" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="100" Collation="utf8_general_ci" />
+          <Property Name="CurrentProgress" Type="int" />
+          <Property Name="MentorId" Type="int" />
+          <Property Name="DocumentTemplateId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="documentstructurerelation">
+          <Key>
+            <PropertyRef Name="DocumentTemplateId" />
+            <PropertyRef Name="StructureElementId" />
+          </Key>
+          <Property Name="DocumentTemplateId" Type="int" Nullable="false" />
+          <Property Name="StructureElementId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="documenttemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="Description" Type="varchar" MaxLength="100" Collation="utf8_general_ci" />
+          <Property Name="IsActive" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reference">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ReferenceTypeId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="Order" Type="int" />
+          <Property Name="DocumentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="structurecontent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StructureElementId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="Content" Type="longblob" />
+          <Property Name="DocumentId" Type="int" Nullable="false" />
+          <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="CurrentProgress" Type="int" />
+        </EntityType>
+        <EntityType Name="structureelement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="StructureTypeId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="455" Collation="utf8_general_ci" />
+        </EntityType>
+        <EntityType Name="structurerelation">
+          <Key>
+            <PropertyRef Name="StructureElementParentId" />
+            <PropertyRef Name="StructureElementChildId" />
+          </Key>
+          <Property Name="StructureElementParentId" Type="int" Nullable="false" />
+          <Property Name="StructureElementChildId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="AssignTo" Type="int" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="Deadline" Type="datetime" Nullable="false" />
+          <Property Name="DocumentId" Type="int" Nullable="false" />
+          <Property Name="Order" Type="int" />
+          <Property Name="TaskType" Type="int" Nullable="false" />
+          <Property Name="IsLocked" Type="tinyint" Nullable="false" />
+          <Property Name="StrucktureContentId" Type="int" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="FamilyName" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="ExperiencePoints" Type="int" />
+          <Property Name="Level" Type="smallint" />
+        </EntityType>
+        <Association Name="FK_DocumentDocumentTemplate_ID">
+          <End Role="documenttemplate" Type="MtcModel.Store.documenttemplate" Multiplicity="1" />
+          <End Role="document" Type="MtcModel.Store.document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="documenttemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="document">
+              <PropertyRef Name="DocumentTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentMentor_ID">
+          <End Role="user" Type="MtcModel.Store.user" Multiplicity="0..1" />
+          <End Role="document" Type="MtcModel.Store.document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="document">
+              <PropertyRef Name="MentorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentUser_ID">
+          <End Role="user" Type="MtcModel.Store.user" Multiplicity="1" />
+          <End Role="document" Type="MtcModel.Store.document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="document">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentTemplate_ID">
+          <End Role="documenttemplate" Type="MtcModel.Store.documenttemplate" Multiplicity="1" />
+          <End Role="documentstructurerelation" Type="MtcModel.Store.documentstructurerelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="documenttemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="documentstructurerelation">
+              <PropertyRef Name="DocumentTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StructureElement_ID">
+          <End Role="structureelement" Type="MtcModel.Store.structureelement" Multiplicity="1" />
+          <End Role="documentstructurerelation" Type="MtcModel.Store.documentstructurerelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="structureelement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="documentstructurerelation">
+              <PropertyRef Name="StructureElementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReferenceDocument_Id">
+          <End Role="document" Type="MtcModel.Store.document" Multiplicity="1" />
+          <End Role="reference" Type="MtcModel.Store.reference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="document">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="reference">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StructureContentDocument_Id">
+          <End Role="document" Type="MtcModel.Store.document" Multiplicity="1" />
+          <End Role="structurecontent" Type="MtcModel.Store.structurecontent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="document">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="structurecontent">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StructureElementDocument_Id">
+          <End Role="structureelement" Type="MtcModel.Store.structureelement" Multiplicity="1" />
+          <End Role="structurecontent" Type="MtcModel.Store.structurecontent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="structureelement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="structurecontent">
+              <PropertyRef Name="StructureElementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StructureElement_Child">
+          <End Role="structureelement" Type="MtcModel.Store.structureelement" Multiplicity="1" />
+          <End Role="structurerelation" Type="MtcModel.Store.structurerelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="structureelement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="structurerelation">
+              <PropertyRef Name="StructureElementChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StructureElement_Parent">
+          <End Role="structureelement" Type="MtcModel.Store.structureelement" Multiplicity="1" />
+          <End Role="structurerelation" Type="MtcModel.Store.structurerelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="structureelement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="structurerelation">
+              <PropertyRef Name="StructureElementParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskDocument_Id">
+          <End Role="document" Type="MtcModel.Store.document" Multiplicity="1" />
+          <End Role="task" Type="MtcModel.Store.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="document">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskStructureContent_Id">
+          <End Role="structurecontent" Type="MtcModel.Store.structurecontent" Multiplicity="0..1" />
+          <End Role="task" Type="MtcModel.Store.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="structurecontent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="StrucktureContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskUser_Id">
+          <End Role="user" Type="MtcModel.Store.user" Multiplicity="0..1" />
+          <End Role="task" Type="MtcModel.Store.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="AssignTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MtcModel" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MtcEntities" annotation:LazyLoadingEnabled="true" ed:Guid="87f26968-0adb-4295-9916-3d9f6f81c59d">
+          <EntitySet Name="DOCUMENTs" EntityType="MtcModel.DOCUMENT" />
+          <EntitySet Name="DOCUMENTTEMPLATEs" EntityType="MtcModel.DOCUMENTTEMPLATE" />
+          <EntitySet Name="REFERENCEs" EntityType="MtcModel.REFERENCE" />
+          <EntitySet Name="STRUCTURECONTENTs" EntityType="MtcModel.STRUCTURECONTENT" />
+          <EntitySet Name="STRUCTUREELEMENTs" EntityType="MtcModel.STRUCTUREELEMENT" />
+          <EntitySet Name="TASKs" EntityType="MtcModel.TASK" />
+          <EntitySet Name="USERs" EntityType="MtcModel.USER" />
+          <AssociationSet Name="FK_DocumentDocumentTemplate_IDSet" Association="MtcModel.FK_DocumentDocumentTemplate_ID">
+            <End Role="DOCUMENTTEMPLATE" EntitySet="DOCUMENTTEMPLATEs" />
+            <End Role="DOCUMENTs" EntitySet="DOCUMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentMentor_IDSet" Association="MtcModel.FK_DocumentMentor_ID">
+            <End Role="USER_MentorId" EntitySet="USERs" />
+            <End Role="DOCUMENTs_MentorId" EntitySet="DOCUMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentUser_IDSet" Association="MtcModel.FK_DocumentUser_ID">
+            <End Role="USER_UserId" EntitySet="USERs" />
+            <End Role="DOCUMENTs_UserId" EntitySet="DOCUMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReferenceDocument_IdSet" Association="MtcModel.FK_ReferenceDocument_Id">
+            <End Role="DOCUMENT" EntitySet="DOCUMENTs" />
+            <End Role="REFERENCEs" EntitySet="REFERENCEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StructureContentDocument_IdSet" Association="MtcModel.FK_StructureContentDocument_Id">
+            <End Role="DOCUMENT" EntitySet="DOCUMENTs" />
+            <End Role="STRUCTURECONTENTs" EntitySet="STRUCTURECONTENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StructureElementDocument_IdSet" Association="MtcModel.FK_StructureElementDocument_Id">
+            <End Role="STRUCTUREELEMENT" EntitySet="STRUCTUREELEMENTs" />
+            <End Role="STRUCTURECONTENTs" EntitySet="STRUCTURECONTENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskDocument_IdSet" Association="MtcModel.FK_TaskDocument_Id">
+            <End Role="DOCUMENT" EntitySet="DOCUMENTs" />
+            <End Role="TASKs" EntitySet="TASKs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskStructureContent_IdSet" Association="MtcModel.FK_TaskStructureContent_Id">
+            <End Role="STRUCTURECONTENT" EntitySet="STRUCTURECONTENTs" />
+            <End Role="TASKs" EntitySet="TASKs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskUser_IdSet" Association="MtcModel.FK_TaskUser_Id">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="TASKs" EntitySet="TASKs" />
+          </AssociationSet>
+          <AssociationSet Name="DOCUMENTTEMPLATE_STRUCTUREELEMENTSet" Association="MtcModel.DOCUMENTTEMPLATE_STRUCTUREELEMENT">
+            <End Role="DOCUMENTTEMPLATEs" EntitySet="DOCUMENTTEMPLATEs" />
+            <End Role="STRUCTUREELEMENTs" EntitySet="STRUCTUREELEMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="STRUCTUREELEMENT_STRUCTUREELEMENTSet" Association="MtcModel.STRUCTUREELEMENT_STRUCTUREELEMENT">
+            <End Role="STRUCTUREELEMENTs1" EntitySet="STRUCTUREELEMENTs" />
+            <End Role="STRUCTUREELEMENTs" EntitySet="STRUCTUREELEMENTs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DOCUMENT" ed:Guid="77361535-0059-4834-aac4-d0888e455430">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="5bcd9651-11cb-4e04-b193-19113081070d" />
+          <Property Name="UserId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="fdf13aec-93a4-410e-8f1f-f67ca15a3eba" />
+          <Property Name="Deadline" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="412ac488-9f61-43ac-ad16-ccac039795db" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="b33f8b9e-06ea-4885-aab4-aeb9248d0cc5" />
+          <Property Name="CurrentProgress" Type="Int32" ed:ValidateRequired="false" ed:Guid="b7f75638-d077-43cc-b66b-3d52ca9795ac" />
+          <Property Name="MentorId" Type="Int32" ed:ValidateRequired="false" ed:Guid="3f63c8c9-ab9c-4dc3-bd4e-76cdcd1b67aa" />
+          <Property Name="DocumentTemplateId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="386824bc-7a7c-4e2e-8f3f-56f4803aa492" />
+          <NavigationProperty Name="DOCUMENTTEMPLATE" Relationship="MtcModel.FK_DocumentDocumentTemplate_ID" FromRole="DOCUMENTs" ToRole="DOCUMENTTEMPLATE" ed:Guid="09db9a69-3a1b-4170-943b-6c470a4e9571" />
+          <NavigationProperty Name="USER_MentorId" Relationship="MtcModel.FK_DocumentMentor_ID" FromRole="DOCUMENTs_MentorId" ToRole="USER_MentorId" ed:Guid="8deb09ed-a895-45db-97fe-d9cb89c5deaa" />
+          <NavigationProperty Name="USER_UserId" Relationship="MtcModel.FK_DocumentUser_ID" FromRole="DOCUMENTs_UserId" ToRole="USER_UserId" ed:Guid="f2c598a9-a4c4-49a6-809e-f1ffa34fcc36" />
+          <NavigationProperty Name="REFERENCEs" Relationship="MtcModel.FK_ReferenceDocument_Id" FromRole="DOCUMENT" ToRole="REFERENCEs" ed:Guid="fb64573c-e349-4130-9690-984f8800a44f" />
+          <NavigationProperty Name="STRUCTURECONTENTs" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="DOCUMENT" ToRole="STRUCTURECONTENTs" ed:Guid="1d85225b-768a-420c-8214-cba26fece6af" />
+          <NavigationProperty Name="TASKs" Relationship="MtcModel.FK_TaskDocument_Id" FromRole="DOCUMENT" ToRole="TASKs" ed:Guid="761f83fe-a264-42fd-b1a9-ae7693fb7ba6" />
+        </EntityType>
+        <EntityType Name="DOCUMENTTEMPLATE" ed:Guid="c13fe473-77b1-444c-9062-e628f380b117">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="58b0d4ee-1661-4286-985c-73e543dd4f22" />
+          <Property Name="Name" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="9ac3e573-ab96-4ac6-9b7e-3724dabb0a83" />
+          <Property Name="Description" Type="String" MaxLength="100" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="504ddf74-6ce9-4384-9479-917de3d248a4" />
+          <Property Name="IsActive" Type="SByte" Nullable="false" ed:ValidateRequired="true" ed:Guid="3f07ab48-d182-4751-bc1f-f1227d8fb4f7" />
+          <NavigationProperty Name="DOCUMENTs" Relationship="MtcModel.FK_DocumentDocumentTemplate_ID" FromRole="DOCUMENTTEMPLATE" ToRole="DOCUMENTs" ed:Guid="0c1d9373-d0b3-4825-887e-251b7237bf3f" />
+          <NavigationProperty Name="STRUCTUREELEMENTs" Relationship="MtcModel.DOCUMENTTEMPLATE_STRUCTUREELEMENT" FromRole="DOCUMENTTEMPLATEs" ToRole="STRUCTUREELEMENTs" ed:Guid="3a7dd29f-b45c-4515-87ac-902aaf6370be" />
+        </EntityType>
+        <EntityType Name="REFERENCE" ed:Guid="64ac0b16-891d-4329-9c28-4d82177d535f">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="c94811a6-1919-458f-80d9-788ae4f684e6" />
+          <Property Name="ReferenceTypeId" Type="Int32" ed:ValidateRequired="false" ed:Guid="9994d0cb-a2b7-4b74-be42-9591c71cc188" />
+          <Property Name="Name" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="4bd75bb4-09dd-499f-8188-c652e6cfbb06" />
+          <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="35387658-9fae-457d-9c0f-adb0fa53164f" />
+          <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="6181d1cc-3446-4d3b-89b0-d532b7b3a809" />
+          <NavigationProperty Name="DOCUMENT" Relationship="MtcModel.FK_ReferenceDocument_Id" FromRole="REFERENCEs" ToRole="DOCUMENT" ed:Guid="03ac2592-fcd3-4de2-b5be-dfbf60f2b72e" />
+        </EntityType>
+        <EntityType Name="STRUCTURECONTENT" ed:Guid="a2bdbf24-c7da-46e7-8f9d-733f07e1666d">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="d8a9d8fc-8682-47f2-9172-fd0d05e93f12" />
+          <Property Name="StructureElementId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="11a45536-9a31-44f5-899c-2d1310e476aa" />
+          <Property Name="Title" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="a6638c80-4c8d-4c41-bd3c-2aafc7a4402e" />
+          <Property Name="Content" Type="Binary" ed:ValidateRequired="false" ed:Guid="2eff1d0a-f7ad-478a-a06c-651aca21c580" />
+          <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4ac3d507-54c5-471a-a051-2b61da667b3f" />
+          <Property Name="Order" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="f88ed712-be7d-4c4b-9c07-1426d0205826" />
+          <Property Name="CurrentProgress" Type="Int32" ed:ValidateRequired="false" ed:Guid="a9308848-d63d-49f7-b5ed-14fa3d490969" />
+          <NavigationProperty Name="DOCUMENT" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="STRUCTURECONTENTs" ToRole="DOCUMENT" ed:Guid="21f8c64b-3bcf-4f21-ab6e-ce2e193a6266" />
+          <NavigationProperty Name="STRUCTUREELEMENT" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="STRUCTURECONTENTs" ToRole="STRUCTUREELEMENT" ed:Guid="c6b03497-458d-4862-a536-76226a71f1a2" />
+          <NavigationProperty Name="TASKs" Relationship="MtcModel.FK_TaskStructureContent_Id" FromRole="STRUCTURECONTENT" ToRole="TASKs" ed:Guid="39edb0e0-103d-4b35-bd10-32f643a21a5f" />
+        </EntityType>
+        <EntityType Name="STRUCTUREELEMENT" ed:Guid="c35f1518-4afe-413d-a385-25c793d079ee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="237fa3ab-680c-40a8-a40a-6a9e9a240efd" />
+          <Property Name="Title" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="0fede74b-f8f0-4f13-92c8-2ae364fca48e" />
+          <Property Name="StructureTypeId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="8233005e-be56-4bd4-9962-7dff637dc85a" />
+          <Property Name="Description" Type="String" MaxLength="455" ed:ValidateMaxLength="455" ed:ValidateRequired="false" ed:Guid="b7bca23e-fbaf-4eec-9e09-ed24b6db3c38" />
+          <NavigationProperty Name="STRUCTURECONTENTs" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="STRUCTUREELEMENT" ToRole="STRUCTURECONTENTs" ed:Guid="7bdf3b4c-9dbe-4ca5-99a9-53da2fb6c27c" />
+          <NavigationProperty Name="DOCUMENTTEMPLATEs" Relationship="MtcModel.DOCUMENTTEMPLATE_STRUCTUREELEMENT" FromRole="STRUCTUREELEMENTs" ToRole="DOCUMENTTEMPLATEs" ed:Guid="7bbacfe8-e325-4016-a446-fb0237cf3fbe" />
+          <NavigationProperty Name="STRUCTUREELEMENTs" Relationship="MtcModel.STRUCTUREELEMENT_STRUCTUREELEMENT" FromRole="STRUCTUREELEMENTs1" ToRole="STRUCTUREELEMENTs" ed:Guid="95ce7743-1219-45e5-841d-1f779afc8fda" />
+          <NavigationProperty Name="STRUCTUREELEMENTs1" Relationship="MtcModel.STRUCTUREELEMENT_STRUCTUREELEMENT" FromRole="STRUCTUREELEMENTs" ToRole="STRUCTUREELEMENTs1" ed:Guid="0b3523f3-3f10-43a5-87e2-623e273f3067" />
+        </EntityType>
+        <EntityType Name="TASK" ed:Guid="176cbcd3-34b6-41a4-90f4-ad0b1a8bc376">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="418d4098-bdf8-4570-9fed-22838542d417" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="6526bf66-4f94-41fb-b9a9-99ca8b829d94" />
+          <Property Name="AssignTo" Type="Int32" ed:ValidateRequired="false" ed:Guid="a710e5c8-e36b-4d1a-bcfe-d0c3d5c87547" />
+          <Property Name="State" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="bff508bd-f645-4d71-947e-5841f70327d7" />
+          <Property Name="Deadline" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="8dbc50f6-5e45-4116-ba6d-da5f14bc9917" />
+          <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4b27abaf-0b08-4acc-a205-57fd07d4619d" />
+          <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="4d702389-b7fd-4c19-be50-1d220c4349f8" />
+          <Property Name="TaskType" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="b558b92a-55cd-4e87-8024-41a70082e338" />
+          <Property Name="IsLocked" Type="SByte" Nullable="false" ed:ValidateRequired="true" ed:Guid="f3391fb0-f404-4680-911a-03543ea8e018" />
+          <Property Name="StrucktureContentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="38de7c8e-1f70-47b1-a80f-66dc60cbeb8f" />
+          <NavigationProperty Name="DOCUMENT" Relationship="MtcModel.FK_TaskDocument_Id" FromRole="TASKs" ToRole="DOCUMENT" ed:Guid="e6c21741-8705-4793-a5de-61799d8404e5" />
+          <NavigationProperty Name="STRUCTURECONTENT" Relationship="MtcModel.FK_TaskStructureContent_Id" FromRole="TASKs" ToRole="STRUCTURECONTENT" ed:Guid="fbb4f80e-d53a-4e9b-b45b-d6bd13e91e0e" />
+          <NavigationProperty Name="USER" Relationship="MtcModel.FK_TaskUser_Id" FromRole="TASKs" ToRole="USER" ed:Guid="0379426a-653b-47b9-ae1e-aa982852910c" />
+        </EntityType>
+        <EntityType Name="USER" ed:Guid="7c30f8cc-cb48-400f-a0fd-4e78ae0268c3">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="9349b577-4620-433a-b463-c7a2d76e35a2" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="0ce16014-b1ca-42cd-875a-5fb594babdd3" />
+          <Property Name="MiddleName" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="d7d3e5b0-8b8b-4326-98d5-6e4a0af632fc" />
+          <Property Name="FamilyName" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="0b14dbaa-8cc3-4732-8c36-42e5c534d9a4" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="cf47e595-ddb5-4a08-8686-1dd0e44efb13" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="8536946b-8822-4277-86ba-d9790a6bdd76" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="74a27332-dd8e-49f9-8852-22bf6ef22867" />
+          <Property Name="ExperiencePoints" Type="Int32" ed:ValidateRequired="false" ed:Guid="45bd9b62-a06d-43c8-bb50-0f7da8a6d797" />
+          <Property Name="Level" Type="Int16" ed:ValidateRequired="false" ed:Guid="d5eee569-6576-4586-9072-0ecd95a75631" />
+          <NavigationProperty Name="DOCUMENTs_MentorId" Relationship="MtcModel.FK_DocumentMentor_ID" FromRole="USER_MentorId" ToRole="DOCUMENTs_MentorId" ed:Guid="7551516b-cd8a-451d-aefc-95a05ac23bc7" />
+          <NavigationProperty Name="DOCUMENTs_UserId" Relationship="MtcModel.FK_DocumentUser_ID" FromRole="USER_UserId" ToRole="DOCUMENTs_UserId" ed:Guid="956bc570-140f-49c6-a407-89a71a6775ad" />
+          <NavigationProperty Name="TASKs" Relationship="MtcModel.FK_TaskUser_Id" FromRole="USER" ToRole="TASKs" ed:Guid="2e09641a-a93e-47e1-8477-3029e1967789" />
+        </EntityType>
+        <Association Name="FK_DocumentDocumentTemplate_ID" ed:Guid="3f92ef28-1a14-4222-bdfd-8a4961a055be">
+          <End Role="DOCUMENTTEMPLATE" Type="MtcModel.DOCUMENTTEMPLATE" Multiplicity="1" />
+          <End Role="DOCUMENTs" Type="MtcModel.DOCUMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENTTEMPLATE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DOCUMENTs">
+              <PropertyRef Name="DocumentTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentMentor_ID" ed:Guid="570c86eb-4693-40c1-936e-57af3c36cbde">
+          <End Role="USER_MentorId" Type="MtcModel.USER" Multiplicity="0..1" />
+          <End Role="DOCUMENTs_MentorId" Type="MtcModel.DOCUMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_MentorId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DOCUMENTs_MentorId">
+              <PropertyRef Name="MentorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentUser_ID" ed:Guid="78b6f277-5a3e-45b1-a677-2697827170b0">
+          <End Role="USER_UserId" Type="MtcModel.USER" Multiplicity="1" />
+          <End Role="DOCUMENTs_UserId" Type="MtcModel.DOCUMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_UserId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DOCUMENTs_UserId">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReferenceDocument_Id" ed:Guid="ea40d8a5-942d-47bf-9fca-f1a6e44c3e9b">
+          <End Role="DOCUMENT" Type="MtcModel.DOCUMENT" Multiplicity="1" />
+          <End Role="REFERENCEs" Type="MtcModel.REFERENCE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REFERENCEs">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StructureContentDocument_Id" ed:Guid="0be611a5-2aa4-494d-ba13-0ade9f32025c">
+          <End Role="DOCUMENT" Type="MtcModel.DOCUMENT" Multiplicity="1" />
+          <End Role="STRUCTURECONTENTs" Type="MtcModel.STRUCTURECONTENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STRUCTURECONTENTs">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StructureElementDocument_Id" ed:Guid="11a11048-3265-4a83-bc31-5869e64ef87c">
+          <End Role="STRUCTUREELEMENT" Type="MtcModel.STRUCTUREELEMENT" Multiplicity="1" />
+          <End Role="STRUCTURECONTENTs" Type="MtcModel.STRUCTURECONTENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STRUCTUREELEMENT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="STRUCTURECONTENTs">
+              <PropertyRef Name="StructureElementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskDocument_Id" ed:Guid="02e1342b-c321-480f-b5b6-da78d232a391">
+          <End Role="DOCUMENT" Type="MtcModel.DOCUMENT" Multiplicity="1" />
+          <End Role="TASKs" Type="MtcModel.TASK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TASKs">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskStructureContent_Id" ed:Guid="4aabd5e7-60d9-4b39-83fb-0f564655ef88">
+          <End Role="STRUCTURECONTENT" Type="MtcModel.STRUCTURECONTENT" Multiplicity="0..1" />
+          <End Role="TASKs" Type="MtcModel.TASK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STRUCTURECONTENT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TASKs">
+              <PropertyRef Name="StrucktureContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskUser_Id" ed:Guid="5567519a-d0e5-498f-91a6-98fa557f7d19">
+          <End Role="USER" Type="MtcModel.USER" Multiplicity="0..1" />
+          <End Role="TASKs" Type="MtcModel.TASK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TASKs">
+              <PropertyRef Name="AssignTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DOCUMENTTEMPLATE_STRUCTUREELEMENT" ed:Guid="ea17a5c8-f511-41f7-bfe7-e914649d122c">
+          <End Role="DOCUMENTTEMPLATEs" Type="MtcModel.DOCUMENTTEMPLATE" Multiplicity="*" />
+          <End Role="STRUCTUREELEMENTs" Type="MtcModel.STRUCTUREELEMENT" Multiplicity="*" />
+        </Association>
+        <Association Name="STRUCTUREELEMENT_STRUCTUREELEMENT" ed:Guid="6905cf77-1182-4ac2-b507-a5360b2e4857">
+          <End Role="STRUCTUREELEMENTs1" Type="MtcModel.STRUCTUREELEMENT" Multiplicity="*" />
+          <End Role="STRUCTUREELEMENTs" Type="MtcModel.STRUCTUREELEMENT" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- MSL content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MtcEntitiesStoreContainer" CdmEntityContainer="MtcEntities">
+          <EntitySetMapping Name="DOCUMENTs">
+            <EntityTypeMapping TypeName="MtcModel.DOCUMENT">
+              <MappingFragment StoreEntitySet="documents">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CurrentProgress" ColumnName="CurrentProgress" />
+                <ScalarProperty Name="MentorId" ColumnName="MentorId" />
+                <ScalarProperty Name="DocumentTemplateId" ColumnName="DocumentTemplateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCUMENTTEMPLATEs">
+            <EntityTypeMapping TypeName="MtcModel.DOCUMENTTEMPLATE">
+              <MappingFragment StoreEntitySet="documenttemplates">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REFERENCEs">
+            <EntityTypeMapping TypeName="MtcModel.REFERENCE">
+              <MappingFragment StoreEntitySet="references">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReferenceTypeId" ColumnName="ReferenceTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STRUCTURECONTENTs">
+            <EntityTypeMapping TypeName="MtcModel.STRUCTURECONTENT">
+              <MappingFragment StoreEntitySet="structurecontents">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StructureElementId" ColumnName="StructureElementId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="CurrentProgress" ColumnName="CurrentProgress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STRUCTUREELEMENTs">
+            <EntityTypeMapping TypeName="MtcModel.STRUCTUREELEMENT">
+              <MappingFragment StoreEntitySet="structureelements">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="StructureTypeId" ColumnName="StructureTypeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TASKs">
+            <EntityTypeMapping TypeName="MtcModel.TASK">
+              <MappingFragment StoreEntitySet="tasks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="TaskType" ColumnName="TaskType" />
+                <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+                <ScalarProperty Name="StrucktureContentId" ColumnName="StrucktureContentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERs">
+            <EntityTypeMapping TypeName="MtcModel.USER">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FamilyName" ColumnName="FamilyName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ExperiencePoints" ColumnName="ExperiencePoints" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="DOCUMENTTEMPLATE_STRUCTUREELEMENTSet" TypeName="MtcModel.DOCUMENTTEMPLATE_STRUCTUREELEMENT" StoreEntitySet="documentstructurerelations">
+            <EndProperty Name="DOCUMENTTEMPLATEs">
+              <ScalarProperty Name="Id" ColumnName="DocumentTemplateId" />
+            </EndProperty>
+            <EndProperty Name="STRUCTUREELEMENTs">
+              <ScalarProperty Name="Id" ColumnName="StructureElementId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="STRUCTUREELEMENT_STRUCTUREELEMENTSet" TypeName="MtcModel.STRUCTUREELEMENT_STRUCTUREELEMENT" StoreEntitySet="structurerelations">
+            <EndProperty Name="STRUCTUREELEMENTs1">
+              <ScalarProperty Name="Id" ColumnName="StructureElementChildId" />
+            </EndProperty>
+            <EndProperty Name="STRUCTUREELEMENTs">
+              <ScalarProperty Name="Id" ColumnName="StructureElementParentId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <edmx:Diagrams>
+      <Diagram Name="Main" />
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

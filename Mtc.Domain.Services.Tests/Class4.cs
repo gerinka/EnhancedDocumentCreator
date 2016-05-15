@@ -1,25 +1,15 @@
-﻿using System;
+﻿//using Mtc.Domain.Common.Security;
+//using Mtc.Domain.Common.UnitTest;
 using System.Configuration;
 using System.Data.Common;
 using System.Data.Entity;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading;
 using Autofac;
-//using Mtc.Domain.Common.Security;
-//using Mtc.Domain.Common.UnitTest;
-using Mtc.Domain.Models;
 using Mtc.Infrastructure.DataAccess;
-using Mtc.Domain.Services;
-using Devart.Data;
-using Mtc.Domain.Services.Tests;
 using MtcModel;
 using MySql.Data.MySqlClient;
 using NUnit.Framework;
 
-namespace Mtc.Domain.Tests.ComponentTests
+namespace Mtc.Domain.Services.Tests
 {
     public class MtcServiceTestsBase : BaseDatabaseIntegrationTests
     {
@@ -37,12 +27,12 @@ namespace Mtc.Domain.Tests.ComponentTests
             return "MtcEntities";
         }
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void FixtureSetup()
         {
-            ContainerBuilder containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule(new DataModule());
-            containerBuilder.RegisterModule(new ServiceModule());
+            var containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterModule(new DataModule(GetConnectionStringName()));
+            containerBuilder.RegisterModule(new ServiceModule(GetConnectionStringName()));
 
             containerBuilder.RegisterType<MtcEntities>().UsingConstructor(typeof(DbConnection));
             containerBuilder.Register(c =>

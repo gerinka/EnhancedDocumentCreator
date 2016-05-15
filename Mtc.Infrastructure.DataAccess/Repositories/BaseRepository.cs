@@ -15,7 +15,7 @@ namespace Mtc.Infrastructure.DataAccess.Repositories
 
         public BaseRepository(MtcEntities context)
         {
-            _context = new DbContext(context, true);
+            _context = context;
             DbSet = _context.Set<TEntity>();
         }
 
