@@ -29,7 +29,11 @@ namespace Mtc.WebClient.Controllers
         {
             var baseSearchCommand = new BaseSearchCommand<DocumentTemplate>();
             IEnumerable<DocumentTemplate> templates = _documentTemplateService.GetAll(baseSearchCommand);
-            return View();
+            var document = new Document()
+            {
+                AllTemplates = templates.ToList()
+            };
+            return View(document);
         }
         public ActionResult TaskBoard()
         {

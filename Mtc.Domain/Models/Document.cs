@@ -12,6 +12,8 @@ namespace Mtc.Domain.Models
         public ICollection<Task> Tasks { get; set; }
         public DateTime Deadline { get; set; }
         public DocumentState CurrentProgress { get; set; }
+        public ICollection<DocumentTemplate> AllTemplates { get; set; } 
+        public DocumentTemplate Template { get; set; }
         public Person Mentor { get; set; }
     }
 }

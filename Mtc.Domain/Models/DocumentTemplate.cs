@@ -1,4 +1,6 @@
-﻿namespace Mtc.Domain.Models
+﻿using System;
+
+namespace Mtc.Domain.Models
 {
     public class DocumentTemplate
     {
