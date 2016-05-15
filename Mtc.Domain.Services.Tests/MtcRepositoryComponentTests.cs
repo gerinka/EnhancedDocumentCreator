@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using MtcModel;
 using NUnit.Framework;
 
 namespace Mtc.Domain.Services.Tests
 {
     [TestFixture]
-    public abstract class MtcRepositoryComponentTests<TEntity>  where TEntity : class
+    public abstract class MtcRepositoryComponentTests<TEntity> : BaseDatabaseIntegrationTests where TEntity : class
     {
         [OneTimeSetUp]
         public void InitEffort()
@@ -22,16 +23,13 @@ namespace Mtc.Domain.Services.Tests
             }
         }
 
-        public DbContext CreateDbContext()
+        protected override DbContext CreateDbContext()
         {
-           /* var ctx = new MtcEntities(DataTestHelper.Connection);
-            ctx.Database.Log = Console.WriteLine;
-            return ctx;*/
-            return null;
-            //check init of datatesthelper : BaseDatabaseIntegrationTests
+            var ctx = new MtcEntities(DataTestHelper.Connection.ConnectionString);
+            return ctx;
         }
 
-        public string GetConnectionStringName()
+        protected override string GetConnectionStringName()
         {
             return "MtcEntitiesConnectionString";
         }
