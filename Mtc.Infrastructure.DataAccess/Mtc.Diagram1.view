@@ -1224,7 +1224,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>bff508bd-f645-4d71-947e-5841f70327d7</Path>
+                      <Path>c4892671-ba20-415b-aa35-0e631c0ff32c</Path>
                       <TypeName>EntityDeveloper.EntityFramework.EntityProperty</TypeName>
                     </Oid>
                   </Model>

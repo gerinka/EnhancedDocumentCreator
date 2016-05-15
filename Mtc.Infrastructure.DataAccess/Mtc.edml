@@ -142,7 +142,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
           <Property Name="AssignTo" Type="int" />
-          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="TaskState" Type="int" Nullable="false" />
           <Property Name="Deadline" Type="datetime" Nullable="false" />
           <Property Name="DocumentId" Type="int" Nullable="false" />
           <Property Name="Order" Type="int" />
@@ -453,7 +453,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="418d4098-bdf8-4570-9fed-22838542d417" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="6526bf66-4f94-41fb-b9a9-99ca8b829d94" />
           <Property Name="AssignTo" Type="Int32" ed:ValidateRequired="false" ed:Guid="a710e5c8-e36b-4d1a-bcfe-d0c3d5c87547" />
-          <Property Name="State" Type="MtcModel.TaskState" Nullable="false" ed:ValidateRequired="true" ed:Guid="bff508bd-f645-4d71-947e-5841f70327d7" />
+          <Property Name="TaskState" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="c4892671-ba20-415b-aa35-0e631c0ff32c" />
           <Property Name="Deadline" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="8dbc50f6-5e45-4116-ba6d-da5f14bc9917" />
           <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4b27abaf-0b08-4acc-a205-57fd07d4619d" />
           <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="4d702389-b7fd-4c19-be50-1d220c4349f8" />
@@ -691,13 +691,13 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
-                <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Deadline" ColumnName="Deadline" />
                 <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="TaskType" ColumnName="TaskType" />
                 <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
                 <ScalarProperty Name="StrucktureContentId" ColumnName="StrucktureContentId" />
+                <ScalarProperty Name="TaskState" ColumnName="TaskState" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
