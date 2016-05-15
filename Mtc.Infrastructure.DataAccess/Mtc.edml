@@ -412,7 +412,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="c94811a6-1919-458f-80d9-788ae4f684e6" />
-          <Property Name="ReferenceTypeId" Type="Int32" ed:ValidateRequired="false" ed:Guid="9994d0cb-a2b7-4b74-be42-9591c71cc188" />
+          <Property Name="ReferenceTypeId" Type="MtcModel.ReferenceType" ed:ValidateRequired="false" ed:Guid="9994d0cb-a2b7-4b74-be42-9591c71cc188" />
           <Property Name="Name" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="4bd75bb4-09dd-499f-8188-c652e6cfbb06" />
           <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="35387658-9fae-457d-9c0f-adb0fa53164f" />
           <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="6181d1cc-3446-4d3b-89b0-d532b7b3a809" />
@@ -439,7 +439,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="237fa3ab-680c-40a8-a40a-6a9e9a240efd" />
           <Property Name="Title" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="0fede74b-f8f0-4f13-92c8-2ae364fca48e" />
-          <Property Name="StructureTypeId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="8233005e-be56-4bd4-9962-7dff637dc85a" />
+          <Property Name="StructureTypeId" Type="MtcModel.StructureType" Nullable="false" ed:ValidateRequired="true" ed:Guid="8233005e-be56-4bd4-9962-7dff637dc85a" />
           <Property Name="Description" Type="String" MaxLength="455" ed:ValidateMaxLength="455" ed:ValidateRequired="false" ed:Guid="b7bca23e-fbaf-4eec-9e09-ed24b6db3c38" />
           <NavigationProperty Name="STRUCTURECONTENTs" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="STRUCTUREELEMENT" ToRole="STRUCTURECONTENTs" ed:Guid="7bdf3b4c-9dbe-4ca5-99a9-53da2fb6c27c" />
           <NavigationProperty Name="DOCUMENTTEMPLATEs" Relationship="MtcModel.DOCUMENTTEMPLATE_STRUCTUREELEMENT" FromRole="STRUCTUREELEMENTs" ToRole="DOCUMENTTEMPLATEs" ed:Guid="7bbacfe8-e325-4016-a446-fb0237cf3fbe" />
@@ -453,11 +453,11 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="418d4098-bdf8-4570-9fed-22838542d417" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="6526bf66-4f94-41fb-b9a9-99ca8b829d94" />
           <Property Name="AssignTo" Type="Int32" ed:ValidateRequired="false" ed:Guid="a710e5c8-e36b-4d1a-bcfe-d0c3d5c87547" />
-          <Property Name="State" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="bff508bd-f645-4d71-947e-5841f70327d7" />
+          <Property Name="State" Type="MtcModel.TaskState" Nullable="false" ed:ValidateRequired="true" ed:Guid="bff508bd-f645-4d71-947e-5841f70327d7" />
           <Property Name="Deadline" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="8dbc50f6-5e45-4116-ba6d-da5f14bc9917" />
           <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4b27abaf-0b08-4acc-a205-57fd07d4619d" />
           <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="4d702389-b7fd-4c19-be50-1d220c4349f8" />
-          <Property Name="TaskType" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="b558b92a-55cd-4e87-8024-41a70082e338" />
+          <Property Name="TaskType" Type="MtcModel.TaskType" Nullable="false" ed:ValidateRequired="true" ed:Guid="b558b92a-55cd-4e87-8024-41a70082e338" />
           <Property Name="IsLocked" Type="SByte" Nullable="false" ed:ValidateRequired="true" ed:Guid="f3391fb0-f404-4680-911a-03543ea8e018" />
           <Property Name="StrucktureContentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="38de7c8e-1f70-47b1-a80f-66dc60cbeb8f" />
           <NavigationProperty Name="DOCUMENT" Relationship="MtcModel.FK_TaskDocument_Id" FromRole="TASKs" ToRole="DOCUMENT" ed:Guid="e6c21741-8705-4793-a5de-61799d8404e5" />
@@ -481,6 +481,31 @@
           <NavigationProperty Name="DOCUMENTs_UserId" Relationship="MtcModel.FK_DocumentUser_ID" FromRole="USER_UserId" ToRole="DOCUMENTs_UserId" ed:Guid="956bc570-140f-49c6-a407-89a71a6775ad" />
           <NavigationProperty Name="TASKs" Relationship="MtcModel.FK_TaskUser_Id" FromRole="USER" ToRole="TASKs" ed:Guid="2e09641a-a93e-47e1-8477-3029e1967789" />
         </EntityType>
+        <EnumType Name="TaskType" ed:Guid="a7ab77bf-b861-40db-9d4e-86a933d40322">
+          <Member Name="Task" Value="1" ed:Guid="2097ad9b-9c66-4254-a03d-8e6923703511" />
+          <Member Name="Bug" Value="2" ed:Guid="b8347558-9030-4c61-9938-157ab2c90e69" />
+          <Member Name="Feature" Value="3" ed:Guid="0bdd93f0-fc7e-4c64-987f-a2cf224fe7a3" />
+        </EnumType>
+        <EnumType Name="TaskState" ed:Guid="6a2c9dfb-9ac5-4e9d-9967-7b5a43b32438">
+          <Member Name="ToDo" Value="1" ed:Guid="bcf0938a-9212-4ddf-9598-a041ebff2058" />
+          <Member Name="InProgress" Value="2" ed:Guid="5886b1c5-8e0c-4e5d-bbec-5d2c62bf72f4" />
+          <Member Name="Done" Value="3" ed:Guid="74dcf5b3-cdb3-474b-a587-83a3c19163a1" />
+          <Member Name="Resolved" Value="4" ed:Guid="b14b5874-3ec0-46aa-8c2a-424068eace1a" />
+          <Member Name="Closed" Value="5" ed:Guid="c7c22fd9-31d7-4301-b6d9-81d2e13d8ee2" />
+          <Member Name="WontBeDone" Value="6" ed:Guid="83292c9d-d431-4d64-bc84-e909004a273c" />
+        </EnumType>
+        <EnumType Name="ReferenceType" ed:Guid="bf47c9f4-737e-4272-93fa-089c2d0445ee">
+          <Member Name="Book" Value="1" ed:Guid="846d7f74-5fff-443f-a0b5-c9a536f7afd8" />
+          <Member Name="Article" Value="2" ed:Guid="56c5ad89-5733-456a-8e2a-e848c27914ef" />
+          <Member Name="Web" Value="3" ed:Guid="00911221-a7e5-42f0-acb8-5319ff2e4161" />
+        </EnumType>
+        <EnumType Name="StructureType" ed:Guid="6b60617a-e8ab-43b3-8820-d5308aec5e40">
+          <Member Name="CoverPage" Value="1" ed:Guid="789460ea-d82c-44e9-9ef2-9b9910e4d390" />
+          <Member Name="Reference" Value="2" ed:Guid="64afb7eb-6daf-4af1-8bf9-a922f6bdc480" />
+          <Member Name="Section" Value="3" ed:Guid="d10cc0f4-fb7b-46d1-b84c-228d4167e27f" />
+          <Member Name="Subsection" Value="4" ed:Guid="e9786e41-bbaa-4909-a628-f16adc5867a0" />
+          <Member Name="Subsubsection" Value="5" ed:Guid="666da74f-71a6-40c1-a1c9-6e469a688636" />
+        </EnumType>
         <Association Name="FK_DocumentDocumentTemplate_ID" ed:Guid="3f92ef28-1a14-4222-bdfd-8a4961a055be">
           <End Role="DOCUMENTTEMPLATE" Type="MtcModel.DOCUMENTTEMPLATE" Multiplicity="1" />
           <End Role="DOCUMENTs" Type="MtcModel.DOCUMENT" Multiplicity="*" />
