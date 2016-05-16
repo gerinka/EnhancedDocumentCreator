@@ -5,6 +5,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Mtc.Domain.Common;
 
 namespace Mtc.WebClient
 {
@@ -17,6 +18,7 @@ namespace Mtc.WebClient
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.Add(typeof(DateTime), new DateTimeModelBinder());
         }
     }
 }
