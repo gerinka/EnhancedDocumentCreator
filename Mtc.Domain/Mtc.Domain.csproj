@@ -70,6 +70,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mtc.Infrastructure.DataAccess\Mtc.Infrastructure.DataAccess.csproj">
+      <Project>{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}</Project>
+      <Name>Mtc.Infrastructure.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

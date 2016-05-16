@@ -55,12 +55,20 @@ namespace Mtc.Domain.Services
 
         private DocumentTemplate Mapper(DOCUMENTTEMPLATE documentTemplate)
         {
+            IEnumerable<Section> sections = documentTemplate.STRUCTUREELEMENTs.Select(t => new Section
+            {
+               Id = t.Id,
+               StructureType = t.StructureTypeId,
+               Description = t.Description,
+               Title = t.Title
+            });
             return new DocumentTemplate
             {
                 Id = documentTemplate.Id,
                 Description = documentTemplate.Description,
                 IsActive = documentTemplate.IsActive == 1,
-                Name = documentTemplate.Name
+                Name = documentTemplate.Name,
+                Sections = sections
             };
         }
     }
