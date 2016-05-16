@@ -123,9 +123,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="Title" Type="varchar" MaxLength="255" Collation="utf8_general_ci" />
           <Property Name="StructureTypeId" Type="int" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="455" Collation="utf8_general_ci" />
+          <Property Name="Order" Type="int" />
         </EntityType>
         <EntityType Name="structurerelation">
           <Key>
@@ -438,9 +439,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="237fa3ab-680c-40a8-a40a-6a9e9a240efd" />
-          <Property Name="Title" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="0fede74b-f8f0-4f13-92c8-2ae364fca48e" />
+          <Property Name="Title" Type="String" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="0fede74b-f8f0-4f13-92c8-2ae364fca48e" />
           <Property Name="StructureTypeId" Type="MtcModel.StructureType" Nullable="false" ed:ValidateRequired="true" ed:Guid="8233005e-be56-4bd4-9962-7dff637dc85a" />
           <Property Name="Description" Type="String" MaxLength="455" ed:ValidateMaxLength="455" ed:ValidateRequired="false" ed:Guid="b7bca23e-fbaf-4eec-9e09-ed24b6db3c38" />
+          <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="a6906c01-e76e-4fbc-9b13-5361df14773a" />
           <NavigationProperty Name="STRUCTURECONTENTs" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="STRUCTUREELEMENT" ToRole="STRUCTURECONTENTs" ed:Guid="7bdf3b4c-9dbe-4ca5-99a9-53da2fb6c27c" />
           <NavigationProperty Name="DOCUMENTTEMPLATEs" Relationship="MtcModel.DOCUMENTTEMPLATE_STRUCTUREELEMENT" FromRole="STRUCTUREELEMENTs" ToRole="DOCUMENTTEMPLATEs" ed:Guid="7bbacfe8-e325-4016-a446-fb0237cf3fbe" />
           <NavigationProperty Name="STRUCTUREELEMENTs" Relationship="MtcModel.STRUCTUREELEMENT_STRUCTUREELEMENT" FromRole="STRUCTUREELEMENTs1" ToRole="STRUCTUREELEMENTs" ed:Guid="95ce7743-1219-45e5-841d-1f779afc8fda" />
@@ -682,6 +684,7 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="StructureTypeId" ColumnName="StructureTypeId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
