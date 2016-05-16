@@ -26,7 +26,8 @@ namespace Mtc.WebClient
                       "~/bower_components/moment/moment.js",
                       "~/bower_components/moment/locale/bg.js",
                       "~/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
-                      "~/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"));
+                      "~/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js",
+                      "~/bower_components/bootstrap-select/dist/js/i18n/defaults-bg_BG.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
                      "~/Scripts/ApplicationScripts/*.js"));

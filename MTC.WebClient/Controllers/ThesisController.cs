@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -28,12 +29,15 @@ namespace Mtc.WebClient.Controllers
         public ActionResult PanelStructure()
         {
             var baseSearchCommand = new BaseSearchCommand<DocumentTemplate>();
-            IEnumerable<DocumentTemplate> templates = _documentTemplateService.GetAll(baseSearchCommand);
-            var document = new Document()
+            IEnumerable<DocumentTemplate> templates = _documentTemplateService.GetAll(baseSearchCommand).ToList();
+            List<SelectListItem> items = templates.Select(documentTemplate => new SelectListItem
             {
-                AllTemplates = templates.ToList()
-            };
-            return View(document);
+                Disabled = !documentTemplate.IsActive, Text = documentTemplate.Name, Value = documentTemplate.Id.ToString(CultureInfo.InvariantCulture)
+            }).ToList();
+
+            ViewBag.TemplateList = items;
+
+            return View();
         }
         public ActionResult TaskBoard()
         {
@@ -55,7 +59,9 @@ namespace Mtc.WebClient.Controllers
         [AllowAnonymous]
         public ActionResult CreateDocument(Document model)
         {
-            return View("TaskBoard");
+            var properTemplate = _documentTemplateService.GetById(model.Template.Id);
+            model.Template = properTemplate;
+            return View();
         }
     }
 }

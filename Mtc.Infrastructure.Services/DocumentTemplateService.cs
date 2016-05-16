@@ -22,7 +22,7 @@ namespace Mtc.Domain.Services
 
         public DocumentTemplate GetById(long id)
         {
-            throw new NotImplementedException();
+            return Mapper(_documentTemplateRepository.GetById(id));
         }
 
         public DocumentTemplate GetByName(string name)

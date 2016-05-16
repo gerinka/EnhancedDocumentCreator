@@ -10,7 +10,7 @@ namespace Mtc.WebClient.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("PanelStructure", "Thesis");
         }
 
         public ActionResult About()
