@@ -72,11 +72,6 @@
     <Compile Include="Interfaces\IStructureElementRepository.cs" />
     <Compile Include="Interfaces\ITaskRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
-    <Compile Include="Mtc.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Mtc.edml</DependentUpon>
-    </Compile>
     <Compile Include="Mtc.MtcEntities.cs">
       <DependentUpon>Mtc.edml</DependentUpon>
     </Compile>
