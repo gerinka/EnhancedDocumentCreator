@@ -1,4 +1,5 @@
-﻿using MtcModel;
+﻿using System.Collections.Generic;
+using MtcModel;
 
 namespace Mtc.Domain.Models
 {
@@ -8,5 +9,7 @@ namespace Mtc.Domain.Models
         public string Title { get; set; }
         public StructureType StructureType { get; set; }
         public string Description { get; set; }
+        public IEnumerable<Section> Subsections { get; set; }
+        public SectionContent Content { get; set; }
     }
 }

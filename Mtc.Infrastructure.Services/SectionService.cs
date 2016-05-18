@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Mtc.Domain.Common;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
+using MtcModel;
 
 namespace Mtc.Domain.Services
 {
@@ -40,6 +41,32 @@ namespace Mtc.Domain.Services
         public IEnumerable<Section> GetAll(BaseSearchCommand<Section> searchCommand)
         {
             throw new NotImplementedException();
+        }
+
+        private Section SectionMapper(STRUCTUREELEMENT structure, long documentId)
+        {
+
+            return new Section
+            {
+                Id = structure.Id,
+                StructureType = structure.StructureTypeId,
+                Description = structure.Description,
+                Title = structure.Title,
+                Content = SectionContentMapper(structure.STRUCTURECONTENTs.FirstOrDefault(st=>st.DocumentId == documentId))
+                
+            };
+        }
+
+        private SectionContent SectionContentMapper(STRUCTURECONTENT structurecontent)
+        {
+            return new SectionContent
+            {
+                Id = structurecontent.Id,
+                Title = structurecontent.Title,
+                DocumentId = structurecontent.DocumentId,
+                MainText = structurecontent.Content.ToString(),
+                CurrentProgress = structurecontent.CurrentProgress
+            };
         }
     }
 }
