@@ -11,5 +11,6 @@ namespace Mtc.Domain.Models
         public string Description { get; set; }
         public IEnumerable<Section> Subsections { get; set; }
         public SectionContent Content { get; set; }
+        public bool IsSelected { get; set; }
     }
 }

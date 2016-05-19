@@ -15,6 +15,19 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title active" data-section="1">Задай тема</h3>
+        @if (Model.SelectedDocumentTemplate.Id > 0)
+        {
+            var firstOrDefault = Model.AllTemplates.FirstOrDefault(t => t.Id == Model.SelectedDocumentTemplate.Id);
+            if (firstOrDefault != null)
+            {
+                var index = 2;
+                foreach (var item in firstOrDefault.Sections)
+                {
+                    <h3 class="panel-title hidden" data-section="@index">@item.Title</h3>
+                    index++;
+                }
+            }
+        }
      <!--   <h3 class="panel-title hidden" data-section="2">Структура - глава 1</h3>
         <h3 class="panel-title hidden" data-section="3">Структура - глава 2</h3>
         <h3 class="panel-title hidden" data-section="4">Структура - глава 3</h3>
