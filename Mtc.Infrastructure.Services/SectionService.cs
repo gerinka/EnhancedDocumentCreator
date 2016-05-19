@@ -43,7 +43,7 @@ namespace Mtc.Domain.Services
             throw new NotImplementedException();
         }
 
-        private Section SectionMapper(STRUCTUREELEMENT structure, long documentId)
+        public Section SectionMapper(STRUCTUREELEMENT structure, long? documentId = null)
         {
 
             return new Section
@@ -52,8 +52,7 @@ namespace Mtc.Domain.Services
                 StructureType = structure.StructureTypeId,
                 Description = structure.Description,
                 Title = structure.Title,
-                Content = SectionContentMapper(structure.STRUCTURECONTENTs.FirstOrDefault(st=>st.DocumentId == documentId))
-                
+                Content = documentId != null ? SectionContentMapper(structure.STRUCTURECONTENTs.FirstOrDefault(st=>st.DocumentId == documentId)) : null
             };
         }
 

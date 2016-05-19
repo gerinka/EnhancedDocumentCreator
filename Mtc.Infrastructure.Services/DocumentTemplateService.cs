@@ -15,9 +15,12 @@ namespace Mtc.Domain.Services
     public class DocumentTemplateService : IDocumentTemplateService
     {
         private readonly IDocumentTemplateRepository _documentTemplateRepository;
-        public DocumentTemplateService(IDocumentTemplateRepository documentTemplateRepository)
+        private readonly ISectionService _sectionService;
+
+        public DocumentTemplateService(IDocumentTemplateRepository documentTemplateRepository, ISectionService sectionService)
         {
             _documentTemplateRepository = documentTemplateRepository;
+            _sectionService = sectionService;
         }
 
         public DocumentTemplate GetById(long id)
@@ -50,18 +53,12 @@ namespace Mtc.Domain.Services
 
             //Expression<Func<DOCUMENTTEMPLATE, bool>> mappedFilter = d => d.Name == searchCommand.Filter;
             //Func<IQueryable<DOCUMENTTEMPLATE>, IOrderedQueryable<DOCUMENTTEMPLATE>> mappedOrderBy = null;
-           return _documentTemplateRepository.Get(null, null).Select(Mapper);
+           return _documentTemplateRepository.Get().Select(Mapper);
         }
 
         private DocumentTemplate Mapper(DOCUMENTTEMPLATE documentTemplate)
         {
-            IEnumerable<Section> sections = documentTemplate.STRUCTUREELEMENTs.Select(t => new Section
-            {
-               Id = t.Id,
-               StructureType = t.StructureTypeId,
-               Description = t.Description,
-               Title = t.Title
-            });
+            IEnumerable<Section> sections = documentTemplate.STRUCTUREELEMENTs.Select(t => _sectionService.SectionMapper(t));
             return new DocumentTemplate
             {
                 Id = documentTemplate.Id,

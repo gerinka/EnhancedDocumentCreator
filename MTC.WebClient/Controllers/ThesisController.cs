@@ -36,7 +36,7 @@ namespace Mtc.WebClient.Controllers
             }).ToList();
 
             ViewBag.TemplateList = items;
-
+            ViewBag.AllTemplates = templates;
             return View();
         }
         public ActionResult TaskBoard()
