@@ -9,6 +9,7 @@ using Mtc.Domain.Common;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services;
 using Mtc.Domain.Services.Interfaces;
+using Mtc.WebClient.Models;
 
 namespace Mtc.WebClient.Controllers
 {
@@ -30,14 +31,14 @@ namespace Mtc.WebClient.Controllers
         {
             var baseSearchCommand = new BaseSearchCommand<DocumentTemplate>();
             IEnumerable<DocumentTemplate> templates = _documentTemplateService.GetAll(baseSearchCommand).ToList();
-            List<SelectListItem> items = templates.Select(documentTemplate => new SelectListItem
+            var documentGenerator = new DocumentGeneratorViewModel
             {
-                Disabled = !documentTemplate.IsActive, Text = documentTemplate.Name, Value = documentTemplate.Id.ToString(CultureInfo.InvariantCulture)
-            }).ToList();
-
-            ViewBag.TemplateList = items;
-            ViewBag.AllTemplates = templates;
-            return View();
+                AllTemplates = templates,
+                Document = new Document(),
+                User = new Person(),
+                SelectedDocumentTemplate = new DocumentTemplate()
+            };
+            return View(documentGenerator);
         }
         public ActionResult TaskBoard()
         {
@@ -57,10 +58,10 @@ namespace Mtc.WebClient.Controllers
         // POST: /Thesis/CreateDocument
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult CreateDocument(Document model)
+        public ActionResult CreateDocument(DocumentGeneratorViewModel model)
         {
-            var properTemplate = _documentTemplateService.GetById(model.Template.Id);
-            model.Template = properTemplate;
+            var properTemplate = _documentTemplateService.GetById(model.SelectedDocumentTemplate.Id);
+            model.Document.Template = properTemplate;
             return View();
         }
     }

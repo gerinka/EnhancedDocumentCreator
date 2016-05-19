@@ -1,21 +1,29 @@
-﻿@model Mtc.Domain.Models.Document
+﻿@using System.Globalization
+@using Mtc.Domain.Models
+@model Mtc.WebClient.Models.DocumentGeneratorViewModel
 
 @{
     ViewBag.Title = "Създай документ";
+     List<SelectListItem> items = Model.AllTemplates.Select(documentTemplate => new SelectListItem
+    {
+        Disabled = !documentTemplate.IsActive,
+        Text = documentTemplate.Name,
+        Value = documentTemplate.Id.ToString(CultureInfo.InvariantCulture)
+    }).ToList();
 }
 
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title active" data-section="1">Задай тема</h3>
-        <h3 class="panel-title hidden" data-section="2">Структура - глава 1</h3>
+     <!--   <h3 class="panel-title hidden" data-section="2">Структура - глава 1</h3>
         <h3 class="panel-title hidden" data-section="3">Структура - глава 2</h3>
         <h3 class="panel-title hidden" data-section="4">Структура - глава 3</h3>
         <h3 class="panel-title hidden" data-section="5">Структура - глава 4</h3>
         <h3 class="panel-title hidden" data-section="6">Структура - глава 5</h3>
         <h3 class="panel-title hidden" data-section="7">Структура - глава 6</h3>
         <h3 class="panel-title hidden" data-section="8">Структура - глава 7</h3>
-        <h3 class="panel-title hidden" data-section="9">Структура - глава 8</h3>
-        <h3 class="panel-title hidden" data-section="10">Потвърди</h3>
+        <h3 class="panel-title hidden" data-section="9">Структура - глава 8</h3>-->
+        <h3 class="panel-title hidden" data-section="2">Потвърди</h3>
     </div>
     <div class="panel-body">
      
@@ -24,32 +32,33 @@
             <div class="form-group active" data-section="1">
                 <label for="mainTopic" class="col-sm-2 control-label label-panel">Въведи тема</label>
                 <div class="col-sm-10">
-                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" , @placeholder = "Заглавие"} })
+                    @Html.EditorFor(model => model.Document.Title, new { htmlAttributes = new { @class = "form-control" , @placeholder = "Заглавие"} })
                 </div>
             </div>
             <div class="form-group active" data-section="1">
                 <label for="deadline" class="col-sm-2 control-label label-panel">Въведи краен срок</label>
                 <div class="col-sm-3">
                     <div class="input-group date" id='deadline'>
-                        @Html.EditorFor(model => model.Deadline, new { htmlAttributes = new { @class = "form-control"} })
+                        @Html.EditorFor(model => model.Document.Deadline, new { htmlAttributes = new { @class = "form-control"} })
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div>
                 </div>
             </div>
-                <div class="form-group active" data-section="1">
-                    <label for="templateDropdown" class="col-sm-2 control-label label-panel">Избери шаблон</label>
-                    <div class="col-sm-10">
-                        @Html.DropDownListFor(
-                        model => model.Template.Id, 
-                        (IEnumerable<SelectListItem>)ViewBag.TemplateList, 
+            <div class="form-group active" data-section="1">
+                <label for="templateDropdown" class="col-sm-2 control-label label-panel">Избери шаблон</label>
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(
+                        model => model.SelectedDocumentTemplate.Id, 
+                        items, 
                         new { @class = "selectpicker",
-                              @area_labelledby = "templateDropdownMenu",
-                              @id = "templateDropdown"
+                            @area_labelledby = "templateDropdownMenu",
+                            @id = "templateDropdown"
                         })
-                    </div>
                 </div>
+            </div>
+            <!--
                 <div class="form-group hidden" data-section="2">
                     <div class="col-lg-8">
                         <div class="checkbox checkbox-primary">
@@ -336,7 +345,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group hidden" data-section="10">
+                -->
+                <div class="form-group hidden" data-section="2">
 
                     <div class="col-lg-offset-2 col-lg-8">
                         <div class="col-lg-1">
