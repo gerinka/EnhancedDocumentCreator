@@ -7,11 +7,20 @@ using System.Threading.Tasks;
 using Mtc.Domain.Common;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
+using Mtc.Infrastructure.DataAccess.Interfaces;
+using MtcModel;
 
 namespace Mtc.Domain.Services
 {
     public class DocumentService : IDocumentService
     {
+        private readonly IDocumentRepository _documentRepository;
+
+        public DocumentService(IDocumentRepository documentRepository)
+        {
+            _documentRepository = documentRepository;
+        }
+
         public Document GetById(long id)
         {
             throw new NotImplementedException();
@@ -24,7 +33,11 @@ namespace Mtc.Domain.Services
 
         public Document Create(Document entity)
         {
-            throw new NotImplementedException();
+          //  _documentRepository.Insert(ModelHelper.Mapper(entity));
+       //     return
+         //       ModelHelper.Mapper(
+          //          _documentRepository.Get(document => document.Title == entity.Title && document.Deadline == entity.Deadline).FirstOrDefault());
+            return entity;
         }
 
         public Document Update(Document entity)
@@ -41,5 +54,6 @@ namespace Mtc.Domain.Services
         {
             throw new NotImplementedException();
         }
+
     }
 }

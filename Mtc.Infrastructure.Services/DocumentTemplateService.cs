@@ -25,7 +25,7 @@ namespace Mtc.Domain.Services
 
         public DocumentTemplate GetById(long id)
         {
-            return Mapper(_documentTemplateRepository.GetById(id));
+            return ModelHelper.Mapper(_documentTemplateRepository.GetById(id));
         }
 
         public DocumentTemplate GetByName(string name)
@@ -53,20 +53,8 @@ namespace Mtc.Domain.Services
 
             //Expression<Func<DOCUMENTTEMPLATE, bool>> mappedFilter = d => d.Name == searchCommand.Filter;
             //Func<IQueryable<DOCUMENTTEMPLATE>, IOrderedQueryable<DOCUMENTTEMPLATE>> mappedOrderBy = null;
-           return _documentTemplateRepository.Get().Select(Mapper);
+            return _documentTemplateRepository.Get().Select(ModelHelper.Mapper);
         }
 
-        private DocumentTemplate Mapper(DOCUMENTTEMPLATE documentTemplate)
-        {
-            IEnumerable<Section> sections = documentTemplate.STRUCTUREELEMENTs.Select(t => _sectionService.SectionMapper(t));
-            return new DocumentTemplate
-            {
-                Id = documentTemplate.Id,
-                Description = documentTemplate.Description,
-                IsActive = documentTemplate.IsActive == 1,
-                Name = documentTemplate.Name,
-                Sections = sections
-            };
-        }
     }
 }

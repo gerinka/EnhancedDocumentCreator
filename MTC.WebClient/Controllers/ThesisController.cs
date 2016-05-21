@@ -68,6 +68,7 @@ namespace Mtc.WebClient.Controllers
                 Title = model.Topic,
                 Sections = properTemplate.Sections.Where(s=>sections.Contains(s.Id)).ToList()
             };
+            _documentService.Create(document);
             return View();
         }
     }

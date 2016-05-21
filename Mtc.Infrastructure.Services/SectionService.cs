@@ -43,31 +43,5 @@ namespace Mtc.Domain.Services
             throw new NotImplementedException();
         }
 
-        public Section SectionMapper(STRUCTUREELEMENT structure, long? documentId = null)
-        {
-
-            return new Section
-            {
-                Id = structure.Id,
-                StructureType = structure.StructureTypeId,
-                Description = structure.Description,
-                Title = structure.Title,
-                Content = documentId != null ? SectionContentMapper(structure.STRUCTURECONTENTs.FirstOrDefault(st=>st.DocumentId == documentId)) : null,
-                IsSelected = true,
-                Subsections = structure.STRUCTUREELEMENTs1.Select(st=>SectionMapper(st))
-            };
-        }
-
-        private SectionContent SectionContentMapper(STRUCTURECONTENT structurecontent)
-        {
-            return new SectionContent
-            {
-                Id = structurecontent.Id,
-                Title = structurecontent.Title,
-                DocumentId = structurecontent.DocumentId,
-                MainText = structurecontent.Content.ToString(),
-                CurrentProgress = structurecontent.CurrentProgress
-            };
-        }
     }
 }

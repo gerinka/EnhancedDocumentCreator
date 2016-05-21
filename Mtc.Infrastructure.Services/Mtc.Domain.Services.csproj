@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="DocumentTemplateService.cs" />
     <Compile Include="DocumentService.cs" />
+    <Compile Include="ModelHelper.cs" />
     <Compile Include="Interfaces\IBaseService.cs" />
     <Compile Include="Interfaces\IDocumentTemplateService.cs" />
     <Compile Include="Interfaces\IDocumentService.cs" />
