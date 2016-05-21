@@ -48,11 +48,8 @@ namespace Mtc.Domain.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<DocumentTemplate> GetAll(BaseSearchCommand<DocumentTemplate> searchCommand)
+        public IEnumerable<DocumentTemplate> GetAll()
         {
-
-            //Expression<Func<DOCUMENTTEMPLATE, bool>> mappedFilter = d => d.Name == searchCommand.Filter;
-            //Func<IQueryable<DOCUMENTTEMPLATE>, IOrderedQueryable<DOCUMENTTEMPLATE>> mappedOrderBy = null;
             return _documentTemplateRepository.Get().Select(ModelHelper.Mapper);
         }
 

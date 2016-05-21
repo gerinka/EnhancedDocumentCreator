@@ -19,7 +19,7 @@
         @foreach (var template in Model.AllTemplates)
         {
             var index = 2;
-            foreach (var sectionItem in template.Sections.Where(s=>s.StructureType == StructureType.Section))
+            foreach (var sectionItem in template.Sections)
             {
                 <h3 class="panel-title hidden notselected" data-section="@index" data-type="structure" data-template="@template.Id">@sectionItem.Title</h3>
                 index ++;
@@ -67,7 +67,7 @@
             foreach (var template in Model.AllTemplates)
             {
                 var index = 2;
-                foreach (var sectionItem in template.Sections.Where(s => s.StructureType == StructureType.Section).ToList())
+                foreach (var sectionItem in template.Sections)
                 {
 
                     <div class="form-group hidden notselected" data-section="@index" data-template="@template.Id">

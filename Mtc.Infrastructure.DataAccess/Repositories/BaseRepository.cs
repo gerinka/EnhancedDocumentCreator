@@ -49,6 +49,7 @@ namespace Mtc.Infrastructure.DataAccess.Repositories
         public virtual void Insert(TEntity entity)
         {
             DbSet.Add(entity);
+            _context.SaveChanges();
         }
 
         public virtual void Delete(object id)

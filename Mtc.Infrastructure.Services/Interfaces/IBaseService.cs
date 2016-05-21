@@ -15,6 +15,6 @@ namespace Mtc.Domain.Services.Interfaces
         T Create(T entity);
         T Update(T entity);
         T Delete(T entity);
-        IEnumerable<T> GetAll(BaseSearchCommand<T> searchCommand);
+        IEnumerable<T> GetAll();
     }
 }

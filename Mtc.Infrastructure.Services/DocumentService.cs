@@ -33,11 +33,10 @@ namespace Mtc.Domain.Services
 
         public Document Create(Document entity)
         {
-          //  _documentRepository.Insert(ModelHelper.Mapper(entity));
-       //     return
-         //       ModelHelper.Mapper(
-          //          _documentRepository.Get(document => document.Title == entity.Title && document.Deadline == entity.Deadline).FirstOrDefault());
-            return entity;
+            _documentRepository.Insert(ModelHelper.Mapper(entity));
+            return
+                ModelHelper.Mapper(
+                   _documentRepository.Get(document => document.Title == entity.Title && document.Deadline == entity.Deadline).FirstOrDefault());
         }
 
         public Document Update(Document entity)
@@ -50,7 +49,7 @@ namespace Mtc.Domain.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Document> GetAll(BaseSearchCommand<Document> searchCommand)
+        public IEnumerable<Document> GetAll()
         {
             throw new NotImplementedException();
         }

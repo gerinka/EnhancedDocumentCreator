@@ -6,7 +6,7 @@ namespace Mtc.Domain.Models
 {
     public class Document
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public Person Author { get; set; }
         public ICollection<Section> Sections { get; set; }

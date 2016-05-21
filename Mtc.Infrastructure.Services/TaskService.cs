@@ -37,7 +37,7 @@ namespace Mtc.Domain.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Task> GetAll(BaseSearchCommand<Task> searchCommand)
+        public IEnumerable<Task> GetAll()
         {
             throw new NotImplementedException();
         }

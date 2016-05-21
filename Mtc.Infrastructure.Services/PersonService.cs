@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using Mtc.Domain.Common;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
 using Mtc.Infrastructure.DataAccess.Interfaces;
-using Mtc.Infrastructure.DataAccess.Repositories;
-using MtcModel;
 
 namespace Mtc.Domain.Services
 {
@@ -22,7 +17,7 @@ namespace Mtc.Domain.Services
 
         public Person GetById(long id)
         {
-            return Mapper(_userRepository.GetById(id));
+            return ModelHelper.Mapper(_userRepository.GetById(id));
         }
 
         public Person GetByName(string name)
@@ -45,22 +40,9 @@ namespace Mtc.Domain.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Person> GetAll(BaseSearchCommand<Person> searchCommand)
+        public IEnumerable<Person> GetAll()
         {
             throw new NotImplementedException();
-        }
-
-        private Person Mapper(USER user)
-        {
-            return new Person()
-            {
-                Email = user.Email,
-                FamilyName = user.FamilyName,
-                FirstName = user.FirstName,
-                Id = user.Id,
-                ExperiencePoints = user.ExperiencePoints,
-                Level = user.Level,
-            };
         }
     }
 }

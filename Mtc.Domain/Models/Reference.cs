@@ -1,6 +1,6 @@
 ﻿namespace Mtc.Domain.Models
 {
-    internal class Reference
+    public class Reference
     {
     }
 }

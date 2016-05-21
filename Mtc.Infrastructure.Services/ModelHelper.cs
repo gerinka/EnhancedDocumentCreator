@@ -10,7 +10,7 @@ namespace Mtc.Domain.Services
 {
     public static class ModelHelper
     {
-        public static Section Mapper(STRUCTUREELEMENT structure, long? documentId = null)
+        public static Section Mapper(STRUCTUREELEMENT structure)
         {
 
             return new Section
@@ -19,38 +19,88 @@ namespace Mtc.Domain.Services
                 StructureType = structure.StructureTypeId,
                 Description = structure.Description,
                 Title = structure.Title,
-                Content = documentId != null ? Mapper(structure.STRUCTURECONTENTs.FirstOrDefault(st => st.DocumentId == documentId)) : null,
+                Content = Mapper(structure.STRUCTURECONTENTs.FirstOrDefault()) ,
                 IsSelected = true,
-                Subsections = structure.STRUCTUREELEMENTs1.Select(st => Mapper(st))
+                Subsections = structure.STRUCTUREELEMENTs1.Select(Mapper).ToList()
+            };
+        }
+
+        public static STRUCTUREELEMENT Mapper(Section section)
+        {
+
+            return new STRUCTUREELEMENT
+            {
+                Id = section.Id,
+                StructureTypeId = section.StructureType,
+                Description = section.Description,
+                Title = section.Title,
+                STRUCTURECONTENTs = new List<STRUCTURECONTENT>{Mapper(section.Content, section)},
+                STRUCTUREELEMENTs1 = section.StructureType== StructureType.Section ? section.Subsections.Select(Mapper).ToList(): null,
+                STRUCTUREELEMENTs = section.StructureType == StructureType.Subsection ? section.Subsections.Select(Mapper).ToList() : null
             };
         }
 
         public static SectionContent Mapper(STRUCTURECONTENT structurecontent)
         {
-            return new SectionContent
+            if (structurecontent != null)
+            {
+                return new SectionContent
+                {
+                    Id = structurecontent.Id,
+                    Title = structurecontent.Title,
+                    DocumentId = structurecontent.DocumentId,
+                    MainText = GetString(structurecontent.Content),
+                    CurrentProgress = structurecontent.CurrentProgress
+                };
+            }
+            return null;
+        }
+
+        public static STRUCTURECONTENT Mapper(SectionContent structurecontent, Section section)
+        {
+            return new STRUCTURECONTENT
             {
                 Id = structurecontent.Id,
                 Title = structurecontent.Title,
                 DocumentId = structurecontent.DocumentId,
-                MainText = structurecontent.Content.ToString(),
-                CurrentProgress = structurecontent.CurrentProgress
+                Content = GetBytes(structurecontent.MainText),
+                CurrentProgress = structurecontent.CurrentProgress,
+                STRUCTUREELEMENT = Mapper(section)
             };
         }
 
         public static DOCUMENT Mapper(Document document)
         {
-            return new DOCUMENT()
+            return new DOCUMENT
             {
+                ID = document.Id,
                 Title = document.Title,
                 Deadline = document.Deadline,
-                DocumentTemplateId = document.Template.Id
-
+                DocumentTemplateId = document.Template.Id,
+                STRUCTURECONTENTs = ConvertSectionsToSetOfContent(document.Sections)
             };
         }
+
+        private static IList<STRUCTURECONTENT> ConvertSectionsToSetOfContent(ICollection<Section> sections)
+        {
+            IList<STRUCTURECONTENT> structurecontents = new List<STRUCTURECONTENT>();
+            foreach (var section in sections)
+            {
+                structurecontents.Add(Mapper(section.Content, section));
+                foreach (var subsection in section.Subsections)
+                {
+                    structurecontents.Add(Mapper(subsection.Content, subsection));
+                }
+            }
+
+            return structurecontents;
+        }
+
         public static Document Mapper(DOCUMENT document)
         {
-            return new Document()
+            return new Document
             {
+                Id = document.ID,
                 Title = document.Title,
                 Deadline = document.Deadline,
                 Template = Mapper(document.DOCUMENTTEMPLATE)
@@ -65,8 +115,56 @@ namespace Mtc.Domain.Services
                 Description = documentTemplate.Description,
                 IsActive = documentTemplate.IsActive == 1,
                 Name = documentTemplate.Name,
-                Sections = documentTemplate.STRUCTUREELEMENTs.Select(se=>Mapper(se))
+                Sections = documentTemplate.STRUCTUREELEMENTs.Where(st=>st.StructureTypeId == StructureType.Section).Select(Mapper)
             };
+        }
+
+        public static Person Mapper(USER user)
+        {
+            return new Person
+            {
+                Email = user.Email,
+                FamilyName = user.FamilyName,
+                FirstName = user.FirstName,
+                Id = user.Id,
+                ExperiencePoints = user.ExperiencePoints,
+                Level = user.Level,
+            };
+        }
+
+        public static USER Mapper(Person person)
+        {
+            return new USER
+            {
+                Email = person.Email,
+                FamilyName = person.FamilyName,
+                FirstName = person.FirstName,
+                Id = person.Id,
+                ExperiencePoints = person.ExperiencePoints,
+                Level = person.Level,
+            };
+        }
+
+        public static byte[] GetBytes(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                return null;
+            }
+            var bytes = new byte[str.Length * sizeof(char)];
+            Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
+        }
+
+        public static string GetString(byte[] bytes)
+        {
+            if (bytes.Length == 0)
+            {
+                return "";
+            }
+            var chars = new char[bytes.Length / sizeof(char)];
+            Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
+            return new string(chars);
         }
     }
 }

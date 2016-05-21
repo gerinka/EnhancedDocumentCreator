@@ -8,10 +8,10 @@ namespace Mtc.Domain.Models
 {
     public class SectionContent
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public string MainText { get; set; }
-        public long DocumentId { get; set; }
+        public int DocumentId { get; set; }
         public int? CurrentProgress { get; set; }
     }
 }
