@@ -31,12 +31,10 @@ namespace Mtc.WebClient.Controllers
         {
             var baseSearchCommand = new BaseSearchCommand<DocumentTemplate>();
             IEnumerable<DocumentTemplate> templates = _documentTemplateService.GetAll(baseSearchCommand).ToList();
-            var documentGenerator = new DocumentGeneratorViewModel
+            var documentGenerator = new InitDocumentViewModel
             {
                 AllTemplates = templates,
-                Document = new Document(),
-                User = new Person(),
-                SelectedDocumentTemplate = new DocumentTemplate()
+                User = new Person()
             };
             return View(documentGenerator);
         }
@@ -58,10 +56,13 @@ namespace Mtc.WebClient.Controllers
         // POST: /Thesis/CreateDocument
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult CreateDocument(DocumentGeneratorViewModel model)
+        public ActionResult CreateDocument(InitDocumentViewModel model)
         {
-            var properTemplate = _documentTemplateService.GetById(model.SelectedDocumentTemplate.Id);
-            model.Document.Template = properTemplate;
+            var properTemplate = _documentTemplateService.GetById(model.SelectedDocumentTemplateId);
+            var document = new Document()
+            {
+                Template = properTemplate
+            };
             return View();
         }
     }

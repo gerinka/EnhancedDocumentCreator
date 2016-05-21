@@ -3,7 +3,8 @@
     function init() {
         var index = parseInt($(".panel-heading h3.active")[0].dataset.section);
         var total = $(".panel-heading h3:not(.notselected)").length;
-        var percent = Math.round((index / total) * 100);
+        //var percent = Math.round((index / total) * 100);
+        var percent = 9;
         $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').html(percent + '%');
         if (index == 1) {
             $(".previous").addClass("hidden");
@@ -16,17 +17,17 @@
     init();
     $(".next").on("click", function() {
         var index = parseInt($(".panel-heading h3.active")[0].dataset.section);
-        var total = $(".panel-heading h3").length;
+        var total = $(".panel-heading h3:not(.notselected)").length;
         if (index + 1 <= total) {
-            var currentElement = $(".panel-heading h3")[index - 1];
+            var currentElement = $(".panel-heading h3:not(.notselected)")[index - 1];
             $(".panel-heading").find(currentElement).removeClass("active");
             $(".panel-heading").find(currentElement).addClass("hidden");
 
-            var nextElement = $(".panel-heading h3")[index];
+            var nextElement = $(".panel-heading h3:not(.notselected)")[index];
             $(".panel-heading").find(nextElement).removeClass("hidden");
             $(".panel-heading").find(nextElement).addClass("active");
 
-            $(".form-group").filter(function () {
+            $(".form-group:not(.notselected)").filter(function () {
                 if (parseInt($(this).data("section")) == index) {
                     $(this).addClass("hidden");
                     $(this).removeClass("active");
@@ -49,17 +50,17 @@
 
     $(".previous").on("click", function () {
         var index = parseInt($(".panel-heading h3.active")[0].dataset.section);
-        var total = $(".panel-heading h3").length;
+        var total = $(".panel-heading h3:not(.notselected)").length;
         if (index - 1 > 0) {
-            var currentElement = $(".panel-heading h3")[index - 1];
+            var currentElement = $(".panel-heading h3:not(.notselected)")[index - 1];
             $(".panel-heading").find(currentElement).removeClass("active");
             $(".panel-heading").find(currentElement).addClass("hidden");
 
-            var previousElement = $(".panel-heading h3")[index - 2];
+            var previousElement = $(".panel-heading h3:not(.notselected)")[index - 2];
             $(".panel-heading").find(previousElement).removeClass("hidden");
             $(".panel-heading").find(previousElement).addClass("active");
 
-            $(".form-group").filter(function () {
+            $(".form-group:not(.notselected)").filter(function () {
                 if (parseInt($(this).data("section")) == index) {
                     $(this).addClass("hidden");
                     $(this).removeClass("active");
