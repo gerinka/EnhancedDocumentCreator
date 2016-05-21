@@ -2,7 +2,7 @@
 
     function init() {
         var index = parseInt($(".panel-heading h3.active")[0].dataset.section);
-        var total = $(".panel-heading h3").length;
+        var total = $(".panel-heading h3:not(.notselected)").length;
         var percent = Math.round((index / total) * 100);
         $('.progress-bar').attr('aria-valuenow', percent).css('width', percent + '%').html(percent + '%');
         if (index == 1) {

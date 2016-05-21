@@ -1,5 +1,6 @@
 ﻿@using System.Globalization
 @using Mtc.Domain.Models
+@using MtcModel
 @model Mtc.WebClient.Models.DocumentGeneratorViewModel
 
 @{
@@ -15,28 +16,15 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title active" data-section="1">Задай тема</h3>
-        @if (Model.SelectedDocumentTemplate.Id > 0)
+        @foreach (var template in Model.AllTemplates)
         {
-            var firstOrDefault = Model.AllTemplates.FirstOrDefault(t => t.Id == Model.SelectedDocumentTemplate.Id);
-            if (firstOrDefault != null)
+            foreach (var sectionItem in template.Sections)
             {
-                var index = 2;
-                foreach (var item in firstOrDefault.Sections)
-                {
-                    <h3 class="panel-title hidden" data-section="@index">@item.Title</h3>
-                    index++;
-                }
+                <h3 class="panel-title hidden notselected" data-section="0" data-type="structure" data-template="@template.Id">@sectionItem.Title</h3>
+            
             }
         }
-     <!--   <h3 class="panel-title hidden" data-section="2">Структура - глава 1</h3>
-        <h3 class="panel-title hidden" data-section="3">Структура - глава 2</h3>
-        <h3 class="panel-title hidden" data-section="4">Структура - глава 3</h3>
-        <h3 class="panel-title hidden" data-section="5">Структура - глава 4</h3>
-        <h3 class="panel-title hidden" data-section="6">Структура - глава 5</h3>
-        <h3 class="panel-title hidden" data-section="7">Структура - глава 6</h3>
-        <h3 class="panel-title hidden" data-section="8">Структура - глава 7</h3>
-        <h3 class="panel-title hidden" data-section="9">Структура - глава 8</h3>-->
-        <h3 class="panel-title hidden" data-section="2">Потвърди</h3>
+        <h3 class="panel-title hidden" data-section="3">Потвърди</h3>
     </div>
     <div class="panel-body">
      
@@ -66,301 +54,42 @@
                     @Html.DropDownListFor(
                         model => model.SelectedDocumentTemplate.Id, 
                         items, 
+                        string.Empty,
                         new { @class = "selectpicker",
                             @area_labelledby = "templateDropdownMenu",
-                            @id = "templateDropdown"
+                            @id = "templateDropdown",
+                            @onchange = "FillCity()" 
                         })
                 </div>
             </div>
-            <!--
-                <div class="form-group hidden" data-section="2">
-                    <div class="col-lg-8">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox1" class="main-topic">
-                            <label for="checkbox1" >
-                                Увод
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-8" id="collapseTopic1">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox1.1">
-                            <label for="checkbox1.1">
-                                Цел и задачи на дипломната работа
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox1.2">
-                            <label for="checkbox1.2">
-                                Актуалност на проблема и мотивация
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox1.3">
-                            <label for="checkbox1.3">
-                                Очаквани ползи от реализацията
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox1.4">
-                            <label for="checkbox1.4">
-                                Структура на дипломната работа
-                            </label>
-                        </div>
-                    </div>
-                </div>
+
+                foreach (var template in Model.AllTemplates)
+                {
+                    var index = 2;
+                    foreach (var sectionItem in template.Sections.Where(s=>s.StructureType == StructureType.Section).ToList())
+                    {
+                     
+                        <div class="form-group hidden notselected" data-section="@index">
+                            <div class="col-lg-8">
+                                <div class="checkbox checkbox-primary">
+                                    <input type="checkbox" id="@sectionItem.Id">
+                                    <label for="@sectionItem.Id">@sectionItem.Title</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-lg-offset-1">
+                                @foreach (var subsection in sectionItem.Subsections)
+                                {
+                                    <div class="checkbox checkbox-primary">
+                                        <input type="checkbox" id="@subsection.Id">
+                                        <label for="@subsection.Id">@subsection.Title</label>
+                                    </div>
+                                }
+                            </div>
+                            </div>
+                        index++;
+                    }
+                }
                 <div class="form-group hidden" data-section="3">
-                    <div class="col-lg-8">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox2" class="main-topic">
-                            <label for="checkbox2" >
-                                Преглед на предметната област
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-8" id="collapseTopic2">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox2.1">
-                            <label for="checkbox2.1">
-                                Основни дефиниции
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox2.2">
-                            <label for="checkbox2.2">
-                                Подходи, методи (евентуално модели и стандарти) за решаване на проблемите
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox2.3">
-                            <label for="checkbox2.3">
-                                Съществуващи решения (практически реализации)
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox2.4">
-                            <label for="checkbox2.4">
-                                Избор на критерии за сравнение и сравнителен анализ на решения/методи/стандарти/...
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox2.5">
-                            <label for="checkbox2.5">
-                                Изводи
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group hidden" data-section="4">
-                    <div class="col-lg-8">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox3" class="main-topic">
-                            <label for="checkbox3" >
-                                Използвани технологии, платформи и/или методологии 
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-8" id="collapseTopic3">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox3.1">
-                            <label for="checkbox3.1">
-                                Изисквания към средствата (технологии, платформи и методологии)
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox3.2">
-                            <label for="checkbox3.2">
-                                Видове средства (технологии, платформи и методологии) и начин и място за използването им – сравненителен анализ
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox3.3">
-                            <label for="checkbox3.3">
-                                Избор на средствата (технологии, платформи и методологии)
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox3.4">
-                            <label for="checkbox3.4">
-                                Изводи
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group hidden" data-section="5">
-                    <div class="col-lg-8">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox4" class="main-topic">
-                            <label for="checkbox4" >
-                                Анализ 
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-8" id="collapseTopic4">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox4.1">
-                            <label for="checkbox4.1">
-                                Концептуален модел
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox4.2">
-                            <label for="checkbox4.2">
-                                Потребителски (функционални) изисквания (права, роли, статуси, диаграми, ...)
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox4.3">
-                            <label for="checkbox4.3">
-                                Качествени (нефункционални) изисквания (като напр. преносимост, използваемост, скалируемост, поддръжка, ...)
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox4.4">
-                            <label for="checkbox4.4">
-                                Работни (бизнес) процеси
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox4.5">
-                            <label for="checkbox4.5">
-                                Изводи
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group hidden" data-section="6">
-                    <div class="col-lg-8">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox5" class="main-topic">
-                            <label for="checkbox5" >
-                                Проектиране 
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-8" id="collapseTopic5">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox5.1">
-                            <label for="checkbox5.1">
-                                Обща архитектура – напр. слоеве, модули, блокове, компоненти...
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox5.2">
-                            <label for="checkbox5.2">
-                                Модел на данните (напр. база данни, файлова структура, ...)
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox5.3">
-                            <label for="checkbox5.3">
-                                Диаграми (на структура и поведение - по слоеве и модули, с извадки от кода)
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox5.4">
-                            <label for="checkbox5.4">
-                                Потребителски интерфейс (опционално)
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox5.5">
-                            <label for="checkbox5.5">
-                                Ресурсни и спомагателни модули (опционално)
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group hidden" data-section="7">
-                    <div class="col-lg-8">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox6" class="main-topic">
-                            <label for="checkbox6" >
-                                Реализация, тестване/експерименти и (евентуално) внедряване 
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-8" id="collapseTopic6">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox6.1">
-                            <label for="checkbox6.1">
-                                Реализация на модулите
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox6.2">
-                            <label for="checkbox6.2">
-                                Системна интеграция (опционално)
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox6.3">
-                            <label for="checkbox6.3">
-                                Планиране на тестването - тестови сценарии, процедури, ...
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox6.4">
-                            <label for="checkbox6.4">
-                                Модулно и системно тестване
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox6.5">
-                            <label for="checkbox6.5">
-                                Анализ на резултатите от тестването и начин на отразяването им
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox6.6">
-                            <label for="checkbox6.6">
-                                Експериментално внедряване (технологични изисквания, инсталиране, условия, използване, ...)
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group hidden" data-section="8">
-                    <div class="col-lg-8">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox7" class="main-topic">
-                            <label for="checkbox7" >
-                                Заключение 
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-8" id="collapseTopic7">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox7.1">
-                            <label for="checkbox7.1">
-                                Обобщение на изпълнението на началните цели
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox7.2">
-                            <label for="checkbox7.2">
-                                Насоки за бъдещо развитие и усъвършенстване
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group hidden" data-section="9">
-                    <div class="col-lg-8">
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox8">
-                            <label for="checkbox8" >
-                                Използвана литература
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="checkbox9">
-                            <label for="checkbox9">
-                                Приложения 
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                -->
-                <div class="form-group hidden" data-section="2">
 
                     <div class="col-lg-offset-2 col-lg-8">
                         <div class="col-lg-1">
@@ -393,7 +122,7 @@
                     </div>
 
                 </div>
-                }
+        }
                 <nav>
                     <ul class="pager">
                         <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Назад</a></li>
@@ -409,4 +138,22 @@
 </div>
 @section scripts{
     @Scripts.Render("~/bundles/common")
+    <script>
+        function FillCity() {
+            var templateId = $('#templateDropdown').val();
+            $('[data-template]').addClass("notselected");
+            var sections = $(".panel-heading h3.notselected");
+
+            for (i = 0; i < sections.length; i++) {
+                if (parseInt(sections[i].dataset.template) == templateId) {
+                    $(".panel-heading").find(sections[i]).removeClass("notselected");
+                }
+            }
+
+            $.each(cities, function(i, city) {
+                $("#City").append(
+                    $('<option></option>').val(city.CityId).html(city.CityName));
+            });
+        }
+    </script>
 }

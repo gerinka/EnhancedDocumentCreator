@@ -53,7 +53,8 @@ namespace Mtc.Domain.Services
                 Description = structure.Description,
                 Title = structure.Title,
                 Content = documentId != null ? SectionContentMapper(structure.STRUCTURECONTENTs.FirstOrDefault(st=>st.DocumentId == documentId)) : null,
-                IsSelected = true
+                IsSelected = true,
+                Subsections = structure.STRUCTUREELEMENTs1.Select(st=>SectionMapper(st))
             };
         }
 
