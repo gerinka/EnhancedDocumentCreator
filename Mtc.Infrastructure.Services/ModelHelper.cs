@@ -21,7 +21,7 @@ namespace Mtc.Domain.Services
                 Title = structure.Title,
                 Content = Mapper(structure.STRUCTURECONTENTs.FirstOrDefault()) ,
                 IsSelected = true,
-                Subsections = structure.STRUCTUREELEMENTs1.Select(Mapper).ToList()
+                Subsections = structure.StructureTypeId == StructureType.Section? structure.CHILDSTRUCTUREELEMENTS.Select(Mapper).ToList() : null,
             };
         }
 
@@ -35,8 +35,8 @@ namespace Mtc.Domain.Services
                 Description = section.Description,
                 Title = section.Title,
                 STRUCTURECONTENTs = new List<STRUCTURECONTENT>{Mapper(section.Content, section)},
-                STRUCTUREELEMENTs1 = section.StructureType== StructureType.Section ? section.Subsections.Select(Mapper).ToList(): null,
-                STRUCTUREELEMENTs = section.StructureType == StructureType.Subsection ? section.Subsections.Select(Mapper).ToList() : null
+                CHILDSTRUCTUREELEMENTS = section.StructureType== StructureType.Section ? section.Subsections.Select(Mapper).ToList(): null,
+                PARENTSTRUCTUREELEMENTS = section.StructureType == StructureType.Subsection ? section.Subsections.Select(Mapper).ToList() : null
             };
         }
 
@@ -65,7 +65,7 @@ namespace Mtc.Domain.Services
                 DocumentId = structurecontent.DocumentId,
                 Content = GetBytes(structurecontent.MainText),
                 CurrentProgress = structurecontent.CurrentProgress,
-                STRUCTUREELEMENT = Mapper(section)
+                StructureElementId = section.Id
             };
         }
 
@@ -77,11 +77,11 @@ namespace Mtc.Domain.Services
                 Title = document.Title,
                 Deadline = document.Deadline,
                 DocumentTemplateId = document.Template.Id,
-                STRUCTURECONTENTs = ConvertSectionsToSetOfContent(document.Sections)
+                STRUCTURECONTENTs = ConvertSectionsToSetOfContent(document.Sections.ToList())
             };
         }
 
-        private static IList<STRUCTURECONTENT> ConvertSectionsToSetOfContent(ICollection<Section> sections)
+        private static IList<STRUCTURECONTENT> ConvertSectionsToSetOfContent(IEnumerable<Section> sections)
         {
             IList<STRUCTURECONTENT> structurecontents = new List<STRUCTURECONTENT>();
             foreach (var section in sections)
@@ -124,7 +124,7 @@ namespace Mtc.Domain.Services
             return new Person
             {
                 Email = user.Email,
-                FamilyName = user.FamilyName,
+                LastName = user.FamilyName,
                 FirstName = user.FirstName,
                 Id = user.Id,
                 ExperiencePoints = user.ExperiencePoints,
@@ -137,7 +137,7 @@ namespace Mtc.Domain.Services
             return new USER
             {
                 Email = person.Email,
-                FamilyName = person.FamilyName,
+                FamilyName = person.LastName,
                 FirstName = person.FirstName,
                 Id = person.Id,
                 ExperiencePoints = person.ExperiencePoints,

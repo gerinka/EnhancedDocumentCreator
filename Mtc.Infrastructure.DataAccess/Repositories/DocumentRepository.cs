@@ -14,6 +14,5 @@ namespace Mtc.Infrastructure.DataAccess.Repositories
             : base(context)
         {
         }
-
     }
 }

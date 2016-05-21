@@ -17,11 +17,13 @@ namespace Mtc.WebClient.Controllers
     {
         private readonly IDocumentTemplateService _documentTemplateService;
         private readonly IDocumentService _documentService;
+        private readonly IPersonService _personService;
 
-        public ThesisController(IDocumentTemplateService documentTemplateService, IDocumentService documentService)
+        public ThesisController(IDocumentTemplateService documentTemplateService, IDocumentService documentService, IPersonService personService)
         {
             _documentTemplateService = documentTemplateService;
             _documentService = documentService;
+            _personService = personService;
         }
 
         public ActionResult Index()
@@ -32,10 +34,11 @@ namespace Mtc.WebClient.Controllers
         public ActionResult PanelStructure()
         {
             IEnumerable<DocumentTemplate> templates = _documentTemplateService.GetAll().ToList();
+            Person author = _personService.GetById(1);
             var documentGenerator = new InitDocumentViewModel
             {
                 AllTemplates = templates,
-                User = new Person()
+                User = author
             };
             return View(documentGenerator);
         }

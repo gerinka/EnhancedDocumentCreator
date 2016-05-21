@@ -375,8 +375,8 @@
             <End Role="STRUCTUREELEMENTs" EntitySet="STRUCTUREELEMENTs" />
           </AssociationSet>
           <AssociationSet Name="STRUCTUREELEMENT_STRUCTUREELEMENTSet" Association="MtcModel.STRUCTUREELEMENT_STRUCTUREELEMENT">
-            <End Role="STRUCTUREELEMENTs1" EntitySet="STRUCTUREELEMENTs" />
-            <End Role="STRUCTUREELEMENTs" EntitySet="STRUCTUREELEMENTs" />
+            <End Role="CHILDSTRUCTUREELEMENTS" EntitySet="STRUCTUREELEMENTs" />
+            <End Role="PARENTSTRUCTUREELEMENTS" EntitySet="STRUCTUREELEMENTs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="DOCUMENT" ed:Guid="77361535-0059-4834-aac4-d0888e455430">
@@ -445,8 +445,8 @@
           <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="a6906c01-e76e-4fbc-9b13-5361df14773a" />
           <NavigationProperty Name="STRUCTURECONTENTs" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="STRUCTUREELEMENT" ToRole="STRUCTURECONTENTs" ed:Guid="7bdf3b4c-9dbe-4ca5-99a9-53da2fb6c27c" />
           <NavigationProperty Name="DOCUMENTTEMPLATEs" Relationship="MtcModel.DOCUMENTTEMPLATE_STRUCTUREELEMENT" FromRole="STRUCTUREELEMENTs" ToRole="DOCUMENTTEMPLATEs" ed:Guid="7bbacfe8-e325-4016-a446-fb0237cf3fbe" />
-          <NavigationProperty Name="STRUCTUREELEMENTs" Relationship="MtcModel.STRUCTUREELEMENT_STRUCTUREELEMENT" FromRole="STRUCTUREELEMENTs1" ToRole="STRUCTUREELEMENTs" ed:Guid="95ce7743-1219-45e5-841d-1f779afc8fda" />
-          <NavigationProperty Name="STRUCTUREELEMENTs1" Relationship="MtcModel.STRUCTUREELEMENT_STRUCTUREELEMENT" FromRole="STRUCTUREELEMENTs" ToRole="STRUCTUREELEMENTs1" ed:Guid="0b3523f3-3f10-43a5-87e2-623e273f3067" />
+          <NavigationProperty Name="PARENTSTRUCTUREELEMENTS" Relationship="MtcModel.STRUCTUREELEMENT_STRUCTUREELEMENT" FromRole="CHILDSTRUCTUREELEMENTS" ToRole="PARENTSTRUCTUREELEMENTS" ed:Guid="95ce7743-1219-45e5-841d-1f779afc8fda" />
+          <NavigationProperty Name="CHILDSTRUCTUREELEMENTS" Relationship="MtcModel.STRUCTUREELEMENT_STRUCTUREELEMENT" FromRole="PARENTSTRUCTUREELEMENTS" ToRole="CHILDSTRUCTUREELEMENTS" ed:Guid="0b3523f3-3f10-43a5-87e2-623e273f3067" />
         </EntityType>
         <EntityType Name="TASK" ed:Guid="176cbcd3-34b6-41a4-90f4-ad0b1a8bc376">
           <Key>
@@ -621,8 +621,8 @@
           <End Role="STRUCTUREELEMENTs" Type="MtcModel.STRUCTUREELEMENT" Multiplicity="*" />
         </Association>
         <Association Name="STRUCTUREELEMENT_STRUCTUREELEMENT" ed:Guid="6905cf77-1182-4ac2-b507-a5360b2e4857">
-          <End Role="STRUCTUREELEMENTs1" Type="MtcModel.STRUCTUREELEMENT" Multiplicity="*" />
-          <End Role="STRUCTUREELEMENTs" Type="MtcModel.STRUCTUREELEMENT" Multiplicity="*" />
+          <End Role="CHILDSTRUCTUREELEMENTS" Type="MtcModel.STRUCTUREELEMENT" Multiplicity="*" />
+          <End Role="PARENTSTRUCTUREELEMENTS" Type="MtcModel.STRUCTUREELEMENT" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -728,10 +728,10 @@
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="STRUCTUREELEMENT_STRUCTUREELEMENTSet" TypeName="MtcModel.STRUCTUREELEMENT_STRUCTUREELEMENT" StoreEntitySet="structurerelations">
-            <EndProperty Name="STRUCTUREELEMENTs1">
+            <EndProperty Name="CHILDSTRUCTUREELEMENTS">
               <ScalarProperty Name="Id" ColumnName="StructureElementChildId" />
             </EndProperty>
-            <EndProperty Name="STRUCTUREELEMENTs">
+            <EndProperty Name="PARENTSTRUCTUREELEMENTS">
               <ScalarProperty Name="Id" ColumnName="StructureElementParentId" />
             </EndProperty>
           </AssociationSetMapping>

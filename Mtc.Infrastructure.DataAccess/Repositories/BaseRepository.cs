@@ -46,10 +46,11 @@ namespace Mtc.Infrastructure.DataAccess.Repositories
             return DbSet.Find(id);
         }
 
-        public virtual void Insert(TEntity entity)
+        public virtual TEntity Insert(TEntity entity)
         {
             DbSet.Add(entity);
             _context.SaveChanges();
+            return entity;
         }
 
         public virtual void Delete(object id)

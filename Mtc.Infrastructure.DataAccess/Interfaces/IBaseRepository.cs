@@ -16,7 +16,7 @@ namespace Mtc.Infrastructure.DataAccess.Interfaces
 
         TEntity GetById(object id);
 
-        void Insert(TEntity entity);
+        TEntity Insert(TEntity entity);
         void Delete(object id);
 
         void Delete(TEntity entityToDelete);

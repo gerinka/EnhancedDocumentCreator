@@ -15,10 +15,12 @@ namespace Mtc.Domain.Services
     public class DocumentService : IDocumentService
     {
         private readonly IDocumentRepository _documentRepository;
+        private readonly IStructureContentRepository _structureContentRepository;
 
-        public DocumentService(IDocumentRepository documentRepository)
+        public DocumentService(IDocumentRepository documentRepository, IStructureContentRepository structureContentRepository)
         {
             _documentRepository = documentRepository;
+            _structureContentRepository = structureContentRepository;
         }
 
         public Document GetById(long id)
@@ -31,12 +33,21 @@ namespace Mtc.Domain.Services
             throw new NotImplementedException();
         }
 
-        public Document Create(Document entity)
+        public Document Create(Document document)
         {
-            _documentRepository.Insert(ModelHelper.Mapper(entity));
+            DOCUMENT documentToInsert = ModelHelper.Mapper(document);
+            IList<STRUCTURECONTENT> documentContent = documentToInsert.STRUCTURECONTENTs.ToList();
+           // documentToInsert.STRUCTURECONTENTs = null;
+            documentToInsert = _documentRepository.Insert(documentToInsert);
+          /*  foreach (var structurecontent in documentContent)
+            {
+                structurecontent.DocumentId = documentToInsert.ID;
+                _structureContentRepository.Insert(structurecontent);
+            }*/
+;
+            //documentToInsert = _documentRepository.GetById(documentToInsert.ID);
             return
-                ModelHelper.Mapper(
-                   _documentRepository.Get(document => document.Title == entity.Title && document.Deadline == entity.Deadline).FirstOrDefault());
+                ModelHelper.Mapper(documentToInsert);
         }
 
         public Document Update(Document entity)
