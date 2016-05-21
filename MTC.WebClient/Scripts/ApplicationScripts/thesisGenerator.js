@@ -12,6 +12,8 @@
             $(".next").addClass("hidden");
         }
 
+
+        $("input:checkbox").prop('checked', true);
     };
 
     init();

@@ -73,8 +73,7 @@
                     <div class="form-group hidden notselected" data-section="@index" data-template="@template.Id">
                         <div class="col-lg-8">
                             <div class="checkbox checkbox-primary">
-
-                                <input type="checkbox" id="@sectionItem.Id">
+                                <input type="checkbox" name="sections" value="@sectionItem.Id" id="@sectionItem.Id">
                                 <label for="@sectionItem.Id">@sectionItem.Title</label>
                             </div>
                         </div>
@@ -82,7 +81,7 @@
                             @foreach (var subsection in sectionItem.Subsections)
                             {
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" id="@subsection.Id">
+                                    <input type="checkbox" name="sections" value="@subsection.Id" id="@subsection.Id">
                                     <label for="@subsection.Id">@subsection.Title</label>
                                 </div>
                             }

@@ -16,10 +16,12 @@ namespace Mtc.WebClient.Controllers
     public class ThesisController : Controller
     {
         private readonly IDocumentTemplateService _documentTemplateService;
+        private readonly IDocumentService _documentService;
 
-        public ThesisController(IDocumentTemplateService documentTemplateService)
+        public ThesisController(IDocumentTemplateService documentTemplateService, IDocumentService documentService)
         {
             _documentTemplateService = documentTemplateService;
+            _documentService = documentService;
         }
 
         public ActionResult Index()
@@ -56,12 +58,15 @@ namespace Mtc.WebClient.Controllers
         // POST: /Thesis/CreateDocument
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult CreateDocument(InitDocumentViewModel model)
+        public ActionResult CreateDocument(InitDocumentViewModel model, long[] sections)
         {
             var properTemplate = _documentTemplateService.GetById(model.SelectedDocumentTemplateId);
             var document = new Document()
             {
-                Template = properTemplate
+                Template = properTemplate,
+                Deadline = model.Deadline,
+                Title = model.Topic,
+                Sections = properTemplate.Sections.Where(s=>sections.Contains(s.Id)).ToList()
             };
             return View();
         }
