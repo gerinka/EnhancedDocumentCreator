@@ -25,7 +25,7 @@ namespace Mtc.Domain.Services
 
         public Document GetById(long id)
         {
-            throw new NotImplementedException();
+           return ModelHelper.Mapper(_documentRepository.GetById(id));
         }
 
         public Document GetByName(string name)
@@ -37,15 +37,15 @@ namespace Mtc.Domain.Services
         {
             DOCUMENT documentToInsert = ModelHelper.Mapper(document);
             IList<STRUCTURECONTENT> documentContent = documentToInsert.STRUCTURECONTENTs.ToList();
-           // documentToInsert.STRUCTURECONTENTs = null;
+            documentToInsert.STRUCTURECONTENTs = null;
             documentToInsert = _documentRepository.Insert(documentToInsert);
-          /*  foreach (var structurecontent in documentContent)
+            foreach (var structurecontent in documentContent)
             {
                 structurecontent.DocumentId = documentToInsert.ID;
                 _structureContentRepository.Insert(structurecontent);
-            }*/
-;
-            //documentToInsert = _documentRepository.GetById(documentToInsert.ID);
+            }
+
+            documentToInsert = _documentRepository.GetById(documentToInsert.ID);
             return
                 ModelHelper.Mapper(documentToInsert);
         }

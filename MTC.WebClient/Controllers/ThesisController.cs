@@ -38,12 +38,14 @@ namespace Mtc.WebClient.Controllers
             var documentGenerator = new InitDocumentViewModel
             {
                 AllTemplates = templates,
-                User = author
+                User = author,
+                AuthorId = author.Id
             };
             return View(documentGenerator);
         }
         public ActionResult TaskBoard()
         {
+            Document document = _documentService.GetById(2);
             return View();
         }
         public ActionResult TaskList()
@@ -63,13 +65,14 @@ namespace Mtc.WebClient.Controllers
         public ActionResult CreateDocument(InitDocumentViewModel model, long[] sections)
         {
             var properTemplate = _documentTemplateService.GetById(model.SelectedDocumentTemplateId);
+            Person author = _personService.GetById(model.AuthorId);
             var document = new Document
             {
                 Template = properTemplate,
                 Deadline = model.Deadline,
                 Title = model.Topic,
                 Sections = properTemplate.Sections.Where(s=>sections.Contains(s.Id)).ToList(),
-                Author = model.User
+                Author = author
             };
             var subsectionsToRemain = new List<Section>();
             foreach (var section in document.Sections)
@@ -88,7 +91,7 @@ namespace Mtc.WebClient.Controllers
                 subsection.Content = new SectionContent{Title = subsection.Title};
             }
             _documentService.Create(document);
-            return View();
+            return View("TaskBoard");
         }
     }
 }

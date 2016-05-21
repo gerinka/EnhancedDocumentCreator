@@ -12,5 +12,6 @@ namespace Mtc.Domain.Models
         public ICollection<Section> Subsections { get; set; }
         public SectionContent Content { get; set; }
         public bool IsSelected { get; set; }
+        public int? Order { get; set; }
     }
 }

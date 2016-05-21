@@ -22,6 +22,7 @@ namespace Mtc.Domain.Services
                 Content = Mapper(structure.STRUCTURECONTENTs.FirstOrDefault()) ,
                 IsSelected = true,
                 Subsections = structure.StructureTypeId == StructureType.Section? structure.CHILDSTRUCTUREELEMENTS.Select(Mapper).ToList() : null,
+                Order = structure.Order
             };
         }
 
@@ -36,7 +37,8 @@ namespace Mtc.Domain.Services
                 Title = section.Title,
                 STRUCTURECONTENTs = new List<STRUCTURECONTENT>{Mapper(section.Content, section)},
                 CHILDSTRUCTUREELEMENTS = section.StructureType== StructureType.Section ? section.Subsections.Select(Mapper).ToList(): null,
-                PARENTSTRUCTUREELEMENTS = section.StructureType == StructureType.Subsection ? section.Subsections.Select(Mapper).ToList() : null
+                PARENTSTRUCTUREELEMENTS = section.StructureType == StructureType.Subsection ? section.Subsections.Select(Mapper).ToList() : null,
+                Order = section.Order
             };
         }
 
@@ -77,6 +79,7 @@ namespace Mtc.Domain.Services
                 Title = document.Title,
                 Deadline = document.Deadline,
                 DocumentTemplateId = document.Template.Id,
+                UserId = document.Author.Id,
                 STRUCTURECONTENTs = ConvertSectionsToSetOfContent(document.Sections.ToList())
             };
         }
@@ -103,8 +106,14 @@ namespace Mtc.Domain.Services
                 Id = document.ID,
                 Title = document.Title,
                 Deadline = document.Deadline,
-                Template = Mapper(document.DOCUMENTTEMPLATE)
+                Template = Mapper(document.DOCUMENTTEMPLATE),
+                Sections = ConvertSetOfContentToSections(document.STRUCTURECONTENTs)
             };
+        }
+
+        private static IList<Section> ConvertSetOfContentToSections(IEnumerable<STRUCTURECONTENT> structurecontenTs)
+        {
+            return structurecontenTs.Where(st => st.STRUCTUREELEMENT.StructureTypeId == StructureType.Section).Select(structureContent => Mapper(structureContent.STRUCTUREELEMENT)).ToList();
         }
 
         public static DocumentTemplate Mapper(DOCUMENTTEMPLATE documentTemplate)
@@ -158,7 +167,7 @@ namespace Mtc.Domain.Services
 
         public static string GetString(byte[] bytes)
         {
-            if (bytes.Length == 0)
+            if (bytes == null || bytes.Length == 0)
             {
                 return "";
             }
