@@ -57,6 +57,7 @@ namespace Mtc.Domain.Services
             var tasksToBeCreated = new List<Task>();
             var previousTasks = 0;
             var totalWaves = (int) Math.Floor((documentDeadline - DateTime.UtcNow).TotalDays/30) + 1;
+            totalSubsections *= totalWaves;
             for (var wave = 0; wave < totalWaves; wave++)
             {
                 foreach (var section in sectionList)
@@ -67,8 +68,7 @@ namespace Mtc.Domain.Services
                         {
                             Title = section.Title,
                             Section = subsection,
-                            IsLocked = true,
-                            TaskState = TaskState.ToDo,
+                            TaskState = TaskState.Locked,
                             TaskType = TaskType.Task,
                             AssignTo = author,
                             Deadline = CalculateDeadline(documentDeadline, previousTasks, totalSubsections, wave)

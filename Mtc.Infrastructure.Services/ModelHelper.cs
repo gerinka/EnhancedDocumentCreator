@@ -157,7 +157,6 @@ namespace Mtc.Domain.Services
                 AssignTo = Mapper(task.USER),
                 TaskType = task.TaskType,
                 TaskState = task.TaskState,
-                IsLocked = task.IsLocked==1,
                 Section = Mapper(task.STRUCTURECONTENT.STRUCTUREELEMENT)
             };
         }
@@ -171,7 +170,6 @@ namespace Mtc.Domain.Services
                 AssignTo = task.AssignTo.Id,
                 TaskType = task.TaskType,
                 TaskState = task.TaskState,
-                IsLocked = (sbyte) (task.IsLocked?1:0),
                 Title = task.Title,
                 StrucktureContentId = task.Section.Content.Id,
                 DocumentId = task.Section.Content.DocumentId

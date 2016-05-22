@@ -8,8 +8,8 @@ namespace Mtc.WebClient.Models
 {
     public class TasksBoardViewModel
     {
-        public IEnumerable<Task> ToDoTasks { get; set; }
-        public IEnumerable<Task> InProgressTasks { get; set; }
-        public IEnumerable<Task> DoneTasks { get; set; }
+        public IList<Task> ToDoTasks { get; set; }
+        public IList<Task> InProgressTasks { get; set; }
+        public IList<Task> DoneTasks { get; set; }
     }
 }

@@ -149,7 +149,6 @@
           <Property Name="DocumentId" Type="int" Nullable="false" />
           <Property Name="Order" Type="int" />
           <Property Name="TaskType" Type="int" Nullable="false" />
-          <Property Name="IsLocked" Type="tinyint" Nullable="false" />
           <Property Name="StrucktureContentId" Type="int" />
         </EntityType>
         <EntityType Name="user">
@@ -462,7 +461,6 @@
           <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4b27abaf-0b08-4acc-a205-57fd07d4619d" />
           <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="4d702389-b7fd-4c19-be50-1d220c4349f8" />
           <Property Name="TaskType" Type="MtcModel.TaskType" Nullable="false" ed:ValidateRequired="true" ed:Guid="b558b92a-55cd-4e87-8024-41a70082e338" />
-          <Property Name="IsLocked" Type="SByte" Nullable="false" ed:ValidateRequired="true" ed:Guid="f3391fb0-f404-4680-911a-03543ea8e018" />
           <Property Name="StrucktureContentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="38de7c8e-1f70-47b1-a80f-66dc60cbeb8f" />
           <NavigationProperty Name="DOCUMENT" Relationship="MtcModel.FK_TaskDocument_Id" FromRole="TASKs" ToRole="DOCUMENT" ed:Guid="e6c21741-8705-4793-a5de-61799d8404e5" />
           <NavigationProperty Name="STRUCTURECONTENT" Relationship="MtcModel.FK_TaskStructureContent_Id" FromRole="TASKs" ToRole="STRUCTURECONTENT" ed:Guid="fbb4f80e-d53a-4e9b-b45b-d6bd13e91e0e" />
@@ -491,12 +489,14 @@
           <Member Name="Feature" Value="3" ed:Guid="0bdd93f0-fc7e-4c64-987f-a2cf224fe7a3" />
         </EnumType>
         <EnumType Name="TaskState" ed:Guid="6a2c9dfb-9ac5-4e9d-9967-7b5a43b32438">
-          <Member Name="ToDo" Value="1" ed:Guid="bcf0938a-9212-4ddf-9598-a041ebff2058" />
-          <Member Name="InProgress" Value="2" ed:Guid="5886b1c5-8e0c-4e5d-bbec-5d2c62bf72f4" />
-          <Member Name="Done" Value="3" ed:Guid="74dcf5b3-cdb3-474b-a587-83a3c19163a1" />
-          <Member Name="Resolved" Value="4" ed:Guid="b14b5874-3ec0-46aa-8c2a-424068eace1a" />
-          <Member Name="Closed" Value="5" ed:Guid="c7c22fd9-31d7-4301-b6d9-81d2e13d8ee2" />
-          <Member Name="WontBeDone" Value="6" ed:Guid="83292c9d-d431-4d64-bc84-e909004a273c" />
+          <Member Name="Locked" Value="1" ed:Guid="bcf0938a-9212-4ddf-9598-a041ebff2058" />
+          <Member Name="InProgress" Value="3" ed:Guid="5886b1c5-8e0c-4e5d-bbec-5d2c62bf72f4" />
+          <Member Name="Done" Value="5" ed:Guid="74dcf5b3-cdb3-474b-a587-83a3c19163a1" />
+          <Member Name="Resolved" Value="6" ed:Guid="b14b5874-3ec0-46aa-8c2a-424068eace1a" />
+          <Member Name="Closed" Value="7" ed:Guid="c7c22fd9-31d7-4301-b6d9-81d2e13d8ee2" />
+          <Member Name="WontBeDone" Value="8" ed:Guid="83292c9d-d431-4d64-bc84-e909004a273c" />
+          <Member Name="ToDo" Value="2" ed:Guid="bca459fb-720f-49fb-8248-8dd2bacdd132" />
+          <Member Name="Expired" Value="4" ed:Guid="6d13ebf6-bbf3-4eff-9e86-7e464b1f3903" />
         </EnumType>
         <EnumType Name="ReferenceType" ed:Guid="bf47c9f4-737e-4272-93fa-089c2d0445ee">
           <Member Name="Book" Value="1" ed:Guid="846d7f74-5fff-443f-a0b5-c9a536f7afd8" />
@@ -708,7 +708,6 @@
                 <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="TaskType" ColumnName="TaskType" />
-                <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
                 <ScalarProperty Name="StrucktureContentId" ColumnName="StrucktureContentId" />
                 <ScalarProperty Name="TaskState" ColumnName="TaskState" />
               </MappingFragment>

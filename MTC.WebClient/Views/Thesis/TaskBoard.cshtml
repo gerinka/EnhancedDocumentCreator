@@ -1,6 +1,8 @@
 ﻿@model Mtc.WebClient.Models.TasksBoardViewModel
 @{
     ViewBag.Title = "Дъска със задачи";
+    var maxTasks = Math.Max(Model.InProgressTasks.Count(), Math.Max(Model.DoneTasks.Count(), Model.ToDoTasks.Count()));
+    var maxRows = (int) Math.Ceiling((double)maxTasks / 2);
 }
 <div class="row">
     <div class="col-lg-4">
@@ -8,11 +10,45 @@
     </div>
     <div class="col-lg-4">
         <h3 class="text-center"><span class="label label-warning">Задачи в процес</span></h3>
-</div>
+    </div>
     <div class="col-lg-4">
         <h3 class="text-center"><span class="label label-success">Завършени задачи</span></h3>
     </div>
 </div>
+
+@for (int i = 0; i < maxRows; i++)
+{
+    <div class="row">
+        @if (Model.ToDoTasks.Count() - i*2 > 0)
+        {
+            var task = Model.ToDoTasks[i*2];
+            <div class="col-lg-4">
+                <div class="col-lg-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">@task.Title</div>
+                        <div class="panel-body">@task.Section.Content.Title
+                            <span style="font-size: 1.5em; color: #428bca;" class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+                @if (Model.ToDoTasks.Count()>=(i+1)*2)
+                {
+                    task = Model.ToDoTasks[i*2 + 1];
+                    <div class="col-lg-6">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">@task.Title</div>
+                            <div class="panel-body">
+                                @task.Section.Content.Title
+                                <span style="font-size: 1.5em; color: #428bca;" class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+}
+
 <div class="row">
     <div class="col-lg-4">
         <div class="col-lg-6">
@@ -133,7 +169,7 @@
         </div>
     </div>
 </div>
-
+   
 @section scripts{
     @Scripts.Render("~/bundles/common")
 }

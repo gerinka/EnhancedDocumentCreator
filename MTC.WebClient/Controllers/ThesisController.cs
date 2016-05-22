@@ -54,9 +54,9 @@ namespace Mtc.WebClient.Controllers
             IEnumerable<Task> taskList = _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.Sections).ToList();
             var taskboard = new TasksBoardViewModel
             {
-                DoneTasks = taskList.Where(t=>t.TaskState == TaskState.Done),
-                InProgressTasks = taskList.Where(t=>t.TaskState == TaskState.InProgress),
-                ToDoTasks = taskList.Where(t=>t.TaskState == TaskState.ToDo)
+                DoneTasks = taskList.Where(t=>t.TaskState == TaskState.Done).ToList(),
+                InProgressTasks = taskList.Where(t=>t.TaskState == TaskState.InProgress).ToList(),
+                ToDoTasks = taskList.Where(t=>t.TaskState == TaskState.Locked).ToList()
             };
             return View(taskboard);
         }
@@ -106,9 +106,9 @@ namespace Mtc.WebClient.Controllers
             IEnumerable<Task> taskList = _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.Sections).ToList();
             var taskboard = new TasksBoardViewModel
             {
-                DoneTasks = taskList.Where(t=>t.TaskState == TaskState.Done),
-                InProgressTasks = taskList.Where(t=>t.TaskState == TaskState.InProgress),
-                ToDoTasks = taskList.Where(t=>t.TaskState == TaskState.ToDo)
+                DoneTasks = taskList.Where(t=>t.TaskState == TaskState.Done).ToList(),
+                InProgressTasks = taskList.Where(t => t.TaskState == TaskState.InProgress).ToList(),
+                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked).ToList()
             };
             return View("TaskBoard", taskboard);
         }
