@@ -10,6 +10,7 @@ using Mtc.Domain.Models;
 using Mtc.Domain.Services;
 using Mtc.Domain.Services.Interfaces;
 using Mtc.WebClient.Models;
+using MtcModel;
 
 namespace Mtc.WebClient.Controllers
 {
@@ -18,12 +19,14 @@ namespace Mtc.WebClient.Controllers
         private readonly IDocumentTemplateService _documentTemplateService;
         private readonly IDocumentService _documentService;
         private readonly IPersonService _personService;
+        private readonly ITaskService _taskService;
 
-        public ThesisController(IDocumentTemplateService documentTemplateService, IDocumentService documentService, IPersonService personService)
+        public ThesisController(IDocumentTemplateService documentTemplateService, IDocumentService documentService, IPersonService personService, ITaskService taskService)
         {
             _documentTemplateService = documentTemplateService;
             _documentService = documentService;
             _personService = personService;
+            _taskService = taskService;
         }
 
         public ActionResult Index()
@@ -46,7 +49,14 @@ namespace Mtc.WebClient.Controllers
         public ActionResult TaskBoard()
         {
             Document document = _documentService.GetById(2);
-            return View();
+            IEnumerable<Task> taskList = _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.Sections).ToList();
+            var taskboard = new TasksBoardViewModel()
+            {
+                DoneTasks = taskList.Where(t=>t.TaskState == TaskState.Done),
+                InProgressTasks = taskList.Where(t=>t.TaskState == TaskState.InProgress),
+                ToDoTasks = taskList.Where(t=>t.TaskState == TaskState.ToDo)
+            };
+            return View(taskboard);
         }
         public ActionResult TaskList()
         {

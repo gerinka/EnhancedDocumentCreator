@@ -17,10 +17,12 @@ namespace Mtc.Infrastructure.DataAccess.Interfaces
         TEntity GetById(object id);
 
         TEntity Insert(TEntity entity);
+        IEnumerable<TEntity> BulkInsert(IEnumerable<TEntity> entities);
+ 
         void Delete(object id);
 
         void Delete(TEntity entityToDelete);
 
-       void Update(TEntity entityToUpdate);
+        void Update(TEntity entityToUpdate);
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using Mtc.Domain.Common;
+using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
 using Mtc.Infrastructure.DataAccess.Interfaces;
+using MtcModel;
 using Task = Mtc.Domain.Models.Task;
 
 namespace Mtc.Domain.Services
@@ -48,6 +47,45 @@ namespace Mtc.Domain.Services
         public IEnumerable<Task> GetAll()
         {
             return _taskRepository.Get().Select(ModelHelper.Mapper);
+        }
+
+        public IEnumerable<Task> GenerateTasks(int documentId, DateTime documentDeadline, Person author, IEnumerable<Section> sections)
+        {
+
+            var sectionList = sections.ToList();
+            var totalSubsections = sectionList.SelectMany(section => section.Subsections).Count();
+            var tasksToBeCreated = new List<Task>();
+            var previousTasks = 0;
+            var totalWaves = (documentDeadline - DateTime.UtcNow).TotalDays%30;
+            for (var wave = 0; wave < totalWaves; wave++)
+            {
+                foreach (var section in sectionList)
+                {
+                    foreach (var subsection in section.Subsections)
+                    {
+                        tasksToBeCreated.Add(new Task
+                        {
+                            Title = section.Title,
+                            Section = subsection,
+                            IsLocked = true,
+                            TaskState = TaskState.ToDo,
+                            TaskType = TaskType.Task,
+                            AssignTo = author,
+                            Deadline = CalculateDeadline(documentDeadline, previousTasks, totalSubsections, wave)
+                        });
+                        previousTasks++;
+                    }
+                }
+            }
+
+            //return _taskRepository.BulkInsert(tasksToBeCreated.Select(ModelHelper.Mapper)).Select(ModelHelper.Mapper);
+            return tasksToBeCreated;
+        }
+
+        private DateTime CalculateDeadline(DateTime documentDeadline, int previousTasks, int totalSubsections, int wave)
+        {
+            var timePerTask = (documentDeadline - DateTime.UtcNow).TotalDays/totalSubsections;
+            return DateTime.UtcNow.AddDays((previousTasks + 1)* timePerTask);
         }
     }
 }

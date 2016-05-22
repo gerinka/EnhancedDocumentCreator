@@ -53,6 +53,11 @@ namespace Mtc.Infrastructure.DataAccess.Repositories
             return entity;
         }
 
+        public IEnumerable<TEntity> BulkInsert(IEnumerable<TEntity> entities)
+        {
+            return entities.Select(Insert);
+        }
+
         public virtual void Delete(object id)
         {
             TEntity entityToDelete = DbSet.Find(id);
