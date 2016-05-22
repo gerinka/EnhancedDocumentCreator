@@ -27,8 +27,8 @@
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
                         <div class="panel-heading">@task.Title</div>
-                        <div class="panel-body" onclick="alert(@task.Id)">
-                            @task.Section.Order) @task.Section.Content.Title
+                        <div class="panel-body" onclick="NavigateToWritingModule(@task.Id)">
+                            @task.Order) @task.Section.Content.Title
                             <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                         </div>
                     </div>
@@ -39,8 +39,8 @@
                     <div class="col-lg-6">
                         <div class="panel panel-info">
                             <div class="panel-heading">@task.Title</div>
-                            <div class="panel-body" onclick="alert(@task.Id)">
-                                @task.Section.Order) @task.Section.Content.Title
+                            <div class="panel-body" onclick="NavigateToWritingModule(@task.Id)">
+                                @task.Order) @task.Section.Content.Title
                                 <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                             </div>
                         </div>
@@ -66,8 +66,8 @@
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
                         <div class="panel-heading">@task.Title</div>
-                        <div class="panel-body" onclick="alert(@task.Id)">
-                            @task.Section.Order) @task.Section.Content.Title
+                        <div class="panel-body" onclick="NavigateToWritingModule(@task.Id)">
+                            @task.Order) @task.Section.Content.Title
                             <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                         </div>
                     </div>
@@ -78,8 +78,8 @@
                     <div class="col-lg-6">
                         <div class="panel panel-info">
                             <div class="panel-heading">@task.Title</div>
-                            <div class="panel-body" onclick="alert(@task.Id)">
-                                @task.Section.Order) @task.Section.Content.Title
+                            <div class="panel-body" onclick="NavigateToWritingModule(@task.Id)">
+                                @task.Order) @task.Section.Content.Title
                                 <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                             </div>
                         </div>
@@ -105,8 +105,8 @@
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
                         <div class="panel-heading">@task.Title</div>
-                        <div class="panel-body" onclick="alert(@task.Id)">
-                            @task.Section.Content.Title
+                        <div class="panel-body" onclick="NavigateToWritingModule(@task.Id)">
+                            @task.Order) @task.Section.Content.Title
                             <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                     <div class="col-lg-6">
                         <div class="panel panel-info">
                             <div class="panel-heading">@task.Title</div>
-                            <div class="panel-body" onclick="alert(@task.Id)">
+                            <div class="panel-body" onclick="NavigateToWritingModule(@task.Id)">
                                 @task.Order) @task.Section.Content.Title
                                 <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                             </div>
@@ -142,6 +142,8 @@
 
 @section scripts{
     <script>
-        
+    function NavigateToWritingModule(taskId) {
+        window.location.href = '@Url.Action("WritingModule", "Document")?taskId=' + taskId;
+    }
     </script>
 }
