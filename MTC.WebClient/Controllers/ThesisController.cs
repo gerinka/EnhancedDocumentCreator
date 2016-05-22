@@ -102,8 +102,15 @@ namespace Mtc.WebClient.Controllers
             {
                 subsection.Content = new SectionContent{Title = subsection.Title};
             }
-            _documentService.Create(document);
-            return View("TaskBoard");
+            document = _documentService.Create(document);
+            IEnumerable<Task> taskList = _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.Sections).ToList();
+            var taskboard = new TasksBoardViewModel
+            {
+                DoneTasks = taskList.Where(t=>t.TaskState == TaskState.Done),
+                InProgressTasks = taskList.Where(t=>t.TaskState == TaskState.InProgress),
+                ToDoTasks = taskList.Where(t=>t.TaskState == TaskState.ToDo)
+            };
+            return View("TaskBoard", taskboard);
         }
     }
 }
