@@ -6,7 +6,7 @@ namespace Mtc.WebClient.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("TaskBoard", "Document", new { documentId = 2 });
+            return RedirectToAction("WritingModule", "Document", new { taskId = 1 });
         }
 
         public ActionResult About()

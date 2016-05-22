@@ -21,7 +21,7 @@ namespace Mtc.Domain.Services
             _documentTemplateRepository = documentTemplateRepository;
         }
 
-        public DocumentTemplate GetById(long id)
+        public DocumentTemplate GetById(int id)
         {
             return ModelHelper.Mapper(_documentTemplateRepository.GetById(id));
         }

@@ -15,7 +15,7 @@ namespace Mtc.Domain.Services
             _userRepository = userRepository;
         }
 
-        public Person GetById(long id)
+        public Person GetById(int id)
         {
             return ModelHelper.Mapper(_userRepository.GetById(id));
         }

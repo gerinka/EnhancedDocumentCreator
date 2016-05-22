@@ -59,9 +59,19 @@ namespace Mtc.WebClient.Controllers
             return View();
         }
 
-        public ActionResult WritingModule()
+        public ActionResult WritingModule(int taskId)
         {
-            return View();
+           Task currentTask = _taskService.GetById(taskId);
+            var writingContent = new WriteContentViewModel
+            {
+                Title = currentTask.Section.Content.Title,
+                MainText = currentTask.Section.Content.MainText,
+                Description = currentTask.Section.Description,
+                TaskTitle = currentTask.Title,
+                SectionTitle = currentTask.Section.Title,
+                CurrentTaskId = currentTask.Id
+            };
+            return View(writingContent);
         }
 
         //
@@ -105,6 +115,16 @@ namespace Mtc.WebClient.Controllers
                 ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked).ToList()
             };
             return View("TaskBoard", taskboard);
+        }
+
+        //
+        // POST: /Document/CreateDocument
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult WriteContent(WriteContentViewModel model)
+        {
+          Task currentTask = _taskService.GetById(model.CurrentTaskId);
+          return null;
         }
     }
 }

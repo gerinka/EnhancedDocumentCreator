@@ -117,7 +117,7 @@
           <Property Name="Content" Type="longblob" />
           <Property Name="DocumentId" Type="int" Nullable="false" />
           <Property Name="Order" Type="int" Nullable="false" />
-          <Property Name="CurrentProgress" Type="int" />
+          <Property Name="CurrentProgress" Type="int" Nullable="false" DefaultValue="0" />
         </EntityType>
         <EntityType Name="structureelement">
           <Key>
@@ -430,7 +430,7 @@
           <Property Name="Content" Type="Binary" ed:ValidateRequired="false" ed:Guid="2eff1d0a-f7ad-478a-a06c-651aca21c580" />
           <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4ac3d507-54c5-471a-a051-2b61da667b3f" />
           <Property Name="Order" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="f88ed712-be7d-4c4b-9c07-1426d0205826" />
-          <Property Name="CurrentProgress" Type="Int32" ed:ValidateRequired="false" ed:Guid="a9308848-d63d-49f7-b5ed-14fa3d490969" />
+          <Property Name="CurrentProgress" Type="Int32" Nullable="false" DefaultValue="0" ed:ValidateRequired="true" ed:Guid="a9308848-d63d-49f7-b5ed-14fa3d490969" />
           <NavigationProperty Name="DOCUMENT" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="STRUCTURECONTENTs" ToRole="DOCUMENT" ed:Guid="21f8c64b-3bcf-4f21-ab6e-ce2e193a6266" />
           <NavigationProperty Name="STRUCTUREELEMENT" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="STRUCTURECONTENTs" ToRole="STRUCTUREELEMENT" ed:Guid="c6b03497-458d-4862-a536-76226a71f1a2" />
           <NavigationProperty Name="TASKs" Relationship="MtcModel.FK_TaskStructureContent_Id" FromRole="STRUCTURECONTENT" ToRole="TASKs" ed:Guid="39edb0e0-103d-4b35-bd10-32f643a21a5f" />

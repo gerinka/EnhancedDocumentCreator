@@ -19,7 +19,7 @@ namespace Mtc.Domain.Services
             _taskRepository = taskRepository;
         }
 
-        public Task GetById(long id)
+        public Task GetById(int id)
         {
             return ModelHelper.Mapper(_taskRepository.GetById(id));
         }

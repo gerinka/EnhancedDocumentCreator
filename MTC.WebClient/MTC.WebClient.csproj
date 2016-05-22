@@ -195,6 +195,7 @@
     <Compile Include="Models\InitDocumentViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TasksBoardViewModel.cs" />
+    <Compile Include="Models\WriteContentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

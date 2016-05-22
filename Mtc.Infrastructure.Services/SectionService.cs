@@ -7,13 +7,23 @@ using System.Threading.Tasks;
 using Mtc.Domain.Common;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
+using Mtc.Infrastructure.DataAccess.Interfaces;
 using MtcModel;
 
 namespace Mtc.Domain.Services
 {
     public class SectionService : ISectionService
     {
-        public Section GetById(long id)
+        private readonly IStructureElementRepository _structureElementRepository;
+        private readonly IStructureContentRepository _structureContentRepository;
+
+        public SectionService(IStructureElementRepository structureElementRepository, IStructureContentRepository structureContentRepository)
+        {
+            _structureElementRepository = structureElementRepository;
+            _structureContentRepository = structureContentRepository;
+        }
+
+        public Section GetById(int id)
         {
             throw new NotImplementedException();
         }

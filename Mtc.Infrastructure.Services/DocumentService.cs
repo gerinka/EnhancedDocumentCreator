@@ -23,7 +23,7 @@ namespace Mtc.Domain.Services
             _structureContentRepository = structureContentRepository;
         }
 
-        public Document GetById(long id)
+        public Document GetById(int id)
         {
            return ModelHelper.Mapper(_documentRepository.GetById(id));
         }

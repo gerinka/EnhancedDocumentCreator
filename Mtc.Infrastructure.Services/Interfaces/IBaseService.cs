@@ -10,7 +10,7 @@ namespace Mtc.Domain.Services.Interfaces
 {
     public interface IBaseService<T> where T: class
     {
-        T GetById(long id);
+        T GetById(int id);
         T GetByName(string name);
         T Create(T entity);
         T Update(T entity);
