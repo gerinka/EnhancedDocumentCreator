@@ -49,6 +49,11 @@ namespace Mtc.Domain.Services
             return _taskRepository.Get().Select(ModelHelper.Mapper);
         }
 
+        public IEnumerable<Task> GetTasksByDocumentId(int documentId)
+        {
+            return _taskRepository.Get(t => t.DocumentId == documentId).Select(ModelHelper.Mapper);
+        }
+
         public IEnumerable<Task> GenerateTasks(int documentId, DateTime documentDeadline, Person author, IEnumerable<Section> sections)
         {
 
@@ -78,10 +83,8 @@ namespace Mtc.Domain.Services
                 }
             }
 
-            //return _taskRepository.BulkInsert(tasksToBeCreated.Select(ModelHelper.Mapper)).Select(ModelHelper.Mapper);
-            return tasksToBeCreated;
+            return _taskRepository.BulkInsert(tasksToBeCreated.Select(ModelHelper.Mapper)).Select(ModelHelper.Mapper);
         }
-
         private DateTime CalculateDeadline(DateTime documentDeadline, int previousTasks, int totalSubsections, int wave)
         {
             var timePerTask = (documentDeadline - DateTime.UtcNow).TotalDays/totalSubsections;

@@ -44,8 +44,8 @@ namespace Mtc.WebClient.Controllers
         //Document/TaskBoard/DocumentId
         public ActionResult TaskBoard(int documentId)
         {
-            Document document = _documentService.GetById(documentId);
-            IEnumerable<Task> taskList = _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.Sections).ToList();
+
+            IEnumerable<Task> taskList = _taskService.GetTasksByDocumentId(documentId).ToList();
             var taskboard = new TasksBoardViewModel
             {
                 DoneTasks = taskList.Where(t=>t.TaskState == TaskState.Done).ToList(),
