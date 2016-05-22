@@ -32,7 +32,7 @@ namespace Mtc.Domain.Services
 
         public Task Create(Task entity)
         {
-            throw new NotImplementedException();
+            return ModelHelper.Mapper(_taskRepository.Insert(ModelHelper.Mapper(entity)));
         }
 
         public Task Update(Task entity)
@@ -47,7 +47,7 @@ namespace Mtc.Domain.Services
 
         public IEnumerable<Task> GetAll()
         {
-            throw new NotImplementedException();
+            return _taskRepository.Get().Select(ModelHelper.Mapper);
         }
     }
 }
