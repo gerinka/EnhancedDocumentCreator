@@ -10,14 +10,13 @@
           <div class="form-group">
               <label for="subtitle" class="col-lg-2 label-panel control-label">Подсекция</label>
               <div class="col-lg-9">
-                  <input type="text" class="form-control" id="subtitle" placeholder="@Model.SectionTitle" value="@Model.Title" />
                   @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = @Model.SectionTitle } })
               </div>
           </div>
           <div class="form-group">
               <label for="maintext" class="col-lg-2 label-panel control-label">Основен текст</label>
               <div class="col-lg-9">
-                  <textarea class="form-control" rows="20" id="maintext">@Model.MainText</textarea>
+                  @Html.EditorFor(model => model.MainText, new { htmlAttributes = new {rows=20, @class = "form-control", @placeholder = @Model.MainText } })
               </div>
           </div>
           <div class="form-group">
