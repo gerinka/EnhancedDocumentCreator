@@ -24,10 +24,10 @@
             var task = Model.ToDoTasks[i*2];
             <div class="col-lg-4">
                 <div class="col-lg-6">
-                    <div class="panel panel-info">
+                    <div class="panel @task.TaskState.ToString().ToLower()">
                         <div class="panel-heading">@task.Title</div>
                         <div class="panel-body">@task.Section.Content.Title
-                            <span style="font-size: 1.5em; color: #428bca;" class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                            <span style="font-size: 1.5em; color: #428bca;" class="@task.TaskState.ToString().ToLower()" aria-hidden="true"></span>
                         </div>
                     </div>
                 </div>
@@ -171,5 +171,5 @@
 </div>
    
 @section scripts{
-    @Scripts.Render("~/bundles/common")
+    
 }

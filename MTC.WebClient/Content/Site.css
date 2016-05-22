@@ -48,3 +48,10 @@ input[type="radio"].styled:checked label:after,
     font-size: 9px !important;
 }
 
+/*Task styles*/
+.locked-panel-theme {
+    
+}
+.locked-task-icon {
+    
+}

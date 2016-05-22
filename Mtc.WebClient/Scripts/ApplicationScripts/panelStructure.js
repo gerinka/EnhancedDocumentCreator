@@ -84,3 +84,22 @@
         }
     });
 });
+
+function PopulateSectionList() {
+    var templateId = $('#templateDropdown').val();
+    $('[data-template]').addClass("notselected");
+    var sections = $(".notselected");
+    var index = 2;
+    for (var i = 0; i < sections.length; i++) {
+        if (parseInt(sections[i].dataset.template) == templateId) {
+            if ($(".panel-heading").find(sections[i]).length > 0) {
+                $(".panel-heading").find(sections[i]).removeClass("notselected");
+                index++;
+            } else {
+                $(".panel-body").find(sections[i]).removeClass("notselected");
+            }
+        }
+    }
+    $('#summary')[0].dataset.section = index;
+    $('#summaryHeading')[0].dataset.section = index;
+}

@@ -29,7 +29,7 @@ namespace Mtc.WebClient
                       "~/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js",
                       "~/bower_components/bootstrap-select/dist/js/i18n/defaults-bg_BG.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/common").Include(
+            bundles.Add(new ScriptBundle("~/bundles/topicCreator").Include(
                      "~/Scripts/ApplicationScripts/*.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
