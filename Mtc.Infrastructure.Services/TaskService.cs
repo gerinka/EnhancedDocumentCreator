@@ -56,7 +56,7 @@ namespace Mtc.Domain.Services
             var totalSubsections = sectionList.SelectMany(section => section.Subsections).Count();
             var tasksToBeCreated = new List<Task>();
             var previousTasks = 0;
-            var totalWaves = (documentDeadline - DateTime.UtcNow).TotalDays%30;
+            var totalWaves = (int) Math.Floor((documentDeadline - DateTime.UtcNow).TotalDays/30) + 1;
             for (var wave = 0; wave < totalWaves; wave++)
             {
                 foreach (var section in sectionList)

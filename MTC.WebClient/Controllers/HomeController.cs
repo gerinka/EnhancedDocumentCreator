@@ -10,7 +10,7 @@ namespace Mtc.WebClient.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("TaskBoard", "Thesis");
+            return RedirectToAction("TaskBoard", "Thesis", new { documentId = 2 });
         }
 
         public ActionResult About()
