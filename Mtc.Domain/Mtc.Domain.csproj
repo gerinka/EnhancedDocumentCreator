@@ -55,7 +55,6 @@
     </Compile>
     <Compile Include="Interfaces\IDocumentGenerator.cs" />
     <Compile Include="Models\Document.cs" />
-    <Compile Include="Models\DocumentState.cs" />
     <Compile Include="Models\DocumentTemplate.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Level.cs" />
@@ -63,9 +62,7 @@
     <Compile Include="Models\Section.cs" />
     <Compile Include="Models\SectionContent.cs" />
     <Compile Include="Models\Task.cs" />
-    <Compile Include="Models\TaskState.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\TaskType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

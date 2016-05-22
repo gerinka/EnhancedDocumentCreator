@@ -6,15 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Mtc.Domain.Common;
 using Mtc.Domain.Services.Interfaces;
+using Mtc.Infrastructure.DataAccess.Interfaces;
 using Task = Mtc.Domain.Models.Task;
 
 namespace Mtc.Domain.Services
 {
     public class TaskService : ITaskService
     {
+        private readonly ITaskRepository _taskRepository;
+
+        public TaskService(ITaskRepository taskRepository)
+        {
+            _taskRepository = taskRepository;
+        }
+
         public Task GetById(long id)
         {
-            throw new NotImplementedException();
+            return ModelHelper.Mapper(_taskRepository.GetById(id));
         }
 
         public Task GetByName(string name)

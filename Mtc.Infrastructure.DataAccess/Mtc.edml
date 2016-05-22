@@ -75,9 +75,10 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="Deadline" Type="datetime" Nullable="false" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="100" Collation="utf8_general_ci" />
-          <Property Name="CurrentProgress" Type="int" />
+          <Property Name="CurrentProgress" Type="int" Nullable="false" DefaultValue="0" />
           <Property Name="MentorId" Type="int" />
           <Property Name="DocumentTemplateId" Type="int" Nullable="false" />
+          <Property Name="DocumentState" Type="int" Nullable="false" DefaultValue="1" />
         </EntityType>
         <EntityType Name="documentstructurerelation">
           <Key>
@@ -387,9 +388,10 @@
           <Property Name="UserId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="fdf13aec-93a4-410e-8f1f-f67ca15a3eba" />
           <Property Name="Deadline" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="412ac488-9f61-43ac-ad16-ccac039795db" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="100" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="b33f8b9e-06ea-4885-aab4-aeb9248d0cc5" />
-          <Property Name="CurrentProgress" Type="Int32" ed:ValidateRequired="false" ed:Guid="b7f75638-d077-43cc-b66b-3d52ca9795ac" />
+          <Property Name="CurrentProgress" Type="Int32" Nullable="false" DefaultValue="0" ed:ValidateRequired="true" ed:Guid="b7f75638-d077-43cc-b66b-3d52ca9795ac" />
           <Property Name="MentorId" Type="Int32" ed:ValidateRequired="false" ed:Guid="3f63c8c9-ab9c-4dc3-bd4e-76cdcd1b67aa" />
           <Property Name="DocumentTemplateId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="386824bc-7a7c-4e2e-8f3f-56f4803aa492" />
+          <Property Name="DocumentState" Type="MtcModel.DocumentState" Nullable="false" ed:ValidateRequired="true" ed:Guid="d0d02387-983c-400c-bbd4-36481b4cb8f9" />
           <NavigationProperty Name="DOCUMENTTEMPLATE" Relationship="MtcModel.FK_DocumentDocumentTemplate_ID" FromRole="DOCUMENTs" ToRole="DOCUMENTTEMPLATE" ed:Guid="09db9a69-3a1b-4170-943b-6c470a4e9571" />
           <NavigationProperty Name="USER_MentorId" Relationship="MtcModel.FK_DocumentMentor_ID" FromRole="DOCUMENTs_MentorId" ToRole="USER_MentorId" ed:Guid="8deb09ed-a895-45db-97fe-d9cb89c5deaa" />
           <NavigationProperty Name="USER_UserId" Relationship="MtcModel.FK_DocumentUser_ID" FromRole="DOCUMENTs_UserId" ToRole="USER_UserId" ed:Guid="f2c598a9-a4c4-49a6-809e-f1ffa34fcc36" />
@@ -455,7 +457,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="418d4098-bdf8-4570-9fed-22838542d417" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="6526bf66-4f94-41fb-b9a9-99ca8b829d94" />
           <Property Name="AssignTo" Type="Int32" ed:ValidateRequired="false" ed:Guid="a710e5c8-e36b-4d1a-bcfe-d0c3d5c87547" />
-          <Property Name="TaskState" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="c4892671-ba20-415b-aa35-0e631c0ff32c" />
+          <Property Name="TaskState" Type="MtcModel.TaskState" Nullable="false" ed:ValidateRequired="true" ed:Guid="c4892671-ba20-415b-aa35-0e631c0ff32c" />
           <Property Name="Deadline" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="8dbc50f6-5e45-4116-ba6d-da5f14bc9917" />
           <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4b27abaf-0b08-4acc-a205-57fd07d4619d" />
           <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="4d702389-b7fd-4c19-be50-1d220c4349f8" />
@@ -507,6 +509,13 @@
           <Member Name="Section" Value="3" ed:Guid="d10cc0f4-fb7b-46d1-b84c-228d4167e27f" />
           <Member Name="Subsection" Value="4" ed:Guid="e9786e41-bbaa-4909-a628-f16adc5867a0" />
           <Member Name="Subsubsection" Value="5" ed:Guid="666da74f-71a6-40c1-a1c9-6e469a688636" />
+        </EnumType>
+        <EnumType Name="DocumentState" ed:Guid="f17aff83-4af9-4c3c-8acd-cfad7d5a2b5f">
+          <Member Name="Waiting" Value="1" ed:Guid="67cb93a1-7464-4be5-83e1-82ac602feda2" />
+          <Member Name="Started" Value="2" ed:Guid="e4ab968e-c154-482c-b91f-2d11bc932f46" />
+          <Member Name="InProgress" Value="3" ed:Guid="1444f34a-f72f-4ee4-9233-f54dca818525" />
+          <Member Name="Finished" Value="4" ed:Guid="ad797bfd-18d6-477f-96f1-db43d70a7331" />
+          <Member Name="Rejected" Value="5" ed:Guid="2aefa7b9-4a6b-4032-8f58-ce78c7c4c3b7" />
         </EnumType>
         <Association Name="FK_DocumentDocumentTemplate_ID" ed:Guid="3f92ef28-1a14-4222-bdfd-8a4961a055be">
           <End Role="DOCUMENTTEMPLATE" Type="MtcModel.DOCUMENTTEMPLATE" Multiplicity="1" />
@@ -640,6 +649,7 @@
                 <ScalarProperty Name="CurrentProgress" ColumnName="CurrentProgress" />
                 <ScalarProperty Name="MentorId" ColumnName="MentorId" />
                 <ScalarProperty Name="DocumentTemplateId" ColumnName="DocumentTemplateId" />
+                <ScalarProperty Name="DocumentState" ColumnName="DocumentState" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

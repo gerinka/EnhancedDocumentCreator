@@ -15,12 +15,10 @@ namespace Mtc.Domain.Services
     public class DocumentTemplateService : IDocumentTemplateService
     {
         private readonly IDocumentTemplateRepository _documentTemplateRepository;
-        private readonly ISectionService _sectionService;
 
-        public DocumentTemplateService(IDocumentTemplateRepository documentTemplateRepository, ISectionService sectionService)
+        public DocumentTemplateService(IDocumentTemplateRepository documentTemplateRepository)
         {
             _documentTemplateRepository = documentTemplateRepository;
-            _sectionService = sectionService;
         }
 
         public DocumentTemplate GetById(long id)

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MtcModel;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Mtc.Domain.Models
 {
@@ -12,8 +12,10 @@ namespace Mtc.Domain.Models
         public ICollection<Section> Sections { get; set; }
         public ICollection<Task> Tasks { get; set; }
         public DateTime Deadline { get; set; }
-        public DocumentState CurrentProgress { get; set; }
+        public DocumentState DocumentState { get; set; }
         public DocumentTemplate Template { get; set; }
         public Person Mentor { get; set; }
+
+        public int CurrentProgress { get; set; }
     }
 }

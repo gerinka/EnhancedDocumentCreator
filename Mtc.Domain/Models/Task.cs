@@ -1,4 +1,5 @@
 ﻿using System;
+using MtcModel;
 
 namespace Mtc.Domain.Models
 {

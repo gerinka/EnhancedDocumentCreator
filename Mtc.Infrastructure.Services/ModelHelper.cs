@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Mtc.Domain.Models;
 using MtcModel;
+using Task = Mtc.Domain.Models.Task;
 
 namespace Mtc.Domain.Services
 {
@@ -80,23 +81,11 @@ namespace Mtc.Domain.Services
                 Deadline = document.Deadline,
                 DocumentTemplateId = document.Template.Id,
                 UserId = document.Author.Id,
-                STRUCTURECONTENTs = ConvertSectionsToSetOfContent(document.Sections.ToList())
+                STRUCTURECONTENTs = ConvertSectionsToSetOfContent(document.Sections.ToList()),
+                CurrentProgress = document.CurrentProgress,
+                DocumentState = document.DocumentState,
+                TASKs = document.Tasks.Select(Mapper).ToList()
             };
-        }
-
-        private static IList<STRUCTURECONTENT> ConvertSectionsToSetOfContent(IEnumerable<Section> sections)
-        {
-            IList<STRUCTURECONTENT> structurecontents = new List<STRUCTURECONTENT>();
-            foreach (var section in sections)
-            {
-                structurecontents.Add(Mapper(section.Content, section));
-                foreach (var subsection in section.Subsections)
-                {
-                    structurecontents.Add(Mapper(subsection.Content, subsection));
-                }
-            }
-
-            return structurecontents;
         }
 
         public static Document Mapper(DOCUMENT document)
@@ -107,7 +96,11 @@ namespace Mtc.Domain.Services
                 Title = document.Title,
                 Deadline = document.Deadline,
                 Template = Mapper(document.DOCUMENTTEMPLATE),
-                Sections = ConvertSetOfContentToSections(document.STRUCTURECONTENTs)
+                Sections = ConvertSetOfContentToSections(document.STRUCTURECONTENTs),
+                Author = Mapper(document.USER_UserId),
+                DocumentState = document.DocumentState,
+                CurrentProgress = document.CurrentProgress,
+                Tasks = document.TASKs.Select(Mapper).ToList()
             };
         }
 
@@ -154,7 +147,38 @@ namespace Mtc.Domain.Services
             };
         }
 
-        public static byte[] GetBytes(string str)
+        public static Task Mapper(TASK task)
+        {
+            return new Task
+            {
+                Title = task.Title,
+                Id = task.Id,
+                Deadline = task.Deadline,
+                AssignTo = Mapper(task.USER),
+                TaskType = task.TaskType,
+                TaskState = task.TaskState,
+                IsLocked = task.IsLocked==1,
+                Section = Mapper(task.STRUCTURECONTENT.STRUCTUREELEMENT)
+            };
+        }
+
+        public static TASK Mapper(Task task)
+        {
+            return new TASK
+            {
+                Id = task.Id,
+                Deadline = task.Deadline,
+                AssignTo = task.AssignTo.Id,
+                TaskType = task.TaskType,
+                TaskState = task.TaskState,
+                IsLocked = (sbyte) (task.IsLocked?1:0),
+                Title = task.Title,
+                StrucktureContentId = task.Section.Content.Id,
+                DocumentId = task.Section.Content.DocumentId
+            };
+        }
+
+        private static byte[] GetBytes(string str)
         {
             if (string.IsNullOrEmpty(str))
             {
@@ -165,7 +189,7 @@ namespace Mtc.Domain.Services
             return bytes;
         }
 
-        public static string GetString(byte[] bytes)
+        private static string GetString(byte[] bytes)
         {
             if (bytes == null || bytes.Length == 0)
             {
@@ -174,6 +198,21 @@ namespace Mtc.Domain.Services
             var chars = new char[bytes.Length / sizeof(char)];
             Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
             return new string(chars);
+        }
+
+        private static IList<STRUCTURECONTENT> ConvertSectionsToSetOfContent(IEnumerable<Section> sections)
+        {
+            IList<STRUCTURECONTENT> structurecontents = new List<STRUCTURECONTENT>();
+            foreach (var section in sections)
+            {
+                structurecontents.Add(Mapper(section.Content, section));
+                foreach (var subsection in section.Subsections)
+                {
+                    structurecontents.Add(Mapper(subsection.Content, subsection));
+                }
+            }
+
+            return structurecontents;
         }
     }
 }

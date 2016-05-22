@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GeneratedEntities\Mtc.DOCUMENT.cs" />
+    <Compile Include="GeneratedEntities\Mtc.DocumentState.cs" />
     <Compile Include="GeneratedEntities\Mtc.DOCUMENTTEMPLATE.cs" />
     <Compile Include="GeneratedEntities\Mtc.REFERENCE.cs" />
     <Compile Include="GeneratedEntities\Mtc.ReferenceType.cs" />
