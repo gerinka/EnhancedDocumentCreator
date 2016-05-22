@@ -157,6 +157,7 @@ namespace Mtc.Domain.Services
                 AssignTo = Mapper(task.USER),
                 TaskType = task.TaskType,
                 TaskState = task.TaskState,
+                Order = task.Order,
                 Section = Mapper(task.STRUCTURECONTENT.STRUCTUREELEMENT)
             };
         }
@@ -172,7 +173,8 @@ namespace Mtc.Domain.Services
                 TaskState = task.TaskState,
                 Title = task.Title,
                 StrucktureContentId = task.Section.Content.Id,
-                DocumentId = task.Section.Content.DocumentId
+                DocumentId = task.Section.Content.DocumentId,
+                Order = task.Order
             };
         }
 

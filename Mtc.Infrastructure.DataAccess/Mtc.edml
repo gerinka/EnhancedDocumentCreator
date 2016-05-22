@@ -147,7 +147,7 @@
           <Property Name="TaskState" Type="int" Nullable="false" />
           <Property Name="Deadline" Type="datetime" Nullable="false" />
           <Property Name="DocumentId" Type="int" Nullable="false" />
-          <Property Name="Order" Type="int" />
+          <Property Name="Order" Type="int" Nullable="false" DefaultValue="1" />
           <Property Name="TaskType" Type="int" Nullable="false" />
           <Property Name="StrucktureContentId" Type="int" />
         </EntityType>
@@ -459,7 +459,7 @@
           <Property Name="TaskState" Type="MtcModel.TaskState" Nullable="false" ed:ValidateRequired="true" ed:Guid="c4892671-ba20-415b-aa35-0e631c0ff32c" />
           <Property Name="Deadline" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="8dbc50f6-5e45-4116-ba6d-da5f14bc9917" />
           <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4b27abaf-0b08-4acc-a205-57fd07d4619d" />
-          <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="4d702389-b7fd-4c19-be50-1d220c4349f8" />
+          <Property Name="Order" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="4d702389-b7fd-4c19-be50-1d220c4349f8" />
           <Property Name="TaskType" Type="MtcModel.TaskType" Nullable="false" ed:ValidateRequired="true" ed:Guid="b558b92a-55cd-4e87-8024-41a70082e338" />
           <Property Name="StrucktureContentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="38de7c8e-1f70-47b1-a80f-66dc60cbeb8f" />
           <NavigationProperty Name="DOCUMENT" Relationship="MtcModel.FK_TaskDocument_Id" FromRole="TASKs" ToRole="DOCUMENT" ed:Guid="e6c21741-8705-4793-a5de-61799d8404e5" />

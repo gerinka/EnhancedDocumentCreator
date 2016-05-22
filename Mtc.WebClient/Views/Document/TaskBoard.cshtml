@@ -27,9 +27,9 @@
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
                         <div class="panel-heading">@task.Title</div>
-                        <div class="panel-body">
-                            @task.Section.Content.Title
-                            <span style="color: #428bca; font-size: 1.5em;" class="glyphicon @task.TaskState.ToString().ToLower()-icon" aria-hidden="true"></span>
+                        <div class="panel-body" onclick="alert(@task.Id)">
+                            @task.Section.Order) @task.Section.Content.Title
+                            <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                         </div>
                     </div>
                 </div>
@@ -39,9 +39,9 @@
                     <div class="col-lg-6">
                         <div class="panel panel-info">
                             <div class="panel-heading">@task.Title</div>
-                            <div class="panel-body">
-                                @task.Section.Content.Title
-                                <span style="color: #428bca; font-size: 1.5em;" class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                            <div class="panel-body" onclick="alert(@task.Id)">
+                                @task.Section.Order) @task.Section.Content.Title
+                                <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                             </div>
                         </div>
                     </div>
@@ -66,9 +66,9 @@
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
                         <div class="panel-heading">@task.Title</div>
-                        <div class="panel-body">
-                            @task.Section.Content.Title
-                            <span style="color: #428bca; font-size: 1.5em;" class="glyphicon @task.TaskState.ToString().ToLower()-icon" aria-hidden="true"></span>
+                        <div class="panel-body" onclick="alert(@task.Id)">
+                            @task.Section.Order) @task.Section.Content.Title
+                            <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                         </div>
                     </div>
                 </div>
@@ -78,9 +78,9 @@
                     <div class="col-lg-6">
                         <div class="panel panel-info">
                             <div class="panel-heading">@task.Title</div>
-                            <div class="panel-body">
-                                @task.Section.Content.Title
-                                <span style="color: #428bca; font-size: 1.5em;" class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                            <div class="panel-body" onclick="alert(@task.Id)">
+                                @task.Section.Order) @task.Section.Content.Title
+                                <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                             </div>
                         </div>
                     </div>
@@ -105,9 +105,9 @@
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
                         <div class="panel-heading">@task.Title</div>
-                        <div class="panel-body">
+                        <div class="panel-body" onclick="alert(@task.Id)">
                             @task.Section.Content.Title
-                            <span style="color: #428bca; font-size: 1.5em;" class="glyphicon @task.TaskState.ToString().ToLower()-icon" aria-hidden="true"></span>
+                            <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                         </div>
                     </div>
                 </div>
@@ -117,9 +117,9 @@
                     <div class="col-lg-6">
                         <div class="panel panel-info">
                             <div class="panel-heading">@task.Title</div>
-                            <div class="panel-body">
-                                @task.Section.Content.Title
-                                <span style="color: #428bca; font-size: 1.5em;" class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                            <div class="panel-body" onclick="alert(@task.Id)">
+                                @task.Order) @task.Section.Content.Title
+                                <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                             </div>
                         </div>
                     </div>
@@ -141,5 +141,7 @@
 }
 
 @section scripts{
-
+    <script>
+        
+    </script>
 }

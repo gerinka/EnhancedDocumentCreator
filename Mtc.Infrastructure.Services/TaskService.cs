@@ -63,11 +63,12 @@ namespace Mtc.Domain.Services
             var previousTasks = 0;
             var totalWaves = (int) Math.Floor((documentDeadline - DateTime.UtcNow).TotalDays/30) + 1;
             totalSubsections *= totalWaves;
+            var order = 1;
             for (var wave = 0; wave < totalWaves; wave++)
             {
                 foreach (var section in sectionList)
                 {
-                    foreach (var subsection in section.Subsections)
+                    foreach (var subsection in section.Subsections.OrderBy(ss=>ss.Order))
                     {
                         tasksToBeCreated.Add(new Task
                         {
@@ -76,10 +77,13 @@ namespace Mtc.Domain.Services
                             TaskState = wave == 0 && section.Order == 1?TaskState.ToDo : TaskState.Locked,
                             TaskType = TaskType.Task,
                             AssignTo = author,
-                            Deadline = CalculateDeadline(documentDeadline, previousTasks, totalSubsections, wave)
+                            Deadline = CalculateDeadline(documentDeadline, previousTasks, totalSubsections, wave),
+                            Order = order
                         });
                         previousTasks++;
+                        order ++;
                     }
+                    order = 1;
                 }
             }
 

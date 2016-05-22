@@ -70,6 +70,11 @@ input[type="radio"].styled:checked label:after,
 .locked-icon:before {
   content: "\e033";
 }
+
+.locked-icon {
+  color: #428bca; 
+  font-size: 1.5em;
+}
 .inprogress {
   border-color: #faebcc;
 }
@@ -90,6 +95,10 @@ input[type="radio"].styled:checked label:after,
 }
 .inprogress-icon:before {
   content: "\e072";
+}
+.inprogress-icon {
+  color: #428bca; 
+  font-size: 1.5em;
 }
 .todo {
   border-color: #337ab7;
@@ -112,6 +121,11 @@ input[type="radio"].styled:checked label:after,
 .todo-icon:before {
   content: "\e162";
 }
+
+.todo-icon {
+  color: #428bca; 
+  font-size: 1.5em;
+}
 .expired {
   border-color: #ebccd1;
 }
@@ -133,6 +147,10 @@ input[type="radio"].styled:checked label:after,
 .expired-icon:before {
   content: "\e104";
 }
+.expired-icon {
+  color: #428bca; 
+  font-size: 1.5em;
+}
 .done {
   border-color: #d6e9c6;
 }
@@ -153,4 +171,8 @@ input[type="radio"].styled:checked label:after,
 }
 .done-icon:before {
   content: "\e013";
+}
+.done-icon {
+  color: #428bca; 
+  font-size: 1.5em;
 }
