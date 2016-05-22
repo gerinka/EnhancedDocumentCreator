@@ -68,7 +68,7 @@ namespace Mtc.Domain.Services
                         {
                             Title = section.Title,
                             Section = subsection,
-                            TaskState = TaskState.Locked,
+                            TaskState = wave == 0 && section.Order == 1?TaskState.ToDo : TaskState.Locked,
                             TaskType = TaskType.Task,
                             AssignTo = author,
                             Deadline = CalculateDeadline(documentDeadline, previousTasks, totalSubsections, wave)

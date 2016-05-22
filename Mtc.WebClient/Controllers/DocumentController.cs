@@ -8,14 +8,14 @@ using MtcModel;
 
 namespace Mtc.WebClient.Controllers
 {
-    public class ThesisController : Controller
+    public class DocumentController : Controller
     {
         private readonly IDocumentTemplateService _documentTemplateService;
         private readonly IDocumentService _documentService;
         private readonly IPersonService _personService;
         private readonly ITaskService _taskService;
 
-        public ThesisController(IDocumentTemplateService documentTemplateService, IDocumentService documentService, IPersonService personService, ITaskService taskService)
+        public DocumentController(IDocumentTemplateService documentTemplateService, IDocumentService documentService, IPersonService personService, ITaskService taskService)
         {
             _documentTemplateService = documentTemplateService;
             _documentService = documentService;
@@ -41,7 +41,7 @@ namespace Mtc.WebClient.Controllers
             return View(documentGenerator);
         }
 
-        //Thesis/TaskBoard/DocumentId
+        //Document/TaskBoard/DocumentId
         public ActionResult TaskBoard(int documentId)
         {
             Document document = _documentService.GetById(documentId);
@@ -49,8 +49,8 @@ namespace Mtc.WebClient.Controllers
             var taskboard = new TasksBoardViewModel
             {
                 DoneTasks = taskList.Where(t=>t.TaskState == TaskState.Done).ToList(),
-                InProgressTasks = taskList.Where(t=>t.TaskState == TaskState.InProgress).ToList(),
-                ToDoTasks = taskList.Where(t=>t.TaskState == TaskState.Locked).ToList()
+                InProgressTasks = taskList.Where(t=>t.TaskState == TaskState.InProgress || (t.Section.Content.CurrentProgress > 0 && t.TaskState == TaskState.Expired)).ToList(),
+                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo || (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired)).ToList()
             };
             return View(taskboard);
         }
@@ -65,7 +65,7 @@ namespace Mtc.WebClient.Controllers
         }
 
         //
-        // POST: /Thesis/CreateDocument
+        // POST: /Document/CreateDocument
         [HttpPost]
         [AllowAnonymous]
         public ActionResult CreateDocument(InitDocumentViewModel model, long[] sections)
