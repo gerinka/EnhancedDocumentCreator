@@ -5,8 +5,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading"><h3 class="panel-title">@Model.TaskTitle</h3></div>
   <div class="panel-body">
-      @using (Html.BeginForm("WriteContent", "Document", FormMethod.Post, new {id = "WriteContentForm", @class = "form-horizontal"}))
-      {
+      <form class="form-horizontal">
           <div class="form-group">
               <label for="subtitle" class="col-lg-2 label-panel control-label">Подсекция</label>
               <div class="col-lg-9">
@@ -16,7 +15,7 @@
           <div class="form-group">
               <label for="maintext" class="col-lg-2 label-panel control-label">Основен текст</label>
               <div class="col-lg-9">
-                  @Html.EditorFor(model => model.MainText, new { htmlAttributes = new {rows=20, @class = "form-control", @placeholder = @Model.MainText } })
+                  @Html.EditorFor(model => model.MainText, new { htmlAttributes = new { rows = 20, @class = "form-control", @placeholder = @Model.MainText } })
               </div>
           </div>
           <div class="form-group">
@@ -27,10 +26,31 @@
               </div>
           </div>
 
-        @Html.HiddenFor(x => x.CurrentTaskId, new { id = "CurrentTaskId" })
-      }
-  </div>
+          @Html.HiddenFor(x => x.CurrentTaskId, new { id = "CurrentTaskId" })
+      </form>
+</div>
 </div>
   @section scripts{
     @Scripts.Render("~/bundles/common")
+    <script>
+           $('#action').click(function(e) {
+                e.preventDefault(); 
+                var taskId = $('#CurrentTaskId').prop('value');
+                $.ajax({
+                    url: "/Document/WriteContent/",
+                    type: "POST",
+                    data: JSON.stringify({ 'taskId': taskId }),
+                    dataType: "json",
+                    traditional: true,
+                    contentType: "application/json; charset=utf-8",
+                    success: function(data) {
+                        if (action == 'Start') {
+                            window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + taskId;
+                        }
+                    },
+                    error: function() {
+                    }
+                });
+           });
+    </script>
   }

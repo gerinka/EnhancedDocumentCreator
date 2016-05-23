@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
@@ -123,8 +124,8 @@ namespace Mtc.WebClient.Controllers
         [AllowAnonymous]
         public ActionResult WriteContent(WriteContentViewModel model)
         {
-          Task currentTask = _taskService.GetById(model.CurrentTaskId);
-          return null;
+            _taskService.UpdateTaskContent(model.CurrentTaskId, model.Title, model.MainText);
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
         //
@@ -144,7 +145,7 @@ namespace Mtc.WebClient.Controllers
         public ActionResult FinishTask(int taskId)
         {
             _taskService.FinishTask(taskId);
-            return null;
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
     }
 }

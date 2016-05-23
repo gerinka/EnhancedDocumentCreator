@@ -11,5 +11,6 @@ namespace Mtc.Domain.Services.Interfaces
         Task StartTask(int taskId);
         Task FinishTask(int taskId);
         Task RejectTask(int taskId);
+        void UpdateTaskContent(int taskId, string title, string mainText);
     }
 }
