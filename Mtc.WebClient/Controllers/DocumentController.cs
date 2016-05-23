@@ -59,7 +59,7 @@ namespace Mtc.WebClient.Controllers
             return View();
         }
 
-        public ActionResult WritingModule(int taskId)
+        public ActionResult GoToWritingModule(int taskId)
         {
            Task currentTask = _taskService.GetById(taskId);
             var writingContent = new WriteContentViewModel
@@ -134,7 +134,17 @@ namespace Mtc.WebClient.Controllers
         public ActionResult StartTask(int taskId)
         {
             _taskService.StartTask(taskId);
-            return RedirectToAction("WritingModule", new { taskId });
+            return RedirectToAction("GoToWritingModule", new { taskId });
+        }
+
+        //
+        // POST: /Document/StartTask
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult FinishTask(int taskId)
+        {
+            _taskService.FinishTask(taskId);
+            return null;
         }
     }
 }
