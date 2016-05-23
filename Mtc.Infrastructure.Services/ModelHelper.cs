@@ -176,7 +176,7 @@ namespace Mtc.Domain.Services
             }
             else
             {
-                return new TaskAction();
+                return TaskAction.Nothing;
             }
         }
 

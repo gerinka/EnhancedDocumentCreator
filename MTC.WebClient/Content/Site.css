@@ -176,3 +176,9 @@ input[type="radio"].styled:checked label:after,
   color: #428bca; 
   font-size: 1.5em;
 }
+
+.panel-heading
+{
+    border-top-left-radius: inherit; 
+    border-top-right-radius: inherit;
+}

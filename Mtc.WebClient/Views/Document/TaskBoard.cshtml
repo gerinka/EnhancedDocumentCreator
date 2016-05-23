@@ -29,12 +29,13 @@
                         <div class="panel-heading">@task.Title</div>
                         <div class="panel-body"
                              data-toggle="modal"
-                             data-target="#myModal"
+                             data-target="#taskModal"
                              data-taskid="@task.Id"
                              data-tasktitle="@task.Title"
                              data-subtitle="@task.Order) @task.Section.Content.Title"
                              data-action="@task.TaskAction.ToString()"
-                             data-taskstate="@task.TaskState.ToString().ToLower()">
+                             data-taskstate="@task.TaskState.ToString().ToLower()"
+                             data-deadline="@task.Deadline">
                             @task.Order) @task.Section.Content.Title
                             <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                         </div>
@@ -46,7 +47,15 @@
                     <div class="col-lg-6">
                         <div class="panel panel-info">
                             <div class="panel-heading">@task.Title</div>
-                            <div class="panel-body" onclick="NavigateToWritingModule(@task.Id)">
+                            <div class="panel-body"
+                                 data-toggle="modal"
+                                 data-target="#taskModal"
+                                 data-taskid="@task.Id"
+                                 data-tasktitle="@task.Title"
+                                 data-subtitle="@task.Order) @task.Section.Content.Title"
+                                 data-action="@task.TaskAction.ToString()"
+                                 data-taskstate="@task.TaskState.ToString().ToLower()"
+                                 data-deadline="@task.Deadline">
                                 @task.Order) @task.Section.Content.Title
                                 <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                             </div>
@@ -73,7 +82,15 @@
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
                         <div class="panel-heading">@task.Title</div>
-                        <div class="panel-body" onclick="NavigateToWritingModule(@task.Id)">
+                        <div class="panel-body"
+                             data-toggle="modal"
+                             data-target="#taskModal"
+                             data-taskid="@task.Id"
+                             data-tasktitle="@task.Title"
+                             data-subtitle="@task.Order) @task.Section.Content.Title"
+                             data-action="@task.TaskAction.ToString()"
+                             data-taskstate="@task.TaskState.ToString().ToLower()"
+                             data-deadline="@task.Deadline">
                             @task.Order) @task.Section.Content.Title
                             <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                         </div>
@@ -85,7 +102,15 @@
                     <div class="col-lg-6">
                         <div class="panel panel-info">
                             <div class="panel-heading">@task.Title</div>
-                            <div class="panel-body" onclick="NavigateToWritingModule(@task.Id)">
+                            <div class="panel-body"
+                                 data-toggle="modal"
+                                 data-target="#taskModal"
+                                 data-taskid="@task.Id"
+                                 data-tasktitle="@task.Title"
+                                 data-subtitle="@task.Order) @task.Section.Content.Title"
+                                 data-action="@task.TaskAction.ToString()"
+                                 data-taskstate="@task.TaskState.ToString().ToLower()"
+                                 data-deadline="@task.Deadline">
                                 @task.Order) @task.Section.Content.Title
                                 <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                             </div>
@@ -112,7 +137,15 @@
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
                         <div class="panel-heading">@task.Title</div>
-                        <div class="panel-body" onclick="NavigateToWritingModule(@task.Id)">
+                        <div class="panel-body"
+                             data-toggle="modal"
+                             data-target="#taskModal"
+                             data-taskid="@task.Id"
+                             data-tasktitle="@task.Title"
+                             data-subtitle="@task.Order) @task.Section.Content.Title"
+                             data-action="@task.TaskAction.ToString()"
+                             data-taskstate="@task.TaskState.ToString().ToLower()"
+                             data-deadline="@task.Deadline">
                             @task.Order) @task.Section.Content.Title
                             <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                         </div>
@@ -124,7 +157,15 @@
                     <div class="col-lg-6">
                         <div class="panel panel-info">
                             <div class="panel-heading">@task.Title</div>
-                            <div class="panel-body" onclick="NavigateToWritingModule(@task.Id)">
+                            <div class="panel-body"
+                                 data-toggle="modal"
+                                 data-target="#taskModal"
+                                 data-taskid="@task.Id"
+                                 data-tasktitle="@task.Title"
+                                 data-subtitle="@task.Order) @task.Section.Content.Title"
+                                 data-action="@task.TaskAction.ToString()"
+                                 data-taskstate="@task.TaskState.ToString().ToLower()"
+                                 data-deadline="@task.Deadline">
                                 @task.Order) @task.Section.Content.Title
                                 <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                             </div>
@@ -147,21 +188,23 @@
     </div>
 }
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="taskModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header panel-heading">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+                <h4 class="modal-title">Заглавие</h4>
+
             </div>
             <div class="modal-body">
-                <p>Some text in the modal.</p>
+                <p id="modal-text">Описание.</p>
+                <p><span id="deadline">Краен срок</span> <span id="modal-icon" class="glyphicon pull-right" aria-hidden="true"></span></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
-                <button type="button" class="btn btn-primary" id="action">Стартирай задача</button>
+                <button type="button" class="btn btn-primary" id="action">Действие</button>
             </div>
         </div>
 
@@ -173,21 +216,31 @@
             window.location.href = '@Url.Action("WritingModule", "Document")?taskId=' + taskId;
         };
 
-        $('#myModal').on('show.bs.modal', function(event) {
+        $('#taskModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
             var id = button.data('id');
             var title = button.data('tasktitle');
             var subtitle = button.data('subtitle');
-            var taskaction = button.data('taskaction');
+            var taskaction = button.data('action');
             var taskstate = button.data('taskstate');
+            var deadline = button.data('deadline');
             var modal = $(this);
             modal.find('.modal-title').text(title);
+            modal.find('.modal-content').addClass(taskstate);
+            modal.find('#modal-icon').addClass(taskstate+'-icon');
             if (taskaction == 'Start') {
-                modal.find('.modal-body').text('Започни задача ' + title + ' - ' + subtitle);
+                modal.find('.modal-body p#modal-text').text('Започни писане на "' + title + '" - ' + subtitle);
+                modal.find('#action').text('Започни');
+                modal.find('#deadline').text('Краен срок: ' + deadline);
             } else if (taskaction == 'Finish') {
-                modal.find('.modal-body').text('Завърши задача ' + title + ' - ' + subtitle);
+                modal.find('.modal-body p#modal-text').text('Завърши писане на "' + title + '" - ' + subtitle); 
+                modal.find('#action').text('Завърши');
+                modal.find('#deadline').text('Краен срок: ' + deadline);
+            } else if (taskaction == 'Nothing') {
+                modal.find('.modal-body p#modal-text').text('Секция "' + title + '" - ' + subtitle + ' е завършена.'); 
+                modal.find('#action').text('Виж');
+                modal.find('#deadline').text('Краен срок: ' + deadline);
             }
-            modal.find('.modal-footer #action')[0].prop('value', taskaction);
         });
     </script>
 }
