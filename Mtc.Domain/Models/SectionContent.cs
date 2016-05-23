@@ -13,5 +13,6 @@ namespace Mtc.Domain.Models
         public string MainText { get; set; }
         public int DocumentId { get; set; }
         public int CurrentProgress { get; set; }
+        public int SectionId { get; set; }
     }
 }

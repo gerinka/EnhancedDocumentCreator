@@ -5,52 +5,33 @@
 <div class="panel panel-primary">
   <div class="panel-heading"><h3 class="panel-title">@Model.TaskTitle</h3></div>
   <div class="panel-body">
-      <form class="form-horizontal">
-          <div class="form-group">
-              <label for="subtitle" class="col-lg-2 label-panel control-label">Подсекция</label>
-              <div class="col-lg-9">
-                  @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = @Model.SectionTitle } })
-              </div>
-          </div>
-          <div class="form-group">
-              <label for="maintext" class="col-lg-2 label-panel control-label">Основен текст</label>
-              <div class="col-lg-9">
-                  @Html.EditorFor(model => model.MainText, new { htmlAttributes = new { rows = 20, @class = "form-control", @placeholder = @Model.MainText } })
-              </div>
-          </div>
-          <div class="form-group">
-              <div class="col-lg-11">
-                  <button type="submit" class="btn btn-primary pull-right">
-                      <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Запазване
-                  </button>
-              </div>
-          </div>
+    @using (Html.BeginForm("WriteContent", "Document", FormMethod.Post, new { id = "createDocumentForm", @class = "form-horizontal" }))
+    {
+        <div class="form-group">
+            <label for="subtitle" class="col-lg-2 label-panel control-label">Подсекция</label>
+            <div class="col-lg-9">
+                @Html.EditorFor(model => model.Title, new {htmlAttributes = new {@class = "form-control", @placeholder = @Model.SectionTitle}})
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="maintext" class="col-lg-2 label-panel control-label">Основен текст</label>
+            <div class="col-lg-9">
+                @Html.EditorFor(model => model.MainText, new {htmlAttributes = new {rows = 20, @class = "form-control", @placeholder = @Model.MainText}})
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-11">
+                <button type="submit" class="btn btn-primary pull-right" id="save">
+                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Запазване
+                </button>
+            </div>
+        </div>
 
-          @Html.HiddenFor(x => x.CurrentTaskId, new { id = "CurrentTaskId" })
-      </form>
+        @Html.HiddenFor(x => x.CurrentTaskId, new {id = "CurrentTaskId"})
+        @Html.HiddenFor(x => x.CurrentSectionContentId, new { id = "CurrentSectionContentId" })
+    }
 </div>
 </div>
   @section scripts{
     @Scripts.Render("~/bundles/common")
-    <script>
-           $('#action').click(function(e) {
-                e.preventDefault(); 
-                var taskId = $('#CurrentTaskId').prop('value');
-                $.ajax({
-                    url: "/Document/WriteContent/",
-                    type: "POST",
-                    data: JSON.stringify({ 'taskId': taskId }),
-                    dataType: "json",
-                    traditional: true,
-                    contentType: "application/json; charset=utf-8",
-                    success: function(data) {
-                        if (action == 'Start') {
-                            window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + taskId;
-                        }
-                    },
-                    error: function() {
-                    }
-                });
-           });
-    </script>
   }

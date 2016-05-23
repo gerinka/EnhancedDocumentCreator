@@ -70,7 +70,7 @@ namespace Mtc.Domain.Services
         {
             Document document = GetById(documentId);
             document.CurrentProgress = (int)
-                Math.Floor((double) document.Tasks.Count(t => t.TaskState == TaskState.Done)/document.Tasks.Count)*100;
+                Math.Floor((double) document.Tasks.Count(t => t.TaskState == TaskState.Done)*100/document.Tasks.Count);
             if (document.CurrentProgress >= 100)
             {
                 document.CurrentProgress = 100;

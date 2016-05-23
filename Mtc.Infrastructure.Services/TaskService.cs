@@ -13,7 +13,7 @@ namespace Mtc.Domain.Services
     public class TaskService : ITaskService
     {
         private readonly ITaskRepository _taskRepository;
-        private const int MinNeededWords = 250;
+
         public TaskService(ITaskRepository taskRepository)
         {
             _taskRepository = taskRepository;
@@ -85,15 +85,6 @@ namespace Mtc.Domain.Services
             return task;
         }
 
-        public void UpdateTaskContent(int taskId, string title, string mainText)
-        {
-            Task task = GetById(taskId);
-            task.Section.Content.Title = title;
-            task.Section.Content.MainText = mainText;
-            task.Section.Content.CurrentProgress = CalculateProgress(mainText);
-            _taskRepository.Update(ModelHelper.Mapper(task));
-        }
-
         public IEnumerable<Task> GenerateTasks(int documentId, DateTime documentDeadline, Person author, IEnumerable<Section> sections)
         {
 
@@ -162,38 +153,6 @@ namespace Mtc.Domain.Services
                 }
             }
             if (isAnytaskChanged) _taskRepository.BulkUpdate(taskList.Select(ModelHelper.Mapper));
-        }
-
-        private int CalculateProgress(string mainText)
-        {
-            int progress;
-            String text = mainText.Trim();
-            int wordCount = 0, index = 0;
-
-            while (index < text.Length)
-            {
-                // check if current char is part of a word
-                while (index < text.Length && Char.IsWhiteSpace(text[index]) == false)
-                    index++;
-
-                wordCount++;
-
-                // skip whitespace until next word
-                while (index < text.Length && Char.IsWhiteSpace(text[index]) == true)
-                    index++;
-            }
-            if (wordCount >= MinNeededWords)
-            {
-                progress = 100;
-            }
-            else
-            {
-                progress = (int)Math.Floor((double)wordCount/MinNeededWords)*100;
-            }
-            if (progress > 100) progress = 100;
-            else if (progress < 1) progress = 1;
-
-            return progress;
         }
 
     }

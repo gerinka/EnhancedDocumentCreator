@@ -16,5 +16,6 @@ namespace Mtc.WebClient.Models
         [DataType(DataType.MultilineText)]
         public string MainText { get; set; }
         public int CurrentTaskId { get; set; }
+        public int CurrentSectionContentId { get; set; }
     }
 }

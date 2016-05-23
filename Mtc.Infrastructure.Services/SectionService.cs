@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using Mtc.Domain.Common;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
 using Mtc.Infrastructure.DataAccess.Interfaces;
@@ -15,17 +10,15 @@ namespace Mtc.Domain.Services
     public class SectionService : ISectionService
     {
         private readonly IStructureElementRepository _structureElementRepository;
-        private readonly IStructureContentRepository _structureContentRepository;
 
-        public SectionService(IStructureElementRepository structureElementRepository, IStructureContentRepository structureContentRepository)
+        public SectionService(IStructureElementRepository structureElementRepository)
         {
             _structureElementRepository = structureElementRepository;
-            _structureContentRepository = structureContentRepository;
         }
 
         public Section GetById(int id)
         {
-            throw new NotImplementedException();
+            return ModelHelper.Mapper(_structureElementRepository.GetById(id));
         }
 
         public Section GetByName(string name)

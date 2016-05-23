@@ -53,7 +53,8 @@ namespace Mtc.Domain.Services
                     Title = structurecontent.Title,
                     DocumentId = structurecontent.DocumentId,
                     MainText = GetString(structurecontent.Content),
-                    CurrentProgress = structurecontent.CurrentProgress
+                    CurrentProgress = structurecontent.CurrentProgress,
+                    SectionId = structurecontent.StructureElementId
                 };
             }
             return null;
@@ -68,7 +69,21 @@ namespace Mtc.Domain.Services
                 DocumentId = structurecontent.DocumentId,
                 Content = GetBytes(structurecontent.MainText),
                 CurrentProgress = structurecontent.CurrentProgress,
-                StructureElementId = section.Id
+                StructureElementId = section.Id,
+            };
+        }
+
+
+        public static STRUCTURECONTENT Mapper(SectionContent structurecontent)
+        {
+            return new STRUCTURECONTENT
+            {
+                Id = structurecontent.Id,
+                Title = structurecontent.Title,
+                DocumentId = structurecontent.DocumentId,
+                Content = GetBytes(structurecontent.MainText),
+                CurrentProgress = structurecontent.CurrentProgress,
+                StructureElementId = structurecontent.SectionId,
             };
         }
 

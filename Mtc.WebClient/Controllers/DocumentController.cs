@@ -15,13 +15,15 @@ namespace Mtc.WebClient.Controllers
         private readonly IDocumentService _documentService;
         private readonly IPersonService _personService;
         private readonly ITaskService _taskService;
+        private readonly ISectionContentService _sectionContentService;
 
-        public DocumentController(IDocumentTemplateService documentTemplateService, IDocumentService documentService, IPersonService personService, ITaskService taskService)
+        public DocumentController(IDocumentTemplateService documentTemplateService, IDocumentService documentService, IPersonService personService, ITaskService taskService, ISectionContentService sectionContentService)
         {
             _documentTemplateService = documentTemplateService;
             _documentService = documentService;
             _personService = personService;
             _taskService = taskService;
+            _sectionContentService = sectionContentService;
         }
 
         public ActionResult Index()
@@ -124,8 +126,8 @@ namespace Mtc.WebClient.Controllers
         [AllowAnonymous]
         public ActionResult WriteContent(WriteContentViewModel model)
         {
-            _taskService.UpdateTaskContent(model.CurrentTaskId, model.Title, model.MainText);
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
+            int documentId =  _sectionContentService.UpdateSectionContent(model.CurrentSectionContentId, model.Title, model.MainText);
+            return RedirectToAction("TaskBoard", new { documentId });
         }
 
         //
