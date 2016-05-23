@@ -72,7 +72,8 @@ namespace Mtc.WebClient.Controllers
                 Description = currentTask.Section.Description,
                 TaskTitle = currentTask.Title,
                 SectionTitle = currentTask.Section.Title,
-                CurrentTaskId = currentTask.Id
+                CurrentTaskId = currentTask.Id,
+                CurrentSectionContentId = currentTask.Section.Content.Id
             };
             return View("WritingModule",writingContent);
         }

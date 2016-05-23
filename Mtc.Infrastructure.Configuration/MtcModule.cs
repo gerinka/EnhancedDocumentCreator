@@ -25,6 +25,7 @@ namespace Mtc.Infrastructure.Configuration
             builder.RegisterType<PersonService>().As<IPersonService>().InstancePerRequest();
             builder.RegisterType<TaskService>().As<ITaskService>().InstancePerRequest();
             builder.RegisterType<SectionService>().As<ISectionService>().InstancePerRequest();
+            builder.RegisterType<SectionContentService>().As<ISectionContentService>().InstancePerRequest();
             base.Load(builder);
         }
     }
