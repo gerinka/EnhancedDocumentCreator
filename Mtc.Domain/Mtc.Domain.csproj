@@ -53,7 +53,6 @@
     <Compile Include="DocumentGenerator.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Interfaces\IDocumentGenerator.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\DocumentTemplate.cs" />
     <Compile Include="Models\Image.cs" />
@@ -73,6 +72,9 @@
       <Project>{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}</Project>
       <Name>Mtc.Infrastructure.DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

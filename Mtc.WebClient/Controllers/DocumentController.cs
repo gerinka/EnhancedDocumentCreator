@@ -164,8 +164,9 @@ namespace Mtc.WebClient.Controllers
         [AllowAnonymous]
         public FileResult GetDocument(int documentId)
         {
+            Document documentForCreate = _documentService.GetById(documentId);
             MemoryStream document = _documentService.GenerateDocument(documentId);
-            return File(document.ToArray(), "application/docx", Server.UrlEncode("NewFile.docx"));
+            return File(document.ToArray(), "application/docx", Server.UrlEncode(documentForCreate.Title + ".docx"));
         }
     }
 }

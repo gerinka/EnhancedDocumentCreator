@@ -91,7 +91,8 @@ namespace Mtc.Domain.Services
 
         public MemoryStream GenerateDocument(int documentId)
         {
-            return new MemoryStream();
+            Document document = GetById(documentId);
+            return DocumentGenerator.GenerateComplexDocument(document);
         }
     }
 }
