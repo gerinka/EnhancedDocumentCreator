@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using Mtc.Infrastructure.DataAccess.Interfaces;
@@ -75,8 +76,8 @@ namespace Mtc.Infrastructure.DataAccess.Repositories
 
         public virtual void Update(TEntity entityToUpdate)
         {
-            _context.Entry(entityToUpdate).State = EntityState.Modified;
-            DbSet.Attach(entityToUpdate);
+
+            DbSet.AddOrUpdate(entityToUpdate);
             _context.SaveChanges();
         }
     }
