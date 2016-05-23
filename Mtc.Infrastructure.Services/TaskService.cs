@@ -54,7 +54,6 @@ namespace Mtc.Domain.Services
             var taskList = _taskRepository.Get(t => t.DocumentId == documentId).Select(ModelHelper.Mapper).ToList();
             UnlockNewTasks(taskList);
             ExpireTasks(taskList);
-            _taskRepository.BulkUpdate(taskList.Select(ModelHelper.Mapper));
             return taskList;
         }
 
@@ -125,26 +124,32 @@ namespace Mtc.Domain.Services
             return DateTime.UtcNow.AddDays((previousTasks + 1)* timePerTask);
         }
 
-        private void ExpireTasks(IEnumerable<Task> taskList)
+        private void ExpireTasks(IList<Task> taskList)
         {
+            bool isAnytaskChanged = false;
             foreach (var task in taskList)
             {
                 if (task.Deadline < DateTime.UtcNow)
                 {
                     task.TaskState = TaskState.Expired;
+                    isAnytaskChanged = true;
                 }
             }
+            if (isAnytaskChanged) _taskRepository.BulkUpdate(taskList.Select(ModelHelper.Mapper));
         }
 
-        private static void UnlockNewTasks(List<Task> taskList)
+        private void UnlockNewTasks(IList<Task> taskList)
         {
+            bool isAnytaskChanged = false;
             if (taskList.All(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.Done))
             {
                 foreach (var task in taskList.Where(t => t.TaskState == TaskState.Locked).OrderBy(t => t.Deadline).Take(3))
                 {
                     task.TaskState = TaskState.ToDo;
+                    isAnytaskChanged = true;
                 }
             }
+            if (isAnytaskChanged) _taskRepository.BulkUpdate(taskList.Select(ModelHelper.Mapper));
         }
     }
 }
