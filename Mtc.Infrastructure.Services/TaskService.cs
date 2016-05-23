@@ -166,7 +166,7 @@ namespace Mtc.Domain.Services
 
         private int CalculateProgress(string mainText)
         {
-            var progress = 1;
+            int progress;
             String text = mainText.Trim();
             int wordCount = 0, index = 0;
 
@@ -188,8 +188,11 @@ namespace Mtc.Domain.Services
             }
             else
             {
-                progress = (int)Math.Ceiling((double)wordCount/MinNeededWords);
+                progress = (int)Math.Ceiling((double)wordCount/MinNeededWords)*100;
             }
+            if (progress > 100) progress = 100;
+            else if (progress < 1) progress = 1;
+
             return progress;
         }
 

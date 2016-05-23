@@ -145,6 +145,8 @@ namespace Mtc.WebClient.Controllers
         public ActionResult FinishTask(int taskId)
         {
             _taskService.FinishTask(taskId);
+            Task task = _taskService.GetById(taskId);
+            _documentService.UpdateDocumentProgress(task.Section.Content.DocumentId);
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
     }

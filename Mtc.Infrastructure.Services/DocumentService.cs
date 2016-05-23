@@ -65,5 +65,14 @@ namespace Mtc.Domain.Services
             throw new NotImplementedException();
         }
 
+        public void UpdateDocumentProgress(int documentId)
+        {
+            Document document = GetById(documentId);
+            document.CurrentProgress = (int)
+                Math.Ceiling((double) document.Tasks.Count(t => t.TaskState == TaskState.Done)/document.Tasks.Count)*100;
+            if (document.CurrentProgress > 100) document.CurrentProgress = 100;
+            else if (document.CurrentProgress < 1) document.CurrentProgress = 1;
+            _documentRepository.Update(ModelHelper.Mapper(document));
+        }
     }
 }
