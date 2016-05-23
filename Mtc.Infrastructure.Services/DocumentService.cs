@@ -35,6 +35,7 @@ namespace Mtc.Domain.Services
 
         public Document Create(Document document)
         {
+            document.DocumentState = DocumentState.Started;
             DOCUMENT documentToInsert = ModelHelper.Mapper(document);
             IList<STRUCTURECONTENT> documentContent = documentToInsert.STRUCTURECONTENTs.ToList();
             documentToInsert.STRUCTURECONTENTs = null;
@@ -69,9 +70,21 @@ namespace Mtc.Domain.Services
         {
             Document document = GetById(documentId);
             document.CurrentProgress = (int)
-                Math.Ceiling((double) document.Tasks.Count(t => t.TaskState == TaskState.Done)/document.Tasks.Count)*100;
-            if (document.CurrentProgress > 100) document.CurrentProgress = 100;
-            else if (document.CurrentProgress < 1) document.CurrentProgress = 1;
+                Math.Floor((double) document.Tasks.Count(t => t.TaskState == TaskState.Done)/document.Tasks.Count)*100;
+            if (document.CurrentProgress >= 100)
+            {
+                document.CurrentProgress = 100;
+                document.DocumentState = DocumentState.Finished;
+            }
+            else if (document.CurrentProgress < 1)
+            {
+                document.CurrentProgress = 1;
+                document.DocumentState = DocumentState.Started;
+            }
+            else
+            {
+                document.DocumentState = DocumentState.InProgress;
+            }
             _documentRepository.Update(ModelHelper.Mapper(document));
         }
     }

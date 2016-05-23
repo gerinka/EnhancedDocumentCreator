@@ -188,7 +188,7 @@ namespace Mtc.Domain.Services
             }
             else
             {
-                progress = (int)Math.Ceiling((double)wordCount/MinNeededWords)*100;
+                progress = (int)Math.Floor((double)wordCount/MinNeededWords)*100;
             }
             if (progress > 100) progress = 100;
             else if (progress < 1) progress = 1;

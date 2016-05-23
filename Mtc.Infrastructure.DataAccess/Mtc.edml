@@ -511,11 +511,10 @@
           <Member Name="Subsubsection" Value="5" ed:Guid="666da74f-71a6-40c1-a1c9-6e469a688636" />
         </EnumType>
         <EnumType Name="DocumentState" ed:Guid="f17aff83-4af9-4c3c-8acd-cfad7d5a2b5f">
-          <Member Name="Waiting" Value="1" ed:Guid="67cb93a1-7464-4be5-83e1-82ac602feda2" />
-          <Member Name="Started" Value="2" ed:Guid="e4ab968e-c154-482c-b91f-2d11bc932f46" />
-          <Member Name="InProgress" Value="3" ed:Guid="1444f34a-f72f-4ee4-9233-f54dca818525" />
-          <Member Name="Finished" Value="4" ed:Guid="ad797bfd-18d6-477f-96f1-db43d70a7331" />
-          <Member Name="Rejected" Value="5" ed:Guid="2aefa7b9-4a6b-4032-8f58-ce78c7c4c3b7" />
+          <Member Name="Started" Value="1" ed:Guid="e4ab968e-c154-482c-b91f-2d11bc932f46" />
+          <Member Name="InProgress" Value="2" ed:Guid="1444f34a-f72f-4ee4-9233-f54dca818525" />
+          <Member Name="Finished" Value="3" ed:Guid="ad797bfd-18d6-477f-96f1-db43d70a7331" />
+          <Member Name="Rejected" Value="4" ed:Guid="2aefa7b9-4a6b-4032-8f58-ce78c7c4c3b7" />
         </EnumType>
         <EnumType Name="TaskAction" ed:Guid="8e3bed4d-b778-48bf-9026-41122caf6d7b">
           <Member Name="Start" Value="1" ed:Guid="7000e07b-397f-4ea4-9e18-bbc753ec9b1e" />
