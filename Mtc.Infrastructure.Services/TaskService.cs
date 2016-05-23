@@ -58,28 +58,6 @@ namespace Mtc.Domain.Services
             return taskList;
         }
 
-        private void ExpireTasks(IEnumerable<Task> taskList)
-        {
-            foreach (var task in taskList)
-            {
-                if (task.Deadline < DateTime.UtcNow)
-                {
-                    task.TaskState = TaskState.Expired;
-                }
-            }
-        }
-
-        private static void UnlockNewTasks(List<Task> taskList)
-        {
-            if (taskList.All(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.Done))
-            {
-                foreach (var task in taskList.Where(t => t.TaskState == TaskState.Locked).OrderBy(t=>t.Deadline).Take(3))
-                {
-                    task.TaskState = TaskState.ToDo;
-                }
-            }
-        }
-
         public Task StartTask(int taskId)
         {
             Task task = GetById(taskId);
@@ -140,10 +118,33 @@ namespace Mtc.Domain.Services
 
             return _taskRepository.BulkInsert(tasksToBeCreated.Select(ModelHelper.Mapper)).Select(ModelHelper.Mapper);
         }
+
         private DateTime CalculateDeadline(DateTime documentDeadline, int previousTasks, int totalSubsections, int wave)
         {
             var timePerTask = (documentDeadline - DateTime.UtcNow).TotalDays/totalSubsections;
             return DateTime.UtcNow.AddDays((previousTasks + 1)* timePerTask);
+        }
+
+        private void ExpireTasks(IEnumerable<Task> taskList)
+        {
+            foreach (var task in taskList)
+            {
+                if (task.Deadline < DateTime.UtcNow)
+                {
+                    task.TaskState = TaskState.Expired;
+                }
+            }
+        }
+
+        private static void UnlockNewTasks(List<Task> taskList)
+        {
+            if (taskList.All(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.Done))
+            {
+                foreach (var task in taskList.Where(t => t.TaskState == TaskState.Locked).OrderBy(t => t.Deadline).Take(3))
+                {
+                    task.TaskState = TaskState.ToDo;
+                }
+            }
         }
     }
 }
