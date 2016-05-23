@@ -52,6 +52,14 @@ namespace Mtc.Domain.Services
         public IEnumerable<Task> GetTasksByDocumentId(int documentId)
         {
             var taskList = _taskRepository.Get(t => t.DocumentId == documentId).Select(ModelHelper.Mapper).ToList();
+            UnlockNewTasks(taskList);
+            ExpireTasks(taskList);
+            _taskRepository.BulkUpdate(taskList.Select(ModelHelper.Mapper));
+            return taskList;
+        }
+
+        private void ExpireTasks(IEnumerable<Task> taskList)
+        {
             foreach (var task in taskList)
             {
                 if (task.Deadline < DateTime.UtcNow)
@@ -59,15 +67,24 @@ namespace Mtc.Domain.Services
                     task.TaskState = TaskState.Expired;
                 }
             }
-            _taskRepository.BulkUpdate(taskList.Select(ModelHelper.Mapper));
+        }
 
-            return taskList;
+        private static void UnlockNewTasks(List<Task> taskList)
+        {
+            if (taskList.All(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.Done))
+            {
+                foreach (var task in taskList.Where(t => t.TaskState == TaskState.Locked).Take(3))
+                {
+                    task.TaskState = TaskState.ToDo;
+                }
+            }
         }
 
         public Task StartTask(int taskId)
         {
             Task task = GetById(taskId);
             task.TaskState = TaskState.InProgress;
+            task.Section.Content.CurrentProgress = 1;
             _taskRepository.Update(ModelHelper.Mapper(task));
             return task;
         }
