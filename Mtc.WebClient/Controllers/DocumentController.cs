@@ -126,5 +126,15 @@ namespace Mtc.WebClient.Controllers
           Task currentTask = _taskService.GetById(model.CurrentTaskId);
           return null;
         }
+
+        //
+        // POST: /Document/StartTask
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult StartTask(int taskId)
+        {
+            _taskService.StartTask(taskId);
+            return RedirectToAction("WritingModule", new { taskId });
+        }
     }
 }

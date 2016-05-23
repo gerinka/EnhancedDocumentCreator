@@ -54,6 +54,30 @@ namespace Mtc.Domain.Services
             return _taskRepository.Get(t => t.DocumentId == documentId).Select(ModelHelper.Mapper);
         }
 
+        public Task StartTask(int taskId)
+        {
+            Task task = GetById(taskId);
+            task.TaskState = TaskState.InProgress;
+            _taskRepository.Update(ModelHelper.Mapper(task));
+            return task;
+        }
+
+        public Task FinishTask(int taskId)
+        {
+            Task task = GetById(taskId);
+            task.TaskState = TaskState.Done;
+            _taskRepository.Update(ModelHelper.Mapper(task));
+            return task;
+        }
+
+        public Task RejectTask(int taskId)
+        {
+            Task task = GetById(taskId);
+            task.TaskState = TaskState.WontBeDone;
+            _taskRepository.Update(ModelHelper.Mapper(task));
+            return task;
+        }
+
         public IEnumerable<Task> GenerateTasks(int documentId, DateTime documentDeadline, Person author, IEnumerable<Section> sections)
         {
 
