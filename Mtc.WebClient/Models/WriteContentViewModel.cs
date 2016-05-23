@@ -17,5 +17,7 @@ namespace Mtc.WebClient.Models
         public string MainText { get; set; }
         public int CurrentTaskId { get; set; }
         public int CurrentSectionContentId { get; set; }
+        public bool IsDisabled { get; set; }
+        public int DocumentId { get; set; }
     }
 }

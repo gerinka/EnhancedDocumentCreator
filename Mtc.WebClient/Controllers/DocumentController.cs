@@ -62,7 +62,7 @@ namespace Mtc.WebClient.Controllers
             return View();
         }
 
-        public ActionResult GoToWritingModule(int taskId)
+        public ActionResult GoToWritingModule(int taskId, bool isDisabled = false)
         {
            Task currentTask = _taskService.GetById(taskId);
             var writingContent = new WriteContentViewModel
@@ -73,7 +73,9 @@ namespace Mtc.WebClient.Controllers
                 TaskTitle = currentTask.Title,
                 SectionTitle = currentTask.Section.Title,
                 CurrentTaskId = currentTask.Id,
-                CurrentSectionContentId = currentTask.Section.Content.Id
+                CurrentSectionContentId = currentTask.Section.Content.Id,
+                IsDisabled = isDisabled,
+                DocumentId = currentTask.Section.Content.DocumentId
             };
             return View("WritingModule",writingContent);
         }
@@ -127,8 +129,12 @@ namespace Mtc.WebClient.Controllers
         [AllowAnonymous]
         public ActionResult WriteContent(WriteContentViewModel model)
         {
-            int documentId =  _sectionContentService.UpdateSectionContent(model.CurrentSectionContentId, model.Title, model.MainText);
-            return RedirectToAction("TaskBoard", new { documentId });
+            if (!model.IsDisabled)
+            {
+                _sectionContentService.UpdateSectionContent(model.CurrentSectionContentId, model.Title,
+                    model.MainText);
+            }
+            return RedirectToAction("TaskBoard", new {documentId = model.DocumentId });
         }
 
         //

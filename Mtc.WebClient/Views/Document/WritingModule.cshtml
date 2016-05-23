@@ -3,35 +3,46 @@
     ViewBag.Title = "Писане";
 }
 <div class="panel panel-primary">
-  <div class="panel-heading"><h3 class="panel-title">@Model.TaskTitle</h3></div>
-  <div class="panel-body">
-    @using (Html.BeginForm("WriteContent", "Document", FormMethod.Post, new { id = "createDocumentForm", @class = "form-horizontal" }))
-    {
-        <div class="form-group">
-            <label for="subtitle" class="col-lg-2 label-panel control-label">Подсекция</label>
-            <div class="col-lg-9">
-                @Html.EditorFor(model => model.Title, new {htmlAttributes = new {@class = "form-control", @placeholder = @Model.SectionTitle}})
+    <div class="panel-heading"><h3 class="panel-title">@Model.TaskTitle</h3></div>
+    <div class="panel-body">
+        @using (Html.BeginForm("WriteContent", "Document", FormMethod.Post, new { id = "createDocumentForm", @class = "form-horizontal" }))
+        {
+            <div class="form-group">
+                <label for="subtitle" class="col-lg-2 label-panel control-label">Подсекция</label>
+                <div class="col-lg-9">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = @Model.SectionTitle, @disabled=@Model.IsDisabled?"disabled":"" } })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="maintext" class="col-lg-2 label-panel control-label">Основен текст</label>
-            <div class="col-lg-9">
-                @Html.EditorFor(model => model.MainText, new {htmlAttributes = new {rows = 20, @class = "form-control", @placeholder = @Model.MainText}})
+            <div class="form-group">
+                <label for="maintext" class="col-lg-2 label-panel control-label">Основен текст</label>
+                <div class="col-lg-9">
+                        @Html.EditorFor(model => model.MainText, new { htmlAttributes = new { rows = 20, @class = "form-control", @placeholder = @Model.MainText, @disabled = @Model.IsDisabled ? "disabled" : "" } })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-lg-11">
-                <button type="submit" class="btn btn-primary pull-right" id="save">
-                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Запазване
-                </button>
+            <div class="form-group">
+                <div class="col-lg-11">
+                    <button type="submit" class="btn btn-primary pull-right" id="save">   
+                        @if (Model.IsDisabled)
+                        {
+                            <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                            <span>Обратно към задачите</span>
+                        }
+                        else
+                        {
+                            <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                            <span>Запазване</span>
+                        }
+                    </button>
+                </div>
             </div>
-        </div>
 
-        @Html.HiddenFor(x => x.CurrentTaskId, new {id = "CurrentTaskId"})
-        @Html.HiddenFor(x => x.CurrentSectionContentId, new { id = "CurrentSectionContentId" })
-    }
+            @Html.HiddenFor(x => x.CurrentTaskId, new { id = "CurrentTaskId" })
+            @Html.HiddenFor(x => x.CurrentSectionContentId, new { id = "CurrentSectionContentId" })
+            @Html.HiddenFor(x => x.IsDisabled, new { id = "IsDisabled" })
+            @Html.HiddenFor(x => x.DocumentId, new { id = "DocumentId" })
+        }
+    </div>
 </div>
-</div>
-  @section scripts{
+@section scripts{
     @Scripts.Render("~/bundles/common")
-  }
+}

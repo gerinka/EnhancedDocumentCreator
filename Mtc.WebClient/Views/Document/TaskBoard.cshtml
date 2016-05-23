@@ -204,7 +204,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
-                <button type="button" class="btn btn-primary" id="goToWritingModule" value="3" onclick="navigateToWritingModule(this)">Продължи с писането</button>
+                <button type="button" class="btn btn-primary" id="goToWritingModule" value="3" data-disabled="false" onclick="navigateToWritingModule(this)">Продължи с писането</button>
                 <button type="submit" class="btn btn-primary" id="action" value="3" data-action="action">Действие</button>
             </div>
         </div>
@@ -213,78 +213,84 @@
 </div>
 @section scripts{
     <script>
-        function navigateToWritingModule(button) {
-            var goToButton = $(button);
-            var currentTaskId = goToButton.prop('value');
-            window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + currentTaskId;
-        };
+    function navigateToWritingModule(button) {
+        var goToButton = $(button);
+        var currentTaskId = goToButton.prop('value');
+        var disabled = goToButton.data('disabled');
+        window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + currentTaskId + '&isDisabled=' + disabled;
+    };
 
-        $(document).ready(function() {
-            $('#taskModal').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget); // Button that triggered the modal
-                var taskId = button.data('taskid');
-                var title = button.data('tasktitle');
-                var subtitle = button.data('subtitle');
-                var taskaction = button.data('action');
-                var taskstate = button.data('taskstate');
-                var deadline = button.data('deadline');
-                var modal = $(this);
-                var actionButton = modal.find('#action');
-                var goToWritingModuleButton = modal.find('#goToWritingModule');
-                modal.find('.modal-title').text(title);
-                modal.find('.modal-content').addClass(taskstate);
-                modal.find('#modal-icon').addClass(taskstate + '-icon');
-                if (taskaction == 'Start') {
-                    modal.find('.modal-body p#modal-text').text('Започни писане на "' + title + '" - ' + subtitle);
-                    modal.find('#deadline').text('Краен срок: ' + deadline);
+    $(document).ready(function () {
+        $('#taskModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var taskId = button.data('taskid');
+            var title = button.data('tasktitle');
+            var subtitle = button.data('subtitle');
+            var taskaction = button.data('action');
+            var taskstate = button.data('taskstate');
+            var deadline = button.data('deadline');
+            var modal = $(this);
+            var actionButton = modal.find('#action');
+            var goToWritingModuleButton = modal.find('#goToWritingModule');
+            modal.find('.modal-title').text(title);
+            modal.find('.modal-content').addClass(taskstate);
+            modal.find('#modal-icon').addClass(taskstate + '-icon');
+            if (taskaction == 'Start') {
+                modal.find('.modal-body p#modal-text').text('Започни писане на "' + title + '" - ' + subtitle);
+                modal.find('#deadline').text('Краен срок: ' + deadline);
 
-                    actionButton.removeClass('hidden');
-                    actionButton.text('Започни');
-                    actionButton.prop('value', taskId);
+                actionButton.removeClass('hidden');
+                actionButton.text('Започни');
+                actionButton.prop('value', taskId);
 
-                    goToWritingModuleButton.addClass('hidden');
-                    goToWritingModuleButton.prop('value', taskId);
-                } else if (taskaction == 'Finish') {
-                    modal.find('.modal-body p#modal-text').text('Завърши писане на "' + title + '" - ' + subtitle);
-                    modal.find('#deadline').text('Краен срок: ' + deadline);
+                goToWritingModuleButton.addClass('hidden');
+                goToWritingModuleButton.prop('value', taskId);
+                goToWritingModuleButton.data('disabled','false');
+            } else if (taskaction == 'Finish') {
+                modal.find('.modal-body p#modal-text').text('Завърши писане на "' + title + '" - ' + subtitle);
+                modal.find('#deadline').text('Краен срок: ' + deadline);
 
-                    actionButton.text('Завърши');
-                    actionButton.prop('value', taskId);
-                    actionButton.removeClass('hidden');
+                actionButton.text('Завърши');
+                actionButton.prop('value', taskId);
+                actionButton.removeClass('hidden');
 
-                    goToWritingModuleButton.text('Продължи с писането');
-                    goToWritingModuleButton.removeClass('hidden');
-                    goToWritingModuleButton.prop('value', taskId);
-                } else if (taskaction == 'Nothing') {
-                    modal.find('.modal-body p#modal-text').text('Секция "' + title + '" - ' + subtitle + ' е завършена.');
-                    modal.find('#deadline').text('Краен срок: ' + deadline);
+                goToWritingModuleButton.text('Продължи с писането');
+                goToWritingModuleButton.removeClass('hidden');
+                goToWritingModuleButton.prop('value', taskId);
+                goToWritingModuleButton.data('disabled', 'false');
+            } else if (taskaction == 'Nothing') {
+                modal.find('.modal-body p#modal-text').text('Секция "' + title + '" - ' + subtitle + ' е завършена.');
+                modal.find('#deadline').text('Краен срок: ' + deadline);
 
-                    actionButton.addClass('hidden');
-                    actionButton.prop('value', taskId);
+                actionButton.addClass('hidden');
+                actionButton.prop('value', taskId);
 
-                    goToWritingModuleButton.removeClass('hidden');
-                    goToWritingModuleButton.prop('value', taskId);
-                    goToWritingModuleButton.text('Виж написаното');
-                }
-                actionButton.data('action', taskaction);
-            });
+                goToWritingModuleButton.removeClass('hidden');
+                goToWritingModuleButton.prop('value', taskId);
+                goToWritingModuleButton.text('Виж написаното');
+                goToWritingModuleButton.data('disabled', 'true');
+            }
+            actionButton.data('action', taskaction);
+        });
 
-            $('#action').click(function(e) {
-                e.preventDefault(); // <------------------ stop default behaviour of button
+        $('#action').click(function (e) {
+            e.preventDefault(); // <------------------ stop default behaviour of button
 
-                var buttonAction = $(this);
-                var taskId = buttonAction.prop('value');
-                var action = buttonAction.data('action');
-                $.ajax({
-                    url: "/Document/" + action + "Task/",
-                    type: "POST",
-                    data: JSON.stringify({ 'taskId': taskId }),
-                    dataType: "json",
-                    traditional: true,
-                    contentType: "application/json; charset=utf-8",
-                    success: function(data) {
-                        if (action == 'Start') {
-                            window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + taskId;
+            var buttonAction = $(this);
+            var taskId = buttonAction.prop('value');
+            var action = buttonAction.data('action');
+            $.ajax({
+                url: "/Document/" + action + "Task/",
+                type: "POST",
+                data: JSON.stringify({ 'taskId': taskId }),
+                dataType: "json",
+                traditional: true,
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (action == 'Start') {
+                        window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + taskId;
+                        } else if (action == 'Nothing') {
+                            window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + taskId + '&isDisabled=true';
                         }
                     },
                     error: function() {

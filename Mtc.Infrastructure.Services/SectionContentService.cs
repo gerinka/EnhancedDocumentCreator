@@ -54,15 +54,14 @@ namespace Mtc.Domain.Services
         }
 
 
-        public int UpdateSectionContent(int sectionContentId, string title, string mainText)
+        public void UpdateSectionContent(int sectionContentId, string title, string mainText)
         {
             SectionContent sectionContent = ModelHelper.Mapper(
                 _structureContentRepository.GetById(sectionContentId));
             sectionContent.Title = title;
             sectionContent.MainText = mainText;
             sectionContent.CurrentProgress = CalculateProgress(mainText);
-            _structureContentRepository.Update(ModelHelper.Mapper(sectionContent));
-            return sectionContent.DocumentId;
+           _structureContentRepository.Update(ModelHelper.Mapper(sectionContent));
         }
         private int CalculateProgress(string mainText)
         {
