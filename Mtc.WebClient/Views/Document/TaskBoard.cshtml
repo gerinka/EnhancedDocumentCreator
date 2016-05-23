@@ -204,7 +204,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
-                <button type="button" class="btn btn-primary" id="action">Действие</button>
+                <button type="submit" class="btn btn-primary" id="action" value="3">Действие</button>
             </div>
         </div>
 
@@ -212,13 +212,9 @@
 </div>
 @section scripts{
     <script>
-        function NavigateToWritingModule(taskId) {
-            window.location.href = '@Url.Action("WritingModule", "Document")?taskId=' + taskId;
-        };
-
         $('#taskModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
-            var id = button.data('id');
+            var taskId = button.data('taskid');
             var title = button.data('tasktitle');
             var subtitle = button.data('subtitle');
             var taskaction = button.data('action');
@@ -231,16 +227,44 @@
             if (taskaction == 'Start') {
                 modal.find('.modal-body p#modal-text').text('Започни писане на "' + title + '" - ' + subtitle);
                 modal.find('#action').text('Започни');
+                modal.find('#action').prop('value',taskId);
                 modal.find('#deadline').text('Краен срок: ' + deadline);
             } else if (taskaction == 'Finish') {
                 modal.find('.modal-body p#modal-text').text('Завърши писане на "' + title + '" - ' + subtitle); 
                 modal.find('#action').text('Завърши');
                 modal.find('#deadline').text('Краен срок: ' + deadline);
+                modal.find('#action').prop('value', taskId);
             } else if (taskaction == 'Nothing') {
                 modal.find('.modal-body p#modal-text').text('Секция "' + title + '" - ' + subtitle + ' е завършена.'); 
                 modal.find('#action').text('Виж');
+                modal.find('#action').prop('value', taskId);
                 modal.find('#deadline').text('Краен срок: ' + deadline);
             }
         });
+        /*
+        $('#action').click(function (e) {
+            e.preventDefault(); // <------------------ stop default behaviour of button
+            // var element = this;
+            var taskId = this.value;
+            $.ajax({
+                url: "/Document/StartTask",
+                type: "POST",
+                data: JSON.stringify({ 'taskId': "" }),
+                dataType: "json",
+                traditional: true,
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data.status == "Success") {
+                        alert("Done");
+                        //$(element).closest("form").submit(); //<------------ submit form
+                    } else {
+                        alert("Error occurs on the Database level!");
+                    }
+                },
+                error: function () {
+                    alert("An error has occured!!!");
+                }
+            });
+        });*/
     </script>
 }
