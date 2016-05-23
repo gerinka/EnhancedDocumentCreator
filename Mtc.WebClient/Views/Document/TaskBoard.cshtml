@@ -57,7 +57,7 @@
                 {
                     task = Model.ToDoTasks[i * 2 + 1];
                     <div class="col-lg-6">
-                        <div class="panel panel-info">
+                        <div class="panel @task.TaskState.ToString().ToLower()">
                             <div class="panel-heading">@task.Title</div>
                             <div class="panel-body"
                                  data-toggle="modal"
@@ -112,7 +112,7 @@
                 {
                     task = Model.InProgressTasks[i * 2 + 1];
                     <div class="col-lg-6">
-                        <div class="panel panel-info">
+                        <div class="panel @task.TaskState.ToString().ToLower()">
                             <div class="panel-heading">@task.Title</div>
                             <div class="panel-body"
                                  data-toggle="modal"
@@ -167,7 +167,7 @@
                 {
                     task = Model.DoneTasks[i * 2 + 1];
                     <div class="col-lg-6">
-                        <div class="panel panel-info">
+                        <div class="panel @task.TaskState.ToString().ToLower()">
                             <div class="panel-heading">@task.Title</div>
                             <div class="panel-body"
                                  data-toggle="modal"

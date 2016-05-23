@@ -52,9 +52,9 @@ namespace Mtc.WebClient.Controllers
             IEnumerable<Task> taskList = _taskService.GetTasksByDocumentId(documentId).ToList();
             var taskboard = new TasksBoardViewModel
             {
-                DoneTasks = taskList.Where(t=>t.TaskState == TaskState.Done).ToList(),
-                InProgressTasks = taskList.Where(t=>t.TaskState == TaskState.InProgress || (t.Section.Content.CurrentProgress > 0 && t.TaskState == TaskState.Expired)).ToList(),
-                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo || (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired)).ToList(),
+                DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).Take(6).ToList(),
+                InProgressTasks = taskList.Where(t => t.TaskState == TaskState.InProgress || (t.Section.Content.CurrentProgress > 0 && t.TaskState == TaskState.Expired)).Take(6).OrderBy(t => t.Id).ToList(),
+                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo || (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired)).Take(6).OrderBy(t => t.Id).ToList(),
                 DocumentId = documentId
             };
             return View(taskboard);
@@ -114,9 +114,9 @@ namespace Mtc.WebClient.Controllers
             IEnumerable<Task> taskList = _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.Sections).ToList();
             var taskboard = new TasksBoardViewModel
             {
-                DoneTasks = taskList.Where(t=>t.TaskState == TaskState.Done).ToList(),
-                InProgressTasks = taskList.Where(t => t.TaskState == TaskState.InProgress).ToList(),
-                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked).ToList(),
+                DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).Take(6).ToList(),
+                InProgressTasks = taskList.Where(t => t.TaskState == TaskState.InProgress).OrderBy(t => t.Id).Take(6).ToList(),
+                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked).OrderBy(t => t.Id).Take(6).ToList(),
                 DocumentId = document.Id
             };
             return View("TaskBoard", taskboard);
