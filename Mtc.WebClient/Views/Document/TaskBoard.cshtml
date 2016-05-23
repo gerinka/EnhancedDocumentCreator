@@ -13,7 +13,7 @@
     <div class="col-lg-4">
       @if (!(Model.InProgressTasks.Any() || Model.ToDoTasks.Any()))
       {
-          <button type="button" class="btn btn-primary pull-right" id="generateDocument" value="@Model.DocumentId">Генериране на документ</button>
+          <button type="button" class="btn btn-primary pull-right" id="generateDocument" onclick="getGeneratedDocument(@Model.DocumentId)">Генериране на документ</button>
       }
     </div>
 </div>
@@ -232,6 +232,9 @@
         window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + currentTaskId + '&isDisabled=' + disabled;
     };
 
+     function getGeneratedDocument(documentId) {
+         window.location = "/Document/GetDocument?documentId=" + documentId;
+     }
     $(document).ready(function () {
         $('#taskModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
@@ -308,27 +311,7 @@
                     error: function() {
                     }
                 });
-        });
-
-        $('#generateDocument').click(function (e) {
-            e.preventDefault(); // <------------------ stop default behaviour of button
-
-            var buttonGenerateDocument = $(this);
-            var documentId = buttonGenerateDocument.prop('value');
-            $.ajax({
-                url: "/Document/GenerateDocument",
-                type: "POST",
-                data: JSON.stringify({ 'documentId': documentId }),
-                dataType: "json",
-                traditional: true,
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-          
-                },
-                error: function () {
-                }
-            });
-        });
+             });
         });
     </script>
 }

@@ -159,10 +159,10 @@ namespace Mtc.WebClient.Controllers
         }
 
         //
-        // POST: /Document/StartTask
-        [HttpPost]
+        // Get: /Document/GenerateDocument
+        [HttpGet]
         [AllowAnonymous]
-        public ActionResult GenerateDocument(int documentId)
+        public FileResult GetDocument(int documentId)
         {
             MemoryStream document = _documentService.GenerateDocument(documentId);
             return File(document.ToArray(), "application/docx", Server.UrlEncode("NewFile.docx"));
