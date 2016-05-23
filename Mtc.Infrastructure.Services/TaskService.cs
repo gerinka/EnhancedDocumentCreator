@@ -51,7 +51,17 @@ namespace Mtc.Domain.Services
 
         public IEnumerable<Task> GetTasksByDocumentId(int documentId)
         {
-            return _taskRepository.Get(t => t.DocumentId == documentId).Select(ModelHelper.Mapper);
+            var taskList = _taskRepository.Get(t => t.DocumentId == documentId).Select(ModelHelper.Mapper).ToList();
+            foreach (var task in taskList)
+            {
+                if (task.Deadline < DateTime.UtcNow)
+                {
+                    task.TaskState = TaskState.Expired;
+                }
+            }
+            _taskRepository.BulkUpdate(taskList.Select(ModelHelper.Mapper));
+
+            return taskList;
         }
 
         public Task StartTask(int taskId)

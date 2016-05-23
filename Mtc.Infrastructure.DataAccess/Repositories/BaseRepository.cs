@@ -59,6 +59,22 @@ namespace Mtc.Infrastructure.DataAccess.Repositories
             return entities.Select(Insert);
         }
 
+        public void BulkUpdate(IEnumerable<TEntity> entities)
+        {
+            foreach (var entity in entities)
+            {
+                Update(entity);
+            }
+        }
+
+        public void BulkDelete(IEnumerable<TEntity> entities)
+        {
+            foreach (var entity in entities)
+            {
+                Delete(entity);
+            }
+        }
+
         public virtual void Delete(object id)
         {
             TEntity entityToDelete = DbSet.Find(id);
