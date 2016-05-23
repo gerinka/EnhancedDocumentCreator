@@ -281,7 +281,8 @@
                     dataType: "json",
                     traditional: true,
                     contentType: "application/json; charset=utf-8",
-                    success: function(data) {
+                    success: function (data) {
+                        window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + taskId;
                     },
                     error: function() {
                     }
