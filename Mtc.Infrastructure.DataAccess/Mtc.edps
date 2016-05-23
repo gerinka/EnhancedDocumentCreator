@@ -17,6 +17,7 @@
         <File Name="Mtc.ReferenceType.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="Mtc.StructureType.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="Mtc.DocumentState.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="Mtc.TaskAction.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
       </GeneratedFiles>
     </Generation>
     <DatabaseFirstNamingRules>

@@ -17,31 +17,23 @@ namespace MtcModel
 {
 
     /// <summary>
-    /// There are no comments for MtcModel.DocumentState in the schema.
+    /// There are no comments for MtcModel.TaskAction in the schema.
     /// </summary>
-    public enum DocumentState : int
+    public enum TaskAction : int
     {
     
         /// <summary>
-        /// There are no comments for DocumentState.Waiting in the schema.
+        /// There are no comments for TaskAction.Start in the schema.
         /// </summary>
-        Waiting = 1,    
+        Start = 1,    
         /// <summary>
-        /// There are no comments for DocumentState.Started in the schema.
+        /// There are no comments for TaskAction.Finish in the schema.
         /// </summary>
-        Started = 2,    
+        Finish = 2,    
         /// <summary>
-        /// There are no comments for DocumentState.InProgress in the schema.
+        /// There are no comments for TaskAction.Reject in the schema.
         /// </summary>
-        InProgress = 3,    
-        /// <summary>
-        /// There are no comments for DocumentState.Finished in the schema.
-        /// </summary>
-        Finished = 4,    
-        /// <summary>
-        /// There are no comments for DocumentState.Rejected in the schema.
-        /// </summary>
-        Rejected = 5
+        Reject = 3
     }
 
 }

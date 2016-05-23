@@ -27,7 +27,14 @@
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
                         <div class="panel-heading">@task.Title</div>
-                        <div class="panel-body" data-toggle="modal" data-target="#myModal">
+                        <div class="panel-body"
+                             data-toggle="modal"
+                             data-target="#myModal"
+                             data-taskid="@task.Id"
+                             data-tasktitle="@task.Title"
+                             data-subtitle="@task.Order) @task.Section.Content.Title"
+                             data-action="@task.TaskAction.ToString()"
+                             data-taskstate="@task.TaskState.ToString().ToLower()">
                             @task.Order) @task.Section.Content.Title
                             <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
                         </div>
@@ -153,7 +160,8 @@
                 <p>Some text in the modal.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
+                <button type="button" class="btn btn-primary" id="action">Стартирай задача</button>
             </div>
         </div>
 
@@ -161,18 +169,25 @@
 </div>
 @section scripts{
     <script>
-    function NavigateToWritingModule(taskId) {
-        window.location.href = '@Url.Action("WritingModule", "Document")?taskId=' + taskId;
-    };
+        function NavigateToWritingModule(taskId) {
+            window.location.href = '@Url.Action("WritingModule", "Document")?taskId=' + taskId;
+        };
 
         $('#myModal').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget); // Button that triggered the modal
-        var recipient = button.data('whatever'); // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this);
-        modal.find('.modal-title').text('New message to ' + recipient);
-        modal.find('.modal-body input').val(recipient);
-    });
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var id = button.data('id');
+            var title = button.data('tasktitle');
+            var subtitle = button.data('subtitle');
+            var taskaction = button.data('taskaction');
+            var taskstate = button.data('taskstate');
+            var modal = $(this);
+            modal.find('.modal-title').text(title);
+            if (taskaction == 'Start') {
+                modal.find('.modal-body').text('Започни задача ' + title + ' - ' + subtitle);
+            } else if (taskaction == 'Finish') {
+                modal.find('.modal-body').text('Завърши задача ' + title + ' - ' + subtitle);
+            }
+            modal.find('.modal-footer #action')[0].prop('value', taskaction);
+        });
     </script>
 }

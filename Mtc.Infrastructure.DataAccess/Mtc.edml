@@ -517,6 +517,11 @@
           <Member Name="Finished" Value="4" ed:Guid="ad797bfd-18d6-477f-96f1-db43d70a7331" />
           <Member Name="Rejected" Value="5" ed:Guid="2aefa7b9-4a6b-4032-8f58-ce78c7c4c3b7" />
         </EnumType>
+        <EnumType Name="TaskAction" ed:Guid="8e3bed4d-b778-48bf-9026-41122caf6d7b">
+          <Member Name="Start" Value="1" ed:Guid="7000e07b-397f-4ea4-9e18-bbc753ec9b1e" />
+          <Member Name="Finish" Value="2" ed:Guid="819bc5c8-4bb4-416e-9ee5-be907e7fb8b4" />
+          <Member Name="Reject" Value="3" ed:Guid="6be575cb-5a1a-4b7b-ba68-f659aeb99bb9" />
+        </EnumType>
         <Association Name="FK_DocumentDocumentTemplate_ID" ed:Guid="3f92ef28-1a14-4222-bdfd-8a4961a055be">
           <End Role="DOCUMENTTEMPLATE" Type="MtcModel.DOCUMENTTEMPLATE" Multiplicity="1" />
           <End Role="DOCUMENTs" Type="MtcModel.DOCUMENT" Multiplicity="*" />

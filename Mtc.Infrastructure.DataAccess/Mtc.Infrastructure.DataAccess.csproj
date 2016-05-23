@@ -63,6 +63,7 @@
     <Compile Include="GeneratedEntities\Mtc.STRUCTUREELEMENT.cs" />
     <Compile Include="GeneratedEntities\Mtc.StructureType.cs" />
     <Compile Include="GeneratedEntities\Mtc.TASK.cs" />
+    <Compile Include="GeneratedEntities\Mtc.TaskAction.cs" />
     <Compile Include="GeneratedEntities\Mtc.TaskState.cs" />
     <Compile Include="GeneratedEntities\Mtc.TaskType.cs" />
     <Compile Include="GeneratedEntities\Mtc.USER.cs" />

@@ -13,5 +13,6 @@ namespace Mtc.Domain.Models
         public TaskState TaskState { get; set; }
         public Section Section { get; set; }
         public DateTime Deadline { get; set; }
+        public TaskAction TaskAction { get; set; }
     }
 }

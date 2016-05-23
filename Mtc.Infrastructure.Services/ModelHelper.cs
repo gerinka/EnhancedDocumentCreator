@@ -158,8 +158,26 @@ namespace Mtc.Domain.Services
                 TaskType = task.TaskType,
                 TaskState = task.TaskState,
                 Order = task.Order,
-                Section = Mapper(task.STRUCTURECONTENT.STRUCTUREELEMENT)
+                Section = Mapper(task.STRUCTURECONTENT.STRUCTUREELEMENT),
+                TaskAction = CalculateTaskAction(task)
             };
+        }
+
+        private static TaskAction CalculateTaskAction(TASK task)
+        {
+            if (task.TaskState == TaskState.ToDo || (task.TaskState == TaskState.Expired && task.STRUCTURECONTENT.CurrentProgress == 0))
+            {
+                return TaskAction.Start;
+            }
+            else if (task.TaskState == TaskState.InProgress ||
+                     (task.TaskState == TaskState.Expired && task.STRUCTURECONTENT.CurrentProgress > 0))
+            {
+                return TaskAction.Finish;
+            }
+            else
+            {
+                return new TaskAction();
+            }
         }
 
         public static TASK Mapper(Task task)
