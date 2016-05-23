@@ -218,6 +218,7 @@
             var currentTaskId = goToButton.prop('value');
             window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + currentTaskId;
         };
+
         $(document).ready(function() {
             $('#taskModal').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget); // Button that triggered the modal
@@ -250,7 +251,7 @@
                     actionButton.text('Завърши');
                     actionButton.prop('value', taskId);
                     actionButton.removeClass('hidden');
-                    
+
                     goToWritingModuleButton.text('Продължи с писането');
                     goToWritingModuleButton.removeClass('hidden');
                     goToWritingModuleButton.prop('value', taskId);
@@ -260,7 +261,7 @@
 
                     actionButton.addClass('hidden');
                     actionButton.prop('value', taskId);
-                    
+
                     goToWritingModuleButton.removeClass('hidden');
                     goToWritingModuleButton.prop('value', taskId);
                     goToWritingModuleButton.text('Виж написаното');
@@ -270,7 +271,7 @@
 
             $('#action').click(function(e) {
                 e.preventDefault(); // <------------------ stop default behaviour of button
-     
+
                 var buttonAction = $(this);
                 var taskId = buttonAction.prop('value');
                 var action = buttonAction.data('action');
@@ -281,8 +282,10 @@
                     dataType: "json",
                     traditional: true,
                     contentType: "application/json; charset=utf-8",
-                    success: function (data) {
-                        window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + taskId;
+                    success: function(data) {
+                        if (action == 'Start') {
+                            window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + taskId;
+                        }
                     },
                     error: function() {
                     }
