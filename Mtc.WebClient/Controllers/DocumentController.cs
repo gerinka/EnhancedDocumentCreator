@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -56,10 +57,6 @@ namespace Mtc.WebClient.Controllers
                 ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo || (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired)).ToList()
             };
             return View(taskboard);
-        }
-        public ActionResult TaskList()
-        {
-            return View();
         }
 
         public ActionResult GoToWritingModule(int taskId, bool isDisabled = false)
@@ -157,6 +154,16 @@ namespace Mtc.WebClient.Controllers
             Task task = _taskService.GetById(taskId);
             _documentService.UpdateDocumentProgress(task.Section.Content.DocumentId);
             return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        //
+        // POST: /Document/StartTask
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult GenerateDocument(int documentId)
+        {
+            MemoryStream document = _documentService.GenerateDocument(documentId);
+            return File(document.ToArray(), "application/docx", Server.UrlEncode("NewFile.docx"));
         }
     }
 }

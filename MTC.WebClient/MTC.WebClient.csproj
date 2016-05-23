@@ -825,7 +825,6 @@
     <Content Include="Views\Document\Index.cshtml" />
     <Content Include="Views\Document\PanelStructure.cshtml" />
     <Content Include="Views\Document\TaskBoard.cshtml" />
-    <Content Include="Views\Document\TaskList.cshtml" />
     <Content Include="Views\Document\WritingModule.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -86,6 +87,11 @@ namespace Mtc.Domain.Services
                 document.DocumentState = DocumentState.InProgress;
             }
             _documentRepository.Update(ModelHelper.Mapper(document));
+        }
+
+        public MemoryStream GenerateDocument(int documentId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
