@@ -204,7 +204,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
-                <button type="submit" class="btn btn-primary" id="action" value="3">Действие</button>
+                <button type="submit" class="btn btn-primary" id="action" value="3" data-action="action">Действие</button>
             </div>
         </div>
 
@@ -221,50 +221,48 @@
             var taskstate = button.data('taskstate');
             var deadline = button.data('deadline');
             var modal = $(this);
+            var actionButton = modal.find('#action');
             modal.find('.modal-title').text(title);
             modal.find('.modal-content').addClass(taskstate);
             modal.find('#modal-icon').addClass(taskstate+'-icon');
             if (taskaction == 'Start') {
                 modal.find('.modal-body p#modal-text').text('Започни писане на "' + title + '" - ' + subtitle);
-                modal.find('#action').text('Започни');
-                modal.find('#action').prop('value',taskId);
+                actionButton.text('Започни');
+                actionButton.prop('value', taskId);
                 modal.find('#deadline').text('Краен срок: ' + deadline);
             } else if (taskaction == 'Finish') {
                 modal.find('.modal-body p#modal-text').text('Завърши писане на "' + title + '" - ' + subtitle); 
-                modal.find('#action').text('Завърши');
+                actionButton.text('Завърши');
                 modal.find('#deadline').text('Краен срок: ' + deadline);
-                modal.find('#action').prop('value', taskId);
+                actionButton.prop('value', taskId);
             } else if (taskaction == 'Nothing') {
                 modal.find('.modal-body p#modal-text').text('Секция "' + title + '" - ' + subtitle + ' е завършена.'); 
-                modal.find('#action').text('Виж');
-                modal.find('#action').prop('value', taskId);
+                actionButton.text('Виж');
+                actionButton.prop('value', taskId);
                 modal.find('#deadline').text('Краен срок: ' + deadline);
             }
+            actionButton.data('action', taskaction);
         });
-        /*
+        
         $('#action').click(function (e) {
             e.preventDefault(); // <------------------ stop default behaviour of button
             // var element = this;
-            var taskId = this.value;
+            var buttonAction = $(this);
+            var taskId = buttonAction.prop('value');
+            var action = buttonAction.data('action');
             $.ajax({
-                url: "/Document/StartTask",
+                url: "/Document/"+action+"Task/",
                 type: "POST",
-                data: JSON.stringify({ 'taskId': "" }),
+                data: JSON.stringify({ 'taskId': taskId }),
                 dataType: "json",
                 traditional: true,
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    if (data.status == "Success") {
-                        alert("Done");
-                        //$(element).closest("form").submit(); //<------------ submit form
-                    } else {
-                        alert("Error occurs on the Database level!");
-                    }
+                  
                 },
                 error: function () {
-                    alert("An error has occured!!!");
                 }
             });
-        });*/
+        });
     </script>
 }

@@ -75,8 +75,9 @@ namespace Mtc.Infrastructure.DataAccess.Repositories
 
         public virtual void Update(TEntity entityToUpdate)
         {
-            DbSet.Attach(entityToUpdate);
             _context.Entry(entityToUpdate).State = EntityState.Modified;
+            DbSet.Attach(entityToUpdate);
+            _context.SaveChanges();
         }
     }
 }
