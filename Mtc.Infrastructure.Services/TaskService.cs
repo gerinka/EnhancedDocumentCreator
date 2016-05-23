@@ -69,8 +69,11 @@ namespace Mtc.Domain.Services
         public Task FinishTask(int taskId)
         {
             Task task = GetById(taskId);
-            task.TaskState = TaskState.Done;
-            _taskRepository.Update(ModelHelper.Mapper(task));
+            if (task.Section.Content.CurrentProgress > 90)
+            {
+                task.TaskState = TaskState.Done;
+                _taskRepository.Update(ModelHelper.Mapper(task));
+            }
             return task;
         }
 
