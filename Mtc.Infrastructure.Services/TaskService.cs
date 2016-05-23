@@ -73,7 +73,7 @@ namespace Mtc.Domain.Services
         {
             if (taskList.All(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.Done))
             {
-                foreach (var task in taskList.Where(t => t.TaskState == TaskState.Locked).Take(3))
+                foreach (var task in taskList.Where(t => t.TaskState == TaskState.Locked).OrderBy(t=>t.Deadline).Take(3))
                 {
                     task.TaskState = TaskState.ToDo;
                 }
