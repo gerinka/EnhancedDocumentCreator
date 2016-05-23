@@ -54,7 +54,8 @@ namespace Mtc.WebClient.Controllers
             {
                 DoneTasks = taskList.Where(t=>t.TaskState == TaskState.Done).ToList(),
                 InProgressTasks = taskList.Where(t=>t.TaskState == TaskState.InProgress || (t.Section.Content.CurrentProgress > 0 && t.TaskState == TaskState.Expired)).ToList(),
-                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo || (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired)).ToList()
+                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo || (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired)).ToList(),
+                DocumentId = documentId
             };
             return View(taskboard);
         }
@@ -115,7 +116,8 @@ namespace Mtc.WebClient.Controllers
             {
                 DoneTasks = taskList.Where(t=>t.TaskState == TaskState.Done).ToList(),
                 InProgressTasks = taskList.Where(t => t.TaskState == TaskState.InProgress).ToList(),
-                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked).ToList()
+                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked).ToList(),
+                DocumentId = document.Id
             };
             return View("TaskBoard", taskboard);
         }

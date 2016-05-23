@@ -11,5 +11,6 @@ namespace Mtc.WebClient.Models
         public IList<Task> ToDoTasks { get; set; }
         public IList<Task> InProgressTasks { get; set; }
         public IList<Task> DoneTasks { get; set; }
+        public int DocumentId { get; set; }
     }
 }

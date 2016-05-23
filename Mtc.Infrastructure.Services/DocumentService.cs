@@ -91,7 +91,7 @@ namespace Mtc.Domain.Services
 
         public MemoryStream GenerateDocument(int documentId)
         {
-            throw new NotImplementedException();
+            return new MemoryStream();
         }
     }
 }

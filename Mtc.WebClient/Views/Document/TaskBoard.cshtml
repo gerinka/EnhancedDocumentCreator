@@ -11,7 +11,10 @@
     <div class="col-lg-4">
     </div>
     <div class="col-lg-4">
-        <button type="button" class="btn btn-primary" id="generateDocument" value="1">Генериране на документ</button>
+      @if (!(Model.InProgressTasks.Any() || Model.ToDoTasks.Any()))
+      {
+          <button type="button" class="btn btn-primary pull-right" id="generateDocument" value="@Model.DocumentId">Генериране на документ</button>
+      }
     </div>
 </div>
 <div class="row">
@@ -305,7 +308,27 @@
                     error: function() {
                     }
                 });
+        });
+
+        $('#generateDocument').click(function (e) {
+            e.preventDefault(); // <------------------ stop default behaviour of button
+
+            var buttonGenerateDocument = $(this);
+            var documentId = buttonGenerateDocument.prop('value');
+            $.ajax({
+                url: "/Document/GenerateDocument",
+                type: "POST",
+                data: JSON.stringify({ 'documentId': documentId }),
+                dataType: "json",
+                traditional: true,
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+          
+                },
+                error: function () {
+                }
             });
+        });
         });
     </script>
 }
