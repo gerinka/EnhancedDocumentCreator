@@ -99,7 +99,7 @@ namespace Mtc.Domain.Services
                 STRUCTURECONTENTs = ConvertSectionsToSetOfContent(document.Sections.ToList()),
                 CurrentProgress = document.CurrentProgress,
                 DocumentState = document.DocumentState,
-                TASKs = document.Tasks.Select(Mapper).ToList()
+                TASKs = document.Tasks!=null ? document.Tasks.Select(Mapper).ToList() : null
             };
         }
 
@@ -115,7 +115,7 @@ namespace Mtc.Domain.Services
                 Author = Mapper(document.USER_UserId),
                 DocumentState = document.DocumentState,
                 CurrentProgress = document.CurrentProgress,
-                Tasks = document.TASKs.Select(Mapper).ToList()
+                Tasks = document.TASKs!=null?document.TASKs.Select(Mapper).ToList():null
             };
         }
 
