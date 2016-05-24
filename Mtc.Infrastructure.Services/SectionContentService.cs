@@ -65,32 +65,35 @@ namespace Mtc.Domain.Services
         }
         private int CalculateProgress(string mainText)
         {
-            int progress;
-            String text = mainText.Trim();
-            int wordCount = 0, index = 0;
-
-            while (index < text.Length)
+            int progress = 1;
+            if (mainText.Length > 0)
             {
-                // check if current char is part of a word
-                while (index < text.Length && Char.IsWhiteSpace(text[index]) == false)
-                    index++;
+                String text = mainText.Trim();
+                int wordCount = 0, index = 0;
 
-                wordCount++;
+                while (index < text.Length)
+                {
+                    // check if current char is part of a word
+                    while (index < text.Length && Char.IsWhiteSpace(text[index]) == false)
+                        index++;
 
-                // skip whitespace until next word
-                while (index < text.Length && Char.IsWhiteSpace(text[index]) == true)
-                    index++;
+                    wordCount++;
+
+                    // skip whitespace until next word
+                    while (index < text.Length && Char.IsWhiteSpace(text[index]) == true)
+                        index++;
+                }
+                if (wordCount >= MinNeededWords)
+                {
+                    progress = 100;
+                }
+                else
+                {
+                    progress = (int) Math.Floor((double) wordCount*100/MinNeededWords);
+                }
+                if (progress > 100) progress = 100;
+                else if (progress < 1) progress = 1;
             }
-            if (wordCount >= MinNeededWords)
-            {
-                progress = 100;
-            }
-            else
-            {
-                progress = (int)Math.Floor((double)wordCount * 100 / MinNeededWords);
-            }
-            if (progress > 100) progress = 100;
-            else if (progress < 1) progress = 1;
 
             return progress;
         }

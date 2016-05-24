@@ -144,7 +144,7 @@ namespace Mtc.WebClient.Controllers
         public ActionResult StartTask(int taskId)
         {
             _taskService.StartTask(taskId);
-            return RedirectToAction("GoToWritingModule", new { taskId });
+            return Json(Url.Action("GoToWritingModule", "Document", new{taskId})); 
         }
 
         //
@@ -157,11 +157,11 @@ namespace Mtc.WebClient.Controllers
             Task task = _taskService.GetById(taskId);
             if (task.TaskState == TaskState.Done)
             {
-                _documentService.UpdateDocumentProgress(task.Section.Content.DocumentId);
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
+                var documentId = task.Section.Content.DocumentId;
+                _documentService.UpdateDocumentProgress(documentId);
+                return Json(Url.Action("TaskBoard", "Document", new { documentId })); 
             }
             return new HttpStatusCodeResult(HttpStatusCode.ExpectationFailed);
-            
         }
 
         //

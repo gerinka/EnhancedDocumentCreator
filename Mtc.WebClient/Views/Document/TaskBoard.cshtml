@@ -38,7 +38,7 @@
             <div class="col-lg-4">
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
-                        <div class="panel-heading">@task.Title</div>
+                        <div class="panel-heading">@task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
                         <div class="panel-body"
                              data-toggle="modal"
                              data-target="#taskModal"
@@ -49,7 +49,7 @@
                              data-taskstate="@task.TaskState.ToString().ToLower()"
                              data-deadline="@task.Deadline">
                             @task.Order) @task.Section.Content.Title
-                            <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
+                            <span class="badge pull-right current-progress">@task.Section.Content.CurrentProgress</span>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                     task = Model.ToDoTasks[i * 2 + 1];
                     <div class="col-lg-6">
                         <div class="panel @task.TaskState.ToString().ToLower()">
-                            <div class="panel-heading">@task.Title</div>
+                            <div class="panel-heading">@task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
                             <div class="panel-body"
                                  data-toggle="modal"
                                  data-target="#taskModal"
@@ -69,7 +69,7 @@
                                  data-taskstate="@task.TaskState.ToString().ToLower()"
                                  data-deadline="@task.Deadline">
                                 @task.Order) @task.Section.Content.Title
-                                <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
+                                <span class="badge pull-right current-progress">@task.Section.Content.CurrentProgress</span>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
             <div class="col-lg-4">
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
-                        <div class="panel-heading">@task.Title</div>
+                        <div class="panel-heading">@task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
                         <div class="panel-body"
                              data-toggle="modal"
                              data-target="#taskModal"
@@ -104,7 +104,7 @@
                              data-taskstate="@task.TaskState.ToString().ToLower()"
                              data-deadline="@task.Deadline">
                             @task.Order) @task.Section.Content.Title
-                            <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
+                            <span class="badge pull-right current-progress">@task.Section.Content.CurrentProgress</span>
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                     task = Model.InProgressTasks[i * 2 + 1];
                     <div class="col-lg-6">
                         <div class="panel @task.TaskState.ToString().ToLower()">
-                            <div class="panel-heading">@task.Title</div>
+                            <div class="panel-heading">@task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
                             <div class="panel-body"
                                  data-toggle="modal"
                                  data-target="#taskModal"
@@ -124,7 +124,7 @@
                                  data-taskstate="@task.TaskState.ToString().ToLower()"
                                  data-deadline="@task.Deadline">
                                 @task.Order) @task.Section.Content.Title
-                                <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
+                                <span class="badge pull-right current-progress">@task.Section.Content.CurrentProgress</span>
                             </div>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
             <div class="col-lg-4">
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
-                        <div class="panel-heading">@task.Title</div>
+                        <div class="panel-heading">@task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
                         <div class="panel-body"
                              data-toggle="modal"
                              data-target="#taskModal"
@@ -159,7 +159,7 @@
                              data-taskstate="@task.TaskState.ToString().ToLower()"
                              data-deadline="@task.Deadline">
                             @task.Order) @task.Section.Content.Title
-                            <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
+                            <span class="badge pull-right current-progress">@task.Section.Content.CurrentProgress</span>
                         </div>
                     </div>
                 </div>
@@ -168,7 +168,7 @@
                     task = Model.DoneTasks[i * 2 + 1];
                     <div class="col-lg-6">
                         <div class="panel @task.TaskState.ToString().ToLower()">
-                            <div class="panel-heading">@task.Title</div>
+                            <div class="panel-heading">@task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
                             <div class="panel-body"
                                  data-toggle="modal"
                                  data-target="#taskModal"
@@ -179,7 +179,7 @@
                                  data-taskstate="@task.TaskState.ToString().ToLower()"
                                  data-deadline="@task.Deadline">
                                 @task.Order) @task.Section.Content.Title
-                                <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span>
+                                <span class="badge pull-right current-progress">@task.Section.Content.CurrentProgress</span>
                             </div>
                         </div>
                     </div>
@@ -226,112 +226,109 @@
 </div>
 @section scripts{
     <script>
-    function navigateToWritingModule(button) {
-        var goToButton = $(button);
-        var currentTaskId = goToButton.prop('value');
-        var disabled = goToButton.data('disabled');
-        window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + currentTaskId + '&isDisabled=' + disabled;
-    };
+        function navigateToWritingModule(button) {
+            var goToButton = $(button);
+            var currentTaskId = goToButton.prop('value');
+            var disabled = goToButton.data('disabled');
+            window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + currentTaskId + '&isDisabled=' + disabled;
+        };
 
-     function getGeneratedDocument(documentId) {
-         window.location = "/Document/GetDocument?documentId=" + documentId;
-     }
-    $(document).ready(function () {
-        $('#taskModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            var taskId = button.data('taskid');
-            var title = button.data('tasktitle');
-            var subtitle = button.data('subtitle');
-            var taskaction = button.data('action');
-            var taskstate = button.data('taskstate');
-            var deadline = button.data('deadline');
-            var modal = $(this);
-            var actionButton = modal.find('#action');
-            var goToWritingModuleButton = modal.find('#goToWritingModule');
-            modal.find('.modal-title').text(title);
+        function getGeneratedDocument(documentId) {
+            window.location = "/Document/GetDocument?documentId=" + documentId;
+        }
 
-            modal.find("#modal-content").removeClass();
-            modal.find("#modal-content").addClass("modal-content");
-            modal.find('#modal-content').addClass(taskstate);
-            
-            modal.find("#modal-icon").removeClass();
-            modal.find('#modal-icon').addClass("glyphicon pull-right");
-            modal.find('#modal-icon').addClass(taskstate + '-icon');
+        $(document).ready(function() {
+            $('#taskModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var taskId = button.data('taskid');
+                var title = button.data('tasktitle');
+                var subtitle = button.data('subtitle');
+                var taskaction = button.data('action');
+                var taskstate = button.data('taskstate');
+                var deadline = button.data('deadline');
+                var modal = $(this);
+                var actionButton = modal.find('#action');
+                var goToWritingModuleButton = modal.find('#goToWritingModule');
+                modal.find('.modal-title').text(title);
 
-            if (taskaction == 'Start') {
-                modal.find('.modal-body p#modal-text').text('Започни писане на "' + title + '" - ' + subtitle);
-                modal.find('#deadline').text('Краен срок: ' + deadline);
+                modal.find("#modal-content").removeClass();
+                modal.find("#modal-content").addClass("modal-content");
+                modal.find('#modal-content').addClass(taskstate);
 
-                actionButton.removeClass('hidden');
-                actionButton.text('Започни');
-                actionButton.prop('value', taskId);
+                modal.find("#modal-icon").removeClass();
+                modal.find('#modal-icon').addClass("glyphicon pull-right");
+                modal.find('#modal-icon').addClass(taskstate + '-icon');
 
-                goToWritingModuleButton.addClass('hidden');
-                goToWritingModuleButton.prop('value', taskId);
-                goToWritingModuleButton.data('disabled','false');
-            } else if (taskaction == 'Finish') {
-                modal.find('.modal-body p#modal-text').text('Завърши писане на "' + title + '" - ' + subtitle);
-                modal.find('#deadline').text('Краен срок: ' + deadline);
+                if (taskaction == 'Start') {
+                    modal.find('.modal-body p#modal-text').text('Започни писане на "' + title + '" - ' + subtitle);
+                    modal.find('#deadline').text('Краен срок: ' + deadline);
 
-                actionButton.text('Завърши');
-                actionButton.prop('value', taskId);
-                actionButton.removeClass('hidden');
+                    actionButton.removeClass('hidden');
+                    actionButton.text('Започни');
+                    actionButton.prop('value', taskId);
 
-                goToWritingModuleButton.text('Продължи с писането');
-                goToWritingModuleButton.removeClass('hidden');
-                goToWritingModuleButton.prop('value', taskId);
-                goToWritingModuleButton.data('disabled', 'false');
-            } else if (taskaction == 'Nothing') {
-                modal.find('.modal-body p#modal-text').text('Секция "' + title + '" - ' + subtitle + ' е завършена.');
-                modal.find('#deadline').text('Краен срок: ' + deadline);
+                    goToWritingModuleButton.addClass('hidden');
+                    goToWritingModuleButton.prop('value', taskId);
+                    goToWritingModuleButton.data('disabled', 'false');
+                } else if (taskaction == 'Finish') {
+                    modal.find('.modal-body p#modal-text').text('Завърши писане на "' + title + '" - ' + subtitle);
+                    modal.find('#deadline').text('Краен срок: ' + deadline);
 
-                actionButton.addClass('hidden');
-                actionButton.prop('value', taskId);
+                    actionButton.text('Завърши');
+                    actionButton.prop('value', taskId);
+                    actionButton.removeClass('hidden');
 
-                goToWritingModuleButton.removeClass('hidden');
-                goToWritingModuleButton.prop('value', taskId);
-                goToWritingModuleButton.text('Виж написаното');
-                goToWritingModuleButton.data('disabled', 'true');
-            } else if (taskaction == 'Locked') {
-                modal.find('.modal-body p#modal-text').text('Тази секция е заключена. Завърши предходните, за да я отключиш!');
-                modal.find('#deadline').text('Краен срок: ' + deadline);
+                    goToWritingModuleButton.text('Продължи с писането');
+                    goToWritingModuleButton.removeClass('hidden');
+                    goToWritingModuleButton.prop('value', taskId);
+                    goToWritingModuleButton.data('disabled', 'false');
+                } else if (taskaction == 'Nothing') {
+                    modal.find('.modal-body p#modal-text').text('Секция "' + title + '" - ' + subtitle + ' е завършена.');
+                    modal.find('#deadline').text('Краен срок: ' + deadline);
 
-                actionButton.addClass('hidden');
-                actionButton.prop('value', taskId);
+                    actionButton.addClass('hidden');
+                    actionButton.prop('value', taskId);
 
-                goToWritingModuleButton.addClass('hidden');
-                goToWritingModuleButton.prop('value', taskId);
-            }
-            actionButton.data('action', taskaction);
-        });
+                    goToWritingModuleButton.removeClass('hidden');
+                    goToWritingModuleButton.prop('value', taskId);
+                    goToWritingModuleButton.text('Виж написаното');
+                    goToWritingModuleButton.data('disabled', 'true');
+                } else if (taskaction == 'Locked') {
+                    modal.find('.modal-body p#modal-text').text('Тази секция е заключена. Завърши предходните, за да я отключиш!');
+                    modal.find('#deadline').text('Краен срок: ' + deadline);
 
-        $('#action').click(function (e) {
-            e.preventDefault(); // <------------------ stop default behaviour of button
+                    actionButton.addClass('hidden');
+                    actionButton.prop('value', taskId);
 
-            var buttonAction = $(this);
-            var taskId = buttonAction.prop('value');
-            var action = buttonAction.data('action');
-            $.ajax({
-                url: "/Document/" + action + "Task/",
-                type: "POST",
-                data: JSON.stringify({ 'taskId': taskId }),
-                dataType: "json",
-                traditional: true,
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    if (action == 'Start') {
-                        window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + taskId;
-                        } else if (action == 'Nothing') {
-                            window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + taskId + '&isDisabled=true';
-                        }
-                    },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    if (xhr.status == 417) {
-                        $("#error-message").text("Задачата не може да се финишира все още!");
-                    }
+                    goToWritingModuleButton.addClass('hidden');
+                    goToWritingModuleButton.prop('value', taskId);
                 }
+                actionButton.data('action', taskaction);
+            });
+
+            $('#action').click(function(e) {
+                e.preventDefault(); // <------------------ stop default behaviour of button
+
+                var buttonAction = $(this);
+                var taskId = buttonAction.prop('value');
+                var action = buttonAction.data('action');
+                $.ajax({
+                    url: "/Document/" + action + "Task/",
+                    type: "POST",
+                    data: JSON.stringify({ 'taskId': taskId }),
+                    dataType: "json",
+                    traditional: true,
+                    contentType: "application/json; charset=utf-8",
+                    success: function(data) {
+                        window.location.href = data;
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        if (xhr.status == 417) {
+                            $("#error-message").text("Задачата не може да се финишира все още!");
+                        }
+                    }
                 });
-             });
+            });
         });
     </script>
 }
