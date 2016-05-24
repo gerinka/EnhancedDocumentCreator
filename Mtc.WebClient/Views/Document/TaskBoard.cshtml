@@ -204,7 +204,7 @@
     <div class="modal-dialog">
 
         <!-- Modal content-->
-        <div class="modal-content">
+        <div class="modal-content" id="modal-content">
             <div class="modal-header panel-heading">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Заглавие</h4>
@@ -248,8 +248,15 @@
             var actionButton = modal.find('#action');
             var goToWritingModuleButton = modal.find('#goToWritingModule');
             modal.find('.modal-title').text(title);
-            modal.find('.modal-content').addClass(taskstate);
+
+            modal.find("#modal-content").removeClass();
+            modal.find("#modal-content").addClass("modal-content");
+            modal.find('#modal-content').addClass(taskstate);
+            
+            modal.find("#modal-icon").removeClass();
+            modal.find('#modal-icon').addClass("glyphicon pull-right");
             modal.find('#modal-icon').addClass(taskstate + '-icon');
+
             if (taskaction == 'Start') {
                 modal.find('.modal-body p#modal-text').text('Започни писане на "' + title + '" - ' + subtitle);
                 modal.find('#deadline').text('Краен срок: ' + deadline);
