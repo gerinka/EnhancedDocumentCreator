@@ -154,8 +154,15 @@ namespace Mtc.WebClient.Controllers
         {
             _taskService.FinishTask(taskId);
             Task task = _taskService.GetById(taskId);
-            _documentService.UpdateDocumentProgress(task.Section.Content.DocumentId);
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
+            if (task.TaskState == TaskState.Done)
+            {
+                _documentService.UpdateDocumentProgress(task.Section.Content.DocumentId);
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.ExpectationFailed, "Задачата не може да се финишира все още!");
+            }
         }
 
         //
