@@ -149,9 +149,14 @@ namespace Mtc.Domain.Services
         private void UnlockNewTasks(IList<Task> taskList)
         {
             bool isAnytaskChanged = false;
-            if (taskList.All(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.Done))
+            var currentUnclockedTaskCount =
+                taskList.Count(
+                    t =>
+                        t.TaskState == TaskState.ToDo || t.TaskState == TaskState.InProgress ||
+                        t.TaskState == TaskState.Expired);
+            if (currentUnclockedTaskCount < 3)
             {
-                foreach (var task in taskList.Where(t => t.TaskState == TaskState.Locked).OrderBy(t => t.Deadline).Take(3))
+                foreach (var task in taskList.Where(t => t.TaskState == TaskState.Locked).OrderBy(t => t.Deadline).Take(3 - currentUnclockedTaskCount))
                 {
                     task.TaskState = TaskState.ToDo;
                     isAnytaskChanged = true;
