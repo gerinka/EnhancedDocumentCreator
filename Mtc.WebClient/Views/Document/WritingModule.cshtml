@@ -10,13 +10,13 @@
             <div class="form-group">
                 <label for="subtitle" class="col-lg-2 label-panel control-label">Подсекция</label>
                 <div class="col-lg-9">
-                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = @Model.SectionTitle, @disabled=@Model.IsDisabled?"disabled":"" } })
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = @Model.SectionTitle} })
                 </div>
             </div>
             <div class="form-group">
                 <label for="maintext" class="col-lg-2 label-panel control-label">Основен текст</label>
                 <div class="col-lg-9">
-                        @Html.EditorFor(model => model.MainText, new { htmlAttributes = new { rows = 20, @class = "form-control", @placeholder = @Model.MainText, @disabled = @Model.IsDisabled ? "disabled" : "" } })
+                        @Html.EditorFor(model => model.MainText, new { htmlAttributes = new { rows = 20, @class = "form-control", @placeholder = @Model.MainText} })
                 </div>
             </div>
             <div class="form-group">
@@ -45,4 +45,13 @@
 </div>
 @section scripts{
     @Scripts.Render("~/bundles/common")
+
+    <script>
+        $(document).ready(function() {
+            if (@Model.IsDisabled.ToString().ToLower() == true) {
+                $('#MainText').attr('disabled', 'disabled');
+                $('#Title').attr('disabled', 'disabled');
+            };
+        });
+    </script>
 }

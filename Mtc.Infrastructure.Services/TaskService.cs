@@ -137,7 +137,7 @@ namespace Mtc.Domain.Services
             bool isAnytaskChanged = false;
             foreach (var task in taskList)
             {
-                if (task.Deadline < DateTime.UtcNow)
+                if (task.Deadline < DateTime.UtcNow && task.TaskState != TaskState.Done && task.TaskState != TaskState.WontBeDone && task.TaskState != TaskState.Resolved)
                 {
                     task.TaskState = TaskState.Expired;
                     isAnytaskChanged = true;
