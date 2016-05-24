@@ -327,7 +327,7 @@
                     },
                 error: function(xhr, ajaxOptions, thrownError) {
                     if (xhr.status == 417) {
-                        $("#error-message").text(thrownError);
+                        $("#error-message").text("Задачата не може да се финишира все още!");
                     }
                 }
                 });

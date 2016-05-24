@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web.Mvc;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
@@ -159,10 +160,8 @@ namespace Mtc.WebClient.Controllers
                 _documentService.UpdateDocumentProgress(task.Section.Content.DocumentId);
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.ExpectationFailed, "Задачата не може да се финишира все още!");
-            }
+            return new HttpStatusCodeResult(HttpStatusCode.ExpectationFailed);
+            
         }
 
         //
