@@ -521,6 +521,7 @@
           <Member Name="Finish" Value="2" ed:Guid="819bc5c8-4bb4-416e-9ee5-be907e7fb8b4" />
           <Member Name="Reject" Value="3" ed:Guid="6be575cb-5a1a-4b7b-ba68-f659aeb99bb9" />
           <Member Name="Nothing" Value="4" ed:Guid="5e2ae23e-2bd2-4bb1-8920-0e74c47387cd" />
+          <Member Name="Locked" Value="5" ed:Guid="3c7a295a-763f-4dbd-b7a8-8a1d4ddedc27" />
         </EnumType>
         <Association Name="FK_DocumentDocumentTemplate_ID" ed:Guid="3f92ef28-1a14-4222-bdfd-8a4961a055be">
           <End Role="DOCUMENTTEMPLATE" Type="MtcModel.DOCUMENTTEMPLATE" Multiplicity="1" />

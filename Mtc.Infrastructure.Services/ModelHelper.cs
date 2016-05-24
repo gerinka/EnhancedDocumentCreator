@@ -189,6 +189,10 @@ namespace Mtc.Domain.Services
             {
                 return TaskAction.Finish;
             }
+            else if (task.TaskState == TaskState.Locked)
+            {
+                return TaskAction.Locked;
+            }
             else
             {
                 return TaskAction.Nothing;

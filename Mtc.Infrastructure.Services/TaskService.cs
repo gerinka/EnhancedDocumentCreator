@@ -13,10 +13,12 @@ namespace Mtc.Domain.Services
     public class TaskService : ITaskService
     {
         private readonly ITaskRepository _taskRepository;
+        private readonly IStructureContentRepository _structureContentRepository;
 
-        public TaskService(ITaskRepository taskRepository)
+        public TaskService(ITaskRepository taskRepository, IStructureContentRepository structureContentRepository)
         {
             _taskRepository = taskRepository;
+            _structureContentRepository = structureContentRepository;
         }
 
         public Task GetById(int id)
@@ -63,16 +65,19 @@ namespace Mtc.Domain.Services
             task.TaskState = TaskState.InProgress;
             task.Section.Content.CurrentProgress = 1;
             _taskRepository.Update(ModelHelper.Mapper(task));
+            _structureContentRepository.Update(ModelHelper.Mapper(task.Section.Content));
             return task;
         }
 
         public Task FinishTask(int taskId)
         {
             Task task = GetById(taskId);
-            if (task.Section.Content.CurrentProgress > 90)
+            if (task.Section.Content.CurrentProgress > 95)
             {
                 task.TaskState = TaskState.Done;
+                task.Section.Content.CurrentProgress = 100;
                 _taskRepository.Update(ModelHelper.Mapper(task));
+                _structureContentRepository.Update(ModelHelper.Mapper(task.Section.Content));
             }
             return task;
         }
