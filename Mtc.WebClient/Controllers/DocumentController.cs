@@ -112,14 +112,7 @@ namespace Mtc.WebClient.Controllers
                 subsection.Content = new SectionContent{Title = subsection.Title};
             }
             document = _documentService.Create(document);
-            IEnumerable<Task> taskList = _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.Sections).ToList();
-            var taskboard = new TasksBoardViewModel
-            {
-                DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).Take(6).ToList(),
-                InProgressTasks = taskList.Where(t => t.TaskState == TaskState.InProgress).OrderBy(t => t.Id).Take(6).ToList(),
-                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked).OrderBy(t => t.Id).Take(6).ToList(),
-                DocumentId = document.Id
-            };
+            _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.Sections);
             return RedirectToAction("TaskBoard", new {documentId = document.Id});
         }
 

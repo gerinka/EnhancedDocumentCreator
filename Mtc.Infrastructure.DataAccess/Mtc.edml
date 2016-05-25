@@ -58,12 +58,12 @@
             <End Role="document" EntitySet="documents" />
             <End Role="task" EntitySet="tasks" />
           </AssociationSet>
-          <AssociationSet Name="FK_TaskStructureContent_Id" Association="MtcModel.Store.FK_TaskStructureContent_Id">
-            <End Role="structurecontent" EntitySet="structurecontents" />
-            <End Role="task" EntitySet="tasks" />
-          </AssociationSet>
           <AssociationSet Name="FK_TaskUser_Id" Association="MtcModel.Store.FK_TaskUser_Id">
             <End Role="user" EntitySet="users" />
+            <End Role="task" EntitySet="tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskStructureContent_Id" Association="MtcModel.Store.FK_TaskStructureContent_Id">
+            <End Role="structurecontent" EntitySet="structurecontents" />
             <End Role="task" EntitySet="tasks" />
           </AssociationSet>
         </EntityContainer>
@@ -149,7 +149,7 @@
           <Property Name="DocumentId" Type="int" Nullable="false" />
           <Property Name="Order" Type="int" Nullable="false" DefaultValue="1" />
           <Property Name="TaskType" Type="int" Nullable="false" />
-          <Property Name="StrucktureContentId" Type="int" />
+          <Property Name="StructureContentId" Type="int" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -297,18 +297,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TaskStructureContent_Id">
-          <End Role="structurecontent" Type="MtcModel.Store.structurecontent" Multiplicity="0..1" />
-          <End Role="task" Type="MtcModel.Store.task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="structurecontent">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="task">
-              <PropertyRef Name="StrucktureContentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TaskUser_Id">
           <End Role="user" Type="MtcModel.Store.user" Multiplicity="0..1" />
           <End Role="task" Type="MtcModel.Store.task" Multiplicity="*" />
@@ -318,6 +306,18 @@
             </Principal>
             <Dependent Role="task">
               <PropertyRef Name="AssignTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskStructureContent_Id">
+          <End Role="structurecontent" Type="MtcModel.Store.structurecontent" Multiplicity="0..1" />
+          <End Role="task" Type="MtcModel.Store.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="structurecontent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="StructureContentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -362,10 +362,6 @@
             <End Role="DOCUMENT" EntitySet="DOCUMENTs" />
             <End Role="TASKs" EntitySet="TASKs" />
           </AssociationSet>
-          <AssociationSet Name="FK_TaskStructureContent_IdSet" Association="MtcModel.FK_TaskStructureContent_Id">
-            <End Role="STRUCTURECONTENT" EntitySet="STRUCTURECONTENTs" />
-            <End Role="TASKs" EntitySet="TASKs" />
-          </AssociationSet>
           <AssociationSet Name="FK_TaskUser_IdSet" Association="MtcModel.FK_TaskUser_Id">
             <End Role="USER" EntitySet="USERs" />
             <End Role="TASKs" EntitySet="TASKs" />
@@ -377,6 +373,10 @@
           <AssociationSet Name="STRUCTUREELEMENT_STRUCTUREELEMENTSet" Association="MtcModel.STRUCTUREELEMENT_STRUCTUREELEMENT">
             <End Role="CHILDSTRUCTUREELEMENTS" EntitySet="STRUCTUREELEMENTs" />
             <End Role="PARENTSTRUCTUREELEMENTS" EntitySet="STRUCTUREELEMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskStructureContent_IdSet" Association="MtcModel.FK_TaskStructureContent_Id">
+            <End Role="STRUCTURECONTENT" EntitySet="STRUCTURECONTENTs" />
+            <End Role="TASKs" EntitySet="TASKs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="DOCUMENT" ed:Guid="77361535-0059-4834-aac4-d0888e455430">
@@ -433,7 +433,7 @@
           <Property Name="CurrentProgress" Type="Int32" Nullable="false" DefaultValue="0" ed:ValidateRequired="true" ed:Guid="a9308848-d63d-49f7-b5ed-14fa3d490969" />
           <NavigationProperty Name="DOCUMENT" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="STRUCTURECONTENTs" ToRole="DOCUMENT" ed:Guid="21f8c64b-3bcf-4f21-ab6e-ce2e193a6266" />
           <NavigationProperty Name="STRUCTUREELEMENT" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="STRUCTURECONTENTs" ToRole="STRUCTUREELEMENT" ed:Guid="c6b03497-458d-4862-a536-76226a71f1a2" />
-          <NavigationProperty Name="TASKs" Relationship="MtcModel.FK_TaskStructureContent_Id" FromRole="STRUCTURECONTENT" ToRole="TASKs" ed:Guid="39edb0e0-103d-4b35-bd10-32f643a21a5f" />
+          <NavigationProperty Name="TASKs" Relationship="MtcModel.FK_TaskStructureContent_Id" FromRole="STRUCTURECONTENT" ToRole="TASKs" ed:Guid="c919c061-a826-4c03-b72b-7acc5e9bd396" />
         </EntityType>
         <EntityType Name="STRUCTUREELEMENT" ed:Guid="c35f1518-4afe-413d-a385-25c793d079ee">
           <Key>
@@ -461,10 +461,10 @@
           <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4b27abaf-0b08-4acc-a205-57fd07d4619d" />
           <Property Name="Order" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="4d702389-b7fd-4c19-be50-1d220c4349f8" />
           <Property Name="TaskType" Type="MtcModel.TaskType" Nullable="false" ed:ValidateRequired="true" ed:Guid="b558b92a-55cd-4e87-8024-41a70082e338" />
-          <Property Name="StrucktureContentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="38de7c8e-1f70-47b1-a80f-66dc60cbeb8f" />
+          <Property Name="StructureContentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="8cbc1fbf-1f57-488c-b10f-a8708f88cb1f" />
           <NavigationProperty Name="DOCUMENT" Relationship="MtcModel.FK_TaskDocument_Id" FromRole="TASKs" ToRole="DOCUMENT" ed:Guid="e6c21741-8705-4793-a5de-61799d8404e5" />
-          <NavigationProperty Name="STRUCTURECONTENT" Relationship="MtcModel.FK_TaskStructureContent_Id" FromRole="TASKs" ToRole="STRUCTURECONTENT" ed:Guid="fbb4f80e-d53a-4e9b-b45b-d6bd13e91e0e" />
           <NavigationProperty Name="USER" Relationship="MtcModel.FK_TaskUser_Id" FromRole="TASKs" ToRole="USER" ed:Guid="0379426a-653b-47b9-ae1e-aa982852910c" />
+          <NavigationProperty Name="STRUCTURECONTENT" Relationship="MtcModel.FK_TaskStructureContent_Id" FromRole="TASKs" ToRole="STRUCTURECONTENT" ed:Guid="28a9cb34-db1e-4b8c-85bf-642aa3be280e" />
         </EntityType>
         <EntityType Name="USER" ed:Guid="7c30f8cc-cb48-400f-a0fd-4e78ae0268c3">
           <Key>
@@ -607,18 +607,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TaskStructureContent_Id" ed:Guid="4aabd5e7-60d9-4b39-83fb-0f564655ef88">
-          <End Role="STRUCTURECONTENT" Type="MtcModel.STRUCTURECONTENT" Multiplicity="0..1" />
-          <End Role="TASKs" Type="MtcModel.TASK" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STRUCTURECONTENT">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TASKs">
-              <PropertyRef Name="StrucktureContentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TaskUser_Id" ed:Guid="5567519a-d0e5-498f-91a6-98fa557f7d19">
           <End Role="USER" Type="MtcModel.USER" Multiplicity="0..1" />
           <End Role="TASKs" Type="MtcModel.TASK" Multiplicity="*" />
@@ -638,6 +626,18 @@
         <Association Name="STRUCTUREELEMENT_STRUCTUREELEMENT" ed:Guid="6905cf77-1182-4ac2-b507-a5360b2e4857">
           <End Role="CHILDSTRUCTUREELEMENTS" Type="MtcModel.STRUCTUREELEMENT" Multiplicity="*" />
           <End Role="PARENTSTRUCTUREELEMENTS" Type="MtcModel.STRUCTUREELEMENT" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_TaskStructureContent_Id" ed:Guid="897e9322-9aa9-441d-a7a8-61aaeb4e6874">
+          <End Role="STRUCTURECONTENT" Type="MtcModel.STRUCTURECONTENT" Multiplicity="0..1" />
+          <End Role="TASKs" Type="MtcModel.TASK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STRUCTURECONTENT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TASKs">
+              <PropertyRef Name="StructureContentId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -714,8 +714,8 @@
                 <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="TaskType" ColumnName="TaskType" />
-                <ScalarProperty Name="StrucktureContentId" ColumnName="StrucktureContentId" />
                 <ScalarProperty Name="TaskState" ColumnName="TaskState" />
+                <ScalarProperty Name="StructureContentId" ColumnName="StructureContentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
