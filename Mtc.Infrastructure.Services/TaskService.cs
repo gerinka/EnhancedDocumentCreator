@@ -94,7 +94,7 @@ namespace Mtc.Domain.Services
         {
 
             var sectionList = sections.ToList();
-            var totalSubsections = sectionList.SelectMany(section => section.Subsections).Count();
+            var totalSubsections = sectionList.SelectMany(section => section.Subsections.Where(sub=>sub.Content != null)).Count();
             var tasksToBeCreated = new List<Task>();
             var previousTasks = 0;
             var totalWaves = (int) Math.Floor((documentDeadline - DateTime.UtcNow).TotalDays/30) + 1;
@@ -104,7 +104,7 @@ namespace Mtc.Domain.Services
             {
                 foreach (var section in sectionList)
                 {
-                    foreach (var subsection in section.Subsections.OrderBy(ss=>ss.Order))
+                    foreach (var subsection in section.Subsections.Where(sub => sub.Content != null).OrderBy(ss => ss.Order))
                     {
                         tasksToBeCreated.Add(new Task
                         {

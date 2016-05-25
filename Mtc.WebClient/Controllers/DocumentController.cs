@@ -112,7 +112,7 @@ namespace Mtc.WebClient.Controllers
                 subsection.Content = new SectionContent{Title = subsection.Title};
             }
             document = _documentService.Create(document);
-            _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.Sections);
+            _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.Sections.Where(s=>s.Content != null));
             return RedirectToAction("TaskBoard", new {documentId = document.Id});
         }
 
