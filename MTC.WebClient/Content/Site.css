@@ -51,6 +51,7 @@ input[type="radio"].styled:checked label:after,
 /*Task styles*/
 .locked {
   border-color: #bce8f1;
+    min-height: 150px;
 }
 .locked > .panel-heading {
   color: #31708f;
@@ -77,6 +78,7 @@ input[type="radio"].styled:checked label:after,
 }
 .inprogress {
   border-color: #faebcc;
+   min-height: 150px;
 }
 .inprogress > .panel-heading {
   color: #8a6d3b;
@@ -102,6 +104,7 @@ input[type="radio"].styled:checked label:after,
 }
 .todo {
   border-color: #337ab7;
+   min-height: 150px;
 }
 .todo > .panel-heading {
   color: #ffffff;
@@ -128,6 +131,7 @@ input[type="radio"].styled:checked label:after,
 }
 .expired {
   border-color: #ebccd1;
+   min-height: 150px;
 }
 .expired > .panel-heading {
   color: #a94442;
@@ -153,6 +157,7 @@ input[type="radio"].styled:checked label:after,
 }
 .done {
   border-color: #d6e9c6;
+   min-height: 150px;
 }
 .done > .panel-heading {
   color: #3c763d;
