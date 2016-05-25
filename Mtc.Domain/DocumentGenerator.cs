@@ -33,13 +33,14 @@ namespace Mtc.Domain
                     | TableOfContentsSwitches.H, 
                     "Heading2");
                 document.InsertSectionPageBreak();
+
                 var sections = documentToBeGenerated.Sections.ToList();
                 foreach (var section in sections)
                 {
                     var h1 = document.InsertParagraph(section.Title);
                     h1.StyleName = "Heading1";
 
-                    var subsections = section.Subsections.ToList();
+                    var subsections = section.Subsections.Where(sub=>sub.Content!=null).ToList();
                     foreach (var subsection in subsections)
                     {
                         if (subsection.Content.CurrentProgress > 0)
