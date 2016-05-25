@@ -243,7 +243,7 @@ namespace Mtc.Domain.Services
             foreach (var section in sections)
             {
                 structurecontents.Add(Mapper(section.Content, section));
-                foreach (var subsection in section.Subsections)
+                foreach (var subsection in section.Subsections.Where(sub=>sub.Content !=null))
                 {
                     structurecontents.Add(Mapper(subsection.Content, subsection));
                 }
