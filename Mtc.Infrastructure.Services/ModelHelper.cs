@@ -174,7 +174,8 @@ namespace Mtc.Domain.Services
                 TaskState = task.TaskState,
                 Order = task.Order,
                 Section = Mapper(task.STRUCTURECONTENT.STRUCTUREELEMENT),
-                TaskAction = CalculateTaskAction(task)
+                TaskAction = CalculateTaskAction(task),
+                DocumentId = task.DocumentId
             };
         }
 
@@ -210,7 +211,7 @@ namespace Mtc.Domain.Services
                 TaskState = task.TaskState,
                 Title = task.Title,
                 StrucktureContentId = task.Section.Content.Id,
-                DocumentId = task.Section.Content.DocumentId,
+                DocumentId = task.DocumentId,
                 Order = task.Order
             };
         }

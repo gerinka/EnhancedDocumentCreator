@@ -120,7 +120,7 @@ namespace Mtc.WebClient.Controllers
                 ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked).OrderBy(t => t.Id).Take(6).ToList(),
                 DocumentId = document.Id
             };
-            return View("TaskBoard", taskboard);
+            return RedirectToAction("TaskBoard", new {documentId = document.Id});
         }
 
         //

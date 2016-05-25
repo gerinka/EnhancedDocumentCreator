@@ -114,7 +114,8 @@ namespace Mtc.Domain.Services
                             TaskType = TaskType.Task,
                             AssignTo = author,
                             Deadline = CalculateDeadline(documentDeadline, previousTasks, totalSubsections, wave),
-                            Order = order
+                            Order = order,
+                            DocumentId = documentId
                         });
                         previousTasks++;
                         order ++;
