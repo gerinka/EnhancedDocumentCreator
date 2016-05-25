@@ -11,18 +11,17 @@ namespace Mtc.Domain.Services
 {
     public static class ModelHelper
     {
-        public static Section Mapper(STRUCTUREELEMENT structure)
+        public static Section Mapper(STRUCTUREELEMENT structure, int? documentId = null)
         {
-
             return new Section
             {
                 Id = structure.Id,
                 StructureType = structure.StructureTypeId,
                 Description = structure.Description,
                 Title = structure.Title,
-                Content = Mapper(structure.STRUCTURECONTENTs.FirstOrDefault()) ,
+                Content = Mapper(structure.STRUCTURECONTENTs.FirstOrDefault(st => st.DocumentId == documentId)) ,
                 IsSelected = true,
-                Subsections = structure.StructureTypeId == StructureType.Section? structure.CHILDSTRUCTUREELEMENTS.Select(Mapper).ToList() : null,
+                Subsections = structure.StructureTypeId == StructureType.Section? structure.CHILDSTRUCTUREELEMENTS.Select(st=>Mapper(st, documentId)).ToList() : null,
                 Order = structure.Order
             };
         }
@@ -111,7 +110,7 @@ namespace Mtc.Domain.Services
                 Title = document.Title,
                 Deadline = document.Deadline,
                 Template = Mapper(document.DOCUMENTTEMPLATE),
-                Sections = ConvertSetOfContentToSections(document.STRUCTURECONTENTs),
+                Sections = ConvertSetOfContentToSections(document.STRUCTURECONTENTs, document.ID),
                 Author = Mapper(document.USER_UserId),
                 DocumentState = document.DocumentState,
                 CurrentProgress = document.CurrentProgress,
@@ -119,9 +118,9 @@ namespace Mtc.Domain.Services
             };
         }
 
-        private static IList<Section> ConvertSetOfContentToSections(IEnumerable<STRUCTURECONTENT> structurecontenTs)
+        private static IList<Section> ConvertSetOfContentToSections(IEnumerable<STRUCTURECONTENT> structurecontenTs, int documentId)
         {
-            return structurecontenTs.Where(st => st.STRUCTUREELEMENT.StructureTypeId == StructureType.Section).Select(structureContent => Mapper(structureContent.STRUCTUREELEMENT)).ToList();
+            return structurecontenTs.Where(st => st.STRUCTUREELEMENT.StructureTypeId == StructureType.Section).Select(structureContent => Mapper(structureContent.STRUCTUREELEMENT, documentId)).ToList();
         }
 
         public static DocumentTemplate Mapper(DOCUMENTTEMPLATE documentTemplate)
@@ -132,7 +131,7 @@ namespace Mtc.Domain.Services
                 Description = documentTemplate.Description,
                 IsActive = documentTemplate.IsActive == 1,
                 Name = documentTemplate.Name,
-                Sections = documentTemplate.STRUCTUREELEMENTs.Where(st=>st.StructureTypeId == StructureType.Section).Select(Mapper)
+                Sections = documentTemplate.STRUCTUREELEMENTs.Where(st=>st.StructureTypeId == StructureType.Section).Select(st=>Mapper(st))
             };
         }
 
@@ -173,7 +172,7 @@ namespace Mtc.Domain.Services
                 TaskType = task.TaskType,
                 TaskState = task.TaskState,
                 Order = task.Order,
-                Section = Mapper(task.STRUCTURECONTENT.STRUCTUREELEMENT),
+                Section = Mapper(task.STRUCTURECONTENT.STRUCTUREELEMENT, task.DocumentId),
                 TaskAction = CalculateTaskAction(task),
                 DocumentId = task.DocumentId
             };
@@ -210,7 +209,7 @@ namespace Mtc.Domain.Services
                 TaskType = task.TaskType,
                 TaskState = task.TaskState,
                 Title = task.Title,
-                StrucktureContentId = task.Section.Content.Id,
+                StructureContentId = task.Section.Content.Id,
                 DocumentId = task.DocumentId,
                 Order = task.Order
             };

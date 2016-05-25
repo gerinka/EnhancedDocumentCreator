@@ -33,7 +33,7 @@ namespace Mtc.WebClient.Controllers
             return View();
         }
 
-        public ActionResult PanelStructure()
+        public ActionResult GenerateMainStructure()
         {
             IEnumerable<DocumentTemplate> templates = _documentTemplateService.GetAll().ToList();
             Person author = _personService.GetById(1);
@@ -43,7 +43,7 @@ namespace Mtc.WebClient.Controllers
                 User = author,
                 AuthorId = author.Id
             };
-            return View(documentGenerator);
+            return View("PanelStructure", documentGenerator);
         }
 
         //Document/TaskBoard/DocumentId

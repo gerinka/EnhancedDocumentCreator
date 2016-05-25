@@ -44,7 +44,7 @@ namespace Mtc.Domain.Services
             foreach (var structurecontent in documentContent)
             {
                 structurecontent.DocumentId = documentToInsert.ID;
-                _structureContentRepository.Insert(structurecontent);
+               _structureContentRepository.Insert(structurecontent);
             }
 
             documentToInsert = _documentRepository.GetById(documentToInsert.ID);

@@ -56,7 +56,12 @@ namespace Mtc.Infrastructure.DataAccess.Repositories
 
         public IEnumerable<TEntity> BulkInsert(IEnumerable<TEntity> entities)
         {
-            return entities.Select(Insert);
+            var resultEntities = new List<TEntity>();
+            foreach (var entity in entities)
+            {
+                resultEntities.Add(Insert(entity));
+            }
+            return resultEntities;
         }
 
         public void BulkUpdate(IEnumerable<TEntity> entities)

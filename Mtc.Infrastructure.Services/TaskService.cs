@@ -123,8 +123,8 @@ namespace Mtc.Domain.Services
                     order = 1;
                 }
             }
-
-            return _taskRepository.BulkInsert(tasksToBeCreated.Select(ModelHelper.Mapper)).Select(ModelHelper.Mapper);
+            var tasks = _taskRepository.BulkInsert(tasksToBeCreated.Select(ModelHelper.Mapper));
+            return tasks.Select(ModelHelper.Mapper);
         }
 
         private DateTime CalculateDeadline(DateTime documentDeadline, int previousTasks, int totalSubsections, int wave)
