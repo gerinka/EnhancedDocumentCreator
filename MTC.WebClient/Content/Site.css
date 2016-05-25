@@ -190,4 +190,7 @@ input[type="radio"].styled:checked label:after,
 
 .current-progress {
     background-color: #d6e9c6;
+    position: absolute;
+    right: 25px;
+    bottom: 30px;
 }
