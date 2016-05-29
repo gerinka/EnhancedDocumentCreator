@@ -80,6 +80,7 @@ namespace Mtc.Domain
                             tw.WriteLine("Подсекция:\t" + subsection.Title);
 
                             tw.Write("Текст:\t" + subsection.Content.MainText.Replace(System.Environment.NewLine, " "));
+                            tw.WriteLine();
                         }
                     }
                 }

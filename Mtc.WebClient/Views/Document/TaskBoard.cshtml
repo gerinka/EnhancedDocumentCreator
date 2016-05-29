@@ -11,16 +11,17 @@
     <div class="col-lg-4">
     </div>
     <div class="col-lg-4">
-      @if (!(Model.InProgressTasks.Any() || Model.ToDoTasks.Any()) && Model.DoneTasks.Any())
-      {
+    
         <p class="text-right">Генериране на документ</p>
-            <div style="float:left;" class="pull-right">
-                <button type="button" class="btn btn-primary" id="generateDocument" onclick="getGeneratedDocument(@Model.DocumentId, 'docx')">docx</button>
-                <button type="button" class="btn btn-primary" id="generateDocument" onclick="getGeneratedDocument(@Model.DocumentId, 'pdf')">pdf</button>
-                <button type="button" class="btn btn-primary" id="generateDocument" onclick="getGeneratedDocument(@Model.DocumentId, 'txt')">txt</button>
-            </div>
+        <div style="float:left;" class="pull-right">
+            <button type="button" class="btn btn-primary" id="generateDocument" onclick="getGeneratedDocument(@Model.DocumentId, 'txt') ">txt</button>
+            @if (!(Model.InProgressTasks.Any() || Model.ToDoTasks.Any()) && Model.DoneTasks.Any())
+            {
+                <button type="button" class="btn btn-primary" id="generateDocument" onclick="getGeneratedDocument(Model.DocumentId, 'docx') ">docx</button>
+                <button type="button" class="btn btn-primary" id="generateDocument" onclick="getGeneratedDocument(Model.DocumentId, 'pdf') ">pdf</button>
+            }
+        </div>
 
-      }
     </div>
 </div>
 <div class="row">
