@@ -11,6 +11,7 @@ using iTextSharp.text.pdf;
 using Mtc.Domain.Models;
 using Novacode;
 using Image = Novacode.Image;
+using Section = Mtc.Domain.Models.Section;
 
 namespace Mtc.Domain
 {
@@ -64,6 +65,23 @@ namespace Mtc.Domain
             }
         }
 
+        public static MemoryStream GenerateSimpleDocxDocument(SectionContent sectionToBeGenerated)
+        {
+            using (var ms = new MemoryStream())
+            {
+                DocX document = DocX.Create(ms);
+ 
+                var h2 = document.InsertParagraph(sectionToBeGenerated.Title, false, Heading2Format());
+                h2.StyleName = "Heading2";
+
+                var normal = document.InsertParagraph(sectionToBeGenerated.MainText, false, ParagraphFormat());
+                normal.StyleName = "Normal";
+
+                document.Save();
+                return ms;
+            }
+        }
+
         public static MemoryStream GenerateComplexTxtDocument(Document documentToBeGenerated)
         {
             using (var ms = new MemoryStream())
@@ -85,11 +103,27 @@ namespace Mtc.Domain
                         {
                             tw.WriteLine("Подсекция:\t" + subsection.Title);
 
-                            tw.Write("Текст:\t" + subsection.Content.MainText.Replace(System.Environment.NewLine, " "));
+                            tw.Write("Текст:\t" + subsection.Content.MainText.Replace(Environment.NewLine, " "));
                             tw.WriteLine();
                         }
                     }
                 }
+                tw.Close();
+                return ms;
+            }
+        }
+
+        public static MemoryStream GenerateSimpleTxtDocument(SectionContent sectionToBeGenerated)
+        {
+            using (var ms = new MemoryStream())
+            {
+                TextWriter tw = new StreamWriter(ms);
+
+                tw.WriteLine("Заглавие:\t" + sectionToBeGenerated.Title);
+
+                tw.Write("Текст:\t" + sectionToBeGenerated.MainText.Replace(Environment.NewLine, " "));
+                tw.WriteLine();
+                  
                 tw.Close();
                 return ms;
             }

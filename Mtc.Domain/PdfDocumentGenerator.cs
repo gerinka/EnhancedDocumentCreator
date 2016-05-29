@@ -9,8 +9,11 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.draw;
+using Mtc.Domain.Models;
 using Document = Mtc.Domain.Models.Document;
 using Font = iTextSharp.text.Font;
+using Section = Mtc.Domain.Models.Section;
 
 namespace Mtc.Domain
 {
@@ -50,6 +53,31 @@ namespace Mtc.Domain
                 }
                 doc.Close();
                 
+                return ms;
+            }
+        }
+
+        public static MemoryStream GenerateSimplePdfDocument(SectionContent sectionToBeGenerated)
+        {
+            using (var ms = new MemoryStream())
+            {
+                var doc = new iTextSharp.text.Document();
+                PdfWriter writer = PdfWriter.GetInstance(doc, ms);
+                doc.Open();
+                var path = Environment.GetFolderPath(Environment.SpecialFolder.Fonts);
+                string arialuniTff = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIALUNI.TTF");
+                FontFactory.Register(arialuniTff);
+
+                var bfR = BaseFont.CreateFont(arialuniTff, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                doc.AddTitle(sectionToBeGenerated.Title);
+                var times = new Font(bfR, 12, Font.NORMAL, BaseColor.BLACK);
+         
+                doc.Add(new Paragraph(sectionToBeGenerated.Title, times));
+                doc.Add(new LineSeparator());
+                doc.Add(new Paragraph(sectionToBeGenerated.MainText));
+                 
+                doc.Close();
+
                 return ms;
             }
         }

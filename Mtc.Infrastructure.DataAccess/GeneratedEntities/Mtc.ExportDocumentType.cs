@@ -17,31 +17,23 @@ namespace MtcModel
 {
 
     /// <summary>
-    /// There are no comments for MtcModel.StructureType in the schema.
+    /// There are no comments for MtcModel.ExportDocumentType in the schema.
     /// </summary>
-    public enum StructureType : int
+    public enum ExportDocumentType : int
     {
     
         /// <summary>
-        /// There are no comments for StructureType.CoverPage in the schema.
+        /// There are no comments for ExportDocumentType.Docx in the schema.
         /// </summary>
-        CoverPage = 1,    
+        Docx = 1,    
         /// <summary>
-        /// There are no comments for StructureType.Reference in the schema.
+        /// There are no comments for ExportDocumentType.Txt in the schema.
         /// </summary>
-        Reference = 2,    
+        Txt = 2,    
         /// <summary>
-        /// There are no comments for StructureType.Section in the schema.
+        /// There are no comments for ExportDocumentType.Pdf in the schema.
         /// </summary>
-        Section = 3,    
-        /// <summary>
-        /// There are no comments for StructureType.Subsection in the schema.
-        /// </summary>
-        Subsection = 4,    
-        /// <summary>
-        /// There are no comments for StructureType.Subsubsection in the schema.
-        /// </summary>
-        Subsubsection = 5
+        Pdf = 3
     }
 
 }

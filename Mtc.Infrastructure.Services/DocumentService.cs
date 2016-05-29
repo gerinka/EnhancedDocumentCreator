@@ -103,22 +103,20 @@ namespace Mtc.Domain.Services
             _documentRepository.Update(ModelHelper.Mapper(document));
         }
 
-        public MemoryStream GenerateDocxDocument(int documentId)
+        public MemoryStream GenerateComplexDocument(int documentId, ExportDocumentType exportDocumentType)
         {
             Document document = GetById(documentId);
-            return DocxDocumentGenerator.GenerateComplexDocxDocument(document);
-        }
-
-        public MemoryStream GeneratePdfDocument(int documentId)
-        {
-            Document document = GetById(documentId);
-            return PdfDocumentGenerator.GenerateComplexPdfDocument(document);
-        }
-
-        public MemoryStream GenerateTxtDocument(int documentId)
-        {
-            Document document = GetById(documentId);
-            return DocxDocumentGenerator.GenerateComplexTxtDocument(document);
+            switch (exportDocumentType)
+            {
+                case ExportDocumentType.Docx:
+                    return DocxDocumentGenerator.GenerateComplexDocxDocument(document);
+                case ExportDocumentType.Txt:
+                    return DocxDocumentGenerator.GenerateComplexTxtDocument(document);
+                case ExportDocumentType.Pdf:
+                    return PdfDocumentGenerator.GenerateComplexPdfDocument(document);
+                default:
+                    throw new InvalidOperationException("No such file format found");
+            }
         }
     }
 }

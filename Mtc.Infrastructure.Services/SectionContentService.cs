@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -61,6 +62,23 @@ namespace Mtc.Domain.Services
             sectionContent.CurrentProgress = CalculateProgress(mainText, sectionContent.MinWordCount);
            _structureContentRepository.Update(ModelHelper.Mapper(sectionContent));
         }
+
+        public MemoryStream GenerateSimpleDocument(int sectionContentId, ExportDocumentType exportDocumentType)
+        {
+            SectionContent sectionContent = GetById(sectionContentId);
+            switch (exportDocumentType)
+            {
+                case ExportDocumentType.Docx:
+                    return DocxDocumentGenerator.GenerateSimpleDocxDocument(sectionContent);
+                case ExportDocumentType.Txt:
+                    return DocxDocumentGenerator.GenerateSimpleTxtDocument(sectionContent);
+                case ExportDocumentType.Pdf:
+                    return PdfDocumentGenerator.GenerateSimplePdfDocument(sectionContent);
+                default:
+                    throw new InvalidOperationException("No such file format found");
+            }
+        }
+
         private int CalculateProgress(string mainText, int minWordCount)
         {
             int progress = 1;

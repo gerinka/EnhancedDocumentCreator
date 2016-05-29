@@ -57,6 +57,7 @@
     <Compile Include="GeneratedEntities\Mtc.DOCUMENT.cs" />
     <Compile Include="GeneratedEntities\Mtc.DocumentState.cs" />
     <Compile Include="GeneratedEntities\Mtc.DOCUMENTTEMPLATE.cs" />
+    <Compile Include="GeneratedEntities\Mtc.ExportDocumentType.cs" />
     <Compile Include="GeneratedEntities\Mtc.KEYWORD.cs" />
     <Compile Include="GeneratedEntities\Mtc.STRUCTURECONTENT.cs" />
     <Compile Include="GeneratedEntities\Mtc.STRUCTUREELEMENT.cs" />

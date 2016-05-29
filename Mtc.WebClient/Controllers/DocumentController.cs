@@ -166,7 +166,7 @@ namespace Mtc.WebClient.Controllers
         public FileResult GetDocxDocument(int documentId)
         {
             Document documentForCreate = _documentService.GetById(documentId);
-            MemoryStream document = _documentService.GenerateDocxDocument(documentId);
+            MemoryStream document = _documentService.GenerateComplexDocument(documentId, ExportDocumentType.Docx);
             return File(document.ToArray(), "application/vnd.openxmlformats-officedocument.wordprocessingml.document", Server.UrlEncode(documentForCreate.Title + ".docx"));
         }
 
@@ -177,7 +177,7 @@ namespace Mtc.WebClient.Controllers
         public FileResult GetTxtDocument(int documentId)
         {
             Document documentForCreate = _documentService.GetById(documentId);
-            MemoryStream document = _documentService.GenerateTxtDocument(documentId);
+            MemoryStream document = _documentService.GenerateComplexDocument(documentId, ExportDocumentType.Txt);
             return File(document.ToArray(), "text/plain", Server.UrlEncode(documentForCreate.Title + ".txt"));
         }
 
@@ -188,7 +188,40 @@ namespace Mtc.WebClient.Controllers
         public FileResult GetPfdDocument(int documentId)
         {
             Document documentForCreate = _documentService.GetById(documentId);
-            MemoryStream document = _documentService.GeneratePdfDocument(documentId);
+            MemoryStream document = _documentService.GenerateComplexDocument(documentId, ExportDocumentType.Pdf);
+            return File(document.ToArray(), "application/pdf", Server.UrlEncode(documentForCreate.Title + ".pdf"));
+        }
+
+        //
+        // Get: /Document/GetDocxSectionContent
+        [HttpGet]
+        [AllowAnonymous]
+        public FileResult GetDocxSectionContent(int sectionContentId)
+        {
+            SectionContent documentForCreate = _sectionContentService.GetById(sectionContentId);
+            MemoryStream document = _sectionContentService.GenerateSimpleDocument(sectionContentId, ExportDocumentType.Docx);
+            return File(document.ToArray(), "application/vnd.openxmlformats-officedocument.wordprocessingml.document", Server.UrlEncode(documentForCreate.Title + ".docx"));
+        }
+
+        //
+        // Get: /Document/GetCsvSectionContent
+        [HttpGet]
+        [AllowAnonymous]
+        public FileResult GetTxtSectionContent(int sectionContentId)
+        {
+            SectionContent documentForCreate = _sectionContentService.GetById(sectionContentId);
+            MemoryStream document = _sectionContentService.GenerateSimpleDocument(sectionContentId, ExportDocumentType.Txt);
+            return File(document.ToArray(), "text/plain", Server.UrlEncode(documentForCreate.Title + ".txt"));
+        }
+
+        //
+        // Get: /Document/GetPdfSectionContent
+        [HttpGet]
+        [AllowAnonymous]
+        public FileResult GetPfdSectionContent(int sectionContentId)
+        {
+            SectionContent documentForCreate = _sectionContentService.GetById(sectionContentId);
+            MemoryStream document = _sectionContentService.GenerateSimpleDocument(sectionContentId, ExportDocumentType.Pdf);
             return File(document.ToArray(), "application/pdf", Server.UrlEncode(documentForCreate.Title + ".pdf"));
         }
     }

@@ -549,6 +549,11 @@
           <Member Name="Nothing" Value="4" ed:Guid="5e2ae23e-2bd2-4bb1-8920-0e74c47387cd" />
           <Member Name="Locked" Value="5" ed:Guid="3c7a295a-763f-4dbd-b7a8-8a1d4ddedc27" />
         </EnumType>
+        <EnumType Name="ExportDocumentType" ed:Guid="1991a8e6-93d2-473e-82db-4c4a31b551ef">
+          <Member Name="Docx" Value="1" ed:Guid="a3bdbc0d-0bda-4cd7-9aec-1a33d9930e24" />
+          <Member Name="Txt" Value="2" ed:Guid="221ce9df-a57f-49bf-af5e-3e20447da25d" />
+          <Member Name="Pdf" Value="3" ed:Guid="ff0ce018-85c9-4a11-8ed5-306334b7bc05" />
+        </EnumType>
         <Association Name="FK_DocumentDocumentTemplate_ID" ed:Guid="3f92ef28-1a14-4222-bdfd-8a4961a055be">
           <End Role="DOCUMENTTEMPLATE" Type="MtcModel.DOCUMENTTEMPLATE" Multiplicity="1" />
           <End Role="DOCUMENTs" Type="MtcModel.DOCUMENT" Multiplicity="*" />
