@@ -106,19 +106,19 @@ namespace Mtc.Domain.Services
         public MemoryStream GenerateDocxDocument(int documentId)
         {
             Document document = GetById(documentId);
-            return DocumentGenerator.GenerateComplexDocxDocument(document);
+            return DocxDocumentGenerator.GenerateComplexDocxDocument(document);
         }
 
         public MemoryStream GeneratePdfDocument(int documentId)
         {
             Document document = GetById(documentId);
-            return DocumentGenerator.GenerateComplexPdfDocument(document);
+            return PdfDocumentGenerator.GenerateComplexPdfDocument(document);
         }
 
         public MemoryStream GenerateTxtDocument(int documentId)
         {
             Document document = GetById(documentId);
-            return DocumentGenerator.GenerateComplexTxtDocument(document);
+            return DocxDocumentGenerator.GenerateComplexTxtDocument(document);
         }
     }
 }

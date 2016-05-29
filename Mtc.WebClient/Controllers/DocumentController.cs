@@ -185,7 +185,7 @@ namespace Mtc.WebClient.Controllers
         // Get: /Document/GetPdfDocument
         [HttpGet]
         [AllowAnonymous]
-        public FileResult GetPdfDocument(int documentId)
+        public FileResult GetPfdDocument(int documentId)
         {
             Document documentForCreate = _documentService.GetById(documentId);
             MemoryStream document = _documentService.GeneratePdfDocument(documentId);
