@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Mtc.Domain.Common;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
 using Mtc.Infrastructure.DataAccess.Interfaces;
@@ -14,11 +15,13 @@ namespace Mtc.Domain.Services
     {
         private readonly ITaskRepository _taskRepository;
         private readonly IStructureContentRepository _structureContentRepository;
+        private readonly IDocumentRepository _documentRepository;
 
-        public TaskService(ITaskRepository taskRepository, IStructureContentRepository structureContentRepository)
+        public TaskService(ITaskRepository taskRepository, IStructureContentRepository structureContentRepository, IDocumentRepository documentRepository)
         {
             _taskRepository = taskRepository;
             _structureContentRepository = structureContentRepository;
+            _documentRepository = documentRepository;
         }
 
         public Task GetById(int id)
@@ -72,13 +75,22 @@ namespace Mtc.Domain.Services
         public Task FinishTask(int taskId)
         {
             Task task = GetById(taskId);
-            if (task.Section.Content.CurrentProgress > 95)
+            Document document = ModelHelper.Mapper(_documentRepository.GetById(task.DocumentId));
+
+            if (document.MaxCycle > task.Cycle)
+            {
+                task.TaskState = TaskState.Done;
+                _taskRepository.Update(ModelHelper.Mapper(task));
+                _structureContentRepository.Update(ModelHelper.Mapper(task.Section.Content));
+            }
+            else if (task.Section.Content.CurrentProgress > 95)
             {
                 task.TaskState = TaskState.Done;
                 task.Section.Content.CurrentProgress = 100;
                 _taskRepository.Update(ModelHelper.Mapper(task));
                 _structureContentRepository.Update(ModelHelper.Mapper(task.Section.Content));
             }
+
             return task;
         }
 
@@ -97,7 +109,7 @@ namespace Mtc.Domain.Services
             var totalSubsections = sectionList.SelectMany(section => section.Subsections.Where(sub=>sub.Content != null)).Count();
             var tasksToBeCreated = new List<Task>();
             var previousTasks = 0;
-            var totalWaves = (int) Math.Floor((documentDeadline - DateTime.UtcNow).TotalDays/30) + 1;
+            var totalWaves = DeadlineCalculator.CalculateMaxCycles(documentDeadline, totalSubsections);
             totalSubsections *= totalWaves;
             var order = 1;
             for (var wave = 0; wave < totalWaves; wave++)
@@ -113,9 +125,10 @@ namespace Mtc.Domain.Services
                             TaskState = wave == 0 && section.Order == 1?TaskState.ToDo : TaskState.Locked,
                             TaskType = TaskType.Task,
                             AssignTo = author,
-                            Deadline = CalculateDeadline(documentDeadline, previousTasks, totalSubsections, wave),
+                            Deadline = DeadlineCalculator.CalculateDeadline(documentDeadline, previousTasks, totalSubsections, wave),
                             Order = order,
-                            DocumentId = documentId
+                            DocumentId = documentId,
+                            Cycle = wave
                         });
                         previousTasks++;
                         order ++;
@@ -127,11 +140,6 @@ namespace Mtc.Domain.Services
             return tasks.Select(ModelHelper.Mapper);
         }
 
-        private DateTime CalculateDeadline(DateTime documentDeadline, int previousTasks, int totalSubsections, int wave)
-        {
-            var timePerTask = (documentDeadline - DateTime.UtcNow).TotalDays/totalSubsections;
-            return DateTime.UtcNow.AddDays((previousTasks + 1)* timePerTask);
-        }
 
         private void ExpireTasks(IList<Task> taskList)
         {

@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="BaseSearchCommand.cs" />
     <Compile Include="DateTimeModelBinder.cs" />
+    <Compile Include="DeadlineCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
