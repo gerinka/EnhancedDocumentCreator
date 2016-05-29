@@ -38,7 +38,7 @@
             <div class="col-lg-4">
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
-                        <div class="panel-heading">@task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                        <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
                         <div class="panel-body"
                              data-toggle="modal"
                              data-target="#taskModal"
@@ -58,7 +58,7 @@
                     task = Model.ToDoTasks[i * 2 + 1];
                     <div class="col-lg-6">
                         <div class="panel @task.TaskState.ToString().ToLower()">
-                            <div class="panel-heading">@task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                            <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
                             <div class="panel-body"
                                  data-toggle="modal"
                                  data-target="#taskModal"
@@ -93,7 +93,7 @@
             <div class="col-lg-4">
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
-                        <div class="panel-heading">@task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                        <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
                         <div class="panel-body"
                              data-toggle="modal"
                              data-target="#taskModal"
@@ -113,7 +113,7 @@
                     task = Model.InProgressTasks[i * 2 + 1];
                     <div class="col-lg-6">
                         <div class="panel @task.TaskState.ToString().ToLower()">
-                            <div class="panel-heading">@task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                            <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
                             <div class="panel-body"
                                  data-toggle="modal"
                                  data-target="#taskModal"
@@ -148,7 +148,7 @@
             <div class="col-lg-4">
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
-                        <div class="panel-heading">@task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                        <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
                         <div class="panel-body"
                              data-toggle="modal"
                              data-target="#taskModal"
@@ -168,7 +168,7 @@
                     task = Model.DoneTasks[i * 2 + 1];
                     <div class="col-lg-6">
                         <div class="panel @task.TaskState.ToString().ToLower()">
-                            <div class="panel-heading">@task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                            <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
                             <div class="panel-body"
                                  data-toggle="modal"
                                  data-target="#taskModal"

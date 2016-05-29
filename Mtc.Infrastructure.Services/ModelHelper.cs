@@ -184,7 +184,7 @@ namespace Mtc.Domain.Services
                 AssignTo = Mapper(task.USER),
                 TaskType = task.TaskType,
                 TaskState = task.TaskState,
-                Number = task.Order,
+                Number = task.NumberInsideDocument,
                 Section = Mapper(task.STRUCTURECONTENT.STRUCTUREELEMENT, task.DocumentId),
                 TaskAction = CalculateTaskAction(task),
                 DocumentId = task.DocumentId,
@@ -204,7 +204,7 @@ namespace Mtc.Domain.Services
                 Title = task.Title,
                 StructureContentId = task.Section.Content.Id,
                 DocumentId = task.DocumentId,
-                Order = task.Number,
+                NumberInsideDocument = task.Number,
                 Cycle = task.Cycle
             };
         }

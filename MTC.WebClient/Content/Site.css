@@ -74,7 +74,10 @@ input[type="radio"].styled:checked label:after,
 
 .locked-icon {
     color: #428bca;
-  font-size: 1.5em;
+  font-size: 1.2em;
+    position: absolute;
+    right: 25px;
+    top: 10px;
 }
 .inprogress {
   border-color: #faebcc;
@@ -100,7 +103,10 @@ input[type="radio"].styled:checked label:after,
 }
 .inprogress-icon {
   color: #f0ad4e;
-  font-size: 1.5em;
+  font-size: 1.2em;
+    position: absolute;
+    right: 25px;
+    top: 10px;
 }
 .todo {
   border-color: #337ab7;
@@ -127,7 +133,10 @@ input[type="radio"].styled:checked label:after,
 
 .todo-icon {
   color: white;
-  font-size: 1.5em;
+  font-size: 1.2em;
+    position: absolute;
+    right: 25px;
+    top: 10px;
 }
 .expired {
   border-color: #ebccd1;
@@ -152,8 +161,11 @@ input[type="radio"].styled:checked label:after,
   content: "\e104";
 }
 .expired-icon {
-  color: #dc143c; 
-  font-size: 1.5em;
+  color: #fa8072; 
+  font-size: 1.2em;
+    position: absolute;
+    right: 25px;
+    top: 10px;
 }
 .done {
   border-color: #d6e9c6;
@@ -179,9 +191,13 @@ input[type="radio"].styled:checked label:after,
 }
 .done-icon {
   color: #5cb85c; 
-  font-size: 1.5em;
+  font-size: 1.2em;
+   position: absolute;
+    right: 25px;
+    top: 10px;
 }
 
+/*other styles*/
 .panel-heading
 {
     border-top-left-radius: inherit; 
