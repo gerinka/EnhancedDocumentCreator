@@ -147,7 +147,7 @@
           <Property Name="TaskState" Type="int" Nullable="false" />
           <Property Name="Deadline" Type="datetime" Nullable="false" />
           <Property Name="DocumentId" Type="int" Nullable="false" />
-          <Property Name="Order" Type="int" Nullable="false" DefaultValue="1" />
+          <Property Name="NumberInsideDocument" Type="int" Nullable="false" DefaultValue="1" />
           <Property Name="TaskType" Type="int" Nullable="false" />
           <Property Name="StructureContentId" Type="int" />
           <Property Name="Cycle" Type="int" Nullable="false" DefaultValue="1" />
@@ -481,7 +481,7 @@
           <Property Name="TaskState" Type="MtcModel.TaskState" Nullable="false" ed:ValidateRequired="true" ed:Guid="c4892671-ba20-415b-aa35-0e631c0ff32c" />
           <Property Name="Deadline" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="8dbc50f6-5e45-4116-ba6d-da5f14bc9917" />
           <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4b27abaf-0b08-4acc-a205-57fd07d4619d" />
-          <Property Name="Order" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="4d702389-b7fd-4c19-be50-1d220c4349f8" />
+          <Property Name="NumberInsideDocument" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="d80b2358-a346-4885-9fba-34983f07bfa6" />
           <Property Name="TaskType" Type="MtcModel.TaskType" Nullable="false" ed:ValidateRequired="true" ed:Guid="b558b92a-55cd-4e87-8024-41a70082e338" />
           <Property Name="StructureContentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="8cbc1fbf-1f57-488c-b10f-a8708f88cb1f" />
           <Property Name="Cycle" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="4fd5442f-4d38-4a75-a92c-9031b72802b0" />
@@ -724,11 +724,11 @@
                 <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
                 <ScalarProperty Name="Deadline" ColumnName="Deadline" />
                 <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="TaskType" ColumnName="TaskType" />
                 <ScalarProperty Name="TaskState" ColumnName="TaskState" />
                 <ScalarProperty Name="StructureContentId" ColumnName="StructureContentId" />
                 <ScalarProperty Name="Cycle" ColumnName="Cycle" />
+                <ScalarProperty Name="NumberInsideDocument" ColumnName="NumberInsideDocument" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1237,7 +1237,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>4d702389-b7fd-4c19-be50-1d220c4349f8</Path>
+                      <Path>d80b2358-a346-4885-9fba-34983f07bfa6</Path>
                       <TypeName>EntityDeveloper.EntityFramework.EntityProperty</TypeName>
                     </Oid>
                   </Model>
@@ -2325,7 +2325,7 @@
               </Port>
               <Port>
                 <Location>
-                  <X>0 px</X>
+                  <X>Undefined</X>
                   <Y>71 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>

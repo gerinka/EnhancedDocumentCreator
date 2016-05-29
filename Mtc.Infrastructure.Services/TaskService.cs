@@ -125,14 +125,13 @@ namespace Mtc.Domain.Services
                             TaskType = TaskType.Task,
                             AssignTo = author,
                             Deadline = DeadlineCalculator.CalculateDeadline(documentDeadline, previousTasks, totalSubsections, wave),
-                            Order = order,
+                            Number = order,
                             DocumentId = documentId,
                             Cycle = wave + 1
                         });
                         previousTasks++;
                         order ++;
                     }
-                    order = 1;
                 }
             }
             var tasks = _taskRepository.BulkInsert(tasksToBeCreated.Select(ModelHelper.Mapper));
