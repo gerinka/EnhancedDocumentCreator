@@ -185,7 +185,7 @@ namespace Mtc.WebClient.Controllers
         // Get: /Document/GetPdfDocument
         [HttpGet]
         [AllowAnonymous]
-        public FileResult GetPfdDocument(int documentId)
+        public FileResult GetPdfDocument(int documentId)
         {
             Document documentForCreate = _documentService.GetById(documentId);
             MemoryStream document = _documentService.GenerateComplexDocument(documentId, ExportDocumentType.Pdf);
@@ -218,7 +218,7 @@ namespace Mtc.WebClient.Controllers
         // Get: /Document/GetPdfSectionContent
         [HttpGet]
         [AllowAnonymous]
-        public FileResult GetPfdSectionContent(int sectionContentId)
+        public FileResult GetPdfSectionContent(int sectionContentId)
         {
             SectionContent documentForCreate = _sectionContentService.GetById(sectionContentId);
             MemoryStream document = _sectionContentService.GenerateSimpleDocument(sectionContentId, ExportDocumentType.Pdf);
