@@ -34,7 +34,7 @@ namespace Mtc.Domain.Services
 
         public Keyword Create(Keyword entity)
         {
-            throw new NotImplementedException();
+            return ModelHelper.Mapper(_keywordRepository.Insert(ModelHelper.Mapper(entity)));
         }
 
         public Keyword Update(Keyword entity)
@@ -50,6 +50,20 @@ namespace Mtc.Domain.Services
         public IEnumerable<Keyword> GetAll()
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Keyword> GetKeywordsPerSectionContent(int sectionContentId)
+        {
+            return
+                _keywordRepository.Get(k => k.STRUCTURECONTENTs.Select(s => s.Id).Contains(sectionContentId))
+                    .Select(ModelHelper.Mapper);
+        }
+
+        public IEnumerable<Keyword> GetKeywordsPerDocument(int documentId)
+        {
+           return
+                _keywordRepository.Get(k => k.STRUCTURECONTENTs.Select(s => s.DocumentId).Contains(documentId))
+                    .Select(ModelHelper.Mapper);
         }
     }
 }
