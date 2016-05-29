@@ -14,6 +14,7 @@ namespace Mtc.Domain.Models
         public int DocumentId { get; set; }
         public int CurrentProgress { get; set; }
         public int SectionId { get; set; }
+        public int MinWordCount { get; set; }
         public ICollection<Keyword> Keywords { get; set; } 
     }
 }

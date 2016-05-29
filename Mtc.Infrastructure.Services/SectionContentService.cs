@@ -16,8 +16,6 @@ namespace Mtc.Domain.Services
     {
         private readonly IStructureContentRepository _structureContentRepository;
 
-        private const int MinNeededWords = 250;
-
         public SectionContentService(IStructureContentRepository structureContentRepository)
         {
             _structureContentRepository = structureContentRepository;
@@ -60,10 +58,10 @@ namespace Mtc.Domain.Services
                 _structureContentRepository.GetById(sectionContentId));
             sectionContent.Title = title;
             sectionContent.MainText = mainText;
-            sectionContent.CurrentProgress = CalculateProgress(mainText);
+            sectionContent.CurrentProgress = CalculateProgress(mainText, sectionContent.MinWordCount);
            _structureContentRepository.Update(ModelHelper.Mapper(sectionContent));
         }
-        private int CalculateProgress(string mainText)
+        private int CalculateProgress(string mainText, int minWordCount)
         {
             int progress = 1;
             if (mainText.Length > 0)
@@ -83,13 +81,13 @@ namespace Mtc.Domain.Services
                     while (index < text.Length && Char.IsWhiteSpace(text[index]) == true)
                         index++;
                 }
-                if (wordCount >= MinNeededWords)
+                if (wordCount >= minWordCount)
                 {
                     progress = 100;
                 }
                 else
                 {
-                    progress = (int) Math.Floor((double) wordCount*100/MinNeededWords);
+                    progress = (int)Math.Floor((double)wordCount * 100 / minWordCount);
                 }
                 if (progress > 100) progress = 100;
                 else if (progress < 1) progress = 1;

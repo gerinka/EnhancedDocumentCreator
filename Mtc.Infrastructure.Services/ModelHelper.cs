@@ -56,38 +56,41 @@ namespace Mtc.Domain.Services
                     MainText = GetString(structurecontent.Content),
                     CurrentProgress = structurecontent.CurrentProgress,
                     SectionId = structurecontent.StructureElementId,
+                    MinWordCount = structurecontent.MinWordCount,
                     Keywords= structurecontent.KEYWORDs != null ? structurecontent.KEYWORDs.Select(Mapper).ToList() : null
                 };
             }
             return null;
         }
 
-        public static STRUCTURECONTENT Mapper(SectionContent structurecontent, Section section)
+        public static STRUCTURECONTENT Mapper(SectionContent sectionContent, Section section)
         {
             return new STRUCTURECONTENT
             {
-                Id = structurecontent.Id,
-                Title = structurecontent.Title,
-                DocumentId = structurecontent.DocumentId,
-                Content = GetBytes(structurecontent.MainText),
-                CurrentProgress = structurecontent.CurrentProgress,
+                Id = sectionContent.Id,
+                Title = sectionContent.Title,
+                DocumentId = sectionContent.DocumentId,
+                Content = GetBytes(sectionContent.MainText),
+                CurrentProgress = sectionContent.CurrentProgress,
                 StructureElementId = section.Id,
-                KEYWORDs = structurecontent.Keywords != null ? structurecontent.Keywords.Select(Mapper).ToList() : null
+                MinWordCount = sectionContent.MinWordCount,
+                KEYWORDs = sectionContent.Keywords != null ? sectionContent.Keywords.Select(Mapper).ToList() : null
             };
         }
 
 
-        public static STRUCTURECONTENT Mapper(SectionContent structurecontent)
+        public static STRUCTURECONTENT Mapper(SectionContent sectionContent)
         {
             return new STRUCTURECONTENT
             {
-                Id = structurecontent.Id,
-                Title = structurecontent.Title,
-                DocumentId = structurecontent.DocumentId,
-                Content = GetBytes(structurecontent.MainText),
-                CurrentProgress = structurecontent.CurrentProgress,
-                StructureElementId = structurecontent.SectionId,
-                KEYWORDs = structurecontent.Keywords!=null ? structurecontent.Keywords.Select(Mapper).ToList() : null
+                Id = sectionContent.Id,
+                Title = sectionContent.Title,
+                DocumentId = sectionContent.DocumentId,
+                Content = GetBytes(sectionContent.MainText),
+                CurrentProgress = sectionContent.CurrentProgress,
+                StructureElementId = sectionContent.SectionId,
+                MinWordCount = sectionContent.MinWordCount,
+                KEYWORDs = sectionContent.Keywords != null ? sectionContent.Keywords.Select(Mapper).ToList() : null
             };
         }
 
