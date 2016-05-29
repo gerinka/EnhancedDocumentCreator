@@ -82,7 +82,7 @@ namespace Mtc.Domain.Services
         private int CalculateProgress(string mainText, int minWordCount)
         {
             int progress = 1;
-            if (mainText.Length > 0)
+            if (!String.IsNullOrEmpty(mainText))
             {
                 String text = mainText.Trim();
                 int wordCount = 0, index = 0;
