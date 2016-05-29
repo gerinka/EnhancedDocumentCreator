@@ -11,6 +11,7 @@ namespace Mtc.Domain.Models
         public Person Author { get; set; }
         public ICollection<Section> Sections { get; set; }
         public ICollection<Task> Tasks { get; set; }
+        public ICollection<Keyword> Keywords { get; set; }
         public DateTime Deadline { get; set; }
         public DocumentState DocumentState { get; set; }
         public DocumentTemplate Template { get; set; }

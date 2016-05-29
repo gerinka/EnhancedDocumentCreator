@@ -7,14 +7,13 @@
         <File Name="Mtc.MtcEntities.cs" />
         <File Name="Mtc.DOCUMENT.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="Mtc.DOCUMENTTEMPLATE.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
-        <File Name="Mtc.REFERENCE.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="Mtc.STRUCTURECONTENT.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="Mtc.STRUCTUREELEMENT.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="Mtc.TASK.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="Mtc.USER.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
+        <File Name="Mtc.KEYWORD.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="Mtc.TaskType.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="Mtc.TaskState.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
-        <File Name="Mtc.ReferenceType.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="Mtc.StructureType.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="Mtc.DocumentState.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />
         <File Name="Mtc.TaskAction.cs" Project="Mtc.Infrastructure.DataAccess" ProjectFolder="GeneratedEntities" />

@@ -215,6 +215,24 @@ namespace Mtc.Domain.Services
             };
         }
 
+        public static KEYWORD Mapper(Keyword keyword)
+        {
+            return new KEYWORD
+            {
+                Id = keyword.Id,
+                Name = keyword.Name
+            };
+        }
+
+        public static Keyword Mapper(KEYWORD keyword)
+        {
+            return new Keyword
+            {
+                Id = keyword.Id,
+                Name = keyword.Name
+            };
+        }
+
         private static byte[] GetBytes(string str)
         {
             if (string.IsNullOrEmpty(str))

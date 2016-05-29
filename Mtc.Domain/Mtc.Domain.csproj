@@ -57,7 +57,7 @@
     <Compile Include="Models\DocumentTemplate.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Level.cs" />
-    <Compile Include="Models\Reference.cs" />
+    <Compile Include="Models\Keyword.cs" />
     <Compile Include="Models\Section.cs" />
     <Compile Include="Models\SectionContent.cs" />
     <Compile Include="Models\Task.cs" />

@@ -52,8 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KeywordService.cs" />
     <Compile Include="DocumentTemplateService.cs" />
     <Compile Include="DocumentService.cs" />
+    <Compile Include="Interfaces\IKeywordService.cs" />
     <Compile Include="Interfaces\ISectionContentService.cs" />
     <Compile Include="ModelHelper.cs" />
     <Compile Include="Interfaces\IBaseService.cs" />
