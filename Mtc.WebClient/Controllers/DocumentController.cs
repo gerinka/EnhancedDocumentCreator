@@ -160,14 +160,36 @@ namespace Mtc.WebClient.Controllers
         }
 
         //
-        // Get: /Document/GenerateDocument
+        // Get: /Document/GetDocxDocument
         [HttpGet]
         [AllowAnonymous]
-        public FileResult GetDocument(int documentId)
+        public FileResult GetDocxDocument(int documentId)
         {
             Document documentForCreate = _documentService.GetById(documentId);
-            MemoryStream document = _documentService.GenerateDocument(documentId);
+            MemoryStream document = _documentService.GenerateDocxDocument(documentId);
             return File(document.ToArray(), "application/docx", Server.UrlEncode(documentForCreate.Title + ".docx"));
+        }
+
+        //
+        // Get: /Document/GetCsvDocument
+        [HttpGet]
+        [AllowAnonymous]
+        public FileResult GetTxtDocument(int documentId)
+        {
+            Document documentForCreate = _documentService.GetById(documentId);
+            MemoryStream document = _documentService.GenerateTxtDocument(documentId);
+            return File(document.ToArray(), "text/plain", Server.UrlEncode(documentForCreate.Title + ".txt"));
+        }
+
+        //
+        // Get: /Document/GetPdfDocument
+        [HttpGet]
+        [AllowAnonymous]
+        public FileResult GetPdfDocument(int documentId)
+        {
+            Document documentForCreate = _documentService.GetById(documentId);
+            MemoryStream document = _documentService.GeneratePdfDocument(documentId);
+            return File(document.ToArray(), "application/pdf", Server.UrlEncode(documentForCreate.Title + ".pdf"));
         }
     }
 }

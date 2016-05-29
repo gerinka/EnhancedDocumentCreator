@@ -9,5 +9,10 @@
         public string Email { get; set; }
         public int? ExperiencePoints { get; set; }
         public short? Level { get; set; }
+
+        public override string ToString()
+        {
+            return FirstName + " " + (MiddleName!=null ? MiddleName+" ":"") + LastName;
+        }
     }
 }

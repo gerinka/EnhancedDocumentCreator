@@ -15,7 +15,7 @@ namespace Mtc.Domain
 {
     public static class DocumentGenerator
     {
-        public static MemoryStream GenerateComplexDocument(Document documentToBeGenerated)
+        public static MemoryStream GenerateComplexDocxDocument(Document documentToBeGenerated)
         {
             using (var ms = new MemoryStream())
             {
@@ -53,20 +53,79 @@ namespace Mtc.Domain
                         }
                     }
                 }
-                /*
-                var h1 = document.InsertParagraph("Heading 1");
-                h1.StyleName = "Heading1";
+                document.Save();
+                return ms;
+            }
+        }
 
-                document.InsertParagraph("Some very interesting content here");
+        public static MemoryStream GenerateComplexTxtDocument(Document documentToBeGenerated)
+        {
+            using (var ms = new MemoryStream())
+            {
+                TextWriter tw = new StreamWriter(ms);
+
+                tw.WriteLine("Заглавие:\t"+documentToBeGenerated.Title);
+                tw.WriteLine("Автор:\t"+documentToBeGenerated.Author);
+                var sections = documentToBeGenerated.Sections.ToList();
+
+                foreach (var section in sections)
+                {
+                    tw.WriteLine("Секция:\t" + section.Title);
+
+                    var subsections = section.Subsections.Where(sub => sub.Content != null).ToList();
+                    foreach (var subsection in subsections)
+                    {
+                        if (subsection.Content.CurrentProgress > 0)
+                        {
+                            tw.WriteLine("Подсекция:\t" + subsection.Title);
+
+                            tw.Write("Текст:\t" + subsection.Content.MainText.Replace(System.Environment.NewLine, " "));
+                        }
+                    }
+                }
+                tw.Close();
+                return ms;
+            }
+        }
+
+        public static MemoryStream GenerateComplexPdfDocument(Document documentToBeGenerated)
+        {
+            using (var ms = new MemoryStream())
+            {
+                DocX document = DocX.Create(ms);
+                // insert title of the document
+                Paragraph titleParagraph = document.InsertParagraph().Append(documentToBeGenerated.Title).FontSize(20).Font(new FontFamily("Comic Sans MS"));
+                titleParagraph.Alignment = Alignment.center;
+
+                titleParagraph.InsertPageBreakAfterSelf();
+                // insert TOC of the document
+                document.InsertTableOfContents("Съдържание",
+                    TableOfContentsSwitches.O
+                    | TableOfContentsSwitches.U
+                    | TableOfContentsSwitches.Z
+                    | TableOfContentsSwitches.H,
+                    "Heading2");
                 document.InsertSectionPageBreak();
-                var h2 = document.InsertParagraph("Heading 2");
-                document.InsertSectionPageBreak();
-                h2.StyleName = "Heading1";
-                document.InsertParagraph("Some very interesting content here as well");
-                var h3 = document.InsertParagraph("Heading 2.1");
-                h3.StyleName = "Heading2";
-                document.InsertParagraph("Not so very interesting....");
-                */
+
+                var sections = documentToBeGenerated.Sections.ToList();
+                foreach (var section in sections)
+                {
+                    var h1 = document.InsertParagraph(section.Title);
+                    h1.StyleName = "Heading1";
+
+                    var subsections = section.Subsections.Where(sub => sub.Content != null).ToList();
+                    foreach (var subsection in subsections)
+                    {
+                        if (subsection.Content.CurrentProgress > 0)
+                        {
+                            var h2 = document.InsertParagraph(subsection.Content.Title);
+                            h2.StyleName = "Heading2";
+
+                            var normal = document.InsertParagraph(subsection.Content.MainText);
+                            normal.StyleName = "Normal";
+                        }
+                    }
+                }
                 document.Save();
                 return ms;
             }

@@ -13,7 +13,13 @@
     <div class="col-lg-4">
       @if (!(Model.InProgressTasks.Any() || Model.ToDoTasks.Any()) && Model.DoneTasks.Any())
       {
-          <button type="button" class="btn btn-primary pull-right" id="generateDocument" onclick="getGeneratedDocument(@Model.DocumentId)">Генериране на документ</button>
+        <p class="text-right">Генериране на документ</p>
+            <div style="float:left;" class="pull-right">
+                <button type="button" class="btn btn-primary" id="generateDocument" onclick="getGeneratedDocument(@Model.DocumentId, 'docx')">docx</button>
+                <button type="button" class="btn btn-primary" id="generateDocument" onclick="getGeneratedDocument(@Model.DocumentId, 'pdf')">pdf</button>
+                <button type="button" class="btn btn-primary" id="generateDocument" onclick="getGeneratedDocument(@Model.DocumentId, 'txt')">txt</button>
+            </div>
+
       }
     </div>
 </div>
@@ -233,8 +239,14 @@
             window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + currentTaskId + '&isDisabled=' + disabled;
         };
 
-        function getGeneratedDocument(documentId) {
-            window.location = "/Document/GetDocument?documentId=" + documentId;
+        function getGeneratedDocument(documentId, type) {
+            if (type == 'docx') {
+                window.location = "/Document/GetDocxDocument?documentId=" + documentId;
+            }else if (type == 'txt') {
+                window.location = "/Document/GetTxtDocument?documentId=" + documentId;
+            }else if (type == 'pdf') {
+                window.location = "/Document/GetPfdDocument?documentId=" + documentId;
+            }
         }
 
         $(document).ready(function() {

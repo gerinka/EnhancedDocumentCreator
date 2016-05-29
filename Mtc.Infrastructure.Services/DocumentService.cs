@@ -103,10 +103,22 @@ namespace Mtc.Domain.Services
             _documentRepository.Update(ModelHelper.Mapper(document));
         }
 
-        public MemoryStream GenerateDocument(int documentId)
+        public MemoryStream GenerateDocxDocument(int documentId)
         {
             Document document = GetById(documentId);
-            return DocumentGenerator.GenerateComplexDocument(document);
+            return DocumentGenerator.GenerateComplexDocxDocument(document);
+        }
+
+        public MemoryStream GeneratePdfDocument(int documentId)
+        {
+            Document document = GetById(documentId);
+            return DocumentGenerator.GenerateComplexPdfDocument(document);
+        }
+
+        public MemoryStream GenerateTxtDocument(int documentId)
+        {
+            Document document = GetById(documentId);
+            return DocumentGenerator.GenerateComplexTxtDocument(document);
         }
     }
 }
