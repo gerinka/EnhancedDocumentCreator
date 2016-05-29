@@ -17,6 +17,8 @@ namespace Mtc.Domain.Models
         public DocumentTemplate Template { get; set; }
         public Person Mentor { get; set; }
 
+        public int CurrentCycle { get; set; }
+        public int MaxCycle { get; set; }
         public int CurrentProgress { get; set; }
     }
 }

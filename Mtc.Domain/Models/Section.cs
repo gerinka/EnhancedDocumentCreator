@@ -13,5 +13,6 @@ namespace Mtc.Domain.Models
         public SectionContent Content { get; set; }
         public bool IsSelected { get; set; }
         public int? Order { get; set; }
+        public int MinWordCount { get; set; }
     }
 }

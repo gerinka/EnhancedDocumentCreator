@@ -15,5 +15,6 @@ namespace Mtc.Domain.Models
         public DateTime Deadline { get; set; }
         public TaskAction TaskAction { get; set; }
         public int DocumentId { get; set; }
+        public int Cycle { get; set; }
     }
 }

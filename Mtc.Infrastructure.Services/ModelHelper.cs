@@ -22,7 +22,8 @@ namespace Mtc.Domain.Services
                 Content = Mapper(structure.STRUCTURECONTENTs.FirstOrDefault(st => st.DocumentId == documentId)) ,
                 IsSelected = true,
                 Subsections = structure.StructureTypeId == StructureType.Section? structure.CHILDSTRUCTUREELEMENTS.Select(st=>Mapper(st, documentId)).ToList() : null,
-                Order = structure.Order
+                Order = structure.Order,
+                MinWordCount = structure.MinWordCount
             };
         }
 
@@ -38,7 +39,8 @@ namespace Mtc.Domain.Services
                 STRUCTURECONTENTs = new List<STRUCTURECONTENT>{Mapper(section.Content, section)},
                 CHILDSTRUCTUREELEMENTS = section.StructureType== StructureType.Section ? section.Subsections.Select(Mapper).ToList(): null,
                 PARENTSTRUCTUREELEMENTS = section.StructureType == StructureType.Subsection ? section.Subsections.Select(Mapper).ToList() : null,
-                Order = section.Order
+                Order = section.Order,
+                MinWordCount = section.MinWordCount
             };
         }
 
@@ -53,7 +55,8 @@ namespace Mtc.Domain.Services
                     DocumentId = structurecontent.DocumentId,
                     MainText = GetString(structurecontent.Content),
                     CurrentProgress = structurecontent.CurrentProgress,
-                    SectionId = structurecontent.StructureElementId
+                    SectionId = structurecontent.StructureElementId,
+                    Keywords= structurecontent.KEYWORDs != null ? structurecontent.KEYWORDs.Select(Mapper).ToList() : null
                 };
             }
             return null;
@@ -69,6 +72,7 @@ namespace Mtc.Domain.Services
                 Content = GetBytes(structurecontent.MainText),
                 CurrentProgress = structurecontent.CurrentProgress,
                 StructureElementId = section.Id,
+                KEYWORDs = structurecontent.Keywords != null ? structurecontent.Keywords.Select(Mapper).ToList() : null
             };
         }
 
@@ -83,6 +87,7 @@ namespace Mtc.Domain.Services
                 Content = GetBytes(structurecontent.MainText),
                 CurrentProgress = structurecontent.CurrentProgress,
                 StructureElementId = structurecontent.SectionId,
+                KEYWORDs = structurecontent.Keywords!=null ? structurecontent.Keywords.Select(Mapper).ToList() : null
             };
         }
 
@@ -98,7 +103,9 @@ namespace Mtc.Domain.Services
                 STRUCTURECONTENTs = ConvertSectionsToSetOfContent(document.Sections.ToList()),
                 CurrentProgress = document.CurrentProgress,
                 DocumentState = document.DocumentState,
-                TASKs = document.Tasks!=null ? document.Tasks.Select(Mapper).ToList() : null
+                TASKs = document.Tasks!=null ? document.Tasks.Select(Mapper).ToList() : null,
+                CurrentCycle = document.CurrentCycle,
+                MaxCycle = document.MaxCycle
             };
         }
 
@@ -114,7 +121,9 @@ namespace Mtc.Domain.Services
                 Author = Mapper(document.USER_UserId),
                 DocumentState = document.DocumentState,
                 CurrentProgress = document.CurrentProgress,
-                Tasks = document.TASKs!=null?document.TASKs.Select(Mapper).ToList():null
+                Tasks = document.TASKs!=null?document.TASKs.Select(Mapper).ToList():null,
+                CurrentCycle = document.CurrentCycle,
+                MaxCycle = document.MaxCycle
             };
         }
 
@@ -131,7 +140,8 @@ namespace Mtc.Domain.Services
                 Description = documentTemplate.Description,
                 IsActive = documentTemplate.IsActive == 1,
                 Name = documentTemplate.Name,
-                Sections = documentTemplate.STRUCTUREELEMENTs.Where(st=>st.StructureTypeId == StructureType.Section).Select(st=>Mapper(st))
+                Sections = documentTemplate.STRUCTUREELEMENTs.Where(st=>st.StructureTypeId == StructureType.Section).Select(st=>Mapper(st)),
+                MinWordCountPerSubsection = documentTemplate.MinWordCount
             };
         }
 
@@ -174,7 +184,43 @@ namespace Mtc.Domain.Services
                 Order = task.Order,
                 Section = Mapper(task.STRUCTURECONTENT.STRUCTUREELEMENT, task.DocumentId),
                 TaskAction = CalculateTaskAction(task),
-                DocumentId = task.DocumentId
+                DocumentId = task.DocumentId,
+                Cycle = task.Cycle
+            };
+        }
+
+        public static TASK Mapper(Task task)
+        {
+            return new TASK
+            {
+                Id = task.Id,
+                Deadline = task.Deadline,
+                AssignTo = task.AssignTo.Id,
+                TaskType = task.TaskType,
+                TaskState = task.TaskState,
+                Title = task.Title,
+                StructureContentId = task.Section.Content.Id,
+                DocumentId = task.DocumentId,
+                Order = task.Order,
+                Cycle = task.Cycle
+            };
+        }
+
+        public static KEYWORD Mapper(Keyword keyword)
+        {
+            return new KEYWORD
+            {
+                Id = keyword.Id,
+                Name = keyword.Name
+            };
+        }
+
+        public static Keyword Mapper(KEYWORD keyword)
+        {
+            return new Keyword
+            {
+                Id = keyword.Id,
+                Name = keyword.Name
             };
         }
 
@@ -197,40 +243,6 @@ namespace Mtc.Domain.Services
             {
                 return TaskAction.Nothing;
             }
-        }
-
-        public static TASK Mapper(Task task)
-        {
-            return new TASK
-            {
-                Id = task.Id,
-                Deadline = task.Deadline,
-                AssignTo = task.AssignTo.Id,
-                TaskType = task.TaskType,
-                TaskState = task.TaskState,
-                Title = task.Title,
-                StructureContentId = task.Section.Content.Id,
-                DocumentId = task.DocumentId,
-                Order = task.Order
-            };
-        }
-
-        public static KEYWORD Mapper(Keyword keyword)
-        {
-            return new KEYWORD
-            {
-                Id = keyword.Id,
-                Name = keyword.Name
-            };
-        }
-
-        public static Keyword Mapper(KEYWORD keyword)
-        {
-            return new Keyword
-            {
-                Id = keyword.Id,
-                Name = keyword.Name
-            };
         }
 
         private static byte[] GetBytes(string str)
