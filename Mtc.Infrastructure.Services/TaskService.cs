@@ -102,17 +102,16 @@ namespace Mtc.Domain.Services
             return task;
         }
 
-        public IEnumerable<Task> GenerateTasks(int documentId, DateTime documentDeadline, Person author, IEnumerable<Section> sections)
+        public IEnumerable<Task> GenerateTasks(int documentId, DateTime documentDeadline, Person author, int totalCycles, IEnumerable<Section> sections)
         {
 
             var sectionList = sections.ToList();
             var totalSubsections = sectionList.SelectMany(section => section.Subsections.Where(sub=>sub.Content != null)).Count();
             var tasksToBeCreated = new List<Task>();
             var previousTasks = 0;
-            var totalWaves = DeadlineCalculator.CalculateMaxCycles(documentDeadline, totalSubsections);
-            totalSubsections *= totalWaves;
+            totalSubsections *= totalCycles;
             var order = 1;
-            for (var wave = 0; wave < totalWaves; wave++)
+            for (var wave = 0; wave < totalCycles; wave++)
             {
                 foreach (var section in sectionList)
                 {
@@ -128,7 +127,7 @@ namespace Mtc.Domain.Services
                             Deadline = DeadlineCalculator.CalculateDeadline(documentDeadline, previousTasks, totalSubsections, wave),
                             Order = order,
                             DocumentId = documentId,
-                            Cycle = wave
+                            Cycle = wave + 1
                         });
                         previousTasks++;
                         order ++;

@@ -37,16 +37,23 @@ namespace Mtc.Domain.Services
         public Document Create(Document document)
         {
             document.DocumentState = DocumentState.Started;
-            document.MaxCycle = DeadlineCalculator.CalculateMaxCycles(document.Deadline,
-                document.Sections.Count(s => s.StructureType == StructureType.Subsection));
+
+            IEnumerable<Section> allSubsections = document.Sections.Where(s => s.Content != null).SelectMany(s => s.Subsections).ToList();
+            document.MaxCycle = DeadlineCalculator.CalculateMaxCycles(document.Deadline, allSubsections.Count());
+
+            
+
             DOCUMENT documentToInsert = ModelHelper.Mapper(document);
+
             IList<STRUCTURECONTENT> documentContent = documentToInsert.STRUCTURECONTENTs.ToList();
             documentToInsert.STRUCTURECONTENTs = null;
             documentToInsert = _documentRepository.Insert(documentToInsert);
+   
             foreach (var structurecontent in documentContent)
             {
                 structurecontent.DocumentId = documentToInsert.ID;
-                var subsection = document.Sections.FirstOrDefault(s => s.Id == structurecontent.StructureElementId);
+
+                var subsection = allSubsections.FirstOrDefault(s => s.Id == structurecontent.StructureElementId);
                 if (subsection != null)
                 {
                     structurecontent.MinWordCount = subsection.MinWordCount;
