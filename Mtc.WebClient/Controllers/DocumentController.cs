@@ -167,7 +167,7 @@ namespace Mtc.WebClient.Controllers
         {
             Document documentForCreate = _documentService.GetById(documentId);
             MemoryStream document = _documentService.GenerateDocxDocument(documentId);
-            return File(document.ToArray(), "application/docx", Server.UrlEncode(documentForCreate.Title + ".docx"));
+            return File(document.ToArray(), "application/vnd.openxmlformats-officedocument.wordprocessingml.document", Server.UrlEncode(documentForCreate.Title + ".docx"));
         }
 
         //

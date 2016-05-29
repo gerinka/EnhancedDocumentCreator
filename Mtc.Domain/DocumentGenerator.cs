@@ -21,8 +21,7 @@ namespace Mtc.Domain
             {
                 DocX document = DocX.Create(ms);
                 // insert title of the document
-                Paragraph titleParagraph = document.InsertParagraph().Append(documentToBeGenerated.Title).FontSize(20).Font(new FontFamily("Comic Sans MS"));
-                titleParagraph.Alignment = Alignment.center;
+                Paragraph titleParagraph = document.InsertParagraph(documentToBeGenerated.Title, false, TitleFormat());
 
                 titleParagraph.InsertPageBreakAfterSelf();
                 // insert TOC of the document
@@ -30,14 +29,16 @@ namespace Mtc.Domain
                     TableOfContentsSwitches.O 
                     | TableOfContentsSwitches.U 
                     | TableOfContentsSwitches.Z 
-                    | TableOfContentsSwitches.H, 
+                    | TableOfContentsSwitches.H,
                     "Heading2");
                 document.InsertSectionPageBreak();
 
                 var sections = documentToBeGenerated.Sections.ToList();
+                var sectionIndex = 1;
+                var subSectionIndex = 1;
                 foreach (var section in sections)
                 {
-                    var h1 = document.InsertParagraph(section.Title);
+                    var h1 = document.InsertParagraph(sectionIndex + ". " + section.Title, false, Heading1Format());
                     h1.StyleName = "Heading1";
 
                     var subsections = section.Subsections.Where(sub=>sub.Content!=null).ToList();
@@ -45,13 +46,17 @@ namespace Mtc.Domain
                     {
                         if (subsection.Content.CurrentProgress > 0)
                         {
-                            var h2 = document.InsertParagraph(subsection.Content.Title);
+                            var h2 = document.InsertParagraph(""+sectionIndex+"."+subSectionIndex+". "+subsection.Content.Title, false, Heading2Format());
                             h2.StyleName = "Heading2";
 
-                            var normal = document.InsertParagraph(subsection.Content.MainText);
+                            var normal = document.InsertParagraph(subsection.Content.MainText, false, ParagraphFormat());
                             normal.StyleName = "Normal";
+
+                            subSectionIndex ++;
                         }
                     }
+                    sectionIndex++;
+                    subSectionIndex = 1;
                 }
                 document.Save();
                 return ms;
@@ -131,6 +136,50 @@ namespace Mtc.Domain
                 return ms;
             }
         }
+        #region formation functions
+         
+    // Title Formatting:
+        private static Formatting TitleFormat()
+        {
+            return new Formatting
+            {
+                FontFamily = new FontFamily("Times New Roman"), 
+                Size = 24D, 
+                Position = 12
+            };
+        }
+
+        // Body Formatting
+        private static Formatting ParagraphFormat()
+        {
+            return new Formatting {
+                FontFamily = new FontFamily("Times New Roman"), 
+                Size = 12D
+            };
+        }
+
+        private static Formatting Heading1Format()
+        {
+            return new Formatting
+            {
+                FontFamily = new FontFamily("Times New Roman"),
+                Size = 14D,
+                Bold = true,
+                FontColor = Color.FromArgb(120, 54, 95, 145)
+            };
+        }
+
+        private static Formatting Heading2Format()
+        {
+            return new Formatting
+            {
+                FontFamily = new FontFamily("Times New Roman"),
+                Size = 13D,
+                Bold = true,
+                FontColor = Color.FromArgb(120, 79, 129, 189)
+            };
+        }
+        #endregion
 
     }
 }
