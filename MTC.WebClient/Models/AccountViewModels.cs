@@ -70,7 +70,7 @@ namespace Mtc.WebClient.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Паролата е задължителна")]
-        [StringLength(100, ErrorMessage = "{0} трябва да бъде най-малко {2} символа дълга.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0}та трябва да бъде най-малко {2} символа дълга.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Парола")]
         public string Password { get; set; }
@@ -89,7 +89,7 @@ namespace Mtc.WebClient.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Паролата е задължителна")]
-        [StringLength(100, ErrorMessage = "{0} трябва да бъде най-малко {2} символа дълга.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0}та трябва да бъде най-малко {2} символа дълга.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Парола")]
         public string Password { get; set; }
