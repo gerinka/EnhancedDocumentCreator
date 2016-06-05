@@ -61,7 +61,7 @@
                             @id = "templateDropdown",
                             @onchange = "PopulateSectionList()" 
                         })
-                    @Html.ValidationMessageFor(m => m.SelectedDocumentTemplateId, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(m => m.SelectedDocumentTemplateId, "", new {@id = "templateDropdownError", @class = "text-danger" })
                 </div>
             </div>
 

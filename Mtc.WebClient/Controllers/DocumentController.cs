@@ -92,7 +92,9 @@ namespace Mtc.WebClient.Controllers
 
                 return RedirectToAction("TaskBoard", new { documentId = document.Id });
             }
-            return View("Index", model);
+            IEnumerable<DocumentTemplate> templates = _documentTemplateService.GetAll().ToList();
+            model.AllTemplates = templates;
+            return View("Index",model);
         }
 
     #endregion
