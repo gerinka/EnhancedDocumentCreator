@@ -27,7 +27,7 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Генерирай структура", "GenerateMainStructure", "Document")</li>
-                        <li>@Html.ActionLink("Дъска със задачи","GetLastTaskBoard",  "Document")</li>
+                        <li>@Html.ActionLink("Дъска със задачи","TaskBoard",  "Document")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

@@ -99,35 +99,43 @@ namespace Mtc.WebClient.Controllers
     #region taskboard
 
         //Document/TaskBoard/DocumentId
-        public ActionResult TaskBoard(int documentId)
+        [Route("TaskBoard/{documentId?}")]
+        public ActionResult TaskBoard(string documentId)
         {
+            var intDocumentId = 0;
 
-            IEnumerable<Task> taskList = _taskService.GetTasksByDocumentId(documentId).ToList();
+            if (!String.IsNullOrEmpty(documentId))
+            {
+                intDocumentId = Int32.Parse(documentId);
+            }
+            else
+            {
+                var username = User.Identity.Name;
+                intDocumentId = _documentService.GetLastDocumentByUserId(username);
+            }
+            IEnumerable<Task> taskList = _taskService.GetTasksByDocumentId(intDocumentId).ToList();
             var taskboard = new TasksBoardViewModel
             {
                 DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).Take(6).ToList(),
-                InProgressTasks = taskList.Where(t => t.TaskState == TaskState.InProgress || (t.Section.Content.CurrentProgress > 0 && t.TaskState == TaskState.Expired)).Take(6).OrderBy(t => t.Id).ToList(),
-                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo || (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired)).Take(6).OrderBy(t => t.Id).ToList(),
-                DocumentId = documentId
+                InProgressTasks =
+                    taskList.Where(
+                        t =>
+                            t.TaskState == TaskState.InProgress ||
+                            (t.Section.Content.CurrentProgress > 0 && t.TaskState == TaskState.Expired))
+                        .Take(6)
+                        .OrderBy(t => t.Id)
+                        .ToList(),
+                ToDoTasks =
+                    taskList.Where(
+                        t =>
+                            t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo ||
+                            (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired))
+                        .Take(6)
+                        .OrderBy(t => t.Id)
+                        .ToList(),
+                DocumentId = intDocumentId
             };
             return View(taskboard);
-        }
-
-        //Document/GetLastTaskBoard
-        public ActionResult GetLastTaskBoard()
-        {
-            var username = User.Identity.Name;
-            var documentId = _documentService.GetLastDocumentByUserId(username);
-
-            IEnumerable<Task> taskList = _taskService.GetTasksByDocumentId(documentId).ToList();
-            var taskboard = new TasksBoardViewModel
-            {
-                DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).Take(6).ToList(),
-                InProgressTasks = taskList.Where(t => t.TaskState == TaskState.InProgress || (t.Section.Content.CurrentProgress > 0 && t.TaskState == TaskState.Expired)).Take(6).OrderBy(t => t.Id).ToList(),
-                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo || (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired)).Take(6).OrderBy(t => t.Id).ToList(),
-                DocumentId = documentId
-            };
-            return View("TaskBoard",taskboard);
         }
 
         //
