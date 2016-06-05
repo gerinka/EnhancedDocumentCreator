@@ -40,7 +40,8 @@ namespace Mtc.WebClient.Controllers
         public ActionResult GenerateMainStructure()
         {
             IEnumerable<DocumentTemplate> templates = _documentTemplateService.GetAll().ToList();
-            Person author = _personService.GetById(1);
+            var username = User.Identity.Name;
+            Person author = _personService.GetByName(username);
             var documentGenerator = new InitDocumentViewModel
             {
                 AllTemplates = templates,

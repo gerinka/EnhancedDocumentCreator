@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
 using Mtc.Infrastructure.DataAccess.Interfaces;
@@ -22,7 +23,7 @@ namespace Mtc.Domain.Services
 
         public Person GetByName(string name)
         {
-            throw new NotImplementedException();
+            return ModelHelper.Mapper(_userRepository.Get(p=>p.UserName == name).FirstOrDefault());
         }
 
         public Person Create(Person entity)

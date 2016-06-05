@@ -150,15 +150,26 @@ namespace Mtc.Domain.Services
 
         public static Person Mapper(USER user)
         {
-            return new Person
+            if (user != null)
             {
-                Email = user.Email,
-                LastName = user.FamilyName,
-                FirstName = user.FirstName,
-                Id = user.Id,
-                ExperiencePoints = user.ExperiencePoints,
-                Level = user.Level,
-            };
+                return new Person
+                {
+                    Email = user.Email,
+                    LastName = user.FamilyName,
+                    FirstName = user.FirstName,
+                    Id = user.Id,
+                    ExperiencePoints = user.ExperiencePoints,
+                    Level = user.Level,
+                };
+            }
+            else
+            {
+                //setting id = 1 for testing purposes
+                return new Person()
+                {
+                    Id = 1
+                };
+            }
         }
 
         public static USER Mapper(Person person)
