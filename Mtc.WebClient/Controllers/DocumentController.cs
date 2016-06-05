@@ -165,6 +165,7 @@ namespace Mtc.WebClient.Controllers
     #endregion
 
     #region writingmodule
+        [Route("WritingModule/{taskId?}/{isDisabled}")]
         public ActionResult GoToWritingModule(int taskId, bool isDisabled = false)
         {
             Task currentTask = _taskService.GetById(taskId);
