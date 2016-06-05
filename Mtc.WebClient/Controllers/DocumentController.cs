@@ -28,11 +28,6 @@ namespace Mtc.WebClient.Controllers
             _sectionContentService = sectionContentService;
         }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult GenerateMainStructure()
         {
             IEnumerable<DocumentTemplate> templates = _documentTemplateService.GetAll().ToList();
@@ -43,7 +38,7 @@ namespace Mtc.WebClient.Controllers
                 User = author,
                 AuthorId = author.Id
             };
-            return View("PanelStructure", documentGenerator);
+            return View("Index", documentGenerator);
         }
 
         //Document/TaskBoard/DocumentId
