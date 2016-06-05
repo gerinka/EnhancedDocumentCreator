@@ -118,5 +118,17 @@ namespace Mtc.Domain.Services
                     throw new InvalidOperationException("No such file format found");
             }
         }
+
+        public int GetLastDocumentByUserId(string userName)
+        {
+            IEnumerable<DOCUMENT> documents = _documentRepository.Get(
+                d =>
+                    d.USER_UserId.UserName == userName 
+                    && (d.DocumentState == DocumentState.Started ||
+                    d.DocumentState == DocumentState.InProgress)).ToList();
+            if (documents.Any())
+                return documents.First().ID;
+            return -1;
+        }
     }
 }

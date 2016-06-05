@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
 using Mtc.WebClient.Models;
@@ -29,6 +31,7 @@ namespace Mtc.WebClient.Controllers
             _sectionContentService = sectionContentService;
         }
 
+    #region index
         public ActionResult Index()
         {
             return RedirectToAction("GenerateMainStructure");
@@ -47,43 +50,9 @@ namespace Mtc.WebClient.Controllers
             return View("Index", documentGenerator);
         }
 
-        //Document/TaskBoard/DocumentId
-        public ActionResult TaskBoard(int documentId)
-        {
-
-            IEnumerable<Task> taskList = _taskService.GetTasksByDocumentId(documentId).ToList();
-            var taskboard = new TasksBoardViewModel
-            {
-                DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).Take(6).ToList(),
-                InProgressTasks = taskList.Where(t => t.TaskState == TaskState.InProgress || (t.Section.Content.CurrentProgress > 0 && t.TaskState == TaskState.Expired)).Take(6).OrderBy(t => t.Id).ToList(),
-                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo || (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired)).Take(6).OrderBy(t => t.Id).ToList(),
-                DocumentId = documentId
-            };
-            return View(taskboard);
-        }
-
-        public ActionResult GoToWritingModule(int taskId, bool isDisabled = false)
-        {
-           Task currentTask = _taskService.GetById(taskId);
-            var writingContent = new WriteContentViewModel
-            {
-                Title = currentTask.Section.Content.Title,
-                MainText = currentTask.Section.Content.MainText,
-                Description = currentTask.Section.Description,
-                TaskTitle = currentTask.Title,
-                SectionTitle = currentTask.Section.Title,
-                CurrentTaskId = currentTask.Id,
-                CurrentSectionContentId = currentTask.Section.Content.Id,
-                IsDisabled = isDisabled,
-                DocumentId = currentTask.Section.Content.DocumentId
-            };
-            return View("WritingModule",writingContent);
-        }
-
         //
         // POST: /Document/CreateDocument
         [HttpPost]
-        [AllowAnonymous]
         public ActionResult CreateDocument(InitDocumentViewModel model, long[] sections)
         {
             if (ModelState.IsValid)
@@ -113,46 +82,66 @@ namespace Mtc.WebClient.Controllers
 
                 foreach (var subsection in document.Sections.SelectMany(section => section.Subsections))
                 {
-                    subsection.Content = new SectionContent {Title = subsection.Title};
+                    subsection.Content = new SectionContent { Title = subsection.Title };
                 }
                 document = _documentService.Create(document);
 
                 _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.MaxCycle,
                     document.Sections.Where(s => s.Content != null));
 
-                return RedirectToAction("TaskBoard", new {documentId = document.Id});
+                return RedirectToAction("TaskBoard", new { documentId = document.Id });
             }
             return View("Index", model);
         }
 
-        //
-        // POST: /Document/CreateDocument
-        [HttpPost]
-        [AllowAnonymous]
-        public ActionResult WriteContent(WriteContentViewModel model)
+    #endregion
+
+    #region taskboard
+
+        //Document/TaskBoard/DocumentId
+        public ActionResult TaskBoard(int documentId)
         {
-            if (!model.IsDisabled)
+
+            IEnumerable<Task> taskList = _taskService.GetTasksByDocumentId(documentId).ToList();
+            var taskboard = new TasksBoardViewModel
             {
-                _sectionContentService.UpdateSectionContent(model.CurrentSectionContentId, model.Title,
-                    model.MainText);
-            }
-            return RedirectToAction("TaskBoard", new {documentId = model.DocumentId });
+                DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).Take(6).ToList(),
+                InProgressTasks = taskList.Where(t => t.TaskState == TaskState.InProgress || (t.Section.Content.CurrentProgress > 0 && t.TaskState == TaskState.Expired)).Take(6).OrderBy(t => t.Id).ToList(),
+                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo || (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired)).Take(6).OrderBy(t => t.Id).ToList(),
+                DocumentId = documentId
+            };
+            return View(taskboard);
+        }
+
+        //Document/GetLastTaskBoard
+        public ActionResult GetLastTaskBoard()
+        {
+            var username = User.Identity.Name;
+            var documentId = _documentService.GetLastDocumentByUserId(username);
+
+            IEnumerable<Task> taskList = _taskService.GetTasksByDocumentId(documentId).ToList();
+            var taskboard = new TasksBoardViewModel
+            {
+                DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).Take(6).ToList(),
+                InProgressTasks = taskList.Where(t => t.TaskState == TaskState.InProgress || (t.Section.Content.CurrentProgress > 0 && t.TaskState == TaskState.Expired)).Take(6).OrderBy(t => t.Id).ToList(),
+                ToDoTasks = taskList.Where(t => t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo || (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired)).Take(6).OrderBy(t => t.Id).ToList(),
+                DocumentId = documentId
+            };
+            return View("TaskBoard",taskboard);
         }
 
         //
         // POST: /Document/StartTask
         [HttpPost]
-        [AllowAnonymous]
         public ActionResult StartTask(int taskId)
         {
             _taskService.StartTask(taskId);
-            return Json(Url.Action("GoToWritingModule", "Document", new{taskId})); 
+            return Json(Url.Action("GoToWritingModule", "Document", new { taskId }));
         }
 
         //
         // POST: /Document/StartTask
         [HttpPost]
-        [AllowAnonymous]
         public ActionResult FinishTask(int taskId)
         {
             _taskService.FinishTask(taskId);
@@ -161,15 +150,49 @@ namespace Mtc.WebClient.Controllers
             {
                 var documentId = task.Section.Content.DocumentId;
                 _documentService.UpdateDocumentProgress(documentId);
-                return Json(Url.Action("TaskBoard", "Document", new { documentId })); 
+                return Json(Url.Action("TaskBoard", "Document", new { documentId }));
             }
             return new HttpStatusCodeResult(HttpStatusCode.ExpectationFailed);
         }
+    #endregion
 
+    #region writingmodule
+        public ActionResult GoToWritingModule(int taskId, bool isDisabled = false)
+        {
+            Task currentTask = _taskService.GetById(taskId);
+            var writingContent = new WriteContentViewModel
+            {
+                Title = currentTask.Section.Content.Title,
+                MainText = currentTask.Section.Content.MainText,
+                Description = currentTask.Section.Description,
+                TaskTitle = currentTask.Title,
+                SectionTitle = currentTask.Section.Title,
+                CurrentTaskId = currentTask.Id,
+                CurrentSectionContentId = currentTask.Section.Content.Id,
+                IsDisabled = isDisabled,
+                DocumentId = currentTask.Section.Content.DocumentId
+            };
+            return View("WritingModule", writingContent);
+        }
+
+        //
+        // POST: /Document/WriteContent
+        [HttpPost] 
+        public ActionResult WriteContent(WriteContentViewModel model)
+        {
+            if (!model.IsDisabled)
+            {
+                _sectionContentService.UpdateSectionContent(model.CurrentSectionContentId, model.Title,
+                    model.MainText);
+            }
+            return RedirectToAction("TaskBoard", new { documentId = model.DocumentId });
+        }
+    #endregion
+
+    #region getdocumentresult
         //
         // Get: /Document/GetDocxDocument
         [HttpGet]
-        [AllowAnonymous]
         public FileResult GetDocxDocument(int documentId)
         {
             Document documentForCreate = _documentService.GetById(documentId);
@@ -180,7 +203,6 @@ namespace Mtc.WebClient.Controllers
         //
         // Get: /Document/GetCsvDocument
         [HttpGet]
-        [AllowAnonymous]
         public FileResult GetTxtDocument(int documentId)
         {
             Document documentForCreate = _documentService.GetById(documentId);
@@ -191,7 +213,6 @@ namespace Mtc.WebClient.Controllers
         //
         // Get: /Document/GetPdfDocument
         [HttpGet]
-        [AllowAnonymous]
         public FileResult GetPdfDocument(int documentId)
         {
             Document documentForCreate = _documentService.GetById(documentId);
@@ -202,7 +223,7 @@ namespace Mtc.WebClient.Controllers
         //
         // Get: /Document/GetDocxSectionContent
         [HttpGet]
-        [AllowAnonymous]
+        
         public FileResult GetDocxSectionContent(int sectionContentId)
         {
             SectionContent documentForCreate = _sectionContentService.GetById(sectionContentId);
@@ -213,7 +234,6 @@ namespace Mtc.WebClient.Controllers
         //
         // Get: /Document/GetCsvSectionContent
         [HttpGet]
-        [AllowAnonymous]
         public FileResult GetTxtSectionContent(int sectionContentId)
         {
             SectionContent documentForCreate = _sectionContentService.GetById(sectionContentId);
@@ -224,12 +244,16 @@ namespace Mtc.WebClient.Controllers
         //
         // Get: /Document/GetPdfSectionContent
         [HttpGet]
-        [AllowAnonymous]
         public FileResult GetPdfSectionContent(int sectionContentId)
         {
             SectionContent documentForCreate = _sectionContentService.GetById(sectionContentId);
             MemoryStream document = _sectionContentService.GenerateSimpleDocument(sectionContentId, ExportDocumentType.Pdf);
             return File(document.ToArray(), "application/pdf", Server.UrlEncode(documentForCreate.Title + ".pdf"));
         }
+    #endregion
+
+    #region private
+    #endregion
+
     }
 }

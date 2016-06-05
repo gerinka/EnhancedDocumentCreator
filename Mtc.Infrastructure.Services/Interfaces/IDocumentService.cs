@@ -8,5 +8,6 @@ namespace Mtc.Domain.Services.Interfaces
     {
         void UpdateDocumentProgress(int documentId);
         MemoryStream GenerateComplexDocument(int documentId, ExportDocumentType exportDocumentType);
+        int GetLastDocumentByUserId(string userName);
     }
 }

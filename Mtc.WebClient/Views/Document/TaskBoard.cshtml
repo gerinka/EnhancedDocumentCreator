@@ -4,6 +4,7 @@
     ViewBag.Title = "Дъска със задачи";
     int maxTasks = Math.Max(Model.InProgressTasks.Count(), Math.Max(Model.DoneTasks.Count(), Model.ToDoTasks.Count()));
     var maxRows = (int)Math.Ceiling((double)maxTasks / 2);
+    var totalTasks = Model.DoneTasks.Count + Model.InProgressTasks.Count + Model.ToDoTasks.Count;
 }
 <div class="row">
     <div class="col-lg-4">
@@ -11,31 +12,47 @@
     <div class="col-lg-4">
     </div>
     <div class="col-lg-4">
-    
-        <p class="text-right">Генериране на документ</p>
-        <div style="float:left;" class="pull-right">
-            <button type="button" class="btn btn-primary" onclick="getGeneratedDocument(@Model.DocumentId, 'txt') ">txt</button>
-            @if (!(Model.InProgressTasks.Any() || Model.ToDoTasks.Any()) && Model.DoneTasks.Any())
-            {
-                <button type="button" class="btn btn-primary" onclick="getGeneratedDocument(@Model.DocumentId, 'docx') ">docx</button>
-                <button type="button" class="btn btn-primary" onclick="getGeneratedDocument(@Model.DocumentId, 'pdf') ">pdf</button>
-            }
+        @if (totalTasks>0)
+        {
+            <p class="text-right">Генериране на документ</p>
+            <div style="float: left;" class="pull-right">
+                <button type="button" class="btn btn-primary" onclick=" getGeneratedDocument(Model.DocumentId, 'txt') ">txt</button>
+                @if (!(Model.InProgressTasks.Any() || Model.ToDoTasks.Any()) && Model.DoneTasks.Any())
+                {
+                    <button type="button" class="btn btn-primary" onclick=" getGeneratedDocument(Model.DocumentId, 'docx') ">docx</button>
+                    <button type="button" class="btn btn-primary" onclick=" getGeneratedDocument(Model.DocumentId, 'pdf') ">pdf</button>
+                }
+            </div>
+        }
+    </div>
+</div>
+@if (totalTasks > 0)
+{
+    <div class="row">
+        <div class="col-lg-4">
+            <h3 class="text-center"><span class="label label-default">Незапочнати задачи</span></h3>
         </div>
-
+        <div class="col-lg-4">
+            <h3 class="text-center"><span class="label label-warning">Задачи в процес</span></h3>
+        </div>
+        <div class="col-lg-4">
+            <h3 class="text-center"><span class="label label-success">Завършени задачи</span></h3>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-lg-4">
-        <h3 class="text-center"><span class="label label-default">Незапочнати задачи</span></h3>
+}
+else
+{
+    <div class="row">
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+            <h1 class="text-center"><span class="label label-warning">Нямате започнат документ</span></h1>
+            <p class="text-center">Върнете се на @Html.ActionLink("Генерирай структура", "GenerateMainStructure", "Document"), за да започнете работа</p>
+        </div>
+        <div class="col-lg-4">
+        </div>
     </div>
-    <div class="col-lg-4">
-        <h3 class="text-center"><span class="label label-warning">Задачи в процес</span></h3>
-    </div>
-    <div class="col-lg-4">
-        <h3 class="text-center"><span class="label label-success">Завършени задачи</span></h3>
-    </div>
-</div>
-
+}
 @for (int i = 0; i < maxRows; i++)
 {
     <div class="row">
