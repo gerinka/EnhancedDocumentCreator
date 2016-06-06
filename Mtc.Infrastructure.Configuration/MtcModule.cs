@@ -20,12 +20,14 @@ namespace Mtc.Infrastructure.Configuration
             builder.RegisterType<TaskRepository>().As<ITaskRepository>().InstancePerRequest();
             builder.RegisterType<StructureElementRepository>().As<IStructureElementRepository>().InstancePerRequest();
             builder.RegisterType<StructureContentRepository>().As<IStructureContentRepository>().InstancePerRequest();
+            builder.RegisterType<KeywordRepository>().As<IKeywordRepository>().InstancePerRequest();
             builder.RegisterType<DocumentTemplateService>().As<IDocumentTemplateService>().InstancePerRequest();
             builder.RegisterType<DocumentService>().As<IDocumentService>().InstancePerRequest();
             builder.RegisterType<PersonService>().As<IPersonService>().InstancePerRequest();
             builder.RegisterType<TaskService>().As<ITaskService>().InstancePerRequest();
             builder.RegisterType<SectionService>().As<ISectionService>().InstancePerRequest();
             builder.RegisterType<SectionContentService>().As<ISectionContentService>().InstancePerRequest();
+            builder.RegisterType<KeywordService>().As<IKeywordService>().InstancePerRequest();
             base.Load(builder);
         }
     }

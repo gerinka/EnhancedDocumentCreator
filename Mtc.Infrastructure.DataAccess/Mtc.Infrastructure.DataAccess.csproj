@@ -75,6 +75,7 @@
     <Compile Include="Interfaces\IStructureElementRepository.cs" />
     <Compile Include="Interfaces\ITaskRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="Migration\Initial.cs" />
     <Compile Include="Mtc.MtcEntities.cs">
       <DependentUpon>Mtc.edml</DependentUpon>
     </Compile>

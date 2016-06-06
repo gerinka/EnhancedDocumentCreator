@@ -3,20 +3,36 @@
     ViewBag.Title = "Писане";
 }
 <div class="panel panel-primary">
-    <div class="panel-heading"><h3 class="panel-title">@Model.TaskTitle</h3></div>
+    <div class="panel-heading"><h3 class="panel-title">@Model.TaskTitle : @Model.SectionTitle</h3></div>
     <div class="panel-body">
         @using (Html.BeginForm("WriteContent", "Document", FormMethod.Post, new { id = "createDocumentForm", @class = "form-horizontal" }))
         {
             <div class="form-group">
-                <label for="subtitle" class="col-lg-2 label-panel control-label">Подсекция</label>
+                @Html.LabelFor(model => model.Title, new { @class = "col-lg-2 label-panel control-label" })
                 <div class="col-lg-9">
-                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = @Model.SectionTitle} })
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = @Model.SectionTitle } })
                 </div>
             </div>
             <div class="form-group">
-                <label for="maintext" class="col-lg-2 label-panel control-label">Основен текст</label>
+                @Html.LabelFor(model => model.Keywords, new { @class = "col-lg-2 label-panel control-label" })
                 <div class="col-lg-9">
-                        @Html.EditorFor(model => model.MainText, new { htmlAttributes = new { rows = 20, @class = "form-control", @placeholder = @Model.MainText} })
+                    @if (Model.Keywords.Any())
+                    {
+                        foreach (var keyword in Model.Keywords)
+                        {
+                            <span class="label label-primary">@keyword.Name</span>
+                        }
+                    }
+                    else
+                    {
+                        <span class="label label-primary">Нямате добавени ключови думи</span>
+                    }
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.MainText, new { @class = "col-lg-2 label-panel control-label" })
+                <div class="col-lg-9">
+                    @Html.EditorFor(model => model.MainText, new { htmlAttributes = new { rows = 20, @class = "form-control", @placeholder = @Model.MainText } })
                 </div>
             </div>
             <div class="form-group">
@@ -29,7 +45,7 @@
                 </div>
 
                 <div class="col-lg-3">
-                    <button type="submit" class="btn btn-primary pull-right" id="save">   
+                    <button type="submit" class="btn btn-primary pull-right" id="save">
                         @if (Model.IsDisabled)
                         {
                             <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>

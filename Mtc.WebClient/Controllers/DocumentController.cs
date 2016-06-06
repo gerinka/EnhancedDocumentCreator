@@ -21,14 +21,16 @@ namespace Mtc.WebClient.Controllers
         private readonly IPersonService _personService;
         private readonly ITaskService _taskService;
         private readonly ISectionContentService _sectionContentService;
+        private readonly IKeywordService _keywordService;
 
-        public DocumentController(IDocumentTemplateService documentTemplateService, IDocumentService documentService, IPersonService personService, ITaskService taskService, ISectionContentService sectionContentService)
+        public DocumentController(IDocumentTemplateService documentTemplateService, IDocumentService documentService, IPersonService personService, ITaskService taskService, ISectionContentService sectionContentService, IKeywordService keywordService)
         {
             _documentTemplateService = documentTemplateService;
             _documentService = documentService;
             _personService = personService;
             _taskService = taskService;
             _sectionContentService = sectionContentService;
+            _keywordService = keywordService;
         }
 
     #region index
@@ -182,7 +184,8 @@ namespace Mtc.WebClient.Controllers
                 CurrentTaskId = currentTask.Id,
                 CurrentSectionContentId = currentTask.Section.Content.Id,
                 IsDisabled = isDisabled,
-                DocumentId = currentTask.Section.Content.DocumentId
+                DocumentId = currentTask.Section.Content.DocumentId,
+                Keywords = _keywordService.GetKeywordsPerSectionContent(currentTask.Section.Content.Id)
             };
             return View("WritingModule", writingContent);
         }
