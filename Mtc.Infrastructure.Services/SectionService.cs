@@ -31,12 +31,12 @@ namespace Mtc.Domain.Services
             throw new NotImplementedException();
         }
 
-        public Section Update(Section entity)
+        public void Update(Section entity)
         {
             throw new NotImplementedException();
         }
 
-        public Section Delete(Section entity)
+        public void Delete(Section entity)
         {
             throw new NotImplementedException();
         }

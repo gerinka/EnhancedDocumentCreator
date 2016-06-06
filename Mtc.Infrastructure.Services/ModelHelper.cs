@@ -231,11 +231,15 @@ namespace Mtc.Domain.Services
 
         public static Keyword Mapper(KEYWORD keyword)
         {
-            return new Keyword
+            if (keyword != null)
             {
-                Id = keyword.Id,
-                Name = keyword.Name
-            };
+                return new Keyword
+                {
+                    Id = keyword.Id,
+                    Name = keyword.Name
+                };
+            }
+            return null;
         }
 
         private static TaskAction CalculateTaskAction(TASK task)

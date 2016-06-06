@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using Mtc.Domain.Common;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
 using Mtc.Infrastructure.DataAccess.Interfaces;
-using MtcModel;
 
 namespace Mtc.Domain.Services
 {
@@ -29,7 +23,7 @@ namespace Mtc.Domain.Services
 
         public Keyword GetByName(string name)
         {
-            throw new NotImplementedException();
+           return ModelHelper.Mapper(_keywordRepository.Get(k => k.Name == name).FirstOrDefault());
         }
 
         public Keyword Create(Keyword entity)
@@ -37,19 +31,19 @@ namespace Mtc.Domain.Services
             return ModelHelper.Mapper(_keywordRepository.Insert(ModelHelper.Mapper(entity)));
         }
 
-        public Keyword Update(Keyword entity)
+        public void Update(Keyword entity)
         {
-            throw new NotImplementedException();
+            _keywordRepository.Update(ModelHelper.Mapper(entity));
         }
 
-        public Keyword Delete(Keyword entity)
+        public void Delete(Keyword entity)
         {
-            throw new NotImplementedException();
+            _keywordRepository.Delete(entity);
         }
 
         public IEnumerable<Keyword> GetAll()
         {
-            throw new NotImplementedException();
+            return _keywordRepository.Get().Select(ModelHelper.Mapper);
         }
 
         public IEnumerable<Keyword> GetKeywordsPerSectionContent(int sectionContentId)
@@ -64,6 +58,31 @@ namespace Mtc.Domain.Services
            return
                 _keywordRepository.Get(k => k.STRUCTURECONTENTs.Select(s => s.DocumentId).Contains(documentId))
                     .Select(ModelHelper.Mapper);
+        }
+
+        public IEnumerable<Keyword> AddOrUpdateKeywords(string keywords)
+        {
+            string[] separators = { ", "};
+            string[] lastKeywords = keywords.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+            IList<Keyword> resultKeywords = new List<Keyword>();
+
+            foreach (var keyword in lastKeywords)
+            {
+                    var existingKeyword = GetByName(keyword);
+                resultKeywords.Add(existingKeyword ?? Create(new Keyword() {Name = keyword}));
+            }
+           
+            return resultKeywords;
+        }
+
+        private void AddRelation(Keyword keyword, int sectionContentId)
+        {
+            _keywordRepository.AddRelation(ModelHelper.Mapper(keyword),sectionContentId);
+        }
+
+        private void DropRelation(Keyword keyword, int sectionContentId)
+        {
+            _keywordRepository.DropRelation(ModelHelper.Mapper(keyword), sectionContentId);
         }
     }
 }

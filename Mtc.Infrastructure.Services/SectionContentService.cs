@@ -37,12 +37,12 @@ namespace Mtc.Domain.Services
             throw new NotImplementedException();
         }
 
-        public SectionContent Update(SectionContent entity)
+        public void Update(SectionContent entity)
         {
             throw new NotImplementedException();
         }
 
-        public SectionContent Delete(SectionContent entity)
+        public void Delete(SectionContent entity)
         {
             throw new NotImplementedException();
         }
@@ -53,13 +53,14 @@ namespace Mtc.Domain.Services
         }
 
 
-        public void UpdateSectionContent(int sectionContentId, string title, string mainText)
+        public void UpdateSectionContent(int sectionContentId, string title, string mainText, IEnumerable<Keyword> keywords)
         {
             SectionContent sectionContent = ModelHelper.Mapper(
                 _structureContentRepository.GetById(sectionContentId));
             sectionContent.Title = title;
             sectionContent.MainText = mainText;
             sectionContent.CurrentProgress = CalculateProgress(mainText, sectionContent.MinWordCount);
+            sectionContent.Keywords = keywords.ToList();
            _structureContentRepository.Update(ModelHelper.Mapper(sectionContent));
         }
 

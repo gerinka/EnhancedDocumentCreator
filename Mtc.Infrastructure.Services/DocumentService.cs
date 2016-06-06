@@ -66,12 +66,12 @@ namespace Mtc.Domain.Services
                 ModelHelper.Mapper(documentToInsert);
         }
 
-        public Document Update(Document entity)
+        public void Update(Document entity)
         {
             throw new NotImplementedException();
         }
 
-        public Document Delete(Document entity)
+        public void Delete(Document entity)
         {
             throw new NotImplementedException();
         }

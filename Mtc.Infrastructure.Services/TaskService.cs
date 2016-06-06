@@ -39,12 +39,12 @@ namespace Mtc.Domain.Services
             return ModelHelper.Mapper(_taskRepository.Insert(ModelHelper.Mapper(entity)));
         }
 
-        public Task Update(Task entity)
+        public void Update(Task entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task Delete(Task entity)
+        public void Delete(Task entity)
         {
             throw new NotImplementedException();
         }

@@ -36,12 +36,12 @@ namespace Mtc.Domain.Services
             throw new NotImplementedException();
         }
 
-        public DocumentTemplate Update(DocumentTemplate entity)
+        public void Update(DocumentTemplate entity)
         {
             throw new NotImplementedException();
         }
 
-        public DocumentTemplate Delete(DocumentTemplate entity)
+        public void Delete(DocumentTemplate entity)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace Mtc.WebClient.Controllers
         //
         // POST: /Document/CreateDocument
         [HttpPost]
-        public ActionResult CreateDocument(InitDocumentViewModel model, long[] sections)
+        public ActionResult CreateDocument(InitDocumentViewModel model, int[] sections)
         {
             if (ModelState.IsValid)
             {
@@ -193,14 +194,23 @@ namespace Mtc.WebClient.Controllers
         //
         // POST: /Document/WriteContent
         [HttpPost] 
-        public ActionResult WriteContent(WriteContentViewModel model)
+        public ActionResult WriteContent(WriteContentViewModel model, string keywords)
         {
             if (!model.IsDisabled)
             {
+                IEnumerable<Keyword> updatedKeywords = _keywordService.AddOrUpdateKeywords(keywords);
                 _sectionContentService.UpdateSectionContent(model.CurrentSectionContentId, model.Title,
-                    model.MainText);
+                    model.MainText, updatedKeywords);
+               
             }
             return RedirectToAction("TaskBoard", new { documentId = model.DocumentId });
+        }
+
+        public ActionResult GetTags(string term)
+        {
+            IEnumerable<Keyword> keywords = _keywordService.GetAll().ToList();
+            var token = string.Join(",", keywords.Select(x => x.Name).ToList());
+            return Json(new { keywords }, JsonRequestBehavior.AllowGet);
         }
     #endregion
 

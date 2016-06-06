@@ -13,8 +13,8 @@ namespace Mtc.Domain.Services.Interfaces
         T GetById(int id);
         T GetByName(string name);
         T Create(T entity);
-        T Update(T entity);
-        T Delete(T entity);
+        void Update(T entity);
+        void Delete(T entity);
         IEnumerable<T> GetAll();
     }
 }
