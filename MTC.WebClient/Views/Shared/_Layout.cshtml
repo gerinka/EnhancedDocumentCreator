@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Mtc.Domain.Common
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,13 +22,13 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Начало", "Index", "Home")</li>
-                    <li>@Html.ActionLink("За приложението", "About", "Home")</li>
-                    <li>@Html.ActionLink("Контакти", "Contact", "Home")</li>
+                    <li class="@Html.IsSelected(actions: "Index", controllers: "Home")">@Html.ActionLink("Начало", "Index", "Home")</li>
+                    <li class="@Html.IsSelected(actions: "About", controllers: "Home")">@Html.ActionLink("За приложението", "About", "Home")</li>
+                    <li class="@Html.IsSelected(actions: "Contact", controllers: "Home")">@Html.ActionLink("Контакти", "Contact", "Home")</li>
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Генерирай структура", "GenerateMainStructure", "Document")</li>
-                        <li>@Html.ActionLink("Дъска със задачи","TaskBoard",  "Document")</li>
+                        <li class="@Html.IsSelected(actions: "GenerateMainStructure", controllers: "Document")">@Html.ActionLink("Генерирай структура", "GenerateMainStructure", "Document")</li>
+                        <li class="@Html.IsSelected(actions: "TaskBoard", controllers: "Document")">@Html.ActionLink("Дъска със задачи", "TaskBoard", "Document")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
