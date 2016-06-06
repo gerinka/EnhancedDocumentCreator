@@ -30,10 +30,10 @@
                 $(".panel-heading").find(nextElement).addClass("active");
 
                 $(".form-group:not(.notselected)").filter(function() {
-                    if (parseInt($(this).data("section")) == index) {
+                    if (parseInt($(this)[0].dataset.section) == index) {
                         $(this).addClass("hidden");
                         $(this).removeClass("active");
-                    } else if (parseInt($(this).data("section")) == index + 1) {
+                    } else if (parseInt($(this)[0].dataset.section) == index + 1) {
                         $(this).addClass("active");
                         $(this).removeClass("hidden");
                     }
@@ -66,10 +66,10 @@
             $(".panel-heading").find(previousElement).addClass("active");
 
             $(".form-group:not(.notselected)").filter(function () {
-                if (parseInt($(this).data("section")) == index) {
+                if (parseInt($(this)[0].dataset.section) == index) {
                     $(this).addClass("hidden");
                     $(this).removeClass("active");
-                } else if (parseInt($(this).data("section")) == index - 1) {
+                } else if (parseInt($(this)[0].dataset.section) == index - 1) {
                     $(this).addClass("active");
                     $(this).removeClass("hidden");
                 }
