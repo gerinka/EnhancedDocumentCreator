@@ -27,6 +27,7 @@
                     {
                         <span class="label label-primary">Нямате добавени ключови думи</span>
                     }
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="modal" data-target="#keywordsModal"></span>
                 </div>
             </div>
             <div class="form-group">
@@ -67,19 +68,48 @@
         }
     </div>
 </div>
+
+<!-- Modal -->
+<div id="keywordsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content" id="modal-content">
+            <div class="modal-header panel-heading">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Управлявайте ключови думи</h4>
+
+            </div>
+            <div class="modal-body">
+                <label id="error-message" class="label label-danger"></label>
+                <p id="modal-text">Настоящи ключови думи.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
+                <button type="submit" class="btn btn-primary" id="add" value="3">Добави</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 @section scripts{
     @Scripts.Render("~/bundles/common")
 
     <script>
+        function OpenKeywordsModal() {
+            
+        }
+
         function getGeneratedSectionDocument(sectionContentId, type) {
             if (type == 'docx') {
                 window.location = "/Document/GetDocxSectionContent?sectionContentId=" + sectionContentId;
-            }else if (type == 'txt') {
+            } else if (type == 'txt') {
                 window.location = "/Document/GetTxtSectionContent?sectionContentId=" + sectionContentId;
-            }else if (type == 'pdf') {
+            } else if (type == 'pdf') {
                 window.location = "/Document/GetPdfSectionContent?sectionContentId=" + sectionContentId;
             }
         }
+
         $(document).ready(function() {
             if (@Model.IsDisabled.ToString().ToLower() == true) {
                 $('#MainText').attr('disabled', 'disabled');
