@@ -209,7 +209,7 @@ namespace Mtc.WebClient.Controllers
 
         public ActionResult GetTags(string term)
         {
-            IEnumerable<Keyword> keywords = _keywordService.GetAll().ToList();
+            IEnumerable<Keyword> keywords = _keywordService.GetKeywordsPerTerm(term).ToList();
             var token = string.Join(",", keywords.Select(x => x.Name).ToList());
             return Json(new { keywords }, JsonRequestBehavior.AllowGet);
         }

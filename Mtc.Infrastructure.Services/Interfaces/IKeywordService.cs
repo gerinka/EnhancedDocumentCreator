@@ -9,5 +9,6 @@ namespace Mtc.Domain.Services.Interfaces
         IEnumerable<Keyword> GetKeywordsPerSectionContent(int sectionContentId);
         IEnumerable<Keyword> GetKeywordsPerDocument(int documentId);
         IEnumerable<Keyword> AddOrUpdateKeywords(string keywords, SectionContent sectionContent);
+        IEnumerable<Keyword> GetKeywordsPerTerm(string term);
     }
 }

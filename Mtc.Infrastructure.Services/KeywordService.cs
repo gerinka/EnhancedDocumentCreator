@@ -94,5 +94,10 @@ namespace Mtc.Domain.Services
             }
             return currentKeywords;
         }
+
+        public IEnumerable<Keyword> GetKeywordsPerTerm(string term)
+        {
+            return _keywordRepository.Get(k => k.Name.Contains(term)).Select(ModelHelper.Mapper);
+        }
     }
 }
