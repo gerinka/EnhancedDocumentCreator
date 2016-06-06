@@ -160,16 +160,10 @@ namespace Mtc.Domain.Services
                     Id = user.Id,
                     ExperiencePoints = user.ExperiencePoints,
                     Level = user.Level,
+                    Password = user.Password
                 };
             }
-            else
-            {
-                //setting id = 1 for testing purposes
-                return new Person()
-                {
-                    Id = 1
-                };
-            }
+            return null;
         }
 
         public static USER Mapper(Person person)
@@ -182,6 +176,7 @@ namespace Mtc.Domain.Services
                 Id = person.Id,
                 ExperiencePoints = person.ExperiencePoints,
                 Level = person.Level,
+                Password = person.Password
             };
         }
 

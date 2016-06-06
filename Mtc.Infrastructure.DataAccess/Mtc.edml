@@ -160,7 +160,6 @@
           <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
           <Property Name="MiddleName" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
           <Property Name="FamilyName" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
-          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
           <Property Name="Email" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
           <Property Name="Password" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
           <Property Name="ExperiencePoints" Type="int" />
@@ -497,7 +496,6 @@
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="0ce16014-b1ca-42cd-875a-5fb594babdd3" />
           <Property Name="MiddleName" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="d7d3e5b0-8b8b-4326-98d5-6e4a0af632fc" />
           <Property Name="FamilyName" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="0b14dbaa-8cc3-4732-8c36-42e5c534d9a4" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="cf47e595-ddb5-4a08-8686-1dd0e44efb13" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="8536946b-8822-4277-86ba-d9790a6bdd76" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="74a27332-dd8e-49f9-8852-22bf6ef22867" />
           <Property Name="ExperiencePoints" Type="Int32" ed:ValidateRequired="false" ed:Guid="45bd9b62-a06d-43c8-bb50-0f7da8a6d797" />
@@ -744,7 +742,6 @@
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="FamilyName" ColumnName="FamilyName" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ExperiencePoints" ColumnName="ExperiencePoints" />

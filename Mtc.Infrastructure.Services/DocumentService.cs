@@ -123,7 +123,7 @@ namespace Mtc.Domain.Services
         {
             IEnumerable<DOCUMENT> documents = _documentRepository.Get(
                 d =>
-                    d.USER_UserId.UserName == userName 
+                    d.USER_UserId.Email == userName 
                     && (d.DocumentState == DocumentState.Started ||
                     d.DocumentState == DocumentState.InProgress)).ToList();
             if (documents.Any())

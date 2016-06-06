@@ -69,6 +69,14 @@ namespace Mtc.WebClient.Models
         [Display(Name = "Email адрес")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Името е задължително")]
+        [Display(Name = "Име")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Фамилията е задължителна")]
+        [Display(Name = "Фамилия")]
+        public string LastName { get; set; }
+
         [Required(ErrorMessage = "Паролата е задължителна")]
         [StringLength(100, ErrorMessage = "{0}та трябва да бъде най-малко {2} символа дълга.", MinimumLength = 6)]
         [DataType(DataType.Password)]

@@ -8,6 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Mtc.Domain.Models;
+using Mtc.Domain.Services;
+using Mtc.Domain.Services.Interfaces;
 using Mtc.WebClient.Models;
 
 namespace Mtc.WebClient.Controllers
@@ -17,15 +20,17 @@ namespace Mtc.WebClient.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
-        public AccountController()
+        private readonly IPersonService _personService;
+        public AccountController(IPersonService personService)
         {
+            _personService = personService;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IPersonService personService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _personService = personService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -155,6 +160,13 @@ namespace Mtc.WebClient.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    _personService.Create(new Person()
+                    {
+                        Email = model.Email,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Password = model.Password
+                    });
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -162,7 +174,7 @@ namespace Mtc.WebClient.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    
                     return RedirectToAction("Index", "Document");
                 }
                 AddErrors(result);

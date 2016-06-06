@@ -23,22 +23,22 @@ namespace Mtc.Domain.Services
 
         public Person GetByName(string name)
         {
-            return ModelHelper.Mapper(_userRepository.Get(p=>p.UserName == name).FirstOrDefault());
+            return ModelHelper.Mapper(_userRepository.Get(p=>p.Email == name).FirstOrDefault());
         }
 
         public Person Create(Person entity)
         {
-            throw new NotImplementedException();
+            return ModelHelper.Mapper(_userRepository.Insert(ModelHelper.Mapper(entity)));
         }
 
         public void Update(Person entity)
         {
-            throw new NotImplementedException();
+            _userRepository.Update(ModelHelper.Mapper(entity));
         }
 
         public void Delete(Person entity)
         {
-            throw new NotImplementedException();
+            _userRepository.Delete(ModelHelper.Mapper(entity));
         }
 
         public IEnumerable<Person> GetAll()
