@@ -24,8 +24,11 @@ namespace Mtc.Domain
                 DocX document = DocX.Create(ms);
                 // insert title of the document
                 Paragraph titleParagraph = document.InsertParagraph(documentToBeGenerated.Title, false, TitleFormat());
-
-                titleParagraph.InsertPageBreakAfterSelf();
+                Paragraph authorParagraph = document.InsertParagraph(documentToBeGenerated.Author.ToString(), false, Heading1Format());
+                authorParagraph.StyleName = "Heading1";
+                Paragraph keywordsParagraph = document.InsertParagraph(GetDocumentTopKeywords(documentToBeGenerated), false, Heading2Format());
+                keywordsParagraph.StyleName = "Heading2";
+                keywordsParagraph.InsertPageBreakAfterSelf();
                 // insert TOC of the document
                 document.InsertTableOfContents("Съдържание", 
                     TableOfContentsSwitches.O 
@@ -90,6 +93,7 @@ namespace Mtc.Domain
 
                 tw.WriteLine("Заглавие:\t"+documentToBeGenerated.Title);
                 tw.WriteLine("Автор:\t"+documentToBeGenerated.Author);
+                tw.WriteLine("Ключови думи:\t" + GetDocumentTopKeywords(documentToBeGenerated));
                 var sections = documentToBeGenerated.Sections.ToList();
 
                 foreach (var section in sections)
@@ -174,6 +178,31 @@ namespace Mtc.Domain
         }
         #endregion
 
+        #region private-functions
+
+        private static string GetDocumentTopKeywords(Document document)
+        {
+            var keywordsMap = new Dictionary<Keyword, int>();
+
+            var subsections = document.Sections.SelectMany(s => s.Subsections).Where(sub=>sub.Content != null).ToList();
+            foreach (var subsection in subsections)
+            {
+                var keywords = subsection.Content.Keywords;
+                foreach (var keyword in keywords)
+                {
+                    if (keywordsMap.ContainsKey(keyword))
+                    {
+                        keywordsMap[keyword]++;
+                    }
+                    else
+                    {
+                        keywordsMap[keyword] = 1;
+                    }
+                }
+            }
+            return String.Join(", ", keywordsMap.OrderByDescending(kd=>kd.Value).Select(k=>k.Key.Name).Take(5));
+        } 
+        #endregion
     }
 }
 
