@@ -16,11 +16,11 @@
         {
             <p class="text-right">Генериране на документ</p>
             <div style="float: left;" class="pull-right">
-                <button type="button" class="btn btn-primary" onclick=" getGeneratedDocument(Model.DocumentId, 'txt') ">txt</button>
+                <button type="button" class="btn btn-primary" onclick="getGeneratedDocument(@Model.DocumentId, 'txt') ">txt</button>
                 @if (!(Model.InProgressTasks.Any() || Model.ToDoTasks.Any()) && Model.DoneTasks.Any())
                 {
-                    <button type="button" class="btn btn-primary" onclick=" getGeneratedDocument(Model.DocumentId, 'docx') ">docx</button>
-                    <button type="button" class="btn btn-primary" onclick=" getGeneratedDocument(Model.DocumentId, 'pdf') ">pdf</button>
+                    <button type="button" class="btn btn-primary" onclick="getGeneratedDocument(@Model.DocumentId, 'docx') ">docx</button>
+                    <button type="button" class="btn btn-primary" onclick="getGeneratedDocument(@Model.DocumentId, 'pdf') ">pdf</button>
                 }
             </div>
         }
