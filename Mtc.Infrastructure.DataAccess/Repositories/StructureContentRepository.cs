@@ -14,10 +14,5 @@ namespace Mtc.Infrastructure.DataAccess.Repositories
         public StructureContentRepository(MtcEntities context) : base(context)
         {
         }
-
-        public override void Update(STRUCTURECONTENT entityToUpdate)
-        {
-            base.Update(entityToUpdate);
-        }
     }
 }
