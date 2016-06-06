@@ -74,7 +74,7 @@ namespace Mtc.Domain.Services
                 CurrentProgress = sectionContent.CurrentProgress,
                 StructureElementId = section.Id,
                 MinWordCount = sectionContent.MinWordCount,
-                KEYWORDs = sectionContent.Keywords != null ? sectionContent.Keywords.Select(Mapper).ToList() : null
+                KEYWORDs = sectionContent.Keywords != null ? sectionContent.Keywords.Select(k => Mapper(k, sectionContent)).ToList() : null
             };
         }
 
@@ -90,7 +90,7 @@ namespace Mtc.Domain.Services
                 CurrentProgress = sectionContent.CurrentProgress,
                 StructureElementId = sectionContent.SectionId,
                 MinWordCount = sectionContent.MinWordCount,
-                KEYWORDs = sectionContent.Keywords != null ? sectionContent.Keywords.Select(Mapper).ToList() : null
+                KEYWORDs = sectionContent.Keywords != null? sectionContent.Keywords.Select(Mapper).ToList() : null
             };
         }
 
@@ -130,9 +130,9 @@ namespace Mtc.Domain.Services
             };
         }
 
-        private static IList<Section> ConvertSetOfContentToSections(IEnumerable<STRUCTURECONTENT> structurecontenTs, int documentId)
+        private static IList<Section> ConvertSetOfContentToSections(IEnumerable<STRUCTURECONTENT> structurecontents, int documentId)
         {
-            return structurecontenTs.Where(st => st.STRUCTUREELEMENT.StructureTypeId == StructureType.Section).Select(structureContent => Mapper(structureContent.STRUCTUREELEMENT, documentId)).ToList();
+            return structurecontents.Where(st => st.STRUCTUREELEMENT.StructureTypeId == StructureType.Section).Select(structureContent => Mapper(structureContent.STRUCTUREELEMENT, documentId)).ToList();
         }
 
         public static DocumentTemplate Mapper(DOCUMENTTEMPLATE documentTemplate)
@@ -220,7 +220,16 @@ namespace Mtc.Domain.Services
             };
         }
 
+
         public static KEYWORD Mapper(Keyword keyword)
+        {
+            return new KEYWORD
+            {
+                Id = keyword.Id,
+                Name = keyword.Name
+            };
+        }
+        public static KEYWORD Mapper(Keyword keyword, SectionContent sectionContent)
         {
             return new KEYWORD
             {

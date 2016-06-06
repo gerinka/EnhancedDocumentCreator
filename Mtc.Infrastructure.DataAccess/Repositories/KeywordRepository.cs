@@ -16,14 +16,32 @@ namespace Mtc.Infrastructure.DataAccess.Repositories
         {
         }
 
-        public void AddRelation(KEYWORD keyword, int structureContentId)
+        public void AddRelation(IList<KEYWORD> keywords, int structureContentId)
         {
-            throw new NotImplementedException();
+            using (var context = new MtcEntities())
+            {
+                var structureContent = context.STRUCTURECONTENTs.Single(sc => sc.Id == structureContentId);
+                foreach (var keyword in keywords)
+                {
+                    var dbKeyword = context.KEYWORDs.Single(k => k.Id == keyword.Id);
+                    structureContent.KEYWORDs.Add(dbKeyword);
+                }
+                context.SaveChanges();
+            }
         }
 
-        public void DropRelation(KEYWORD keyword, int structureContentId)
+        public void DropRelation(IList<KEYWORD> keywords, int structureContentId)
         {
-            throw new NotImplementedException();
+            using (var context = new MtcEntities())
+            {
+                var structureContent = context.STRUCTURECONTENTs.Single(sc => sc.Id == structureContentId);
+                foreach (var keyword in keywords)
+                {
+                    var dbKeyword = context.KEYWORDs.Single(k => k.Id == keyword.Id);
+                    structureContent.KEYWORDs.Remove(dbKeyword);
+                }
+                context.SaveChanges();
+            }
         }
     }
 }

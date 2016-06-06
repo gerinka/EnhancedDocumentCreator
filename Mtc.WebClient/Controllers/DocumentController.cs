@@ -198,7 +198,8 @@ namespace Mtc.WebClient.Controllers
         {
             if (!model.IsDisabled)
             {
-                IEnumerable<Keyword> updatedKeywords = _keywordService.AddOrUpdateKeywords(keywords);
+                var sectionContent = _sectionContentService.GetById(model.CurrentSectionContentId);
+                IEnumerable<Keyword> updatedKeywords = _keywordService.AddOrUpdateKeywords(keywords, sectionContent);
                 _sectionContentService.UpdateSectionContent(model.CurrentSectionContentId, model.Title,
                     model.MainText, updatedKeywords);
                

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using Mtc.Domain.Models;
 using Mtc.Domain.Services.Interfaces;
@@ -60,29 +61,38 @@ namespace Mtc.Domain.Services
                     .Select(ModelHelper.Mapper);
         }
 
-        public IEnumerable<Keyword> AddOrUpdateKeywords(string keywords)
+        public IEnumerable<Keyword> AddOrUpdateKeywords(string keywords, SectionContent sectionContent)
         {
             string[] separators = { ", "};
+            IList<Keyword> currentKeywords = sectionContent.Keywords.ToList();
             string[] lastKeywords = keywords.Split(separators, StringSplitOptions.RemoveEmptyEntries);
-            IList<Keyword> resultKeywords = new List<Keyword>();
+            IList<Keyword> addKeywords = new List<Keyword>();
+            IList<Keyword> removeKeywords = currentKeywords.Where(ck=>!lastKeywords.Contains(ck.Name)).ToList();
 
             foreach (var keyword in lastKeywords)
             {
+                if (currentKeywords.All(ck => ck.Name != keyword))
+                {
                     var existingKeyword = GetByName(keyword);
-                resultKeywords.Add(existingKeyword ?? Create(new Keyword() {Name = keyword}));
+                    if (existingKeyword == null)
+                    {
+                        existingKeyword = Create(new Keyword {Name = keyword});
+                    }
+                    addKeywords.Add(existingKeyword);
+                    currentKeywords.Add(existingKeyword);
+                }
+
             }
-           
-            return resultKeywords;
-        }
 
-        private void AddRelation(Keyword keyword, int sectionContentId)
-        {
-            _keywordRepository.AddRelation(ModelHelper.Mapper(keyword),sectionContentId);
-        }
-
-        private void DropRelation(Keyword keyword, int sectionContentId)
-        {
-            _keywordRepository.DropRelation(ModelHelper.Mapper(keyword), sectionContentId);
+            if (addKeywords.Any())
+            {
+                _keywordRepository.AddRelation(addKeywords.Select(ModelHelper.Mapper).ToList(), sectionContent.Id);
+            }
+            if (removeKeywords.Any())
+            {
+                _keywordRepository.DropRelation(removeKeywords.Select(ModelHelper.Mapper).ToList(), sectionContent.Id);
+            }
+            return currentKeywords;
         }
     }
 }

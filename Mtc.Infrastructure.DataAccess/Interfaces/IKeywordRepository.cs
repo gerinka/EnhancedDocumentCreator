@@ -9,7 +9,7 @@ namespace Mtc.Infrastructure.DataAccess.Interfaces
 {
     public interface IKeywordRepository : IBaseRepository<KEYWORD>
     {
-        void AddRelation(KEYWORD keyword, int structureContentId);
-        void DropRelation(KEYWORD keyword, int structureContentId);
+        void AddRelation(IList<KEYWORD> keywords, int structureContentId);
+        void DropRelation(IList<KEYWORD> keywords, int structureContentId);
     }
 }
