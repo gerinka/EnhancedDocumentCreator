@@ -13,11 +13,14 @@
                     @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = @Model.SectionTitle } })
                 </div>
             </div>
+   
             <div class="form-group">
                 @Html.LabelFor(model => model.Keywords, new { @class = "col-lg-2 label-panel control-label" })
                 <div class="col-lg-9">
-                    @if (Model.Keywords.Any())
+                    <input type="text" class="form-control" id="tokenfield" value="red,green,blue" />
+                   <!-- @if (Model.Keywords.Any())
                     {
+                        
                         foreach (var keyword in Model.Keywords)
                         {
                             <span class="label label-primary">@keyword.Name</span>
@@ -27,7 +30,7 @@
                     {
                         <span class="label label-primary">Нямате добавени ключови думи</span>
                     }
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="modal" data-target="#keywordsModal"></span>
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="modal" data-target="#keywordsModal"></span>-->
                 </div>
             </div>
             <div class="form-group">
@@ -83,6 +86,7 @@
             <div class="modal-body">
                 <label id="error-message" class="label label-danger"></label>
                 <p id="modal-text">Настоящи ключови думи.</p>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
@@ -93,12 +97,9 @@
     </div>
 </div>
 @section scripts{
-    @Scripts.Render("~/bundles/common")
+    @Scripts.Render("~/bundles/jqueryui")
 
     <script>
-        function OpenKeywordsModal() {
-            
-        }
 
         function getGeneratedSectionDocument(sectionContentId, type) {
             if (type == 'docx') {
@@ -115,6 +116,18 @@
                 $('#MainText').attr('disabled', 'disabled');
                 $('#Title').attr('disabled', 'disabled');
             };
+
+            $('#taskModal').on('show.bs.modal', function(event) {
+               
+            });
+
+            $('#tokenfield').tokenfield({
+                autocomplete: {
+                    source: ['red', 'blue', 'green', 'yellow', 'violet', 'brown', 'purple', 'black', 'white'],
+                    delay: 100
+                },
+                showAutocompleteOnFocus: true
+            });
         });
     </script>
 }
