@@ -216,3 +216,7 @@ input[type="radio"].styled:checked label:after,
 .top-buffer { 
     margin-top:10px; 
 }
+.info-icon {
+    font-size: 1.5em; 
+    color: #428bca;
+}
