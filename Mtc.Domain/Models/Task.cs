@@ -1,7 +1,7 @@
 ﻿using System;
 using MtcModel;
 
-namespace Mtc.Domain.Models
+namespace Edc.Domain.Models
 {
     public class Task
     {

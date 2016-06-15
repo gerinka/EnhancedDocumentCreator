@@ -8,10 +8,10 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using Mtc.Api.Providers;
-using Mtc.Api.Models;
+using Edc.Api.Providers;
+using Edc.Api.Models;
 
-namespace Mtc.Api
+namespace Edc.Api
 {
     public partial class Startup
     {

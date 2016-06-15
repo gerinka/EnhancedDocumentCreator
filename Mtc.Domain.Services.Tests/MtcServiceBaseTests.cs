@@ -1,16 +1,16 @@
-﻿//using Mtc.Domain.Common.Security;
-//using Mtc.Domain.Common.UnitTest;
+﻿//using Edc.Domain.Common.Security;
+//using Edc.Domain.Common.UnitTest;
 using System.Configuration;
 using System.Data.Common;
 using System.Data.Entity;
 using Autofac;
-using Mtc.Infrastructure.Configuration;
-using Mtc.Infrastructure.DataAccess;
+using Edc.Infrastructure.Configuration;
+using Edc.Infrastructure.DataAccess;
 using MtcModel;
 using MySql.Data.MySqlClient;
 using NUnit.Framework;
 
-namespace Mtc.Domain.Services.Tests
+namespace Edc.Domain.Services.Tests
 {
     public class MtcServiceBaseTests : BaseDatabaseIntegrationTests
     {

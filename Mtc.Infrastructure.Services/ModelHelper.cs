@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Mtc.Domain.Models;
+using Edc.Domain.Models;
 using MtcModel;
-using Task = Mtc.Domain.Models.Task;
+using Task = Edc.Domain.Models.Task;
 
-namespace Mtc.Domain.Services
+namespace Edc.Domain.Services
 {
     public static class ModelHelper
     {

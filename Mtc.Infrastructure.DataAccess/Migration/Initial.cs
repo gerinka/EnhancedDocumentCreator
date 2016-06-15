@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.Migrations;
 
-namespace Mtc.Infrastructure.DataAccess.Migration
+namespace Edc.Infrastructure.DataAccess.Migration
 {
     public partial class Initial: DbMigration
     {

@@ -7,16 +7,16 @@ using System.Runtime.InteropServices;
 using System.Transactions;
 using Autofac;
 using Moq;
-using Mtc.Domain.Services.Interfaces;
-using Mtc.Infrastructure.Configuration;
-using Mtc.Infrastructure.DataAccess;
-using Mtc.Infrastructure.DataAccess.Interfaces;
+using Edc.Domain.Services.Interfaces;
+using Edc.Infrastructure.Configuration;
+using Edc.Infrastructure.DataAccess;
+using Edc.Infrastructure.DataAccess.Interfaces;
 using MtcModel;
 using MySql.Data.MySqlClient;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Mtc.Domain.Services.Tests
+namespace Edc.Domain.Services.Tests
 {
     [TestFixture]
     [Category("IntegrationTest")]

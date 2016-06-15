@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Mtc.Domain.Common;
-using Mtc.Domain.Models;
-using Mtc.Domain.Services.Interfaces;
-using Mtc.Infrastructure.DataAccess.Interfaces;
+using Edc.Domain.Common;
+using Edc.Domain.Models;
+using Edc.Domain.Services.Interfaces;
+using Edc.Infrastructure.DataAccess.Interfaces;
 using MtcModel;
-using Task = Mtc.Domain.Models.Task;
+using Task = Edc.Domain.Models.Task;
 
-namespace Mtc.Domain.Services
+namespace Edc.Domain.Services
 {
     public class TaskService : ITaskService
     {

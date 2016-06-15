@@ -3,10 +3,10 @@ using System.Configuration;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Transactions;
-using Mtc.Infrastructure.DataAccess.Interfaces;
+using Edc.Infrastructure.DataAccess.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace Mtc.Domain.Services.Tests
+namespace Edc.Domain.Services.Tests
 {
     /// <summary>
     /// TestHelper that can be used independently from any repository or entity

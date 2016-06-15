@@ -13,11 +13,11 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using Mtc.Api.Models;
-using Mtc.Api.Providers;
-using Mtc.Api.Results;
+using Edc.Api.Models;
+using Edc.Api.Providers;
+using Edc.Api.Results;
 
-namespace Mtc.Api.Controllers
+namespace Edc.Api.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Mtc.Domain.Models
+namespace Edc.Domain.Models
 {
     public class Person
     {

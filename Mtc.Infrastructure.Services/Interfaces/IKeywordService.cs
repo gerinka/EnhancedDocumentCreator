@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Mtc.Domain.Models;
+using Edc.Domain.Models;
 
-namespace Mtc.Domain.Services.Interfaces
+namespace Edc.Domain.Services.Interfaces
 {
     public interface IKeywordService : IBaseService<Keyword>
     {

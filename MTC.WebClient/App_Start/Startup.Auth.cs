@@ -4,10 +4,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
-using Mtc.WebClient.Models;
+using Edc.WebClient.Models;
 using Owin;
 
-namespace Mtc.WebClient
+namespace Edc.WebClient
 {
     public partial class Startup
     {

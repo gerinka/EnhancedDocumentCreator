@@ -4,9 +4,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Mtc.Domain.Common;
+using Edc.Domain.Common;
 
-namespace Mtc.Domain.Services.Interfaces
+namespace Edc.Domain.Services.Interfaces
 {
     public interface IBaseService<T> where T: class
     {

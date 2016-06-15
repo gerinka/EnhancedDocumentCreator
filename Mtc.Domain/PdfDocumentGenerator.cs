@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.draw;
-using Mtc.Domain.Models;
-using Document = Mtc.Domain.Models.Document;
+using Edc.Domain.Models;
+using Document = Edc.Domain.Models.Document;
 using Font = iTextSharp.text.Font;
-using Section = Mtc.Domain.Models.Section;
+using Section = Edc.Domain.Models.Section;
 
-namespace Mtc.Domain
+namespace Edc.Domain
 {
     public static class PdfDocumentGenerator
     {

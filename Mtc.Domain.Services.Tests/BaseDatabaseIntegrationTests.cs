@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Mtc.Domain.Services.Tests
+namespace Edc.Domain.Services.Tests
 {
     public abstract class BaseDatabaseIntegrationTests
     {

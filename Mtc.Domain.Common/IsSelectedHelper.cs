@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Mtc.Domain.Common
+namespace Edc.Domain.Common
 {
     public static class IsSelectedHelper
     {

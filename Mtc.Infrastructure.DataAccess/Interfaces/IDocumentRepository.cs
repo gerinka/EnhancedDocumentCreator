@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MtcModel;
 
-namespace Mtc.Infrastructure.DataAccess.Interfaces
+namespace Edc.Infrastructure.DataAccess.Interfaces
 {
     public interface IDocumentRepository : IBaseRepository<DOCUMENT>
     {

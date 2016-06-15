@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using Mtc.Domain.Models;
+using Edc.Domain.Models;
 
-namespace Mtc.WebClient.Models
+namespace Edc.WebClient.Models
 {
     public class WriteContentViewModel
     {

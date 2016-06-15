@@ -1,5 +1,5 @@
-﻿@using Mtc.Domain.Models
-@model Mtc.WebClient.Models.TasksBoardViewModel
+﻿@using Edc.Domain.Models
+@model Edc.WebClient.Models.TasksBoardViewModel
 @{
     ViewBag.Title = "Дъска със задачи";
     int maxTasks = Math.Max(Model.InProgressTasks.Count(), Math.Max(Model.DoneTasks.Count(), Model.ToDoTasks.Count()));

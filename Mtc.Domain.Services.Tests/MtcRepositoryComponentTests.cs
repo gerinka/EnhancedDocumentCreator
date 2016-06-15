@@ -4,7 +4,7 @@ using System.Data.Entity.Core.Objects;
 using MtcModel;
 using NUnit.Framework;
 
-namespace Mtc.Domain.Services.Tests
+namespace Edc.Domain.Services.Tests
 {
     [TestFixture]
     public abstract class MtcRepositoryComponentTests<TEntity> : BaseDatabaseIntegrationTests where TEntity : class

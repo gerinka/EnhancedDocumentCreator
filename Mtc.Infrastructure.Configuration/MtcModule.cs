@@ -1,14 +1,14 @@
 ﻿using System.Reflection;
 using Autofac;
-using Mtc.Domain.Models;
-using Mtc.Domain.Services;
-using Mtc.Domain.Services.Interfaces;
-using Mtc.Infrastructure.DataAccess.Interfaces;
-using Mtc.Infrastructure.DataAccess.Repositories;
+using Edc.Domain.Models;
+using Edc.Domain.Services;
+using Edc.Domain.Services.Interfaces;
+using Edc.Infrastructure.DataAccess.Interfaces;
+using Edc.Infrastructure.DataAccess.Repositories;
 using MtcModel;
 using Module = Autofac.Module;
 
-namespace Mtc.Infrastructure.Configuration
+namespace Edc.Infrastructure.Configuration
 {
     public class MtcModule : Module
     {

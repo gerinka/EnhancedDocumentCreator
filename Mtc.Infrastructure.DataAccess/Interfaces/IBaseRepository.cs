@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mtc.Infrastructure.DataAccess.Interfaces
+namespace Edc.Infrastructure.DataAccess.Interfaces
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {

@@ -7,12 +7,12 @@ using System.Net;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Mtc.Domain.Models;
-using Mtc.Domain.Services.Interfaces;
-using Mtc.WebClient.Models;
+using Edc.Domain.Models;
+using Edc.Domain.Services.Interfaces;
+using Edc.WebClient.Models;
 using MtcModel;
 
-namespace Mtc.WebClient.Controllers
+namespace Edc.WebClient.Controllers
 {
     [Authorize]
     public class DocumentController : Controller

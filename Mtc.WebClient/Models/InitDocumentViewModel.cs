@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
-using Mtc.Domain.Models;
+using Edc.Domain.Models;
 
-namespace Mtc.WebClient.Models
+namespace Edc.WebClient.Models
 {
     public class InitDocumentViewModel
     {

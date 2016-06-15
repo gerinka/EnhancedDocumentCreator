@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mtc.Domain.Common
+namespace Edc.Domain.Common
 {
     public class BaseSearchCommand<T> where T : class
     {

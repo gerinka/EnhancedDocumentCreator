@@ -8,13 +8,13 @@ using Autofac;
 using Autofac.Core;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
-using Mtc.Infrastructure.Configuration;
-using Mtc.Infrastructure.DataAccess;
+using Edc.Infrastructure.Configuration;
+using Edc.Infrastructure.DataAccess;
 using MtcModel;
 using MySql.Data.MySqlClient;
 using AutofacDependencyResolver = Autofac.Integration.Mvc.AutofacDependencyResolver;
 
-namespace Mtc.WebClient
+namespace Edc.WebClient
 {
 
     /// <summary>

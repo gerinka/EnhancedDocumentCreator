@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Mtc.WebClient.Startup))]
-namespace Mtc.WebClient
+[assembly: OwinStartupAttribute(typeof(Edc.WebClient.Startup))]
+namespace Edc.WebClient
 {
     public partial class Startup
     {

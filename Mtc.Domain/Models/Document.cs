@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Mtc.Domain.Models
+namespace Edc.Domain.Models
 {
     public class Document
     {

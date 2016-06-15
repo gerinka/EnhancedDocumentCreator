@@ -4,10 +4,10 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using Mtc.Infrastructure.DataAccess.Interfaces;
+using Edc.Infrastructure.DataAccess.Interfaces;
 using MtcModel;
 
-namespace Mtc.Infrastructure.DataAccess.Repositories
+namespace Edc.Infrastructure.DataAccess.Repositories
 {
     public class StructureContentRepository : BaseRepository<STRUCTURECONTENT>, IStructureContentRepository
     {

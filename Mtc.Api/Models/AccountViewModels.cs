@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Mtc.Api.Models
+namespace Edc.Api.Models
 {
     // Models returned by AccountController actions.
 

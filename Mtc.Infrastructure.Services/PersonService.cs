@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Mtc.Domain.Models;
-using Mtc.Domain.Services.Interfaces;
-using Mtc.Infrastructure.DataAccess.Interfaces;
+using Edc.Domain.Models;
+using Edc.Domain.Services.Interfaces;
+using Edc.Infrastructure.DataAccess.Interfaces;
 
-namespace Mtc.Domain.Services
+namespace Edc.Domain.Services
 {
     public class PersonService : IPersonService
     {

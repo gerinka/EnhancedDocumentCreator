@@ -5,13 +5,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Mtc.Domain.Common;
-using Mtc.Domain.Models;
-using Mtc.Domain.Services.Interfaces;
-using Mtc.Infrastructure.DataAccess.Interfaces;
+using Edc.Domain.Common;
+using Edc.Domain.Models;
+using Edc.Domain.Services.Interfaces;
+using Edc.Infrastructure.DataAccess.Interfaces;
 using MtcModel;
 
-namespace Mtc.Domain.Services
+namespace Edc.Domain.Services
 {
     public class DocumentService : IDocumentService
     {

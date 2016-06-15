@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Mtc.Api;
-using Mtc.Api.Controllers;
+using Edc.Api;
+using Edc.Api.Controllers;
 
-namespace Mtc.Api.Tests.Controllers
+namespace Edc.Api.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest

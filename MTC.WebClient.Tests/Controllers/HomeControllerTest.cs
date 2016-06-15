@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Mtc.WebClient;
-using Mtc.WebClient.Controllers;
+using Edc.WebClient;
+using Edc.WebClient.Controllers;
 
-namespace Mtc.WebClient.Tests.Controllers
+namespace Edc.WebClient.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest

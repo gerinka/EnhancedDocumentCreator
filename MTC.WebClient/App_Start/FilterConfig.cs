@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Mtc.WebClient
+namespace Edc.WebClient
 {
     public class FilterConfig
     {

@@ -5,9 +5,9 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Mtc.Domain.Common;
+using Edc.Domain.Common;
 
-namespace Mtc.WebClient
+namespace Edc.WebClient
 {
     public class MvcApplication : System.Web.HttpApplication
     {

@@ -8,12 +8,12 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using iTextSharp.text.pdf;
-using Mtc.Domain.Models;
+using Edc.Domain.Models;
 using Novacode;
 using Image = Novacode.Image;
-using Section = Mtc.Domain.Models.Section;
+using Section = Edc.Domain.Models.Section;
 
-namespace Mtc.Domain
+namespace Edc.Domain
 {
     public static class DocxDocumentGenerator
     {

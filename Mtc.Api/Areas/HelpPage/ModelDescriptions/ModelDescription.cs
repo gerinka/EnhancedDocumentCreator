@@ -1,6 +1,6 @@
 using System;
 
-namespace Mtc.Api.Areas.HelpPage.ModelDescriptions
+namespace Edc.Api.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

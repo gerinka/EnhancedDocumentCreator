@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace Mtc.Domain.Common
+namespace Edc.Domain.Common
 {
     public class DateTimeModelBinder : IModelBinder
     {

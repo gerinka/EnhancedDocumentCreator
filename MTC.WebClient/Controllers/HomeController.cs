@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Mtc.WebClient.Controllers
+namespace Edc.WebClient.Controllers
 {
     public class HomeController : Controller
     {
