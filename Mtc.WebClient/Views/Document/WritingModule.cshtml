@@ -18,7 +18,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Keywords, new { @class = "col-lg-2 label-panel control-label" })
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="tokenfield" value="@keywords" name="keywords"/>
+                    <input type="text" class="form-control" id="tokenfield" name="keywords" value="@keywords"/>
                 </div>
             </div>
             <div class="form-group">
@@ -96,6 +96,7 @@
                 },
                 showAutocompleteOnFocus: true
             });
+            //$('#tokenfield').tokenfield('setTokens', @Model.Keywords);
         });
     </script>
 }
