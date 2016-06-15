@@ -93,21 +93,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mtc.Domain\Mtc.Domain.csproj">
+    <ProjectReference Include="..\Mtc.Domain\Edc.Domain.csproj">
       <Project>{F3793531-0EBA-4D4A-AD4D-3745B2804DD3}</Project>
-      <Name>Mtc.Domain</Name>
+      <Name>Edc.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mtc.Infrastructure.Configuration\Mtc.Infrastructure.Configuration.csproj">
+    <ProjectReference Include="..\Mtc.Infrastructure.Configuration\Edc.Infrastructure.Configuration.csproj">
       <Project>{3cd3f64c-d559-4994-b4c1-37c610a7987a}</Project>
-      <Name>Mtc.Infrastructure.Configuration</Name>
+      <Name>Edc.Infrastructure.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mtc.Infrastructure.DataAccess\Mtc.Infrastructure.DataAccess.csproj">
+    <ProjectReference Include="..\Mtc.Infrastructure.DataAccess\Edc.Infrastructure.DataAccess.csproj">
       <Project>{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}</Project>
-      <Name>Mtc.Infrastructure.DataAccess</Name>
+      <Name>Edc.Infrastructure.DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mtc.Infrastructure.Services\Mtc.Domain.Services.csproj">
+    <ProjectReference Include="..\Mtc.Infrastructure.Services\Edc.Domain.Services.csproj">
       <Project>{e5adf44a-c693-4f0e-9ad6-2913ab7e69ad}</Project>
-      <Name>Mtc.Domain.Services</Name>
+      <Name>Edc.Domain.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

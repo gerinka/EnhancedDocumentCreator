@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.WebClient", "Mtc.WebClient\Mtc.WebClient.csproj", "{D7A6AE9A-7A27-4EDD-8347-CFEB7988F285}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edc.WebClient", "Mtc.WebClient\Edc.WebClient.csproj", "{D7A6AE9A-7A27-4EDD-8347-CFEB7988F285}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.WebClient.Tests", "Mtc.WebClient.Tests\Mtc.WebClient.Tests.csproj", "{9A403D71-8697-43B6-887F-9210EBE87D50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edc.WebClient.Tests", "Mtc.WebClient.Tests\Edc.WebClient.Tests.csproj", "{9A403D71-8697-43B6-887F-9210EBE87D50}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - WebClient", "4 - WebClient", "{12E2EEC6-FC09-4B6F-9605-1A4E680C8EB5}"
 EndProject
@@ -15,23 +15,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Infrastructure", "1 - I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{BED3A00C-7EE6-4E66-A720-EDBA9EEED42D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Domain", "Mtc.Domain\Mtc.Domain.csproj", "{F3793531-0EBA-4D4A-AD4D-3745B2804DD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edc.Domain", "Mtc.Domain\Edc.Domain.csproj", "{F3793531-0EBA-4D4A-AD4D-3745B2804DD3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Others", "5 - Others", "{97D071DC-1DE1-41BA-9EDA-DCB46AF34665}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Infrastructure.DataAccess", "Mtc.Infrastructure.DataAccess\Mtc.Infrastructure.DataAccess.csproj", "{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edc.Infrastructure.DataAccess", "Mtc.Infrastructure.DataAccess\Edc.Infrastructure.DataAccess.csproj", "{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Domain.Services", "Mtc.Infrastructure.Services\Mtc.Domain.Services.csproj", "{E5ADF44A-C693-4F0E-9AD6-2913AB7E69AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edc.Domain.Services", "Mtc.Infrastructure.Services\Edc.Domain.Services.csproj", "{E5ADF44A-C693-4F0E-9AD6-2913AB7E69AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Api", "Mtc.Api\Mtc.Api.csproj", "{61239BAB-0860-421B-8E7D-C313D2588FC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edc.Api", "Mtc.Api\Edc.Api.csproj", "{61239BAB-0860-421B-8E7D-C313D2588FC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Api.Tests", "Mtc.Api.Tests\Mtc.Api.Tests.csproj", "{7C982901-5BFD-4EAC-B2EE-1926A2902A47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edc.Api.Tests", "Mtc.Api.Tests\Edc.Api.Tests.csproj", "{7C982901-5BFD-4EAC-B2EE-1926A2902A47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Domain.Services.Tests", "Mtc.Domain.Services.Tests\Mtc.Domain.Services.Tests.csproj", "{E77583D3-3E12-4A71-89FF-9DFB177056D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edc.Domain.Services.Tests", "Mtc.Domain.Services.Tests\Edc.Domain.Services.Tests.csproj", "{E77583D3-3E12-4A71-89FF-9DFB177056D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Domain.Common", "Mtc.Domain.Common\Mtc.Domain.Common.csproj", "{F1E3D15D-A747-46D2-8C46-6EF45831C4B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edc.Domain.Common", "Mtc.Domain.Common\Edc.Domain.Common.csproj", "{F1E3D15D-A747-46D2-8C46-6EF45831C4B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtc.Infrastructure.Configuration", "Mtc.Infrastructure.Configuration\Mtc.Infrastructure.Configuration.csproj", "{3CD3F64C-D559-4994-B4C1-37C610A7987A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edc.Infrastructure.Configuration", "Mtc.Infrastructure.Configuration\Edc.Infrastructure.Configuration.csproj", "{3CD3F64C-D559-4994-B4C1-37C610A7987A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Urm.Infrastructure.DataAccess", "Urm.Infrastructure.DataAccess\Urm.Infrastructure.DataAccess.csproj", "{B1D66EB6-3FDC-4236-B7DE-CD6952AB6BED}"
 EndProject

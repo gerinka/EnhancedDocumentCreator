@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3CD3F64C-D559-4994-B4C1-37C610A7987A}</ProjectGuid>
+    <ProjectGuid>{F3793531-0EBA-4D4A-AD4D-3745B2804DD3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mtc.Infrastructure.Configuration</RootNamespace>
-    <AssemblyName>Mtc.Infrastructure.Configuration</AssemblyName>
+    <RootNamespace>Mtc.Domain</RootNamespace>
+    <AssemblyName>Mtc.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,34 +34,54 @@
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DocX, Version=1.0.0.19, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocX.1.0.0.19\lib\net40\DocX.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.9.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.9\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MtcModule.cs" />
+    <Compile Include="PdfDocumentGenerator.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="DocxDocumentGenerator.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\DocumentTemplate.cs" />
+    <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\Level.cs" />
+    <Compile Include="Models\Keyword.cs" />
+    <Compile Include="Models\Section.cs" />
+    <Compile Include="Models\SectionContent.cs" />
+    <Compile Include="Models\Task.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mtc.Domain\Mtc.Domain.csproj">
-      <Project>{f3793531-0eba-4d4a-ad4d-3745b2804dd3}</Project>
-      <Name>Mtc.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Mtc.Infrastructure.DataAccess\Mtc.Infrastructure.DataAccess.csproj">
-      <Project>{dc37d0c9-3e78-41f8-8886-80e02dfb2ab0}</Project>
-      <Name>Mtc.Infrastructure.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Mtc.Infrastructure.Services\Mtc.Domain.Services.csproj">
-      <Project>{e5adf44a-c693-4f0e-9ad6-2913ab7e69ad}</Project>
-      <Name>Mtc.Domain.Services</Name>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mtc.Infrastructure.DataAccess\Edc.Infrastructure.DataAccess.csproj">
+      <Project>{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}</Project>
+      <Name>Edc.Infrastructure.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

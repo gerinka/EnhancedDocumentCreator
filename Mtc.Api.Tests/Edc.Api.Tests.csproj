@@ -119,9 +119,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mtc.Api\Mtc.Api.csproj">
+    <ProjectReference Include="..\Mtc.Api\Edc.Api.csproj">
       <Project>{61239BAB-0860-421B-8E7D-C313D2588FC3}</Project>
-      <Name>Mtc.Api</Name>
+      <Name>Edc.Api</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

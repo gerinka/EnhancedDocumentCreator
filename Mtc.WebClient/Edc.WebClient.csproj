@@ -862,25 +862,25 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mtc.Domain.Common\Mtc.Domain.Common.csproj">
+    <ProjectReference Include="..\Mtc.Domain.Common\Edc.Domain.Common.csproj">
       <Project>{f1e3d15d-a747-46d2-8c46-6ef45831c4b4}</Project>
-      <Name>Mtc.Domain.Common</Name>
+      <Name>Edc.Domain.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mtc.Domain\Mtc.Domain.csproj">
+    <ProjectReference Include="..\Mtc.Domain\Edc.Domain.csproj">
       <Project>{F3793531-0EBA-4D4A-AD4D-3745B2804DD3}</Project>
-      <Name>Mtc.Domain</Name>
+      <Name>Edc.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mtc.Infrastructure.Configuration\Mtc.Infrastructure.Configuration.csproj">
+    <ProjectReference Include="..\Mtc.Infrastructure.Configuration\Edc.Infrastructure.Configuration.csproj">
       <Project>{3cd3f64c-d559-4994-b4c1-37c610a7987a}</Project>
-      <Name>Mtc.Infrastructure.Configuration</Name>
+      <Name>Edc.Infrastructure.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mtc.Infrastructure.DataAccess\Mtc.Infrastructure.DataAccess.csproj">
+    <ProjectReference Include="..\Mtc.Infrastructure.DataAccess\Edc.Infrastructure.DataAccess.csproj">
       <Project>{dc37d0c9-3e78-41f8-8886-80e02dfb2ab0}</Project>
-      <Name>Mtc.Infrastructure.DataAccess</Name>
+      <Name>Edc.Infrastructure.DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mtc.Infrastructure.Services\Mtc.Domain.Services.csproj">
+    <ProjectReference Include="..\Mtc.Infrastructure.Services\Edc.Domain.Services.csproj">
       <Project>{e5adf44a-c693-4f0e-9ad6-2913ab7e69ad}</Project>
-      <Name>Mtc.Domain.Services</Name>
+      <Name>Edc.Domain.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
