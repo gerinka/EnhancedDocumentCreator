@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="NameAndType">
+  <Class Name="Edc.Domain.DocxDocumentGenerator">
+    <Position X="0.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAAAAAAAAAAABAIgAAAAAEAAAAAEAAAAAAASAAAA=</HashCode>
+      <FileName>DocxDocumentGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Domain.PdfDocumentGenerator">
+    <Position X="5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>PdfDocumentGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Domain.Models.Document">
+    <Position X="0.5" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAEAAAEACgAAAACAAAAAgAAAAAEEIgAAAgIA=</HashCode>
+      <FileName>Models\Document.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Domain.Models.DocumentTemplate">
+    <Position X="8.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAEAAAAAQAAAAAAAAAAEAAAAQAAAA=</HashCode>
+      <FileName>Models\DocumentTemplate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Domain.Models.Keyword">
+    <Position X="3.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Keyword.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Domain.Models.Person">
+    <Position X="2.5" Y="11" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQCAEAAACAAAAAEAAAQAEAAAAAAAAADAAAAAIAAAAg=</HashCode>
+      <FileName>Models\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Domain.Models.Crypto">
+    <Position X="0.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Domain.Models.Section">
+    <Position X="6" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAQAgAgEEAAAAAAABAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Models\Section.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Domain.Models.SectionContent">
+    <Position X="3.25" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgQAAAAQEAAAAAAAAAAAAAAAAAAAAAAgAAQgAA=</HashCode>
+      <FileName>Models\SectionContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Domain.Models.Task">
+    <Position X="0.5" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgAAACAAEAAAEAAAAAEAAAQgAAAAAEAAIAACAA=</HashCode>
+      <FileName>Models\Task.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

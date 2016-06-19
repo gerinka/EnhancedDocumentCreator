@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Edc.WebClient.Controllers.DocumentController">
+    <Position X="3.25" Y="1.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AgQMAAAAUAAACQAACAAAAEAEIBAAQQAAgAECggAAABA=</HashCode>
+      <FileName>Controllers\DocumentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.WebClient.Models.WriteContentViewModel">
+    <Position X="13.5" Y="2" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gAIAAAgAAABgQEAAAAAAAAAgAAAAAAEAAAAAAAAAgAA=</HashCode>
+      <FileName>Models\WriteContentViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.WebClient.Models.TasksBoardViewModel">
+    <Position X="11" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAABAAAAAAEAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\TasksBoardViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.WebClient.Models.InitDocumentViewModel">
+    <Position X="7.25" Y="2" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEIACAABAA=</HashCode>
+      <FileName>Models\InitDocumentViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.WebClient.BundleConfig">
+    <Position X="5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.WebClient.AutofacConfig">
+    <Position X="7.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\AutofacConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -91,6 +91,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="EdcInfrastructureDataAccessModelsClassDiagram.cd" />
+    <None Include="EdcInfrastructureDataAccessClassDiagram.cd" />
     <None Include="Mtc.Diagram1.view">
       <DependentUpon>Mtc.edml</DependentUpon>
     </None>

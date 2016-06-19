@@ -802,6 +802,7 @@
     <Content Include="bower_components\bootstrap\README.md" />
     <Content Include="bower_components\bootstrap-select\dist\css\bootstrap-select.css.map" />
     <Content Include="bower_components\bootstrap-select\dist\js\bootstrap-select.js.map" />
+    <Content Include="EdcWebClientClassDiagram.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -897,7 +898,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52306</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

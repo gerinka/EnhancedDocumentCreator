@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="MtcModel.DOCUMENT">
+    <Position X="8.5" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQgGAAASAAACgAACAgAAQAAIEAgAAAEIA=</HashCode>
+      <FileName>GeneratedEntities\Mtc.DOCUMENT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MtcModel.DOCUMENTTEMPLATE">
+    <Position X="5" Y="6" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAACAgAQAAAgAAAAEBAAAAQAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedEntities\Mtc.DOCUMENTTEMPLATE.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MtcModel.KEYWORD">
+    <Position X="16.25" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAACAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedEntities\Mtc.KEYWORD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MtcModel.STRUCTURECONTENT">
+    <Position X="12.75" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAECAggQggAAAEAAACAAAAAAACAAAAAAAAAAgAAEgAA=</HashCode>
+      <FileName>GeneratedEntities\Mtc.STRUCTURECONTENT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MtcModel.STRUCTUREELEMENT">
+    <Position X="9.25" Y="6" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>QAECAAAQAAAgAMAAAAAAAAAAACAAAAQAAAAAAAAABAA=</HashCode>
+      <FileName>GeneratedEntities\Mtc.STRUCTUREELEMENT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MtcModel.TASK">
+    <Position X="5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAggAAACAAEAAgAAAAAAEACAAgAEQAAEAAAAACCA=</HashCode>
+      <FileName>GeneratedEntities\Mtc.TASK.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MtcModel.USER">
+    <Position X="14" Y="6" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAAAAAACAUAUABACAAAAADAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedEntities\Mtc.USER.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MtcModel.MtcEntities">
+    <Position X="0.5" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAgAAAAAAIADBAAAAAEAAAAAQAAAAAAAAABAA=</HashCode>
+      <FileName>Mtc.MtcEntities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="MtcModel.DocumentState">
+    <Position X="2.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAQAAAAAAAIAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>GeneratedEntities\Mtc.DocumentState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MtcModel.ExportDocumentType">
+    <Position X="5.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedEntities\Mtc.ExportDocumentType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MtcModel.StructureType">
+    <Position X="9.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAACAAAAAAAACAAAAAAgAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>GeneratedEntities\Mtc.StructureType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MtcModel.TaskAction">
+    <Position X="0.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAgACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIg=</HashCode>
+      <FileName>GeneratedEntities\Mtc.TaskAction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MtcModel.TaskState">
+    <Position X="4" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAgAQAgAAAAAAAAAAAAAAAAAEABAAAAABCAAAA=</HashCode>
+      <FileName>GeneratedEntities\Mtc.TaskState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MtcModel.TaskType">
+    <Position X="7.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAACAAAAAA=</HashCode>
+      <FileName>GeneratedEntities\Mtc.TaskType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
