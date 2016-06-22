@@ -1,4 +1,5 @@
-﻿using MtcModel;
+﻿using System.Linq;
+using MtcModel;
 using System;
 using System.Collections.Generic;
 
@@ -20,5 +21,28 @@ namespace Edc.Domain.Models
         public int CurrentCycle { get; set; }
         public int MaxCycle { get; set; }
         public int CurrentProgress { get; set; }
+
+        public string GetDocumentTopKeywords()
+        {
+            var keywordsMap = new Dictionary<Keyword, int>();
+
+            var subsections = this.Sections.SelectMany(s => s.Subsections).Where(sub => sub.Content != null).ToList();
+            foreach (var subsection in subsections)
+            {
+                var keywords = subsection.Content.Keywords;
+                foreach (var keyword in keywords)
+                {
+                    if (keywordsMap.ContainsKey(keyword))
+                    {
+                        keywordsMap[keyword]++;
+                    }
+                    else
+                    {
+                        keywordsMap[keyword] = 1;
+                    }
+                }
+            }
+            return String.Join(", ", keywordsMap.OrderByDescending(kd => kd.Value).Select(k => k.Key.Name).Take(5));
+        } 
     }
 }

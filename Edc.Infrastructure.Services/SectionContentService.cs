@@ -70,11 +70,11 @@ namespace Edc.Domain.Services
             switch (exportDocumentType)
             {
                 case ExportDocumentType.Docx:
-                    return DocxDocumentGenerator.GenerateSimpleDocxDocument(sectionContent);
+                    return DocxDocumentGenerator.GenerateSimpleDocument(sectionContent);
                 case ExportDocumentType.Txt:
-                    return DocxDocumentGenerator.GenerateSimpleTxtDocument(sectionContent);
+                    return DocxDocumentGenerator.GenerateSimpleDocument(sectionContent);
                 case ExportDocumentType.Pdf:
-                    return PdfDocumentGenerator.GenerateSimplePdfDocument(sectionContent);
+                    return PdfDocumentGenerator.GenerateSimpleDocument(sectionContent);
                 default:
                     throw new InvalidOperationException("No such file format found");
             }

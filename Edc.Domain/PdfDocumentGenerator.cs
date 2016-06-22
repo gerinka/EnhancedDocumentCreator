@@ -20,7 +20,7 @@ namespace Edc.Domain
     public static class PdfDocumentGenerator
     {
       
-        public static MemoryStream GenerateComplexPdfDocument(Document documentToBeGenerated)
+        public static MemoryStream GenerateComplexDocument(Document documentToBeGenerated)
         {
             using (var ms = new MemoryStream())
             {
@@ -33,7 +33,7 @@ namespace Edc.Domain
 
                 var bfR = BaseFont.CreateFont(arialuniTff, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                 doc.AddTitle(documentToBeGenerated.Title);
-                doc.Add(new Paragraph("Ключови думи" + GetDocumentTopKeywords(documentToBeGenerated)));
+                doc.Add(new Paragraph("Ключови думи" + documentToBeGenerated.GetDocumentTopKeywords()));
                 var times = new Font(bfR, 12, Font.NORMAL, BaseColor.BLACK);
                 var sectionIndex = 1;
                 foreach (var section in documentToBeGenerated.Sections)
@@ -58,7 +58,7 @@ namespace Edc.Domain
             }
         }
 
-        public static MemoryStream GenerateSimplePdfDocument(SectionContent sectionToBeGenerated)
+        public static MemoryStream GenerateSimpleDocument(SectionContent sectionToBeGenerated)
         {
             using (var ms = new MemoryStream())
             {
@@ -82,32 +82,6 @@ namespace Edc.Domain
                 return ms;
             }
         }
-
-        #region private-functions
-
-        private static string GetDocumentTopKeywords(Document document)
-        {
-            var keywordsMap = new Dictionary<Keyword, int>();
-
-            var subsections = document.Sections.SelectMany(s => s.Subsections).Where(sub => sub.Content != null).ToList();
-            foreach (var subsection in subsections)
-            {
-                var keywords = subsection.Content.Keywords;
-                foreach (var keyword in keywords)
-                {
-                    if (keywordsMap.ContainsKey(keyword))
-                    {
-                        keywordsMap[keyword]++;
-                    }
-                    else
-                    {
-                        keywordsMap[keyword] = 1;
-                    }
-                }
-            }
-            return String.Join(", ", keywordsMap.OrderByDescending(kd => kd.Value).Select(k => k.Key.Name).Take(5));
-        }
-        #endregion
     }
 }
 

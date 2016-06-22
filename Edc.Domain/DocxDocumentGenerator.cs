@@ -17,7 +17,7 @@ namespace Edc.Domain
 {
     public static class DocxDocumentGenerator
     {
-        public static MemoryStream GenerateComplexDocxDocument(Document documentToBeGenerated)
+        public static MemoryStream GenerateComplexDocument(Document documentToBeGenerated)
         {
             using (var ms = new MemoryStream())
             {
@@ -26,7 +26,7 @@ namespace Edc.Domain
                 Paragraph titleParagraph = document.InsertParagraph(documentToBeGenerated.Title, false, TitleFormat());
                 Paragraph authorParagraph = document.InsertParagraph(documentToBeGenerated.Author.ToString(), false, Heading1Format());
                 authorParagraph.StyleName = "Heading1";
-                Paragraph keywordsParagraph = document.InsertParagraph(GetDocumentTopKeywords(documentToBeGenerated), false, Heading2Format());
+                Paragraph keywordsParagraph = document.InsertParagraph(documentToBeGenerated.GetDocumentTopKeywords(), false, Heading2Format());
                 keywordsParagraph.StyleName = "Heading2";
                 keywordsParagraph.InsertPageBreakAfterSelf();
                 // insert TOC of the document
@@ -68,7 +68,7 @@ namespace Edc.Domain
             }
         }
 
-        public static MemoryStream GenerateSimpleDocxDocument(SectionContent sectionToBeGenerated)
+        public static MemoryStream GenerateSimpleDocument(SectionContent sectionToBeGenerated)
         {
             using (var ms = new MemoryStream())
             {
@@ -81,54 +81,6 @@ namespace Edc.Domain
                 normal.StyleName = "Normal";
 
                 document.Save();
-                return ms;
-            }
-        }
-
-        public static MemoryStream GenerateComplexTxtDocument(Document documentToBeGenerated)
-        {
-            using (var ms = new MemoryStream())
-            {
-                TextWriter tw = new StreamWriter(ms);
-
-                tw.WriteLine("Заглавие:\t"+documentToBeGenerated.Title);
-                tw.WriteLine("Автор:\t"+documentToBeGenerated.Author);
-                tw.WriteLine("Ключови думи:\t" + GetDocumentTopKeywords(documentToBeGenerated));
-                var sections = documentToBeGenerated.Sections.ToList();
-
-                foreach (var section in sections)
-                {
-                    tw.WriteLine("Секция:\t" + section.Title);
-
-                    var subsections = section.Subsections.Where(sub => sub.Content != null).ToList();
-                    foreach (var subsection in subsections)
-                    {
-                        if (subsection.Content.CurrentProgress > 0)
-                        {
-                            tw.WriteLine("Подсекция:\t" + subsection.Title);
-
-                            tw.Write("Текст:\t" + subsection.Content.MainText.Replace(Environment.NewLine, " "));
-                            tw.WriteLine();
-                        }
-                    }
-                }
-                tw.Close();
-                return ms;
-            }
-        }
-
-        public static MemoryStream GenerateSimpleTxtDocument(SectionContent sectionToBeGenerated)
-        {
-            using (var ms = new MemoryStream())
-            {
-                TextWriter tw = new StreamWriter(ms);
-
-                tw.WriteLine("Заглавие:\t" + sectionToBeGenerated.Title);
-
-                tw.Write("Текст:\t" + sectionToBeGenerated.MainText.Replace(Environment.NewLine, " "));
-                tw.WriteLine();
-                  
-                tw.Close();
                 return ms;
             }
         }
@@ -178,31 +130,6 @@ namespace Edc.Domain
         }
         #endregion
 
-        #region private-functions
-
-        private static string GetDocumentTopKeywords(Document document)
-        {
-            var keywordsMap = new Dictionary<Keyword, int>();
-
-            var subsections = document.Sections.SelectMany(s => s.Subsections).Where(sub=>sub.Content != null).ToList();
-            foreach (var subsection in subsections)
-            {
-                var keywords = subsection.Content.Keywords;
-                foreach (var keyword in keywords)
-                {
-                    if (keywordsMap.ContainsKey(keyword))
-                    {
-                        keywordsMap[keyword]++;
-                    }
-                    else
-                    {
-                        keywordsMap[keyword] = 1;
-                    }
-                }
-            }
-            return String.Join(", ", keywordsMap.OrderByDescending(kd=>kd.Value).Select(k=>k.Key.Name).Take(5));
-        } 
-        #endregion
     }
 }
 
