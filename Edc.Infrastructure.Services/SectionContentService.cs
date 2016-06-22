@@ -75,6 +75,8 @@ namespace Edc.Domain.Services
                     return TxtDocumentGenerator.GenerateSimpleDocument(sectionContent);
                 case ExportDocumentType.Pdf:
                     return PdfDocumentGenerator.GenerateSimpleDocument(sectionContent);
+                case ExportDocumentType.Csv:
+                    return CsvDocumentGenerator.GenerateSimpleDocument(sectionContent);
                 default:
                     throw new InvalidOperationException("No such file format found");
             }

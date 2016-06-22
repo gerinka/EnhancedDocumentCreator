@@ -1691,24 +1691,24 @@
               <Port>
                 <Location>
                   <X>0 px</X>
-                  <Y>165.5 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
-                <CustomProperties>
-                  <OID>88</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
-              <Port>
-                <Location>
-                  <X>0 px</X>
                   <Y>28.5 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Left</Align>
                 <CustomProperties>
                   <OID>89</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>Undefined</X>
+                  <Y>165.5 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Right</Align>
+                <CustomProperties>
+                  <OID>88</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -2276,18 +2276,6 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>142 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
-                <CustomProperties>
-                  <OID>124</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
-              <Port>
-                <Location>
                   <X>37.5 px</X>
                   <Y>0 px</Y>
                 </Location>
@@ -2295,6 +2283,18 @@
                 <Align>Bottom</Align>
                 <CustomProperties>
                   <OID>125</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>Undefined</X>
+                  <Y>142 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Right</Align>
+                <CustomProperties>
+                  <OID>124</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>

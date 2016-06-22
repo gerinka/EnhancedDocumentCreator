@@ -551,6 +551,7 @@
           <Member Name="Docx" Value="1" ed:Guid="a3bdbc0d-0bda-4cd7-9aec-1a33d9930e24" />
           <Member Name="Txt" Value="2" ed:Guid="221ce9df-a57f-49bf-af5e-3e20447da25d" />
           <Member Name="Pdf" Value="3" ed:Guid="ff0ce018-85c9-4a11-8ed5-306334b7bc05" />
+          <Member Name="Csv" Value="4" ed:Guid="94c7b679-5ab0-4376-81af-da44602d3df3" />
         </EnumType>
         <Association Name="FK_DocumentDocumentTemplate_ID" ed:Guid="3f92ef28-1a14-4222-bdfd-8a4961a055be">
           <End Role="DOCUMENTTEMPLATE" Type="MtcModel.DOCUMENTTEMPLATE" Multiplicity="1" />

@@ -14,30 +14,23 @@ namespace Edc.Domain
         {
             using (var ms = new MemoryStream())
             {
-                TextWriter tw = new StreamWriter(ms);
+                var csvWriter = new StreamWriter(ms, Encoding.UTF8);
 
-                tw.WriteLine("Заглавие:\t" + documentToBeGenerated.Title);
-                tw.WriteLine("Автор:\t" + documentToBeGenerated.Author);
-                tw.WriteLine("Ключови думи:\t" + String.Join(", ", documentToBeGenerated.GetDocumentTopKeywords()));
-                var sections = documentToBeGenerated.Sections.ToList();
+                csvWriter.WriteLine("Id,Author,Topic,Title,Subtitle,Keywords,Content\r\n");
 
-                foreach (var section in sections)
+                foreach (var section in documentToBeGenerated.Sections)
                 {
-                    tw.WriteLine("Секция:\t" + section.Title);
-
-                    var subsections = section.Subsections.Where(sub => sub.Content != null).ToList();
+                    
+                    var subsections = section.Subsections.Where(sub=>sub.Content!=null).ToList();
                     foreach (var subsection in subsections)
                     {
-                        if (subsection.Content.CurrentProgress > 0)
-                        {
-                            tw.WriteLine("Подсекция:\t" + subsection.Title);
-
-                            tw.Write("Текст:\t" + subsection.Content.MainText.Replace(Environment.NewLine, " "));
-                            tw.WriteLine();
-                        }
+                        csvWriter.WriteLine("{0};{1};{2};{3};{4};{5};{6}", documentToBeGenerated.Id, documentToBeGenerated.Author.ToString(), documentToBeGenerated.Title, section.Title, subsection.Title, String.Join(",",subsection.Content.Keywords), subsection.Content.MainText);
                     }
                 }
-                tw.Close();
+
+                csvWriter.Flush();
+                ms.Position = 0;
+
                 return ms;
             }
         }
@@ -46,14 +39,17 @@ namespace Edc.Domain
         {
             using (var ms = new MemoryStream())
             {
-                TextWriter tw = new StreamWriter(ms);
+                var csvWriter = new StreamWriter(ms);
 
-                tw.WriteLine("Заглавие:\t" + sectionToBeGenerated.Title);
+                csvWriter.WriteLine("Title,Content\r\n");
 
-                tw.Write("Текст:\t" + sectionToBeGenerated.MainText.Replace(Environment.NewLine, " "));
-                tw.WriteLine();
 
-                tw.Close();
+                csvWriter.WriteLine("{0};{1}", sectionToBeGenerated.Title,sectionToBeGenerated.MainText);
+
+
+                csvWriter.Flush();
+                ms.Position = 0;
+
                 return ms;
             }
         }
