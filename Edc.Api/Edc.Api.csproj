@@ -212,6 +212,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -291,6 +292,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Edc.Domain.Common\Edc.Domain.Common.csproj">
+      <Project>{F1E3D15D-A747-46D2-8C46-6EF45831C4B4}</Project>
+      <Name>Edc.Domain.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Edc.Domain\Edc.Domain.csproj">
+      <Project>{F3793531-0EBA-4D4A-AD4D-3745B2804DD3}</Project>
+      <Name>Edc.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Edc.Infrastructure.DataAccess\Edc.Infrastructure.DataAccess.csproj">
+      <Project>{DC37D0C9-3E78-41F8-8886-80E02DFB2AB0}</Project>
+      <Name>Edc.Infrastructure.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Edc.Infrastructure.Services\Edc.Domain.Services.csproj">
+      <Project>{E5ADF44A-C693-4F0E-9AD6-2913AB7E69AD}</Project>
+      <Name>Edc.Domain.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
