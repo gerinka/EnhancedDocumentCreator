@@ -1,2 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Edc.WebClient.Controllers.TasksController">
+    <Position X="5.5" Y="3" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAAAAAACAAAAAAAAAAAIAAAAQAAgAACgAAAABA=</HashCode>
+      <FileName>Controllers\TasksController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.WebClient.Controllers.SectionContentController">
+    <Position X="8.75" Y="2.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAUAAAAAAAAAIAAEAAABAAAAAAAAAABgAAABA=</HashCode>
+      <FileName>Controllers\SectionContentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.WebClient.Controllers.DocumentController">
+    <Position X="0.5" Y="2.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAAAAAAQAACAAAAAAAIAAAAAAAAAEAAAAAABA=</HashCode>
+      <FileName>Controllers\DocumentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.WebClient.Models.InitDocumentViewModel">
+    <Position X="0.5" Y="6" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEIACAABAA=</HashCode>
+      <FileName>Models\InitDocumentViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.WebClient.Models.TasksBoardViewModel">
+    <Position X="5.5" Y="6.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAABAAAAAAEAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\TasksBoardViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.WebClient.Models.WriteContentViewModel">
+    <Position X="8.75" Y="6.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gAIAAAgAAABgQEAAAAAAAAAgAAAAAAEAAAAAAAAAgAA=</HashCode>
+      <FileName>Models\WriteContentViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.WebClient.AutofacConfig">
+    <Position X="1.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\AutofacConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.WebClient.BundleConfig">
+    <Position X="4" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

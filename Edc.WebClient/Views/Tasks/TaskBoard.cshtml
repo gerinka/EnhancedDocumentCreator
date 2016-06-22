@@ -254,16 +254,16 @@ else
             var goToButton = $(button);
             var currentTaskId = goToButton.prop('value');
             var disabled = goToButton.data('disabled');
-            window.location.href = '@Url.Action("GoToWritingModule", "Document")?taskId=' + currentTaskId + '&isDisabled=' + disabled;
+            window.location.href = '@Url.Action("GoToWritingModule", "SectionContent")?taskId=' + currentTaskId + '&isDisabled=' + disabled;
         };
 
         function getGeneratedDocument(documentId, type) {
             if (type == 'docx') {
-                window.location = "/Document/GetDocxDocument?documentId=" + documentId;
+                window.location = "/Tasks/GetDocxDocument?documentId=" + documentId;
             }else if (type == 'txt') {
-                window.location = "/Document/GetTxtDocument?documentId=" + documentId;
+                window.location = "/Tasks/GetTxtDocument?documentId=" + documentId;
             }else if (type == 'pdf') {
-                window.location = "/Document/GetPdfDocument?documentId=" + documentId;
+                window.location = "/Tasks/GetPdfDocument?documentId=" + documentId;
             }
         }
 
@@ -343,7 +343,7 @@ else
                 var taskId = buttonAction.prop('value');
                 var action = buttonAction.data('action');
                 $.ajax({
-                    url: "/Document/" + action + "Task/",
+                    url: "/Tasks/" + action + "Task/",
                     type: "POST",
                     data: JSON.stringify({ 'taskId': taskId }),
                     dataType: "json",

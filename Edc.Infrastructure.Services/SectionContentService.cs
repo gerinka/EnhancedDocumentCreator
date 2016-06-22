@@ -72,7 +72,7 @@ namespace Edc.Domain.Services
                 case ExportDocumentType.Docx:
                     return DocxDocumentGenerator.GenerateSimpleDocument(sectionContent);
                 case ExportDocumentType.Txt:
-                    return DocxDocumentGenerator.GenerateSimpleDocument(sectionContent);
+                    return TxtDocumentGenerator.GenerateSimpleDocument(sectionContent);
                 case ExportDocumentType.Pdf:
                     return PdfDocumentGenerator.GenerateSimpleDocument(sectionContent);
                 default:

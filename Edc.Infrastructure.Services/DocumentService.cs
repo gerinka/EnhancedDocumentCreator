@@ -111,7 +111,7 @@ namespace Edc.Domain.Services
                 case ExportDocumentType.Docx:
                     return DocxDocumentGenerator.GenerateComplexDocument(document);
                 case ExportDocumentType.Txt:
-                    return DocxDocumentGenerator.GenerateComplexDocument(document);
+                    return TxtDocumentGenerator.GenerateComplexDocument(document);
                 case ExportDocumentType.Pdf:
                     return PdfDocumentGenerator.GenerateComplexDocument(document);
                 default:

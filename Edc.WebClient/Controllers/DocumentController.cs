@@ -21,17 +21,13 @@ namespace Edc.WebClient.Controllers
         private readonly IDocumentService _documentService;
         private readonly IPersonService _personService;
         private readonly ITaskService _taskService;
-        private readonly ISectionContentService _sectionContentService;
-        private readonly IKeywordService _keywordService;
 
-        public DocumentController(IDocumentTemplateService documentTemplateService, IDocumentService documentService, IPersonService personService, ITaskService taskService, ISectionContentService sectionContentService, IKeywordService keywordService)
+        public DocumentController(IDocumentTemplateService documentTemplateService, IDocumentService documentService, IPersonService personService, ITaskService taskService)
         {
             _documentTemplateService = documentTemplateService;
             _documentService = documentService;
             _personService = personService;
             _taskService = taskService;
-            _sectionContentService = sectionContentService;
-            _keywordService = keywordService;
         }
 
     #region index
@@ -93,192 +89,13 @@ namespace Edc.WebClient.Controllers
                 _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.MaxCycle,
                     document.Sections.Where(s => s.Content != null));
 
-                return RedirectToAction("TaskBoard", new { documentId = document.Id });
+                return RedirectToAction("TaskBoard", "Tasks", new { documentId = document.Id });
             }
             IEnumerable<DocumentTemplate> templates = _documentTemplateService.GetAll().ToList();
             model.AllTemplates = templates;
             return View("Index",model);
         }
 
-    #endregion
-
-    #region taskboard
-
-        //Document/TaskBoard/DocumentId
-        [Route("TaskBoard/{documentId?}")]
-        public ActionResult TaskBoard(string documentId)
-        {
-            var intDocumentId = 0;
-
-            if (!String.IsNullOrEmpty(documentId))
-            {
-                intDocumentId = Int32.Parse(documentId);
-            }
-            else
-            {
-                var username = User.Identity.Name;
-                intDocumentId = _documentService.GetLastDocumentByUserId(username);
-            }
-            IEnumerable<Task> taskList = _taskService.GetTasksByDocumentId(intDocumentId).ToList();
-            var taskboard = new TasksBoardViewModel
-            {
-                DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).Take(6).ToList(),
-                InProgressTasks =
-                    taskList.Where(
-                        t =>
-                            t.TaskState == TaskState.InProgress ||
-                            (t.Section.Content.CurrentProgress > 0 && t.TaskState == TaskState.Expired))
-                        .Take(6)
-                        .OrderBy(t => t.Id)
-                        .ToList(),
-                ToDoTasks =
-                    taskList.Where(
-                        t =>
-                            t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo ||
-                            (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired))
-                        .Take(6)
-                        .OrderBy(t => t.Id)
-                        .ToList(),
-                DocumentId = intDocumentId
-            };
-            return View(taskboard);
-        }
-
-        //
-        // POST: /Document/StartTask
-        [HttpPost]
-        public ActionResult StartTask(int taskId)
-        {
-            _taskService.StartTask(taskId);
-            return Json(Url.Action("GoToWritingModule", "Document", new { taskId }));
-        }
-
-        //
-        // POST: /Document/StartTask
-        [HttpPost]
-        public ActionResult FinishTask(int taskId)
-        {
-            _taskService.FinishTask(taskId);
-            Task task = _taskService.GetById(taskId);
-            if (task.TaskState == TaskState.Done)
-            {
-                var documentId = task.Section.Content.DocumentId;
-                _documentService.UpdateDocumentProgress(documentId);
-                return Json(Url.Action("TaskBoard", "Document", new { documentId }));
-            }
-            return new HttpStatusCodeResult(HttpStatusCode.ExpectationFailed);
-        }
-    #endregion
-
-    #region writingmodule
-        [Route("WritingModule/{taskId?}/{isDisabled}")]
-        public ActionResult GoToWritingModule(int taskId, bool isDisabled = false)
-        {
-            Task currentTask = _taskService.GetById(taskId);
-            var writingContent = new WriteContentViewModel
-            {
-                Title = currentTask.Section.Content.Title,
-                MainText = currentTask.Section.Content.MainText,
-                Description = currentTask.Section.Description,
-                TaskTitle = currentTask.Title,
-                SectionTitle = currentTask.Section.Title,
-                CurrentTaskId = currentTask.Id,
-                CurrentSectionContentId = currentTask.Section.Content.Id,
-                IsDisabled = isDisabled,
-                DocumentId = currentTask.Section.Content.DocumentId,
-                Keywords = _keywordService.GetKeywordsPerSectionContent(currentTask.Section.Content.Id)
-            };
-            return View("WritingModule", writingContent);
-        }
-
-        //
-        // POST: /Document/WriteContent
-        [HttpPost] 
-        public ActionResult WriteContent(WriteContentViewModel model, string keywords)
-        {
-            if (!model.IsDisabled)
-            {
-                var sectionContent = _sectionContentService.GetById(model.CurrentSectionContentId);
-                IEnumerable<Keyword> updatedKeywords = _keywordService.AddOrUpdateKeywords(keywords, sectionContent);
-                _sectionContentService.UpdateSectionContent(model.CurrentSectionContentId, model.Title,
-                    model.MainText, updatedKeywords);
-               
-            }
-            return RedirectToAction("TaskBoard", new { documentId = model.DocumentId });
-        }
-
-        public ActionResult GetTags(string term)
-        {
-            IEnumerable<Keyword> keywords = _keywordService.GetKeywordsPerTerm(term).ToList();
-            var token = string.Join(",", keywords.Select(x => x.Name).ToList());
-            return Json(new { keywords }, JsonRequestBehavior.AllowGet);
-        }
-    #endregion
-
-    #region getdocumentresult
-        //
-        // Get: /Document/GetDocxDocument
-        [HttpGet]
-        public FileResult GetDocxDocument(int documentId)
-        {
-            Document documentForCreate = _documentService.GetById(documentId);
-            MemoryStream document = _documentService.GenerateComplexDocument(documentId, ExportDocumentType.Docx);
-            return File(document.ToArray(), "application/vnd.openxmlformats-officedocument.wordprocessingml.document", Server.UrlEncode(documentForCreate.Title + ".docx"));
-        }
-
-        //
-        // Get: /Document/GetCsvDocument
-        [HttpGet]
-        public FileResult GetTxtDocument(int documentId)
-        {
-            Document documentForCreate = _documentService.GetById(documentId);
-            MemoryStream document = _documentService.GenerateComplexDocument(documentId, ExportDocumentType.Txt);
-            return File(document.ToArray(), "text/plain", Server.UrlEncode(documentForCreate.Title + ".txt"));
-        }
-
-        //
-        // Get: /Document/GetPdfDocument
-        [HttpGet]
-        public FileResult GetPdfDocument(int documentId)
-        {
-            Document documentForCreate = _documentService.GetById(documentId);
-            MemoryStream document = _documentService.GenerateComplexDocument(documentId, ExportDocumentType.Pdf);
-            return File(document.ToArray(), "application/pdf", Server.UrlEncode(documentForCreate.Title + ".pdf"));
-        }
-
-        //
-        // Get: /Document/GetDocxSectionContent
-        [HttpGet]
-        
-        public FileResult GetDocxSectionContent(int sectionContentId)
-        {
-            SectionContent documentForCreate = _sectionContentService.GetById(sectionContentId);
-            MemoryStream document = _sectionContentService.GenerateSimpleDocument(sectionContentId, ExportDocumentType.Docx);
-            return File(document.ToArray(), "application/vnd.openxmlformats-officedocument.wordprocessingml.document", Server.UrlEncode(documentForCreate.Title + ".docx"));
-        }
-
-        //
-        // Get: /Document/GetCsvSectionContent
-        [HttpGet]
-        public FileResult GetTxtSectionContent(int sectionContentId)
-        {
-            SectionContent documentForCreate = _sectionContentService.GetById(sectionContentId);
-            MemoryStream document = _sectionContentService.GenerateSimpleDocument(sectionContentId, ExportDocumentType.Txt);
-            return File(document.ToArray(), "text/plain", Server.UrlEncode(documentForCreate.Title + ".txt"));
-        }
-
-        //
-        // Get: /Document/GetPdfSectionContent
-        [HttpGet]
-        public FileResult GetPdfSectionContent(int sectionContentId)
-        {
-            SectionContent documentForCreate = _sectionContentService.GetById(sectionContentId);
-            MemoryStream document = _sectionContentService.GenerateSimpleDocument(sectionContentId, ExportDocumentType.Pdf);
-            return File(document.ToArray(), "application/pdf", Server.UrlEncode(documentForCreate.Title + ".pdf"));
-        }
-    #endregion
-
-    #region private
     #endregion
 
     }
