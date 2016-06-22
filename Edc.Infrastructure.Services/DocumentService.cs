@@ -78,7 +78,7 @@ namespace Edc.Domain.Services
 
         public IEnumerable<Document> GetAll()
         {
-            throw new NotImplementedException();
+            return _documentRepository.Get().Select(ModelHelper.Mapper);
         }
 
         public void UpdateDocumentProgress(int documentId)

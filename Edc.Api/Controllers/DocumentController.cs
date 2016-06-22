@@ -9,7 +9,6 @@ using Edc.Domain.Services.Interfaces;
 
 namespace Edc.Api.Controllers
 {
-    [Authorize]
     public class DocumentController : ApiController
     {
         private readonly IDocumentService _documentService;
