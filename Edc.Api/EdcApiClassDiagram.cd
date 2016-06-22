@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Edc.Api.Models.TaskModel">
+    <Position X="4.25" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAAAAAAAEAAAEAAAEAEAAAAgAAAAAEAAAAACAA=</HashCode>
+      <FileName>Models\DocumentModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Api.Models.SimpleDocumentModel">
+    <Position X="1" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DocumentModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Api.Models.SectionModel">
+    <Position X="6.5" Y="2.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAgAAAgAA=</HashCode>
+      <FileName>Models\DocumentModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Api.Models.KeywordModel">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DocumentModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Api.Models.ComplexDocumentModel">
+    <Position X="3.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAgAAAAAAAAAAAAAAAAEAAgAAAgAA=</HashCode>
+      <FileName>Models\DocumentModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edc.Api.Models.DocumentTasksModel">
+    <Position X="1" Y="3" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAEAAAEAAAAAAACAAAAAgAAAAAAEAgAAAgIA=</HashCode>
+      <FileName>Models\DocumentModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

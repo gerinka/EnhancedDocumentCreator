@@ -18,7 +18,7 @@ namespace Edc.Domain
 
                 tw.WriteLine("Заглавие:\t" + documentToBeGenerated.Title);
                 tw.WriteLine("Автор:\t" + documentToBeGenerated.Author);
-                tw.WriteLine("Ключови думи:\t" + documentToBeGenerated.GetDocumentTopKeywords());
+                tw.WriteLine("Ключови думи:\t" + String.Join(", ", documentToBeGenerated.GetDocumentTopKeywords()));
                 var sections = documentToBeGenerated.Sections.ToList();
 
                 foreach (var section in sections)

@@ -114,20 +114,24 @@ namespace Edc.Domain.Services
 
         public static Document Mapper(DOCUMENT document)
         {
-            return new Document
+            if (document != null)
             {
-                Id = document.ID,
-                Title = document.Title,
-                Deadline = document.Deadline,
-                Template = Mapper(document.DOCUMENTTEMPLATE),
-                Sections = ConvertSetOfContentToSections(document.STRUCTURECONTENTs, document.ID),
-                Author = Mapper(document.USER_UserId),
-                DocumentState = document.DocumentState,
-                CurrentProgress = document.CurrentProgress,
-                Tasks = document.TASKs!=null?document.TASKs.Select(Mapper).ToList():null,
-                CurrentCycle = document.CurrentCycle,
-                MaxCycle = document.MaxCycle
-            };
+                return new Document
+                {
+                    Id = document.ID,
+                    Title = document.Title,
+                    Deadline = document.Deadline,
+                    Template = Mapper(document.DOCUMENTTEMPLATE),
+                    Sections = ConvertSetOfContentToSections(document.STRUCTURECONTENTs, document.ID),
+                    Author = Mapper(document.USER_UserId),
+                    DocumentState = document.DocumentState,
+                    CurrentProgress = document.CurrentProgress,
+                    Tasks = document.TASKs != null ? document.TASKs.Select(Mapper).ToList() : null,
+                    CurrentCycle = document.CurrentCycle,
+                    MaxCycle = document.MaxCycle
+                };
+            }
+            return new Document();
         }
 
         private static IList<Section> ConvertSetOfContentToSections(IEnumerable<STRUCTURECONTENT> structurecontents, int documentId)

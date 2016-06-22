@@ -4,8 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Edc.Api.Models;
 using Edc.Domain.Models;
 using Edc.Domain.Services.Interfaces;
+using WebGrease.Css.Ast.Selectors;
 
 namespace Edc.Api.Controllers
 {
@@ -19,16 +21,33 @@ namespace Edc.Api.Controllers
         }
 
         // GET api/document
-        public IEnumerable<string> Get()
+        public IEnumerable<SimpleDocumentModel> Get()
         {
-            return _documentService.GetAll().Select(d => d.Title);
+            return _documentService.GetAll().Select(d => new SimpleDocumentModel
+            {
+                Author = d.Author.ToString(),
+                Id = d.Id,
+                Title = d.Title
+            });
         }
 
         // GET api/document/5
-        public IHttpActionResult Get(int id)
+        public ComplexDocumentModel Get(int id)
         {
             Document document = _documentService.GetById(id);
-            return Ok(document);
+            if (document != null && document.Id > 0)
+            {
+                return new ComplexDocumentModel
+                {
+                    Author = document.Author.ToString(),
+                    CurrentProgress = document.CurrentProgress,
+                    Id = document.Id,
+                    Title = document.Title,
+                    Keywords = document.GetDocumentTopKeywords().Select(k => new KeywordModel {Name = k.Name}).ToList(),
+
+                };
+            }
+            return new ComplexDocumentModel();
         }
 
         // POST api/document

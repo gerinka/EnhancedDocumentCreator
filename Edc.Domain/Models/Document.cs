@@ -22,7 +22,7 @@ namespace Edc.Domain.Models
         public int MaxCycle { get; set; }
         public int CurrentProgress { get; set; }
 
-        public string GetDocumentTopKeywords()
+        public IList<Keyword> GetDocumentTopKeywords()
         {
             var keywordsMap = new Dictionary<Keyword, int>();
 
@@ -42,7 +42,7 @@ namespace Edc.Domain.Models
                     }
                 }
             }
-            return String.Join(", ", keywordsMap.OrderByDescending(kd => kd.Value).Select(k => k.Key.Name).Take(5));
+            return keywordsMap.OrderByDescending(kd => kd.Value).Select(k => k.Key).Take(5).ToList();
         } 
     }
 }
