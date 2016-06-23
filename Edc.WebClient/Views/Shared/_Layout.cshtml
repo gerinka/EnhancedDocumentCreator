@@ -1,0 +1,50 @@
+﻿@using Edc.Domain.Common
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Система за създаване на документи</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("EDC", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="@Html.IsSelected(actions: "Index", controllers: "Home")">@Html.ActionLink("Начало", "Index", "Home")</li>
+                    <li class="@Html.IsSelected(actions: "About", controllers: "Home")">@Html.ActionLink("За приложението", "About", "Home")</li>
+                    <li class="@Html.IsSelected(actions: "Contact", controllers: "Home")">@Html.ActionLink("Контакти", "Contact", "Home")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="@Html.IsSelected(actions: "GenerateMainStructure", controllers: "Document")">@Html.ActionLink("Генерирай структура", "GenerateMainStructure", "Document")</li>
+                        <li class="@Html.IsSelected(actions: "TaskBoard", controllers: "Tasks")">@Html.ActionLink("Дъска със задачи", "TaskBoard", "Tasks")</li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - EDC</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
