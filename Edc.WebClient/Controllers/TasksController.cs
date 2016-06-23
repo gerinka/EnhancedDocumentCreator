@@ -19,13 +19,11 @@ namespace Edc.WebClient.Controllers
     public class TasksController : Controller
     {
         private readonly IDocumentService _documentService;
-        private readonly IPersonService _personService;
         private readonly ITaskService _taskService;
 
-        public TasksController(IDocumentService documentService, IPersonService personService, ITaskService taskService)
+        public TasksController(IDocumentService documentService, ITaskService taskService)
         {
             _documentService = documentService;
-            _personService = personService;
             _taskService = taskService;
         }
 
@@ -87,7 +85,6 @@ namespace Edc.WebClient.Controllers
              {
                  return Json(new { Success = false, Message = e.Message });
              }
-             return Json(new { Success = false, Message = "Не можете да започнете тази задача." });
         }
 
         //

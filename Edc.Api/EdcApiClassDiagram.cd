@@ -42,5 +42,12 @@
       <FileName>Models\DocumentModels.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Edc.Api.Controllers.DocumentController">
+    <Position X="0.75" Y="6.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAgAAAAABAAAAAAAAACAEAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\DocumentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

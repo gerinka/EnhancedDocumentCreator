@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web.Http;
+using System.Web.Mvc;
 using Edc.Api.Models;
 using Edc.Domain.Models;
 using Edc.Domain.Services.Interfaces;
+using MtcModel;
 using WebGrease.Css.Ast.Selectors;
 
 namespace Edc.Api.Controllers
@@ -48,6 +52,20 @@ namespace Edc.Api.Controllers
                 };
             }
             return new ComplexDocumentModel();
+        }
+
+        public HttpResponseMessage GetCsvDocument(int documentId)
+        {
+            Document documentForCreate = _documentService.GetById(documentId);
+            MemoryStream document = _documentService.GenerateComplexDocument(documentId, ExportDocumentType.Csv);
+
+            var result = new HttpResponseMessage(HttpStatusCode.OK) {Content = new ByteArrayContent(document.ToArray())};
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/plain");
+            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = documentForCreate.Title + ".csv"
+            };
+            return result;
         }
 
         // POST api/document
