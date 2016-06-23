@@ -33,7 +33,7 @@ namespace Edc.Domain
 
                 var bfR = BaseFont.CreateFont(arialuniTff, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                 doc.AddTitle(documentToBeGenerated.Title);
-                doc.Add(new Paragraph("Ключови думи" + String.Join(", ", documentToBeGenerated.GetDocumentTopKeywords())));
+                doc.Add(new Paragraph("Ключови думи" + String.Join(", ", documentToBeGenerated.GetDocumentTopKeywords().Select(k => k.Name))));
                 var times = new Font(bfR, 12, Font.NORMAL, BaseColor.BLACK);
                 var sectionIndex = 1;
                 foreach (var section in documentToBeGenerated.Sections)

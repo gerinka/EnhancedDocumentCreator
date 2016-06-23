@@ -24,7 +24,7 @@ namespace Edc.Domain
                     var subsections = section.Subsections.Where(sub=>sub.Content!=null).ToList();
                     foreach (var subsection in subsections)
                     {
-                        csvWriter.WriteLine("{0};{1};{2};{3};{4};{5};{6}", documentToBeGenerated.Id, documentToBeGenerated.Author.ToString(), documentToBeGenerated.Title, section.Title, subsection.Title, String.Join(",",subsection.Content.Keywords), subsection.Content.MainText);
+                        csvWriter.WriteLine("{0};{1};{2};{3};{4};{5};{6}", documentToBeGenerated.Id, documentToBeGenerated.Author.ToString(), documentToBeGenerated.Title, section.Title, subsection.Title, String.Join(",", subsection.Content.Keywords.Select(k => k.Name)), subsection.Content.MainText);
                     }
                 }
 

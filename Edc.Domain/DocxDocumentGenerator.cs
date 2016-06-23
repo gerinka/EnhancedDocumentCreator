@@ -26,7 +26,7 @@ namespace Edc.Domain
                 Paragraph titleParagraph = document.InsertParagraph(documentToBeGenerated.Title, false, TitleFormat());
                 Paragraph authorParagraph = document.InsertParagraph(documentToBeGenerated.Author.ToString(), false, Heading1Format());
                 authorParagraph.StyleName = "Heading1";
-                Paragraph keywordsParagraph = document.InsertParagraph(String.Join(", ", documentToBeGenerated.GetDocumentTopKeywords()), false, Heading2Format());
+                Paragraph keywordsParagraph = document.InsertParagraph(String.Join(", ", documentToBeGenerated.GetDocumentTopKeywords().Select(k => k.Name)), false, Heading2Format());
                 keywordsParagraph.StyleName = "Heading2";
                 keywordsParagraph.InsertPageBreakAfterSelf();
                 // insert TOC of the document
