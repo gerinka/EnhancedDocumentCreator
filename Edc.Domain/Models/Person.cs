@@ -35,6 +35,41 @@ namespace Edc.Domain.Models
         {
             return string.Equals(Password, Crypto.Hash(password));
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            var p = obj as Person;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+
+            return (Id == p.Id) && (Email == p.Email);
+        }
+
+        public bool Equals(Person p)
+        {
+            // If parameter is null return false:
+            if ((object)p == null)
+            {
+                return false;
+            }
+
+            // Return true if the fields match:
+            return (Id == p.Id) && (Email == p.Email);
+        }
+
+
+        public override int GetHashCode()
+        {
+            if (Email == null) return 0;
+            return Email.GetHashCode();
+        }
     }
 
     public static class Crypto

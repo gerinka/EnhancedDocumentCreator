@@ -260,15 +260,16 @@ else
         function getGeneratedDocument(documentId, type) {
             if (type == 'docx') {
                 window.location = "/Tasks/GetDocxDocument?documentId=" + documentId;
-            }else if (type == 'txt') {
+            } else if (type == 'txt') {
                 window.location = "/Tasks/GetTxtDocument?documentId=" + documentId;
-            }else if (type == 'pdf') {
+            } else if (type == 'pdf') {
                 window.location = "/Tasks/GetPdfDocument?documentId=" + documentId;
             }
         }
 
         $(document).ready(function() {
             $('#taskModal').on('show.bs.modal', function(event) {
+                $("#error-message").text("");
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 var taskId = button.data('taskid');
                 var title = button.data('tasktitle');
@@ -350,7 +351,11 @@ else
                     traditional: true,
                     contentType: "application/json; charset=utf-8",
                     success: function(data) {
-                        window.location.href = data;
+                        if (data.Success) {
+                            window.location.href = data.Message;
+                        } else {
+                            $("#error-message").text(data.Message);
+                        }
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         if (xhr.status == 417) {

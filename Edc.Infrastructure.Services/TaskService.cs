@@ -16,12 +16,14 @@ namespace Edc.Domain.Services
         private readonly ITaskRepository _taskRepository;
         private readonly IStructureContentRepository _structureContentRepository;
         private readonly IDocumentRepository _documentRepository;
+        private readonly IUserRepository _userRepository;
 
-        public TaskService(ITaskRepository taskRepository, IStructureContentRepository structureContentRepository, IDocumentRepository documentRepository)
+        public TaskService(ITaskRepository taskRepository, IStructureContentRepository structureContentRepository, IDocumentRepository documentRepository, IUserRepository userRepository)
         {
             _taskRepository = taskRepository;
             _structureContentRepository = structureContentRepository;
             _documentRepository = documentRepository;
+            _userRepository = userRepository;
         }
 
         public Task GetById(int id)
@@ -62,9 +64,12 @@ namespace Edc.Domain.Services
             return taskList;
         }
 
-        public Task StartTask(int taskId)
+        public Task StartTask(int taskId, string username)
         {
+
             Task task = GetById(taskId);
+            Person person = ModelHelper.Mapper(_userRepository.Get(u => u.Email == username).FirstOrDefault());
+            ValidateTaskAction(task,person);
             task.TaskState = TaskState.InProgress;
             task.Section.Content.CurrentProgress = 1;
             _taskRepository.Update(ModelHelper.Mapper(task));
@@ -72,9 +77,11 @@ namespace Edc.Domain.Services
             return task;
         }
 
-        public Task FinishTask(int taskId)
+        public Task FinishTask(int taskId, string username)
         {
             Task task = GetById(taskId);
+            Person person = ModelHelper.Mapper(_userRepository.Get(u => u.Email == username).FirstOrDefault());
+            ValidateTaskAction(task, person);
             Document document = ModelHelper.Mapper(_documentRepository.GetById(task.DocumentId));
 
             if (document.MaxCycle > task.Cycle)
@@ -94,9 +101,11 @@ namespace Edc.Domain.Services
             return task;
         }
 
-        public Task RejectTask(int taskId)
+        public Task RejectTask(int taskId, string username)
         {
             Task task = GetById(taskId);
+            Person person = ModelHelper.Mapper(_userRepository.Get(u => u.Email == username).FirstOrDefault());
+            ValidateTaskAction(task, person);
             task.TaskState = TaskState.WontBeDone;
             _taskRepository.Update(ModelHelper.Mapper(task));
             return task;
@@ -172,5 +181,13 @@ namespace Edc.Domain.Services
             if (isAnytaskChanged) _taskRepository.BulkUpdate(taskList.Select(ModelHelper.Mapper));
         }
 
+        private void ValidateTaskAction(Task task, Person person)
+        {
+            if (!task.AssignTo.Equals(person))
+            {
+                throw new InvalidOperationException("Не можете да променяте задачи, които принадлежат на други хора.");
+            }
+
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Web.Http.Results;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Edc.Domain.Models;
@@ -48,7 +49,7 @@ namespace Edc.WebClient.Controllers
             IEnumerable<Task> taskList = _taskService.GetTasksByDocumentId(intDocumentId).ToList();
             var taskboard = new TasksBoardViewModel
             {
-                DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).Take(6).ToList(),
+                DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).Take(12).ToList(),
                 InProgressTasks =
                     taskList.Where(
                         t =>
@@ -75,8 +76,18 @@ namespace Edc.WebClient.Controllers
         [HttpPost]
         public ActionResult StartTask(int taskId)
         {
-            _taskService.StartTask(taskId);
-            return Json(Url.Action("GoToWritingModule", "SectionContent", new { taskId }));
+            var currentUserEmail = User.Identity.Name;
+             try
+            {
+                _taskService.StartTask(taskId, currentUserEmail);
+                return Json( new { Success = true, Message = Url.Action("GoToWritingModule", "SectionContent", new { taskId })});
+                
+            }
+             catch (InvalidOperationException e)
+             {
+                 return Json(new { Success = false, Message = e.Message });
+             }
+             return Json(new { Success = false, Message = "Не можете да започнете тази задача." });
         }
 
         //
@@ -84,15 +95,23 @@ namespace Edc.WebClient.Controllers
         [HttpPost]
         public ActionResult FinishTask(int taskId)
         {
-            _taskService.FinishTask(taskId);
-            Task task = _taskService.GetById(taskId);
-            if (task.TaskState == TaskState.Done)
+            var currentUserEmail = User.Identity.Name;
+            try
             {
-                var documentId = task.Section.Content.DocumentId;
-                _documentService.UpdateDocumentProgress(documentId);
-                return Json(Url.Action("TaskBoard", new { documentId }));
+                _taskService.FinishTask(taskId, currentUserEmail);
+                Task task = _taskService.GetById(taskId);
+                if (task.TaskState == TaskState.Done)
+                {
+                    var documentId = task.Section.Content.DocumentId;
+                    _documentService.UpdateDocumentProgress(documentId);
+                    return Json( new { Success = true, Message = Url.Action("TaskBoard", new {documentId})});
+                }
             }
-            return new HttpStatusCodeResult(HttpStatusCode.ExpectationFailed);
+            catch (InvalidOperationException e)
+            {
+                return Json(new { Success = false, Message = e.Message });
+            }
+            return Json(new { Success = false, Message = "Не можете да финиширате тази задача." });
         }
     #endregion
 
