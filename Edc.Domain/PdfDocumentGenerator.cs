@@ -47,7 +47,7 @@ namespace Edc.Domain
                     {
                         doc.Add(new Paragraph("" + sectionIndex + "." +subSectionIndex +". " + subsection.Title, times));
                         subSectionIndex++;
-                        doc.Add(new Paragraph(subsection.Content.MainText));
+                        doc.Add(new Paragraph(subsection.Content.MainText, times));
                     }
 
                     sectionIndex++;
@@ -75,7 +75,7 @@ namespace Edc.Domain
          
                 doc.Add(new Paragraph(sectionToBeGenerated.Title, times));
                 doc.Add(new LineSeparator());
-                doc.Add(new Paragraph(sectionToBeGenerated.MainText));
+                doc.Add(new Paragraph(sectionToBeGenerated.MainText, times));
                  
                 doc.Close();
 
