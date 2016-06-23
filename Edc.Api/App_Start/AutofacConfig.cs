@@ -22,7 +22,7 @@ namespace Edc.Api
     /// </summary>
     internal static class AutofacConfig
     {
-        internal static void ConfigureAutofac(HttpConfiguration config)
+        internal static void ConfigureAutofac()
         {
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
@@ -32,8 +32,9 @@ namespace Edc.Api
             builder.RegisterModule(new MtcModule());
   
             IContainer container = builder.Build();
-            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            // Set the dependency resolver for Web API.
+            var webApiResolver = new AutofacWebApiDependencyResolver(container);
+            GlobalConfiguration.Configuration.DependencyResolver = webApiResolver;
         }
     }
 }

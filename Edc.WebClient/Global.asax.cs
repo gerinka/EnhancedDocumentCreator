@@ -13,7 +13,7 @@ namespace Edc.WebClient
     {
         protected void Application_Start()
         {
-            AutofacConfig.ConfigureAutofac(GlobalConfiguration.Configuration);
+            AutofacConfig.ConfigureAutofac();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

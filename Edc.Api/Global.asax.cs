@@ -13,7 +13,7 @@ namespace Edc.Api
     {
         protected void Application_Start()
         {
-            AutofacConfig.ConfigureAutofac(GlobalConfiguration.Configuration);
+            AutofacConfig.ConfigureAutofac();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
