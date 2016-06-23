@@ -127,6 +127,15 @@ namespace Edc.WebClient.Controllers
             return File(document.ToArray(), "application/pdf", Server.UrlEncode(documentForCreate.Title + ".pdf"));
         }
 
+        //
+        // Get: /Tasks/GetCsvDocument
+        [HttpGet]
+        public FileResult GetCsvDocument(int documentId)
+        {
+            Document documentForCreate = _documentService.GetById(documentId);
+            MemoryStream document = _documentService.GenerateComplexDocument(documentId, ExportDocumentType.Csv);
+            return File(document.ToArray(), "text/plain", Server.UrlEncode(documentForCreate.Title + ".csv"));
+        }
         
     #endregion
 
