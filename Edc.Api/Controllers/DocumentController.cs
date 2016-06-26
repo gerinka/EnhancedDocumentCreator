@@ -14,17 +14,26 @@ using MtcModel;
 using WebGrease.Css.Ast.Selectors;
 
 namespace Edc.Api.Controllers
-{
+{   
+    /// <summary>
+    /// Този контролер предоставя различни справки за документите в системата
+    /// </summary>
     public class DocumentController : ApiController
     {
         private readonly IDocumentService _documentService;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public DocumentController(IDocumentService documentService)
         {
             _documentService = documentService;
         }
-
+        
         // GET api/document
+        /// <summary>
+        /// Този метод предоставя информация за всички документи в системата
+        /// </summary>
+        /// <returns>Връща списък с Id на документа, неговия автор и заглавие</returns>
         public IEnumerable<SimpleDocumentModel> Get()
         {
             return _documentService.GetAll().Select(d => new SimpleDocumentModel
@@ -36,6 +45,11 @@ namespace Edc.Api.Controllers
         }
 
         // GET api/document/5
+        /// <summary>
+        /// Този метод предоставя информация за даден документ
+        /// </summary>
+        /// <param name="id">Id на документа</param>
+        /// <returns>Връща списък ComplexDocumentModel - автор, прогрес, Id, заглавие, ключови думи и секции</returns>
         public ComplexDocumentModel Get(int id)
         {
             Document document = _documentService.GetById(id);
@@ -54,6 +68,12 @@ namespace Edc.Api.Controllers
             return new ComplexDocumentModel();
         }
 
+        // GET api/document/5
+        /// <summary>
+        /// Този метод предоставя информация за даден документ
+        /// </summary>
+        /// <param name="id">Id на документа</param>
+        /// <returns>Връща списък ComplexDocumentModel - автор, прогрес, Id, заглавие, ключови думи и секции</returns>
         public HttpResponseMessage GetCsvDocument(int documentId)
         {
             Document documentForCreate = _documentService.GetById(documentId);
@@ -66,21 +86,6 @@ namespace Edc.Api.Controllers
                 FileName = documentForCreate.Title + ".csv"
             };
             return result;
-        }
-
-        // POST api/document
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/document/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/document/5
-        public void Delete(int id)
-        {
         }
     }
 }

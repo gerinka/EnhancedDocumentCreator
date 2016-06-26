@@ -1,4 +1,4 @@
-@using System.Web.Http
+﻿@using System.Web.Http
 @using System.Web.Http.Controllers
 @using System.Web.Http.Description
 @using System.Collections.ObjectModel
@@ -6,7 +6,7 @@
 @model Collection<ApiDescription>
 
 @{
-    ViewBag.Title = "ASP.NET Web API Help Page";
+    ViewBag.Title = "EDC мрежови ППИ - Помощна страница";
 
     // Group APIs by controller
     ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
@@ -23,9 +23,9 @@
 <div id="body" class="help-page">
     <section class="featured">
         <div class="content-wrapper">
-            <h2>Introduction</h2>
+            <h2>Въведение</h2>
             <p>
-                Provide a general description of your APIs here.
+                Описание на методите предложени от EDC ППИ.
             </p>
         </div>
     </section>
