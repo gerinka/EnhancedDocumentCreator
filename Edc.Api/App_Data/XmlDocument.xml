@@ -509,5 +509,12 @@
             <param name="id">Id на документа</param>
             <returns>Връща списък ComplexDocumentModel - автор, прогрес, Id, заглавие, ключови думи и секции</returns>
         </member>
+        <member name="M:Edc.Api.Controllers.DocumentController.GetCsvDocument(System.Int32)">
+            <summary>
+            Този метод предоставя информация за даден документ
+            </summary>
+            <param name="id">Id на документа</param>
+            <returns>Връща списък ComplexDocumentModel - автор, прогрес, Id, заглавие, ключови думи и секции</returns>
+        </member>
     </members>
 </doc>

@@ -74,10 +74,10 @@ namespace Edc.Api.Controllers
         /// </summary>
         /// <param name="id">Id на документа</param>
         /// <returns>Връща списък ComplexDocumentModel - автор, прогрес, Id, заглавие, ключови думи и секции</returns>
-        public HttpResponseMessage GetCsvDocument(int documentId)
+        public HttpResponseMessage GetCsvDocument(int id)
         {
-            Document documentForCreate = _documentService.GetById(documentId);
-            MemoryStream document = _documentService.GenerateComplexDocument(documentId, ExportDocumentType.Csv);
+            Document documentForCreate = _documentService.GetById(id);
+            MemoryStream document = _documentService.GenerateComplexDocument(id, ExportDocumentType.Csv);
 
             var result = new HttpResponseMessage(HttpStatusCode.OK) {Content = new ByteArrayContent(document.ToArray())};
             result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/plain");
