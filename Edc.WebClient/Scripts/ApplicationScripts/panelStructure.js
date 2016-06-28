@@ -44,6 +44,12 @@
 
                 if (futureIndex == total) {
                     $(".next").addClass("hidden");
+                    $("#summaryTitle").text($("#Topic").val());
+                    $("#summaryDeadline").text($("#Deadline").val());
+                    var selectedCheckBoxes = $('input:checkbox.sections').each(function () {
+                        var sThisVal = (this.checked ? $(this).val() : "");
+                    });
+                    $("#summaryCountSections").text(selectedCheckBoxes.length);
                 } else if (futureIndex - 1 > 0) {
                     $(".previous").removeClass("hidden");
                 }

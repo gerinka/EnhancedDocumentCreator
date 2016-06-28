@@ -73,7 +73,7 @@
                     <div class="form-group hidden notselected" data-section="@index" data-template="@template.Id">
                         <div class="col-lg-8">
                             <div class="checkbox checkbox-primary">
-                                <input type="checkbox" name="sections" value="@sectionItem.Id" id="@sectionItem.Id">
+                                <input type="checkbox" class="sections" name="sections" value="@sectionItem.Id" id="@sectionItem.Id">
                                 <label for="@sectionItem.Id">@sectionItem.Title</label>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             @foreach (var subsection in sectionItem.Subsections)
                             {
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" name="sections" value="@subsection.Id" id="@subsection.Id">
+                                    <input type="checkbox" class="subsections" name="sections" value="@subsection.Id" id="@subsection.Id">
                                     <label for="@subsection.Id">@subsection.Title</label>
                                 </div>
                             }
@@ -97,17 +97,22 @@
                             <span class="glyphicon glyphicon-flash info-icon" aria-hidden="true"></span>
                         </div>
                         <div class="text-justify top-buffer">
-                            Вие сте задали да пишете документ на тема {0}
-                            Вие сте избрали {1} подсекции, които ще бъдат основната структура на вашия документ. Ще бъдат генерирани точно толкова основни задачи, и ако поставения от вас краен срок позволява, ще бъдат генерирани няколко вълни от такива задачи.
-                            Една подсекция ще се смята за завършена, когато написаният текст съдържа поне минималното количество думи.
-                            Едновременно ще бъдат отключени не повече от 3 задачи.
-                        </div>
+                            Вие сте задали да пишете документ на тема <strong>
+    <span id="summaryTitle"></span>
+</strong>
+    Вие сте избрали <strong>
+    <span id="summaryCountSections"></span>
+</strong>
+    подсекции, които ще бъдат основната структура на вашия документ. Ще бъдат генерирани точно толкова основни задачи, и ако поставения от вас краен срок позволява, ще бъдат генерирани няколко вълни от такива задачи.
+    Една подсекция ще се смята за завършена, когато написаният текст съдържа поне минималното количество думи.
+    Едновременно ще бъдат отключени не повече от 3 задачи.
+</div>
                         <div class="col-lg-1 top-buffer">
                             <span class="glyphicon glyphicon-calendar info-icon" aria-hidden="true"></span>
                         </div>
                         <div class="text-justify top-buffer">
-                            Като краен срок сте задали датата {2}. Базирайки се на този краен срок, индивидуалният краен срок на всяка от задачите ще бъде изчислен. При изтичане на този краен срок и незапочване/незавършване на задачата - тя ще бъда обозначена по специален начин.
-                        </div>
+                            Като краен срок сте задали датата <strong><span id="summaryDeadline"></span></strong>. Базирайки се на този краен срок, индивидуалният краен срок на всяка от задачите ще бъде изчислен. При изтичане на този краен срок и незапочване/незавършване на задачата - тя ще бъда обозначена по специален начин.
+</div>
                         <div class="col-lg-1 top-buffer">
                             <span class="glyphicon glyphicon-check info-icon" aria-hidden="true"></span>
                         </div>
