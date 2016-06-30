@@ -44,10 +44,13 @@
 
                 if (futureIndex == total) {
                     $(".next").addClass("hidden");
+
+                    /*set the summary fields*/
                     $("#summaryTitle").text($("#Topic").val());
                     $("#summaryDeadline").text($("#Deadline").val());
-                    var selectedCheckBoxes = $('input:checkbox.sections').each(function () {
-                        var sThisVal = (this.checked ? $(this).val() : "");
+                    var selectedCheckBoxes = $('input:checkbox.subsections').filter(function () {
+                        var sThisVal = (this.checked && $(this).parents('.notselected').length < 1 ? $(this).val() : "");
+                        return sThisVal;
                     });
                     $("#summaryCountSections").text(selectedCheckBoxes.length);
                 } else if (futureIndex - 1 > 0) {
