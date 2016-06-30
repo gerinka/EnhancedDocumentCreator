@@ -86,6 +86,7 @@
           <Property Name="DocumentState" Type="int" Nullable="false" DefaultValue="1" />
           <Property Name="MaxCycle" Type="int" Nullable="false" DefaultValue="1" />
           <Property Name="CurrentCycle" Type="int" Nullable="false" DefaultValue="1" />
+          <Property Name="ActiveTasksCount" Type="int" Nullable="false" DefaultValue="1" />
         </EntityType>
         <EntityType Name="documentstructurerelation">
           <Key>
@@ -104,6 +105,7 @@
           <Property Name="Description" Type="varchar" MaxLength="100" Collation="utf8_general_ci" />
           <Property Name="IsActive" Type="tinyint" Nullable="false" />
           <Property Name="MinWordCount" Type="int" Nullable="false" DefaultValue="1" />
+          <Property Name="ActiveTasksCount" Type="int" Nullable="false" DefaultValue="1" />
         </EntityType>
         <EntityType Name="structurecontent">
           <Key>
@@ -420,6 +422,7 @@
           <Property Name="DocumentState" Type="MtcModel.DocumentState" Nullable="false" ed:ValidateRequired="true" ed:Guid="d0d02387-983c-400c-bbd4-36481b4cb8f9" />
           <Property Name="MaxCycle" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="2ffa1da6-1324-454b-a36f-3956e9b4d3b8" />
           <Property Name="CurrentCycle" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="c579523d-a06b-4a41-b48b-e578d2ed8db6" />
+          <Property Name="ActiveTasksCount" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="9a8758d4-fddb-497f-af91-382ee5766c2c" />
           <NavigationProperty Name="DOCUMENTTEMPLATE" Relationship="MtcModel.FK_DocumentDocumentTemplate_ID" FromRole="DOCUMENTs" ToRole="DOCUMENTTEMPLATE" ed:Guid="09db9a69-3a1b-4170-943b-6c470a4e9571" />
           <NavigationProperty Name="USER_MentorId" Relationship="MtcModel.FK_DocumentMentor_ID" FromRole="DOCUMENTs_MentorId" ToRole="USER_MentorId" ed:Guid="8deb09ed-a895-45db-97fe-d9cb89c5deaa" />
           <NavigationProperty Name="USER_UserId" Relationship="MtcModel.FK_DocumentUser_ID" FromRole="DOCUMENTs_UserId" ToRole="USER_UserId" ed:Guid="f2c598a9-a4c4-49a6-809e-f1ffa34fcc36" />
@@ -435,6 +438,7 @@
           <Property Name="Description" Type="String" MaxLength="100" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="504ddf74-6ce9-4384-9479-917de3d248a4" />
           <Property Name="IsActive" Type="SByte" Nullable="false" ed:ValidateRequired="true" ed:Guid="3f07ab48-d182-4751-bc1f-f1227d8fb4f7" />
           <Property Name="MinWordCount" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="b84abe96-3f3c-4dc7-98c3-87c1a917aabe" />
+          <Property Name="ActiveTasksCount" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="df6bacf9-c090-4fb6-9019-0e5d74829bca" />
           <NavigationProperty Name="DOCUMENTs" Relationship="MtcModel.FK_DocumentDocumentTemplate_ID" FromRole="DOCUMENTTEMPLATE" ToRole="DOCUMENTs" ed:Guid="0c1d9373-d0b3-4825-887e-251b7237bf3f" />
           <NavigationProperty Name="STRUCTUREELEMENTs" Relationship="MtcModel.DOCUMENTTEMPLATE_STRUCTUREELEMENT" FromRole="DOCUMENTTEMPLATEs" ToRole="STRUCTUREELEMENTs" ed:Guid="3a7dd29f-b45c-4515-87ac-902aaf6370be" />
         </EntityType>
@@ -680,6 +684,7 @@
                 <ScalarProperty Name="DocumentState" ColumnName="DocumentState" />
                 <ScalarProperty Name="MaxCycle" ColumnName="MaxCycle" />
                 <ScalarProperty Name="CurrentCycle" ColumnName="CurrentCycle" />
+                <ScalarProperty Name="ActiveTasksCount" ColumnName="ActiveTasksCount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -691,6 +696,7 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="MinWordCount" ColumnName="MinWordCount" />
+                <ScalarProperty Name="ActiveTasksCount" ColumnName="ActiveTasksCount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
