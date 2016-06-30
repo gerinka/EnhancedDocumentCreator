@@ -220,3 +220,7 @@ input[type="radio"].styled:checked label:after,
     font-size: 1.5em; 
     color: #428bca;
 }
+
+.taskbody{
+    cursor: pointer;
+}
