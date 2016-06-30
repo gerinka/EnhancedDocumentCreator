@@ -35,6 +35,7 @@ CREATE TABLE `document` (
   `DocumentState` int(11) NOT NULL DEFAULT '1',
   `MaxCycle` int(11) NOT NULL DEFAULT '1',
   `CurrentCycle` int(11) NOT NULL DEFAULT '1',
+  `ActiveTasksCount` int(3) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `FK_DIplomasUser_ID_idx` (`UserId`),
   KEY `FK_DocumentMentor_ID_idx` (`MentorId`),
@@ -86,6 +87,7 @@ CREATE TABLE `documenttemplate` (
   `Description` varchar(100) DEFAULT NULL,
   `IsActive` tinyint(4) NOT NULL DEFAULT '0',
   `MinWordCount` int(11) NOT NULL DEFAULT '1',
+  `ActiveTasksCount` int(3) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
