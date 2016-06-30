@@ -10,5 +10,6 @@ namespace Edc.Domain.Models
         public bool IsActive { get; set; }
         public IEnumerable<Section> Sections { get; set; }
         public int MinWordCountPerSubsection { get; set; }
+        public int ActiveTasksCount { get; set; }
     }
 }

@@ -21,6 +21,7 @@ namespace Edc.Domain.Models
         public int CurrentCycle { get; set; }
         public int MaxCycle { get; set; }
         public int CurrentProgress { get; set; }
+        public int ActiveTasksCount { get; set; }
 
         public IList<Keyword> GetDocumentTopKeywords()
         {

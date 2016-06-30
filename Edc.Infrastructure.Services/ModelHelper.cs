@@ -108,7 +108,8 @@ namespace Edc.Domain.Services
                 DocumentState = document.DocumentState,
                 TASKs = document.Tasks!=null ? document.Tasks.Select(Mapper).ToList() : null,
                 CurrentCycle = document.CurrentCycle,
-                MaxCycle = document.MaxCycle
+                MaxCycle = document.MaxCycle,
+                ActiveTasksCount = document.ActiveTasksCount
             };
         }
 
@@ -128,7 +129,8 @@ namespace Edc.Domain.Services
                     CurrentProgress = document.CurrentProgress,
                     Tasks = document.TASKs != null ? document.TASKs.Select(Mapper).ToList() : null,
                     CurrentCycle = document.CurrentCycle,
-                    MaxCycle = document.MaxCycle
+                    MaxCycle = document.MaxCycle,
+                    ActiveTasksCount = document.ActiveTasksCount
                 };
             }
             return new Document();
@@ -148,7 +150,8 @@ namespace Edc.Domain.Services
                 IsActive = documentTemplate.IsActive == 1,
                 Name = documentTemplate.Name,
                 Sections = documentTemplate.STRUCTUREELEMENTs.Where(st=>st.StructureTypeId == StructureType.Section).Select(st=>Mapper(st)),
-                MinWordCountPerSubsection = documentTemplate.MinWordCount
+                MinWordCountPerSubsection = documentTemplate.MinWordCount,
+                ActiveTasksCount = documentTemplate.ActiveTasksCount
             };
         }
 

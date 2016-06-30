@@ -65,7 +65,8 @@ namespace Edc.WebClient.Controllers
                     Deadline = model.Deadline,
                     Title = model.Topic,
                     Sections = properTemplate.Sections.Where(s => sections.Contains(s.Id)).ToList(),
-                    Author = author
+                    Author = author,
+                    ActiveTasksCount = properTemplate.ActiveTasksCount
                 };
                 var subsectionsToRemain = new List<Section>();
                 foreach (var section in document.Sections)

@@ -59,7 +59,8 @@ namespace Edc.Domain.Services
         public IEnumerable<Task> GetTasksByDocumentId(int documentId)
         {
             var taskList = _taskRepository.Get(t => t.DocumentId == documentId).Select(ModelHelper.Mapper).ToList();
-            UnlockNewTasks(taskList);
+            var activeTasksCount = _documentRepository.GetById(documentId).ActiveTasksCount;
+            UnlockNewTasks(taskList, activeTasksCount);
             ExpireTasks(taskList);
             return taskList;
         }
@@ -162,7 +163,7 @@ namespace Edc.Domain.Services
             if (isAnytaskChanged) _taskRepository.BulkUpdate(taskList.Select(ModelHelper.Mapper));
         }
 
-        private void UnlockNewTasks(IList<Task> taskList)
+        private void UnlockNewTasks(IList<Task> taskList, int activeTasksCount)
         {
             bool isAnytaskChanged = false;
             var currentUnclockedTaskCount =
@@ -170,9 +171,9 @@ namespace Edc.Domain.Services
                     t =>
                         t.TaskState == TaskState.ToDo || t.TaskState == TaskState.InProgress ||
                         t.TaskState == TaskState.Expired);
-            if (currentUnclockedTaskCount < 3)
+            if (currentUnclockedTaskCount < activeTasksCount)
             {
-                foreach (var task in taskList.Where(t => t.TaskState == TaskState.Locked).OrderBy(t => t.Deadline).Take(3 - currentUnclockedTaskCount))
+                foreach (var task in taskList.Where(t => t.TaskState == TaskState.Locked).OrderBy(t => t.Deadline).Take(activeTasksCount - currentUnclockedTaskCount))
                 {
                     task.TaskState = TaskState.ToDo;
                     isAnytaskChanged = true;
