@@ -43,7 +43,7 @@ namespace Edc.Domain.Services
 
         public void Update(Task entity)
         {
-            throw new NotImplementedException();
+            _taskRepository.Update(ModelHelper.Mapper(entity));
         }
 
         public void Delete(Task entity)

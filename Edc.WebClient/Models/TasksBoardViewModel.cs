@@ -12,5 +12,6 @@ namespace Edc.WebClient.Models
         public IList<Task> InProgressTasks { get; set; }
         public IList<Task> DoneTasks { get; set; }
         public int DocumentId { get; set; }
+        public bool DocumentIsActive { get; set; }
     }
 }

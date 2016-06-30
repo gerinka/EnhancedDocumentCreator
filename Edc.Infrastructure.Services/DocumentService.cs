@@ -68,7 +68,7 @@ namespace Edc.Domain.Services
 
         public void Update(Document entity)
         {
-            throw new NotImplementedException();
+            _documentRepository.Update(ModelHelper.Mapper(entity));
         }
 
         public void Delete(Document entity)
@@ -127,7 +127,7 @@ namespace Edc.Domain.Services
                 d =>
                     d.USER_UserId.Email == userName 
                     && (d.DocumentState == DocumentState.Started ||
-                    d.DocumentState == DocumentState.InProgress)).ToList();
+                    d.DocumentState == DocumentState.InProgress)).OrderByDescending(d=>d.ID).ToList();
             if (documents.Any())
                 return documents.First().ID;
             return -1;

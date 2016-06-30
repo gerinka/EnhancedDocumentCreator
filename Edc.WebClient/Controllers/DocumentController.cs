@@ -60,8 +60,23 @@ namespace Edc.WebClient.Controllers
         {
             if (ModelState.IsValid)
             {
+                 Person author = _personService.GetById(model.AuthorId);
+                if (model.HasExistingDocument)
+                {
+                    var lastDocumentId = _documentService.GetLastDocumentByUserId(author.Email);
+                    Document lastDocument = _documentService.GetById(lastDocumentId);
+                    var tasks = _taskService.GetTasksByDocumentId(lastDocumentId);
+                    foreach (var task in tasks)
+                    {
+                        task.TaskAction = TaskAction.Nothing;
+                        task.TaskState = TaskState.Rejected;
+                        _taskService.Update(task);
+                    }
+                    lastDocument.DocumentState = DocumentState.Rejected;
+                    _documentService.Update(lastDocument);
+                }
                 var properTemplate = _documentTemplateService.GetById(model.SelectedDocumentTemplateId);
-                Person author = _personService.GetById(model.AuthorId);
+               
                 var document = new Document
                 {
                     Template = properTemplate,

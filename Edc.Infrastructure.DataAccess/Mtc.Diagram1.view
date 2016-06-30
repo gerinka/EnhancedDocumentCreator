@@ -1740,8 +1740,8 @@
               </Port>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>180.855670103093 px</Y>
+                  <X>Undefined</X>
+                  <Y>180.855682373047 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
@@ -1758,7 +1758,7 @@
               </PointD>
               <PointD>
                 <X>106 px</X>
-                <Y>383.017761230469 px</Y>
+                <Y>383.01775147929 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
@@ -1889,7 +1889,7 @@
               </Port>
               <Port>
                 <Location>
-                  <X>0 px</X>
+                  <X>Undefined</X>
                   <Y>178.073673248291 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
@@ -2073,7 +2073,7 @@
               </Port>
               <Port>
                 <Location>
-                  <X>0 px</X>
+                  <X>Undefined</X>
                   <Y>106.564630681818 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
