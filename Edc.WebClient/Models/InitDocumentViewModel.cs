@@ -20,5 +20,6 @@ namespace Edc.WebClient.Models
         public int SelectedDocumentTemplateId { get; set; }
         public Person User { get; set; }
         public int AuthorId { get; set; }
+        public bool HasExistingDocument { get; set; }
     }
 }

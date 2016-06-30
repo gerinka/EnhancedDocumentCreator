@@ -41,11 +41,14 @@ namespace Edc.WebClient.Controllers
             IEnumerable<DocumentTemplate> templates = _documentTemplateService.GetAll().ToList();
             var username = User.Identity.Name;
             Person author = _personService.GetByName(username);
+            var intDocumentId = _documentService.GetLastDocumentByUserId(username);
+            bool hasExistingDocument = intDocumentId != -1;
             var documentGenerator = new InitDocumentViewModel
             {
                 AllTemplates = templates,
                 User = author,
-                AuthorId = author.Id
+                AuthorId = author.Id,
+                HasExistingDocument = hasExistingDocument
             };
             return View("Index", documentGenerator);
         }

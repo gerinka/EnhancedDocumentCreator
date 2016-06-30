@@ -10,86 +10,99 @@
         Value = documentTemplate.Id.ToString(CultureInfo.InvariantCulture)
     }).ToList();
 }
-
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title active" data-section="1">Задай тема</h3>
-        @foreach (var template in Model.AllTemplates)
-        {
-            var index = 2;
-            foreach (var sectionItem in template.Sections)
-            {
-                <h3 class="panel-title hidden notselected" data-section="@index" data-type="structure" data-template="@template.Id">@sectionItem.Title</h3>
-                index ++;
-            }
-        }
-        <h3 class="panel-title hidden" data-section="3" id="summaryHeading">Потвърди</h3>
+@if (Model.HasExistingDocument)
+{
+    <div class="row">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-10">
+            <h1 class="text-center"><span class="label label-warning">Ако започнете нов документ, старият ще бъде маркиран като изтрит!</span></h1>
+            <p class="text-center">Върнете се на @Html.ActionLink("Дъска със задачи", "TaskBoard", "Tasks"), за да продължите настощия документ</p>
+        </div>
+        <div class="col-lg-1">
+        </div>
     </div>
-    <div class="panel-body">
-     
-        @using (Html.BeginForm("CreateDocument", "Document", FormMethod.Post, new { id = "createDocumentForm", @class = "form-horizontal" }))
-        {
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group active" data-section="1">
-                @Html.LabelFor(model => model.Topic, new { @class = "col-sm-2 control-label label-panel" })
-                <div class="col-sm-10">
-                    @Html.EditorFor(model => model.Topic, new { htmlAttributes = new { @class = "form-control" , @placeholder = "Заглавие"} })
-                    @Html.ValidationMessageFor(m => m.Topic, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group active" data-section="1">
-                @Html.LabelFor(model => model.Deadline, new { @class = "col-sm-2 control-label label-panel" })
-                <div class="col-sm-3">
-                    <div class="input-group date" id='deadline'>
-                        @Html.EditorFor(model => model.Deadline, new { htmlAttributes = new { @class = "form-control"} })
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group active" data-section="1">
-               @Html.LabelFor(model => model.SelectedDocumentTemplateId, new { @class = "col-sm-2 control-label label-panel" })
-                <div class="col-sm-10">
-                    @Html.DropDownListFor(
-                        model => model.SelectedDocumentTemplateId, 
-                        items, 
-                        string.Empty,
-                        new { @class = "selectpicker",
-                            @area_labelledby = "templateDropdownMenu",
-                            @id = "templateDropdown",
-                            @onchange = "PopulateSectionList()" 
-                        })
-                    @Html.ValidationMessageFor(m => m.SelectedDocumentTemplateId, "", new {@id = "templateDropdownError", @class = "text-danger" })
-                </div>
-            </div>
-
-            foreach (var template in Model.AllTemplates)
+}
+<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title active" data-section="1">Задай тема</h3>
+            @foreach (var template in Model.AllTemplates)
             {
                 var index = 2;
                 foreach (var sectionItem in template.Sections)
                 {
-
-                    <div class="form-group hidden notselected" data-section="@index" data-template="@template.Id">
-                        <div class="col-lg-8">
-                            <div class="checkbox checkbox-primary">
-                                <input type="checkbox" class="sections" name="sections" value="@sectionItem.Id" id="@sectionItem.Id">
-                                <label for="@sectionItem.Id">@sectionItem.Title</label>
-                            </div>
-                        </div>
-                        <div class="col-lg-8 col-lg-offset-1">
-                            @foreach (var subsection in sectionItem.Subsections)
-                            {
-                                <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" class="subsections" name="sections" value="@subsection.Id" id="@subsection.Id">
-                                    <label for="@subsection.Id">@subsection.Title</label>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                            index++;
+                    <h3 class="panel-title hidden notselected" data-section="@index" data-type="structure" data-template="@template.Id">@sectionItem.Title</h3>
+                    index ++;
                 }
             }
+            <h3 class="panel-title hidden" data-section="3" id="summaryHeading">Потвърди</h3>
+        </div>
+        <div class="panel-body">
+     
+            @using (Html.BeginForm("CreateDocument", "Document", FormMethod.Post, new { id = "createDocumentForm", @class = "form-horizontal" }))
+            {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group active" data-section="1">
+                    @Html.LabelFor(model => model.Topic, new { @class = "col-sm-2 control-label label-panel" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.Topic, new { htmlAttributes = new { @class = "form-control" , @placeholder = "Заглавие"} })
+                        @Html.ValidationMessageFor(m => m.Topic, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group active" data-section="1">
+                    @Html.LabelFor(model => model.Deadline, new { @class = "col-sm-2 control-label label-panel" })
+                    <div class="col-sm-3">
+                        <div class="input-group date" id='deadline'>
+                            @Html.EditorFor(model => model.Deadline, new { htmlAttributes = new { @class = "form-control"} })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group active" data-section="1">
+                    @Html.LabelFor(model => model.SelectedDocumentTemplateId, new { @class = "col-sm-2 control-label label-panel" })
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(
+                            model => model.SelectedDocumentTemplateId, 
+                            items, 
+                            string.Empty,
+                            new { @class = "selectpicker",
+                                @area_labelledby = "templateDropdownMenu",
+                                @id = "templateDropdown",
+                                @onchange = "PopulateSectionList()" 
+                            })
+                        @Html.ValidationMessageFor(m => m.SelectedDocumentTemplateId, "", new {@id = "templateDropdownError", @class = "text-danger" })
+                    </div>
+                </div>
+
+                foreach (var template in Model.AllTemplates)
+                {
+                    var index = 2;
+                    foreach (var sectionItem in template.Sections)
+                    {
+
+                        <div class="form-group hidden notselected" data-section="@index" data-template="@template.Id">
+                            <div class="col-lg-8">
+                                <div class="checkbox checkbox-primary">
+                                    <input type="checkbox" class="sections" name="sections" value="@sectionItem.Id" id="@sectionItem.Id">
+                                    <label for="@sectionItem.Id">@sectionItem.Title</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-lg-offset-1">
+                                @foreach (var subsection in sectionItem.Subsections)
+                                {
+                                    <div class="checkbox checkbox-primary">
+                                        <input type="checkbox" class="subsections" name="sections" value="@subsection.Id" id="@subsection.Id">
+                                        <label for="@subsection.Id">@subsection.Title</label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        index++;
+                    }
+                }
                 <div class="form-group hidden" data-section="3" id="summary">
 
                     <div class="col-lg-offset-2 col-lg-8">
@@ -98,21 +111,21 @@
                         </div>
                         <div class="text-justify top-buffer">
                             Вие сте задали да пишете документ на тема <strong>
-    <span id="summaryTitle"></span>
-</strong>
-    Вие сте избрали <strong>
-    <span id="summaryCountSections"></span>
-</strong>
-    подсекции, които ще бъдат основната структура на вашия документ. Ще бъдат генерирани точно толкова основни задачи, и ако поставения от вас краен срок позволява, ще бъдат генерирани няколко вълни от такива задачи.
-    Една подсекция ще се смята за завършена, когато написаният текст съдържа поне минималното количество думи.
-    Едновременно ще бъдат отключени не повече от 3 задачи.
-</div>
+                                                                          <span id="summaryTitle"></span>
+                                                                      </strong>
+                            Вие сте избрали <strong>
+                                                <span id="summaryCountSections"></span>
+                                            </strong>
+                            подсекции, които ще бъдат основната структура на вашия документ. Ще бъдат генерирани точно толкова основни задачи, и ако поставения от вас краен срок позволява, ще бъдат генерирани няколко вълни от такива задачи.
+                            Една подсекция ще се смята за завършена, когато написаният текст съдържа поне минималното количество думи.
+                            Едновременно ще бъдат отключени не повече от 3 задачи.
+                        </div>
                         <div class="col-lg-1 top-buffer">
                             <span class="glyphicon glyphicon-calendar info-icon" aria-hidden="true"></span>
                         </div>
                         <div class="text-justify top-buffer">
                             Като краен срок сте задали датата <strong><span id="summaryDeadline"></span></strong>. Базирайки се на този краен срок, индивидуалният краен срок на всяка от задачите ще бъде изчислен. При изтичане на този краен срок и незапочване/незавършване на задачата - тя ще бъда обозначена по специален начин.
-</div>
+                        </div>
                         <div class="col-lg-1 top-buffer">
                             <span class="glyphicon glyphicon-check info-icon" aria-hidden="true"></span>
                         </div>
@@ -130,20 +143,22 @@
                     </div>
                     @Html.HiddenFor(x => x.AuthorId, new { id = "author" })
                 </div>
-        }
-                <nav>
-                    <ul class="pager">
-                        <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Назад</a></li>
-                        <li class="next"><a href="#">Напред <span aria-hidden="true">&rarr;</span></a></li>
-                    </ul>
-                </nav>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                        0%
-                    </div>
+            }
+            <nav>
+                <ul class="pager">
+                    <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Назад</a></li>
+                    <li class="next"><a href="#">Напред <span aria-hidden="true">&rarr;</span></a></li>
+                </ul>
+            </nav>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    0%
                 </div>
             </div>
+        </div>
+    </div>
 </div>
+
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/topicCreator")
