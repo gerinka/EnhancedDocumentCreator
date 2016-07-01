@@ -52,7 +52,6 @@ namespace Edc.Domain.Services
             throw new NotImplementedException();
         }
 
-
         public void UpdateSectionContent(int sectionContentId, string title, string mainText, IEnumerable<Keyword> keywords)
         {
             SectionContent sectionContent = ModelHelper.Mapper(
@@ -80,6 +79,18 @@ namespace Edc.Domain.Services
                 default:
                     throw new InvalidOperationException("No such file format found");
             }
+        }
+
+        public string GenerateDummyText(string title, IList<Keyword> keywords)
+        {
+            SectionContent sectionContent = ModelHelper.Mapper(
+                _structureContentRepository.Get(
+                sc => sc.Title.Equals(title)
+                    && !sc.KEYWORDs.Select(k=>k.Id).Except(keywords.Select(ks=>ks.Id)).Any()
+                ).FirstOrDefault());
+            if (sectionContent == null)
+                return "Няма открити съвпадения :(";
+            return sectionContent.MainText;
         }
 
         private int CalculateProgress(string mainText, int minWordCount)

@@ -10,5 +10,6 @@ namespace Edc.Domain.Services.Interfaces
         IEnumerable<Keyword> GetKeywordsPerDocument(int documentId);
         IEnumerable<Keyword> AddOrUpdateKeywords(string keywords, SectionContent sectionContent);
         IEnumerable<Keyword> GetKeywordsPerTerm(string term);
+        IEnumerable<Keyword> GetAllByName(string[] enteredKeywords);
     }
 }

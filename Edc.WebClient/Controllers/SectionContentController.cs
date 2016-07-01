@@ -73,6 +73,15 @@ namespace Edc.WebClient.Controllers
             return Json(new { keywords }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetPlaceholderText(string title, string keywords)
+        {
+            string[] separators = { ", "};
+            string[] enteredKeywords = keywords.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+            IList<Keyword> resultKeywords = _keywordService.GetAllByName(enteredKeywords).ToList();
+            string placeholdertext = _sectionContentService.GenerateDummyText(title, resultKeywords);
+            return Json(new { placeholdertext }, JsonRequestBehavior.AllowGet);
+        }
+
         #region getdocumentresult
         //
         // Get: /Document/GetDocx

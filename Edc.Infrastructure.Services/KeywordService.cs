@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Linq.Expressions;
 using Edc.Domain.Models;
 using Edc.Domain.Services.Interfaces;
 using Edc.Infrastructure.DataAccess.Interfaces;
@@ -98,6 +99,11 @@ namespace Edc.Domain.Services
         public IEnumerable<Keyword> GetKeywordsPerTerm(string term)
         {
             return _keywordRepository.Get(k => k.Name.Contains(term)).Select(ModelHelper.Mapper);
+        }
+
+        public IEnumerable<Keyword> GetAllByName(string[] enteredKeywords)
+        {
+            return enteredKeywords.Select(GetByName).Where(dbKeyword => dbKeyword != null).ToList();
         }
     }
 }

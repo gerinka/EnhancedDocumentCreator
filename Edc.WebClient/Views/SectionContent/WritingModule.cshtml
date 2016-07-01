@@ -20,6 +20,7 @@
                 <div class="col-lg-9">
                     <input type="text" class="form-control" id="tokenfield" name="keywords" value="@keywords"/>
                 </div>
+                <button type="button" class="btn btn-primary" onclick="getPlaceholderText()"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span></button>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.MainText, new { @class = "col-lg-2 label-panel control-label" })
@@ -63,6 +64,18 @@
 @section scripts{
     @Scripts.Render("~/bundles/jqueryui")
     <script>
+        function getPlaceholderText() {
+            var sectionTitle = $("#Title").val();
+            var keywords = $("#tokenfield").val();
+            if (sectionTitle.length > 0 && keywords.length > 0) {
+                $.getJSON("/SectionContent/GetPlaceholderText?title="+sectionTitle+"&keywords="+keywords, function(data) {
+                    var mainText = data.mainText;
+                    $("#MainText").attr("placeholder", mainText);
+                    $("#MainText").val(mainText);
+                });
+            }
+        }
+
         function getGeneratedSectionDocument(sectionContentId, type) {
             if (type == 'docx') {
                 window.location = "/SectionContent/GetDocx?sectionContentId=" + sectionContentId;
@@ -82,9 +95,9 @@
 
             $('#tokenfield').tokenfield({
                 autocomplete: {
-                    source: function (request, response) {
-                        $.getJSON("/SectionContent/GetTags?term=" + request.term, function (data) {
-                            response($.map(data.keywords, function (value) {
+                    source: function(request, response) {
+                        $.getJSON("/SectionContent/GetTags?term=" + request.term, function(data) {
+                            response($.map(data.keywords, function(value) {
                                 return {
                                     label: value.Name,
                                     key: value.Id
