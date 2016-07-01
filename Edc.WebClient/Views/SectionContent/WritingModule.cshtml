@@ -69,7 +69,7 @@
             var keywords = $("#tokenfield").val();
             if (sectionTitle.length > 0 && keywords.length > 0) {
                 $.getJSON("/SectionContent/GetPlaceholderText?title="+sectionTitle+"&keywords="+keywords, function(data) {
-                    var mainText = data.mainText;
+                    var mainText = data.placeholdertext;
                     $("#MainText").attr("placeholder", mainText);
                     $("#MainText").val(mainText);
                 });

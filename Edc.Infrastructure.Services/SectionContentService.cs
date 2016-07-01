@@ -83,14 +83,17 @@ namespace Edc.Domain.Services
 
         public string GenerateDummyText(string title, IList<Keyword> keywords)
         {
-            SectionContent sectionContent = ModelHelper.Mapper(
-                _structureContentRepository.Get(
-                sc => sc.Title.Equals(title)
-                    && !sc.KEYWORDs.Select(k=>k.Id).Except(keywords.Select(ks=>ks.Id)).Any()
-                ).FirstOrDefault());
-            if (sectionContent == null)
-                return "Няма открити съвпадения :(";
-            return sectionContent.MainText;
+            IList<SectionContent> sectionContents =
+                _structureContentRepository.Get(sc=>sc.Title.Equals(title)).Select(ModelHelper.Mapper).ToList();
+            foreach (var sectionContent in sectionContents)
+            {
+                if (sectionContent.MainText.Length > 0 && !sectionContent.Keywords.Select(k => k.Id).Except(keywords.Select(ks => ks.Id)).Any())
+                {
+                    return sectionContent.MainText;
+                }
+            }
+             return "Няма открити съвпадения :(";
+           
         }
 
         private int CalculateProgress(string mainText, int minWordCount)
