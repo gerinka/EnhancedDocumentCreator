@@ -87,7 +87,9 @@ namespace Edc.Domain.Services
                 _structureContentRepository.Get(sc=>sc.Title.Equals(title)).Select(ModelHelper.Mapper).ToList();
             foreach (var sectionContent in sectionContents)
             {
-                if (sectionContent.MainText.Length > 0 && !sectionContent.Keywords.Select(k => k.Id).Except(keywords.Select(ks => ks.Id)).Any())
+                IList<int> sameKeywords =
+                    sectionContent.Keywords.Select(k => k.Id).Intersect(keywords.Select(ks => ks.Id)).ToList();
+                if (sectionContent.MainText.Length > 0 && sameKeywords.Count == keywords.Count && sameKeywords.Count == sectionContent.Keywords.Count)
                 {
                     return sectionContent.MainText;
                 }
