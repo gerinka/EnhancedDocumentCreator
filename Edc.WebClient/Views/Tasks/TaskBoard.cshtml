@@ -40,16 +40,17 @@
         </div>
     </div>
 }
-else if (Model.DocumentIsActive)
+else if (!Model.DocumentIsActive)
 {
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <h1 class="text-center"><span class="label label-warning">Този документ е маркиран като отказан</span></h1>
-            <p class="text-center">Върнете се на @Html.ActionLink("Генерирай структура", "GenerateMainStructure", "Document"), за да започнете работа</p>
+            <p class="text-center">Отидете на @Html.ActionLink("Дъска със задачи", "TaskBoard", "Tasks"), за да завършите настоящия си документ, ако имате.</p>
+            <p class="text-center">Върнете се на @Html.ActionLink("Генерирай структура", "GenerateMainStructure", "Document"), за да започнете нова разработка</p>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
         </div>
     </div>
 }
