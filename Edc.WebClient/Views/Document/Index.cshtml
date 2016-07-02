@@ -148,7 +148,7 @@
             <nav>
                 <ul class="pager">
                     <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Назад</a></li>
-                    <li class="next"><a href="#">Напред <span aria-hidden="true">&rarr;</span></a></li>
+                    <li class="next @(@Model.IsHelpOn? "disabled":"")"><a href="#">Напред <span aria-hidden="true">&rarr;</span></a></li>
                 </ul>
             </nav>
             <div class="progress">
@@ -226,7 +226,8 @@
                 onShow: function() {
                     if (@Json.Encode(Model.IsHelpOn)) {
                           $('#labelForTemplate').tipso('update','hideDelay', 7000);
-                        $('#labelForTemplate').tipso('hide');
+                         $('#labelForTemplate').tipso('hide');
+                         $('li.next').removeClass("disabled");
                     }
                 },
                 onHide: function() {
