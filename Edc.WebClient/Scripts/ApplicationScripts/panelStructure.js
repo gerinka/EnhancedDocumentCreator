@@ -18,6 +18,7 @@
     $(".next").on("click", function () {
         var selectedTemplate = $('#templateDropdown');
         if (selectedTemplate.val().length > 0) {
+            $(".tipso").tipso("hide");
             var index = parseInt($(".panel-heading h3.active")[0].dataset.section);
             var total = $(".panel-heading h3:not(.notselected)").length;
             if (index + 1 <= total) {

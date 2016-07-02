@@ -45,7 +45,7 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group active" data-section="1">
                     @Html.LabelFor(model => model.Topic, new { @class = "col-sm-2 control-label label-panel", @id = "labelForTopic" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-6">
                         @Html.EditorFor(model => model.Topic, new { htmlAttributes = new { @class = "form-control" , @placeholder = "Заглавие"} })
                         @Html.ValidationMessageFor(m => m.Topic, "", new { @class = "text-danger" })
                     </div>
@@ -169,11 +169,16 @@
                 content: 'Добре дошли на страницата за създаване основата на вашия документ.',
                 background: '#5cb85c',
                 onHide: function() {
-                    jQuery('#labelForTopic').tipso('show');
+                    if (@Json.Encode(Model.IsHelpOn)) {
+                         $('.panel-heading').tipso('update','hideDelay', 0);
+                        $('#labelForTopic').tipso('show');
+                    }
                 },
-                hideDelay: 3000,
                 onShow: function() {
-                    jQuery('.panel-heading').tipso('hide');
+                    if (@Json.Encode(Model.IsHelpOn)) {
+                        $('.panel-heading').tipso('update','hideDelay', 3000);
+                        $('.panel-heading').tipso('hide');
+                    }
                 },
                 width: 600,
                 showArrow: false
@@ -181,41 +186,59 @@
             jQuery('#labelForTopic').tipso({
                 content: 'Тук можете да въведете темата, за която ще пишете.',
                 background: '#5cb85c',
-                position: "top-left",
+                position: "top-right",
                 onHide: function() {
-                    jQuery('#labelForDeadline').tipso('show');
+                    if (@Json.Encode(Model.IsHelpOn)) {
+                          $('#labelForTopic').tipso('update','hideDelay', 0);
+                        $('#labelForDeadline').tipso('show');
+                    }
                 },
-                hideDelay: 5000,
                 onShow: function() {
-                    jQuery('#labelForTopic').tipso('hide');
+                    if (@Json.Encode(Model.IsHelpOn)) {
+                          $('#labelForTopic').tipso('update','hideDelay', 5000);
+                        $('#labelForTopic').tipso('hide');
+                    }
                 },
-                maxWidth: '400'
+                showArrow: false
             });
             jQuery('#labelForDeadline').tipso({
                 content: 'Трябва да зададете до коя дата се очаква да е готов документът.',
                 background: '#5cb85c',
-                position: "top-left",
+                position: "top-right",
                 onHide: function() {
-                    jQuery('#labelForTemplate').tipso('show');
+                    if (@Json.Encode(Model.IsHelpOn)) {
+                          $('#labelForDeadline').tipso('update','hideDelay', 0);
+                        $('#labelForTemplate').tipso('show');
+                    }
                 },
-                hideDelay: 5000,
                 onShow: function() {
-                    jQuery('#labelForDeadline').tipso('hide');
+                    if (@Json.Encode(Model.IsHelpOn)) {
+                          $('#labelForDeadline').tipso('update','hideDelay', 5000);
+                        $('#labelForDeadline').tipso('hide');
+                    }
                 },
-                maxWidth: '400'
+                showArrow: false
             });
             jQuery('#labelForTemplate').tipso({
                 content: 'Изберете най-подходящият шаблон за вашия документ. По този начин ще може да му се състави структурата автоматично.',
                 background: '#5cb85c',
-                position: "bottom-left",
-                hideDelay: 7000,
+                position: "bottom-right",
                 onShow: function() {
-                    jQuery('#labelForTemplate').tipso('hide');
+                    if (@Json.Encode(Model.IsHelpOn)) {
+                          $('#labelForTemplate').tipso('update','hideDelay', 7000);
+                        $('#labelForTemplate').tipso('hide');
+                    }
                 },
-                width: 600
+                onHide: function() {
+                    if (@Json.Encode(Model.IsHelpOn)) {
+                        $('#labelForTemplate').tipso('update','hideDelay', 0);
+                    }
+                },
+                width: 600,
+                showArrow: false
             });
             if (@Json.Encode(Model.IsHelpOn)) {
-                jQuery('.panel-heading').tipso('show');
+                $('.panel-heading').tipso('show');
             }
         });
     </script>
