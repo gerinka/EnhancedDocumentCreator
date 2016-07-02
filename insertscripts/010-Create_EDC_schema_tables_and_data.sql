@@ -258,6 +258,9 @@ CREATE TABLE `user` (
   `Password` varchar(45) NOT NULL,
   `ExperiencePoints` int(11) DEFAULT NULL,
   `Level` smallint(6) DEFAULT NULL,
+  `FirstDocumentStructure` int(2) DEFAULT '1',
+  `FirstTaskBoard` int(2) DEFAULT '1',
+  `FirstWritingContent` int(2) DEFAULT '1',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
