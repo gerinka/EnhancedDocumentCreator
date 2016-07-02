@@ -25,5 +25,6 @@ namespace Edc.WebClient.Models
         public int DocumentId { get; set; }
         [Display(Name = "Ключови думи")]
         public IEnumerable<Keyword> Keywords { get; set; }
+        public int MinWordsNeeded { get; set; }
     }
 }

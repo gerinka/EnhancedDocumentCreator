@@ -22,6 +22,7 @@
     "bootstrap-select": "^1.10.0",
     "bootstrap-tokenfield": "^0.12.1",
     "jquery-ui": "jqueryui#^1.11.4",
-    "bootstrap3-wysihtml5-bower": "^0.3.3"
+    "bootstrap3-wysihtml5-bower": "^0.3.3",
+    "webui-popover": "^1.2.12"
   }
 }

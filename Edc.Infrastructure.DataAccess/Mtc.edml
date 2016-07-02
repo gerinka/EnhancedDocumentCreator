@@ -166,6 +166,9 @@
           <Property Name="Password" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
           <Property Name="ExperiencePoints" Type="int" />
           <Property Name="Level" Type="smallint" />
+          <Property Name="FirstDocumentStructure" Type="int" DefaultValue="0" />
+          <Property Name="FirstTaskBoard" Type="int" DefaultValue="0" />
+          <Property Name="FirstWritingContent" Type="int" />
         </EntityType>
         <EntityType Name="keyword">
           <Key>
@@ -504,6 +507,9 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="74a27332-dd8e-49f9-8852-22bf6ef22867" />
           <Property Name="ExperiencePoints" Type="Int32" ed:ValidateRequired="false" ed:Guid="45bd9b62-a06d-43c8-bb50-0f7da8a6d797" />
           <Property Name="Level" Type="Int16" ed:ValidateRequired="false" ed:Guid="d5eee569-6576-4586-9072-0ecd95a75631" />
+          <Property Name="FirstDocumentStructure" Type="Int32" DefaultValue="0" ed:ValidateRequired="false" ed:Guid="40a16888-9987-428a-8068-3b6f1caf3ae2" />
+          <Property Name="FirstTaskBoard" Type="Int32" DefaultValue="0" ed:ValidateRequired="false" ed:Guid="a0e62ad3-9b5c-4b7a-ae93-91f9fbf360a6" />
+          <Property Name="FirstWritingContent" Type="Int32" ed:ValidateRequired="false" ed:Guid="19894307-9cb3-4bfc-9934-c31897ca86f4" />
           <NavigationProperty Name="DOCUMENTs_MentorId" Relationship="MtcModel.FK_DocumentMentor_ID" FromRole="USER_MentorId" ToRole="DOCUMENTs_MentorId" ed:Guid="7551516b-cd8a-451d-aefc-95a05ac23bc7" />
           <NavigationProperty Name="DOCUMENTs_UserId" Relationship="MtcModel.FK_DocumentUser_ID" FromRole="USER_UserId" ToRole="DOCUMENTs_UserId" ed:Guid="956bc570-140f-49c6-a407-89a71a6775ad" />
           <NavigationProperty Name="TASKs" Relationship="MtcModel.FK_TaskUser_Id" FromRole="USER" ToRole="TASKs" ed:Guid="2e09641a-a93e-47e1-8477-3029e1967789" />
@@ -754,6 +760,9 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ExperiencePoints" ColumnName="ExperiencePoints" />
                 <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="FirstDocumentStructure" ColumnName="FirstDocumentStructure" />
+                <ScalarProperty Name="FirstTaskBoard" ColumnName="FirstTaskBoard" />
+                <ScalarProperty Name="FirstWritingContent" ColumnName="FirstWritingContent" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -45,7 +45,8 @@ namespace Edc.WebClient.Controllers
                 CurrentSectionContentId = currentTask.Section.Content.Id,
                 IsDisabled = isDisabled,
                 DocumentId = currentTask.Section.Content.DocumentId,
-                Keywords = _keywordService.GetKeywordsPerSectionContent(currentTask.Section.Content.Id)
+                Keywords = _keywordService.GetKeywordsPerSectionContent(currentTask.Section.Content.Id),
+                MinWordsNeeded = currentTask.Section.MinWordCount
             };
             return View("WritingModule", writingContent);
         }
