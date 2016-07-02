@@ -107,7 +107,7 @@ namespace Edc.WebClient.Controllers
                 document = _documentService.Create(document);
                 author.FirstTimeDocument = false;
                 _personService.Update(author);
-                _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.MaxCycle,
+                _taskService.GenerateTasks(document.Id, document.Deadline, document.Author, document.MaxCycle, document.ActiveTasksCount,
                     document.Sections.Where(s => s.Content != null));
 
                 return RedirectToAction("TaskBoard", "Tasks", new { documentId = document.Id });

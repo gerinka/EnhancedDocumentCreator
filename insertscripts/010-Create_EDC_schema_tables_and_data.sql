@@ -143,7 +143,7 @@ DROP TABLE IF EXISTS `structurecontent`;
 CREATE TABLE `structurecontent` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `StructureElementId` int(11) NOT NULL,
-  `Title` varchar(45) DEFAULT NULL,
+  `Title` varchar(245) DEFAULT NULL,
   `Content` longblob,
   `DocumentId` int(11) NOT NULL,
   `Order` int(11) NOT NULL,
@@ -223,7 +223,7 @@ DROP TABLE IF EXISTS `task`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `task` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Title` varchar(45) NOT NULL,
+  `Title` varchar(245) NOT NULL,
   `AssignTo` int(11) DEFAULT NULL,
   `TaskState` int(11) NOT NULL,
   `Deadline` datetime NOT NULL,

@@ -112,7 +112,7 @@ namespace Edc.Domain.Services
             return task;
         }
 
-        public IEnumerable<Task> GenerateTasks(int documentId, DateTime documentDeadline, Person author, int totalCycles, IEnumerable<Section> sections)
+        public IEnumerable<Task> GenerateTasks(int documentId, DateTime documentDeadline, Person author, int totalCycles, int activeTasksCount, IEnumerable<Section> sections)
         {
 
             var sectionList = sections.ToList();
@@ -131,7 +131,7 @@ namespace Edc.Domain.Services
                         {
                             Title = section.Title,
                             Section = subsection,
-                            TaskState = wave == 0 && section.Order == 1?TaskState.ToDo : TaskState.Locked,
+                            TaskState = wave == 0 && order <= activeTasksCount ? TaskState.ToDo : TaskState.Locked,
                             TaskType = TaskType.Task,
                             AssignTo = author,
                             Deadline = DeadlineCalculator.CalculateDeadline(documentDeadline, previousTasks, totalSubsections, wave),

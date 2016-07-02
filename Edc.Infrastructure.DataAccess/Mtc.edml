@@ -113,7 +113,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="StructureElementId" Type="int" Nullable="false" />
-          <Property Name="Title" Type="varchar" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="Title" Type="varchar" MaxLength="245" Collation="utf8_general_ci" />
           <Property Name="Content" Type="longblob" />
           <Property Name="DocumentId" Type="int" Nullable="false" />
           <Property Name="Order" Type="int" Nullable="false" />
@@ -144,7 +144,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="45" Collation="utf8_general_ci" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="245" Collation="utf8_general_ci" />
           <Property Name="AssignTo" Type="int" />
           <Property Name="TaskState" Type="int" Nullable="false" />
           <Property Name="Deadline" Type="datetime" Nullable="false" />
@@ -451,7 +451,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="d8a9d8fc-8682-47f2-9172-fd0d05e93f12" />
           <Property Name="StructureElementId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="11a45536-9a31-44f5-899c-2d1310e476aa" />
-          <Property Name="Title" Type="String" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="a6638c80-4c8d-4c41-bd3c-2aafc7a4402e" />
+          <Property Name="Title" Type="String" MaxLength="245" ed:ValidateMaxLength="245" ed:ValidateRequired="false" ed:Guid="a6638c80-4c8d-4c41-bd3c-2aafc7a4402e" />
           <Property Name="Content" Type="Binary" ed:ValidateRequired="false" ed:Guid="2eff1d0a-f7ad-478a-a06c-651aca21c580" />
           <Property Name="DocumentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4ac3d507-54c5-471a-a051-2b61da667b3f" />
           <Property Name="Order" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="f88ed712-be7d-4c4b-9c07-1426d0205826" />
@@ -482,7 +482,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="418d4098-bdf8-4570-9fed-22838542d417" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="45" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="6526bf66-4f94-41fb-b9a9-99ca8b829d94" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="245" ed:ValidateMaxLength="245" ed:ValidateRequired="true" ed:Guid="6526bf66-4f94-41fb-b9a9-99ca8b829d94" />
           <Property Name="AssignTo" Type="Int32" ed:ValidateRequired="false" ed:Guid="a710e5c8-e36b-4d1a-bcfe-d0c3d5c87547" />
           <Property Name="TaskState" Type="MtcModel.TaskState" Nullable="false" ed:ValidateRequired="true" ed:Guid="c4892671-ba20-415b-aa35-0e631c0ff32c" />
           <Property Name="Deadline" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="8dbc50f6-5e45-4116-ba6d-da5f14bc9917" />
