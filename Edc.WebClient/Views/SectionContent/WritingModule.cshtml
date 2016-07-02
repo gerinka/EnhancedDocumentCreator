@@ -63,6 +63,7 @@
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap-wysiwyg")
     <script>
         function getPlaceholderText() {
             var sectionTitle = $("#Title").val();
@@ -91,7 +92,9 @@
                 $('#MainText').attr('disabled', 'disabled');
                 $('#Title').attr('disabled', 'disabled');
                 $('#tokenfield').attr('disabled', 'disabled');
-            };
+            } else {
+                $('#MainText').wysihtml5();
+            }
 
             $('#tokenfield').tokenfield({
                 autocomplete: {
