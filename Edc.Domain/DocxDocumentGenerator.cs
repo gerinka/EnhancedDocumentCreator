@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using iTextSharp.text.pdf;
@@ -76,10 +77,20 @@ namespace Edc.Domain
  
                 var h2 = document.InsertParagraph(sectionToBeGenerated.Title, false, Heading2Format());
                 h2.StyleName = "Heading2";
-
                 var normal = document.InsertParagraph(sectionToBeGenerated.MainText, false, ParagraphFormat());
                 normal.StyleName = "Normal";
+                /*var text = sectionToBeGenerated.MainText.Replace("&nbsp;", "");
+                string[] separators = { "<br>", "<br/>"};
+                string[] paragraphs = text.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var paragraph in paragraphs)
+                {
+                    Paragraph p1 = document.InsertParagraph();
 
+                    // Append content to the Paragraph
+                    p1.AppendLine(paragraph).Append("bold").Bold() ;
+                    var normal = document.InsertParagraph(paragraph, false, ParagraphFormat());
+                    normal.StyleName = "Normal";
+                }*/
                 document.Save();
                 return ms;
             }

@@ -281,6 +281,7 @@
     <Content Include="bower_components\bootstrap-tokenfield\dist\css\bootstrap-tokenfield.min.css" />
     <Content Include="bower_components\bootstrap-tokenfield\dist\css\tokenfield-typeahead.css" />
     <Content Include="bower_components\bootstrap-tokenfield\dist\css\tokenfield-typeahead.min.css" />
+    <Content Include="bower_components\bootstrap3-wysihtml5-bower\dist\bootstrap3-wysihtml5.all.js" />
     <Content Include="bower_components\bootstrap3-wysihtml5-bower\dist\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="bower_components\bootstrap3-wysihtml5-bower\dist\bootstrap3-wysihtml5.min.css" />
     <Content Include="bower_components\bootstrap3-wysihtml5-bower\dist\bootstrap3-wysihtml5.min.js" />

@@ -34,7 +34,7 @@ namespace Edc.WebClient
                       "~/bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-wysiwyg").Include(
-                      "~/bower_components/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js"));
+                      "~/bower_components/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/topicCreator").Include(
                      "~/Scripts/ApplicationScripts/*.js"));

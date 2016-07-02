@@ -69,7 +69,7 @@
             var sectionTitle = $("#Title").val();
             var keywords = $("#tokenfield").val();
             if (sectionTitle.length > 0 && keywords.length > 0) {
-                $.getJSON("/SectionContent/GetPlaceholderText?title="+sectionTitle+"&keywords="+keywords, function(data) {
+                $.getJSON("/SectionContent/GetPlaceholderText?title=" + sectionTitle + "&keywords=" + keywords, function(data) {
                     var mainText = data.placeholdertext;
                     $("#MainText").attr("placeholder", mainText);
                     $("#MainText").val(mainText);
@@ -93,7 +93,16 @@
                 $('#Title').attr('disabled', 'disabled');
                 $('#tokenfield').attr('disabled', 'disabled');
             } else {
-                $('#MainText').wysihtml5();
+                /*
+                $('#MainText').wysihtml5({toolbar: {
+                    "font-styles": false, //Font styling, e.g. h1, h2, etc.
+                    "emphasis":  true, //Italics, bold, etc.
+                    "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers.
+                    "html": false, //Button which allows you to edit the generated HTML.
+                    "link": true, //Button to insert a link.
+                    "image": false, //Button to insert an image.
+                    'blockquote': false, //Button to insert quotes
+                }});*/
             }
 
             $('#tokenfield').tokenfield({

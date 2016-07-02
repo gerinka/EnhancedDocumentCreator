@@ -32,8 +32,8 @@ namespace Edc.Domain
                         if (subsection.Content.CurrentProgress > 0)
                         {
                             tw.WriteLine("Подсекция:\t" + subsection.Title);
-                            string tempText = Regex.Replace(subsection.Content.MainText, @"<[^>]+>|&nbsp;", "").Trim();
-                            tw.Write("Текст:\t" + tempText.Replace(Environment.NewLine, " "));
+                            //string tempText = Regex.Replace(subsection.Content.MainText, @"<[^>]+>|&nbsp;", "").Trim();
+                            tw.Write("Текст:\t" + subsection.Content.MainText.Replace(Environment.NewLine, " "));
                             tw.WriteLine();
                         }
                     }
@@ -50,8 +50,8 @@ namespace Edc.Domain
                 TextWriter tw = new StreamWriter(ms);
 
                 tw.WriteLine("Заглавие:\t" + sectionToBeGenerated.Title);
-                string tempText = Regex.Replace(sectionToBeGenerated.MainText, @"<[^>]+>|&nbsp;", "").Trim();
-                tw.Write("Текст:\t" + tempText.Replace(Environment.NewLine, " "));
+               // string tempText = Regex.Replace(sectionToBeGenerated.MainText, @"<[^>]+>|&nbsp;", "").Trim();
+                tw.Write("Текст:\t" + sectionToBeGenerated.MainText.Replace(Environment.NewLine, " "));
                 tw.WriteLine();
 
                 tw.Close();
