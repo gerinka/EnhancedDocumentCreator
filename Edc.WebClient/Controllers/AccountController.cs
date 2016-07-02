@@ -165,7 +165,10 @@ namespace Edc.WebClient.Controllers
                         Email = model.Email,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
-                        Password = model.Password
+                        Password = model.Password,
+                        FirstTimeContent = true,
+                        FirstTimeTasks = true,
+                        FirstTimeDocument = true
                     });
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
