@@ -44,14 +44,14 @@
             {
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group active" data-section="1">
-                    @Html.LabelFor(model => model.Topic, new { @class = "col-sm-2 control-label label-panel" })
+                    @Html.LabelFor(model => model.Topic, new { @class = "col-sm-2 control-label label-panel", @id = "labelForTopic" })
                     <div class="col-sm-10">
                         @Html.EditorFor(model => model.Topic, new { htmlAttributes = new { @class = "form-control" , @placeholder = "Заглавие"} })
                         @Html.ValidationMessageFor(m => m.Topic, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group active" data-section="1">
-                    @Html.LabelFor(model => model.Deadline, new { @class = "col-sm-2 control-label label-panel" })
+                    @Html.LabelFor(model => model.Deadline, new { @class = "col-sm-2 control-label label-panel", @id = "labelForDeadline" })
                     <div class="col-sm-3">
                         <div class="input-group date" id='deadline'>
                             @Html.EditorFor(model => model.Deadline, new { htmlAttributes = new { @class = "form-control"} })
@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="form-group active" data-section="1">
-                    @Html.LabelFor(model => model.SelectedDocumentTemplateId, new { @class = "col-sm-2 control-label label-panel" })
+                    @Html.LabelFor(model => model.SelectedDocumentTemplateId, new { @class = "col-sm-2 control-label label-panel", @id = "labelForTemplate" })
                     <div class="col-sm-10">
                         @Html.DropDownListFor(
                             model => model.SelectedDocumentTemplateId, 
@@ -164,6 +164,59 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/topicCreator")
     <script>
-        
+        $(document).ready(function() {
+            jQuery('.panel-heading').tipso({
+                content: 'Добре дошли на страницата за създаване основата на вашия документ.',
+                background: '#5cb85c',
+                onHide: function() {
+                    jQuery('#labelForTopic').tipso('show');
+                },
+                hideDelay: 3000,
+                onShow: function() {
+                    jQuery('.panel-heading').tipso('hide');
+                },
+                width: 600,
+                showArrow: false
+            });
+            jQuery('#labelForTopic').tipso({
+                content: 'Тук можете да въведете темата, за която ще пишете.',
+                background: '#5cb85c',
+                position: "top-left",
+                onHide: function() {
+                    jQuery('#labelForDeadline').tipso('show');
+                },
+                hideDelay: 5000,
+                onShow: function() {
+                    jQuery('#labelForTopic').tipso('hide');
+                },
+                maxWidth: '400'
+            });
+            jQuery('#labelForDeadline').tipso({
+                content: 'Трябва да зададете до коя дата се очаква да е готов документът.',
+                background: '#5cb85c',
+                position: "top-left",
+                onHide: function() {
+                    jQuery('#labelForTemplate').tipso('show');
+                },
+                hideDelay: 5000,
+                onShow: function() {
+                    jQuery('#labelForDeadline').tipso('hide');
+                },
+                maxWidth: '400'
+            });
+            jQuery('#labelForTemplate').tipso({
+                content: 'Изберете най-подходящият шаблон за вашия документ. По този начин ще може да му се състави структурата автоматично.',
+                background: '#5cb85c',
+                position: "bottom-left",
+                hideDelay: 7000,
+                onShow: function() {
+                    jQuery('#labelForTemplate').tipso('hide');
+                },
+                width: 600
+            });
+            if (@Json.Encode(Model.IsHelpOn)) {
+                jQuery('.panel-heading').tipso('show');
+            }
+        });
     </script>
 }

@@ -31,10 +31,14 @@ namespace Edc.WebClient
                       "~/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
                       "~/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js",
                       "~/bower_components/bootstrap-select/dist/js/i18n/defaults-bg_BG.min.js",
-                      "~/bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield.min.js"));
+                      "~/bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield.min.js",
+                      "~/bower_components/tipso/src/tipso.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-wysiwyg").Include(
                       "~/bower_components/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap-wysiwyg").Include(
+                     "~/bower_components/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/topicCreator").Include(
                      "~/Scripts/ApplicationScripts/*.js"));
@@ -49,7 +53,8 @@ namespace Edc.WebClient
                       "~/bower_components/jquery-ui/themes/base/jquery-ui.min.css",
                       "~/bower_components/bootstrap-tokenfield/dist/css/bootstrap-tokenfield.min.css",
                       "~/bower_components/bootstrap-tokenfield/dist/css/tokenfield-typeahead.min.css",
-                      "~/bower_components/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.css"));
+                      "~/bower_components/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.css",
+                      "~/bower_components/tipso/src/tipso.min.css"));
         }
     }
 }

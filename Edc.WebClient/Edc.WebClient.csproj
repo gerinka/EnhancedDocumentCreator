@@ -644,6 +644,8 @@
     <Content Include="bower_components\moment\templates\globals.js" />
     <Content Include="bower_components\moment\templates\locale-header.js" />
     <Content Include="bower_components\moment\templates\test-header.js" />
+    <Content Include="bower_components\tipso\src\tipso.min.css" />
+    <Content Include="bower_components\tipso\src\tipso.min.js" />
     <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\css\bootstrap-theme.css" />
     <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\css\bootstrap.css" />
@@ -656,6 +658,9 @@
     <Content Include="bower_components\twitter-bootstrap-wizard\bootstrap\js\npm.js" />
     <Content Include="bower_components\twitter-bootstrap-wizard\jquery.bootstrap.wizard.js" />
     <Content Include="bower_components\twitter-bootstrap-wizard\jquery.bootstrap.wizard.min.js" />
+    <Content Include="bower_components\webui-popover\dist\jquery.webui-popover.js" />
+    <Content Include="bower_components\webui-popover\dist\jquery.webui-popover.min.css" />
+    <Content Include="bower_components\webui-popover\dist\jquery.webui-popover.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
