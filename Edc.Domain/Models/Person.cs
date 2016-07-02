@@ -13,7 +13,9 @@ namespace Edc.Domain.Models
         public string Email { get; set; }
         public int? ExperiencePoints { get; set; }
         public short? Level { get; set; }
-        
+        public bool FirstTimeDocument { get; set; }
+        public bool FirstTimeTasks { get; set; }
+        public bool FirstTimeContent { get; set; }
         public string Password
         {
             get

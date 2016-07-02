@@ -167,7 +167,10 @@ namespace Edc.Domain.Services
                     Id = user.Id,
                     ExperiencePoints = user.ExperiencePoints,
                     Level = user.Level,
-                    Password = user.Password
+                    Password = user.Password,
+                    FirstTimeDocument = user.FirstDocumentStructure == 1,
+                    FirstTimeContent = user.FirstWritingContent == 1,
+                    FirstTimeTasks = user.FirstTaskBoard == 1
                 };
             }
             return null;
@@ -183,7 +186,10 @@ namespace Edc.Domain.Services
                 Id = person.Id,
                 ExperiencePoints = person.ExperiencePoints,
                 Level = person.Level,
-                Password = person.Password
+                Password = person.Password,
+                FirstDocumentStructure = person.FirstTimeDocument?1:0,
+                FirstTaskBoard = person.FirstTimeTasks?1:0,
+                FirstWritingContent = person.FirstTimeContent?1:0,
             };
         }
 

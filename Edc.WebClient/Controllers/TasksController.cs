@@ -20,11 +20,13 @@ namespace Edc.WebClient.Controllers
     {
         private readonly IDocumentService _documentService;
         private readonly ITaskService _taskService;
+        private readonly IPersonService _personService;
 
-        public TasksController(IDocumentService documentService, ITaskService taskService)
+        public TasksController(IDocumentService documentService, ITaskService taskService, IPersonService personService)
         {
             _documentService = documentService;
             _taskService = taskService;
+            _personService = personService;
         }
 
     #region taskboard
@@ -33,6 +35,8 @@ namespace Edc.WebClient.Controllers
         [Route("TaskBoard/{documentId?}")]
         public ActionResult TaskBoard(string documentId)
         {
+            var username = User.Identity.Name;
+            var user = _personService.GetByName(username);
             var intDocumentId = 0;
             var hasActiveDocument = false;
             if (!String.IsNullOrEmpty(documentId))
@@ -41,7 +45,6 @@ namespace Edc.WebClient.Controllers
             }
             else
             {
-                var username = User.Identity.Name;
                 intDocumentId = _documentService.GetLastDocumentByUserId(username);
             }
             if (intDocumentId > 0)
@@ -70,7 +73,8 @@ namespace Edc.WebClient.Controllers
                         .OrderBy(t => t.Id)
                         .ToList(),
                 DocumentId = intDocumentId,
-                DocumentIsActive = hasActiveDocument
+                DocumentIsActive = hasActiveDocument,
+                IsHelpOn = user.FirstTimeTasks
             };
             return View(taskboard);
         }

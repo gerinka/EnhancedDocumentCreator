@@ -1848,8 +1848,8 @@
               </Port>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>35.4929577464794 px</Y>
+                  <X>Undefined</X>
+                  <Y>35.492957746479 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
@@ -2079,7 +2079,7 @@
               </Port>
               <Port>
                 <Location>
-                  <X>0 px</X>
+                  <X>Undefined</X>
                   <Y>160.545774647887 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>

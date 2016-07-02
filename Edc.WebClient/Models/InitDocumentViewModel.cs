@@ -21,5 +21,6 @@ namespace Edc.WebClient.Models
         public Person User { get; set; }
         public int AuthorId { get; set; }
         public bool HasExistingDocument { get; set; }
+        public bool IsHelpOn { get; set; }
     }
 }

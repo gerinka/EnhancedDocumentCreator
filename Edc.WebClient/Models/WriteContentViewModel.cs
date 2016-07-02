@@ -26,5 +26,6 @@ namespace Edc.WebClient.Models
         [Display(Name = "Ключови думи")]
         public IEnumerable<Keyword> Keywords { get; set; }
         public int MinWordsNeeded { get; set; }
+        public bool IsHelpOn { get; set; }
     }
 }

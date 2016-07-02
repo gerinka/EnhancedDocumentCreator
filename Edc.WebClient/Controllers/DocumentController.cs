@@ -48,7 +48,8 @@ namespace Edc.WebClient.Controllers
                 AllTemplates = templates,
                 User = author,
                 AuthorId = author.Id,
-                HasExistingDocument = hasExistingDocument
+                HasExistingDocument = hasExistingDocument,
+                IsHelpOn = author.FirstTimeDocument
             };
             return View("Index", documentGenerator);
         }

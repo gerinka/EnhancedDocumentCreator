@@ -21,18 +21,22 @@ namespace Edc.WebClient.Controllers
         private readonly ITaskService _taskService;
         private readonly ISectionContentService _sectionContentService;
         private readonly IKeywordService _keywordService;
+        private readonly IPersonService _personService;
 
-        public SectionContentController(ITaskService taskService, ISectionContentService sectionContentService, IKeywordService keywordService)
+        public SectionContentController(ITaskService taskService, ISectionContentService sectionContentService, IKeywordService keywordService, IPersonService personService)
         {
  
             _taskService = taskService;
             _sectionContentService = sectionContentService;
             _keywordService = keywordService;
+            _personService = personService;
         }
 
         [Route("WritingModule/{taskId?}/{isDisabled}")]
         public ActionResult GoToWritingModule(int taskId, bool isDisabled = false)
         {
+            var username = User.Identity.Name;
+            var user = _personService.GetByName(username);
             Task currentTask = _taskService.GetById(taskId);
             var writingContent = new WriteContentViewModel
             {
@@ -46,7 +50,8 @@ namespace Edc.WebClient.Controllers
                 IsDisabled = isDisabled,
                 DocumentId = currentTask.Section.Content.DocumentId,
                 Keywords = _keywordService.GetKeywordsPerSectionContent(currentTask.Section.Content.Id),
-                MinWordsNeeded = currentTask.Section.MinWordCount
+                MinWordsNeeded = currentTask.Section.MinWordCount,
+                IsHelpOn = user.FirstTimeContent
             };
             return View("WritingModule", writingContent);
         }
