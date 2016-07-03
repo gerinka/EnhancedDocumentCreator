@@ -10,11 +10,15 @@
     <div class="col-lg-4">
     </div>
     <div class="col-lg-4">
+        @if (totalTasks > 0)
+        {
+            <p class="text-primary text-center"><em>@Model.DocumentTopic</em></p>
+        }
     </div>
     <div class="col-lg-4">
-        @if (totalTasks>0)
+        @if (totalTasks > 0)
         {
-            <p class="text-right">Генериране на документ</p>
+            <p class="text-right text-muted small">Генериране на документ</p>
             <div style="float: left;" class="pull-right">
                 <button type="button" class="btn btn-primary" onclick="getGeneratedDocument(@Model.DocumentId, 'txt') ">txt</button>
                 @if (!(Model.InProgressTasks.Any() || Model.ToDoTasks.Any()) && Model.DoneTasks.Any())

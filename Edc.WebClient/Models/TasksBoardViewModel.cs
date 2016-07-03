@@ -14,5 +14,6 @@ namespace Edc.WebClient.Models
         public int DocumentId { get; set; }
         public bool DocumentIsActive { get; set; }
         public bool IsHelpOn { get; set; }
+        public string DocumentTopic { get; set; }
     }
 }

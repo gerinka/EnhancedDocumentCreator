@@ -39,6 +39,7 @@ namespace Edc.WebClient.Controllers
             var user = _personService.GetByName(username);
             var intDocumentId = 0;
             var hasActiveDocument = false;
+            var documentTitle = "";
             IEnumerable<Task> taskList = new List<Task>();
             if (!String.IsNullOrEmpty(documentId))
             {
@@ -53,6 +54,7 @@ namespace Edc.WebClient.Controllers
                 var document = _documentService.GetById(intDocumentId);
                 hasActiveDocument = document.DocumentState != DocumentState.Rejected;
                 taskList = _taskService.GetTasksByDocumentId(intDocumentId).ToList();
+                documentTitle = document.Title;
             }
             
             var taskboard = new TasksBoardViewModel
@@ -76,7 +78,8 @@ namespace Edc.WebClient.Controllers
                         .ToList(),
                 DocumentId = intDocumentId,
                 DocumentIsActive = hasActiveDocument,
-                IsHelpOn = user.FirstTimeTasks
+                IsHelpOn = user.FirstTimeTasks,
+                DocumentTopic = documentTitle
             };
             return View(taskboard);
         }
