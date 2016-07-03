@@ -91,10 +91,14 @@ namespace Edc.Domain.Services
                 _taskRepository.Update(ModelHelper.Mapper(task));
                 _structureContentRepository.Update(ModelHelper.Mapper(task.Section.Content));
             }
-            else if (task.Section.Content.CurrentProgress > 95)
+            else if (task.Section.Content.CurrentProgress > 95 || document.CurrentProgress > 85)
             {
                 task.TaskState = TaskState.Done;
-                task.Section.Content.CurrentProgress = 100;
+                if (task.Section.Content.CurrentProgress > 95)
+                {
+                    task.Section.Content.CurrentProgress = 100;
+                    
+                }
                 _taskRepository.Update(ModelHelper.Mapper(task));
                 _structureContentRepository.Update(ModelHelper.Mapper(task.Section.Content));
             }

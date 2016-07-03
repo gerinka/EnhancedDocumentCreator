@@ -85,7 +85,8 @@ namespace Edc.Domain.Services
         {
             Document document = GetById(documentId);
             document.CurrentProgress = (int)
-                Math.Floor((double) document.Tasks.Count(t => t.TaskState == TaskState.Done)*100/document.Tasks.Count);
+                Math.Floor((double)document.Sections.SelectMany(s => s.Subsections).Count(ss => ss.Content != null && ss.Content.CurrentProgress == 100) * 100 / document.Sections.SelectMany(s => s.Subsections).Count(ss=>ss.Content != null));
+            if (document.Tasks.All(t => t.TaskState == TaskState.Done)) document.CurrentProgress = 100;
             if (document.CurrentProgress >= 100)
             {
                 document.CurrentProgress = 100;
