@@ -57,6 +57,10 @@ input[type="radio"].styled:checked label:after,
   color: #31708f;
   background-color: #d9edf7;
   border-color: #bce8f1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 40px;
+     white-space: nowrap;
 }
 .locked > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #bce8f1;
@@ -87,6 +91,10 @@ input[type="radio"].styled:checked label:after,
   color: #8a6d3b;
   background-color: #fcf8e3;
   border-color: #faebcc;
+      overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 40px;
+     white-space: nowrap;
 }
 .inprogress > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #faebcc;
@@ -116,6 +124,10 @@ input[type="radio"].styled:checked label:after,
   color: #ffffff;
   background-color: #337ab7;
   border-color: #337ab7;
+      overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 40px;
+     white-space: nowrap;
 }
 .todo > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #337ab7;
@@ -146,6 +158,10 @@ input[type="radio"].styled:checked label:after,
   color: #a94442;
   background-color: #f2dede;
   border-color: #ebccd1;
+      overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 40px;
+     white-space: nowrap;
 }
 .expired > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #ebccd1;
@@ -175,6 +191,10 @@ input[type="radio"].styled:checked label:after,
   color: #3c763d;
   background-color: #dff0d8;
   border-color: #d6e9c6;
+      overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 40px;
+     white-space: nowrap;
 }
 .done > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #d6e9c6;
