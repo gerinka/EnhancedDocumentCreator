@@ -37,7 +37,7 @@ namespace Edc.Domain
                 doc.Add(new Paragraph(documentToBeGenerated.Title, times));
                 doc.Add(new Paragraph(documentToBeGenerated.Author.ToString(), times));
 
-                doc.Add(new Paragraph("Ключови думи" + String.Join(", ", documentToBeGenerated.GetDocumentTopKeywords().Select(k => k.Name)), times));
+                doc.Add(new Paragraph("Ключови думи: " + String.Join(", ", documentToBeGenerated.GetDocumentTopKeywords().Select(k => k.Name)), times));
                 
                 var sectionIndex = 1;
                 foreach (var section in documentToBeGenerated.Sections)
