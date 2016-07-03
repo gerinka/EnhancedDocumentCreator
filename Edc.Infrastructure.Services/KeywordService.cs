@@ -64,7 +64,7 @@ namespace Edc.Domain.Services
 
         public IEnumerable<Keyword> AddOrUpdateKeywords(string keywords, SectionContent sectionContent)
         {
-            string[] separators = { ", "};
+            string[] separators = { ", ", ","};
             IList<Keyword> currentKeywords = sectionContent.Keywords.ToList();
             string[] lastKeywords = keywords.Split(separators, StringSplitOptions.RemoveEmptyEntries);
             IList<Keyword> addKeywords = new List<Keyword>();

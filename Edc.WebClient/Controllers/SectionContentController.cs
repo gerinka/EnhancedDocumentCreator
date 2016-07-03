@@ -81,7 +81,7 @@ namespace Edc.WebClient.Controllers
 
         public ActionResult GetPlaceholderText(string title, string keywords)
         {
-            string[] separators = { ", "};
+            string[] separators = { ", ", ","};
             string[] enteredKeywords = keywords.Split(separators, StringSplitOptions.RemoveEmptyEntries);
             IList<Keyword> resultKeywords = _keywordService.GetAllByName(enteredKeywords).ToList();
             string placeholdertext = _sectionContentService.GenerateDummyText(title, resultKeywords);
