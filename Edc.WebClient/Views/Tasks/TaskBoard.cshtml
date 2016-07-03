@@ -12,19 +12,19 @@
     <div class="col-lg-4">
         @if (totalTasks > 0)
         {
-            <p class="text-primary text-center"><em>@Model.DocumentTopic</em></p>
+            <p class="text-primary text-center"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><em>@Model.DocumentTopic</em></p>
         }
     </div>
     <div class="col-lg-4">
         @if (totalTasks > 0)
         {
-            <p class="text-right text-muted small">Генериране на документ</p>
+           <!--<p class="text-right text-muted small">Генериране на документ</p>--> 
             <div style="float: left;" class="pull-right">
-                <button type="button" class="btn btn-primary" onclick="getGeneratedDocument(@Model.DocumentId, 'txt') ">txt</button>
+                <button type="button" class="btn btn-primary" onclick="getGeneratedDocument(@Model.DocumentId, 'txt') "><span class="glyphicon glyphicon-export" aria-hidden="true"></span> txt</button>
                 @if (!(Model.InProgressTasks.Any() || Model.ToDoTasks.Any()) && Model.DoneTasks.Any())
                 {
-                    <button type="button" class="btn btn-primary" onclick="getGeneratedDocument(@Model.DocumentId, 'docx') ">docx</button>
-                    <button type="button" class="btn btn-primary" onclick="getGeneratedDocument(@Model.DocumentId, 'pdf') ">pdf</button>
+                    <button type="button" class="btn btn-primary" onclick="getGeneratedDocument(@Model.DocumentId, 'docx') "><span class="glyphicon glyphicon-export" aria-hidden="true"></span> docx</button>
+                    <button type="button" class="btn btn-primary" onclick="getGeneratedDocument(@Model.DocumentId, 'pdf') "><span class="glyphicon glyphicon-export" aria-hidden="true"></span> pdf</button>
                 }
             </div>
         }
@@ -34,13 +34,13 @@
 {
     <div class="row">
         <div class="col-lg-4">
-            <h3 class="text-center"><span class="label label-default">Незапочнати задачи</span></h3>
+            <h3 class="text-center"><span class="label label-default"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Незапочнати задачи</span></h3>
         </div>
         <div class="col-lg-4">
-            <h3 class="text-center"><span class="label label-warning">Задачи в процес</span></h3>
+            <h3 class="text-center"><span class="label label-warning"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Задачи в процес</span></h3>
         </div>
         <div class="col-lg-4">
-            <h3 class="text-center"><span class="label label-success">Завършени задачи</span></h3>
+            <h3 class="text-center"><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Завършени задачи</span></h3>
         </div>
     </div>
 }
