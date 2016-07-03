@@ -176,6 +176,7 @@ namespace Edc.Domain.Services
                 foreach (var task in taskList.Where(t => t.TaskState == TaskState.Locked).OrderBy(t => t.Deadline).Take(activeTasksCount - currentUnclockedTaskCount))
                 {
                     task.TaskState = TaskState.ToDo;
+                    task.TaskAction = TaskAction.Start;
                     isAnytaskChanged = true;
                 }
             }
