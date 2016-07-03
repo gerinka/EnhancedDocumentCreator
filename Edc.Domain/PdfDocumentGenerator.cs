@@ -32,9 +32,13 @@ namespace Edc.Domain
                 FontFactory.Register(arialuniTff);
 
                 var bfR = BaseFont.CreateFont(arialuniTff, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-                doc.AddTitle(documentToBeGenerated.Title);
-                doc.Add(new Paragraph("Ключови думи" + String.Join(", ", documentToBeGenerated.GetDocumentTopKeywords().Select(k => k.Name))));
                 var times = new Font(bfR, 12, Font.NORMAL, BaseColor.BLACK);
+                doc.AddTitle(documentToBeGenerated.Title);
+                doc.Add(new Paragraph(documentToBeGenerated.Title, times));
+                doc.Add(new Paragraph(documentToBeGenerated.Author.ToString(), times));
+
+                doc.Add(new Paragraph("Ключови думи" + String.Join(", ", documentToBeGenerated.GetDocumentTopKeywords().Select(k => k.Name)), times));
+                
                 var sectionIndex = 1;
                 foreach (var section in documentToBeGenerated.Sections)
                 {
