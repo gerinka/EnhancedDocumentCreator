@@ -40,7 +40,9 @@ namespace Edc.Api.Controllers
             {
                 Author = d.Author.ToString(),
                 Id = d.Id,
-                Title = d.Title
+                Title = d.Title,
+                Deadline = d.Deadline,
+                State = d.DocumentState.ToString()
             });
         }
 

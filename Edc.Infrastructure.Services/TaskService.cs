@@ -59,9 +59,13 @@ namespace Edc.Domain.Services
         public IEnumerable<Task> GetTasksByDocumentId(int documentId)
         {
             var taskList = _taskRepository.Get(t => t.DocumentId == documentId).Select(ModelHelper.Mapper).ToList();
-            var activeTasksCount = _documentRepository.GetById(documentId).ActiveTasksCount;
-            UnlockNewTasks(taskList, activeTasksCount);
-            ExpireTasks(taskList);
+            var document = _documentRepository.GetById(documentId);
+            if(document!=null)
+            {
+                var activeTasksCount = document.ActiveTasksCount;
+                UnlockNewTasks(taskList, activeTasksCount);
+                ExpireTasks(taskList);
+            }
             return taskList;
         }
 
