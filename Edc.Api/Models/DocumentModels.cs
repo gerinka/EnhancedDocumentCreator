@@ -30,11 +30,15 @@ namespace Edc.Api.Models
     public class SectionModel
     {
         public string Title { get; set; }
-        public string MainText { get; set; }
-        public int CurrentProgress { get; set; }
-        public ICollection<KeywordModel> Keywords { get; set; } 
+        public ICollection<SubsectionModel> Subsections { get; set; } 
     }
-
+    public class SubsectionModel
+    {
+        public string Title { get; set; }
+        public int CurrentProgress { get; set; }
+        public ICollection<KeywordModel> Keywords { get; set; }
+        public string MainText { get; set; }
+    }
     public class DocumentTasksModel
     {
         public int Id { get; set; }

@@ -64,6 +64,7 @@ namespace Edc.Api.Controllers
                     Id = document.Id,
                     Title = document.Title,
                     Keywords = document.GetDocumentTopKeywords().Select(k => new KeywordModel {Name = k.Name}).ToList(),
+                    Sections = document.Sections.Select(MapSectionToSectionModel).ToList()
 
                 };
             }
@@ -88,6 +89,27 @@ namespace Edc.Api.Controllers
                 FileName = documentForCreate.Title + ".csv"
             };
             return result;
+        }
+
+        private SectionModel MapSectionToSectionModel(Section section)
+        {
+            return new SectionModel
+            {
+                Subsections = section.Subsections.Where(s=>s.Content!=null).Select(s=>mapSubsectionToSubsectionModel(s.Content)).ToList(),
+                Title = section.Title
+            };
+        }
+
+        private SubsectionModel mapSubsectionToSubsectionModel(SectionContent content)
+        {
+
+            return new SubsectionModel
+            {
+                Title = content.Title,
+                CurrentProgress = content.CurrentProgress,
+                Keywords = content.Keywords.Select(k=> new KeywordModel{Name=k.Name}).ToList(),
+                MainText = content.MainText
+            };
         }
     }
 }
