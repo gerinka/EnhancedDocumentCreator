@@ -32,8 +32,8 @@ namespace Edc.WebClient.Controllers
     #region taskboard
 
         //Tasks/TaskBoard/DocumentId
-        [Route("TaskBoard/{documentId?}")]
-        public ActionResult TaskBoard(string documentId)
+       // [Route("TaskBoard/{documentId?}")]
+        public ActionResult TaskBoard(string documentId, bool isAdmin = false)
         {
             var username = User.Identity.Name;
             var user = _personService.GetByName(username);

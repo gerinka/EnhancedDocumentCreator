@@ -31,7 +31,7 @@
                         <li class="@Html.IsSelected(actions: "TaskBoard", controllers: "Tasks")">@Html.ActionLink("Дъска със задачи", "TaskBoard", "Tasks")</li>
                         if (User.IsInRole("Admin"))
                         {
-                            <li class="@Html.IsSelected(actions: "TaskBoard", controllers: "Tasks")">@Html.ActionLink("Списък с документи", "DocumentsForCheck", "Document")</li>
+                            <li class="@Html.IsSelected(actions: "DocumentsForCheck", controllers: "Document")">@Html.ActionLink("Списък с документи", "DocumentsForCheck", "Document")</li>
                         }
                     }
                 </ul>
