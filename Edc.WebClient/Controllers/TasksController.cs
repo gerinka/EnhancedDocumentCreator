@@ -56,32 +56,55 @@ namespace Edc.WebClient.Controllers
                 taskList = _taskService.GetTasksByDocumentId(intDocumentId).ToList();
                 documentTitle = document.Title;
             }
-            
             var taskboard = new TasksBoardViewModel
             {
-                DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).Take(12).ToList(),
-                InProgressTasks =
+                DocumentId = intDocumentId,
+                DocumentIsActive = hasActiveDocument,
+                IsHelpOn = user.FirstTimeTasks,
+                DocumentTopic = documentTitle
+            };
+            if (isAdmin)
+            {
+                taskboard.
+               DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).ToList();
+                taskboard.InProgressTasks =
+                    taskList.Where(
+                        t =>
+                            t.TaskState == TaskState.InProgress ||
+                            (t.Section.Content.CurrentProgress > 0 && t.TaskState == TaskState.Expired))
+                        .OrderBy(t => t.Id)
+                        .ToList();
+                taskboard.ToDoTasks =
+                    taskList.Where(
+                        t =>
+                            t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo ||
+                            (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired))
+                        .OrderBy(t => t.Id)
+                        .ToList();
+            }
+            else
+            {
+                taskboard.
+                    DoneTasks = taskList.Where(t => t.TaskState == TaskState.Done).OrderBy(t => t.Id).Take(12).ToList();
+                taskboard.InProgressTasks =
                     taskList.Where(
                         t =>
                             t.TaskState == TaskState.InProgress ||
                             (t.Section.Content.CurrentProgress > 0 && t.TaskState == TaskState.Expired))
                         .Take(6)
                         .OrderBy(t => t.Id)
-                        .ToList(),
-                ToDoTasks =
+                        .ToList();
+                taskboard.ToDoTasks =
                     taskList.Where(
                         t =>
                             t.TaskState == TaskState.Locked || t.TaskState == TaskState.ToDo ||
                             (t.Section.Content.CurrentProgress == 0 && t.TaskState == TaskState.Expired))
                         .Take(6)
                         .OrderBy(t => t.Id)
-                        .ToList(),
-                DocumentId = intDocumentId,
-                DocumentIsActive = hasActiveDocument,
-                IsHelpOn = user.FirstTimeTasks,
-                DocumentTopic = documentTitle
-            };
-            return View(taskboard);
+                        .ToList();
+            }
+           return View(taskboard);
+            
         }
 
         //
