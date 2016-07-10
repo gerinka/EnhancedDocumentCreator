@@ -9,25 +9,21 @@
         <tr>
             <th>Име</th>
             <th>Email адрес</th>
-            <th>Админ</th>
-            <th>Ръководител</th>
+            <th data-checkbox="true">Админ</th>
+            <th data-checkbox="true">Ръководител</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var person in Model.AllUsers)
-        {
+    @for (var i = 0; i < Model.AllUsers.Count; i++)
+    {
             <tr>
-                <td>@person.Name</td>
-                <td>@person.Email</td>
+                <td>@Model.AllUsers[i].Name</td>
+                <td>@Model.AllUsers[i].Email</td>
                 <td>
-                    <div class="checkbox checkbox-primary">
-                        <input type="checkbox" name="isAdmin" value="isAdmin" checked>
-                    </div> 
+                        @Html.CheckBoxFor(m => @Model.AllUsers[i].IsAdmin)
                 </td>
                 <td>
-                    <div class="checkbox checkbox-primary">
-                        <input type="checkbox" name="canBeMentor" value="canBeMentor" >
-                    </div>
+                        @Html.CheckBoxFor(m => @Model.AllUsers[i].CanBeMentor)
                 </td>
             </tr>
         }
