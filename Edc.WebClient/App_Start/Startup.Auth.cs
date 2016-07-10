@@ -22,6 +22,7 @@ namespace Edc.WebClient
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
             roleManager.Create(new IdentityRole("Admin"));
             roleManager.Create(new IdentityRole("Writer"));
+            roleManager.Create(new IdentityRole("Mentor"));
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
             // Configure the sign in cookie

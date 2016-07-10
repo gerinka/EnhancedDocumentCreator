@@ -16,6 +16,8 @@ namespace Edc.Domain.Models
         public bool FirstTimeDocument { get; set; }
         public bool FirstTimeTasks { get; set; }
         public bool FirstTimeContent { get; set; }
+        public bool IsAdmin { get; set; }
+        public bool CanBeMentor { get; set; }
         public string Password
         {
             get

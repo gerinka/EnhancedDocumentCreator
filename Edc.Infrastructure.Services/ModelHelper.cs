@@ -170,7 +170,9 @@ namespace Edc.Domain.Services
                     Password = user.Password,
                     FirstTimeDocument = user.FirstDocumentStructure == 1,
                     FirstTimeContent = user.FirstWritingContent == 1,
-                    FirstTimeTasks = user.FirstTaskBoard == 1
+                    FirstTimeTasks = user.FirstTaskBoard == 1,
+                    IsAdmin = user.IsAdmin == 1,
+                    CanBeMentor = user.CanBeMentor == 1,
                 };
             }
             return null;
@@ -190,6 +192,8 @@ namespace Edc.Domain.Services
                 FirstDocumentStructure = person.FirstTimeDocument?1:0,
                 FirstTaskBoard = person.FirstTimeTasks?1:0,
                 FirstWritingContent = person.FirstTimeContent?1:0,
+                IsAdmin = person.IsAdmin?1:0,
+                CanBeMentor = person.CanBeMentor?1:0,
             };
         }
 

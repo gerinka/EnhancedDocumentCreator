@@ -119,6 +119,7 @@
           <Property Name="Order" Type="int" Nullable="false" />
           <Property Name="CurrentProgress" Type="int" Nullable="false" DefaultValue="0" />
           <Property Name="MinWordCount" Type="int" Nullable="false" DefaultValue="1" />
+          <Property Name="HtmlContent" Type="longblob" />
         </EntityType>
         <EntityType Name="structureelement">
           <Key>
@@ -169,6 +170,8 @@
           <Property Name="FirstDocumentStructure" Type="int" DefaultValue="1" />
           <Property Name="FirstTaskBoard" Type="int" DefaultValue="1" />
           <Property Name="FirstWritingContent" Type="int" DefaultValue="1" />
+          <Property Name="CanBeMentor" Type="int" DefaultValue="0" />
+          <Property Name="IsAdmin" Type="int" DefaultValue="0" />
         </EntityType>
         <EntityType Name="keyword">
           <Key>
@@ -457,6 +460,7 @@
           <Property Name="Order" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="f88ed712-be7d-4c4b-9c07-1426d0205826" />
           <Property Name="CurrentProgress" Type="Int32" Nullable="false" DefaultValue="0" ed:ValidateRequired="true" ed:Guid="a9308848-d63d-49f7-b5ed-14fa3d490969" />
           <Property Name="MinWordCount" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="5c90b950-44dd-4965-ae60-132918596ed8" />
+          <Property Name="HtmlContent" Type="Binary" ed:ValidateRequired="false" ed:Guid="3948144f-0289-40bb-b97b-c639f695065e" />
           <NavigationProperty Name="DOCUMENT" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="STRUCTURECONTENTs" ToRole="DOCUMENT" ed:Guid="21f8c64b-3bcf-4f21-ab6e-ce2e193a6266" />
           <NavigationProperty Name="STRUCTUREELEMENT" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="STRUCTURECONTENTs" ToRole="STRUCTUREELEMENT" ed:Guid="c6b03497-458d-4862-a536-76226a71f1a2" />
           <NavigationProperty Name="TASKs" Relationship="MtcModel.FK_TaskStructureContent_Id" FromRole="STRUCTURECONTENT" ToRole="TASKs" ed:Guid="c919c061-a826-4c03-b72b-7acc5e9bd396" />
@@ -510,6 +514,8 @@
           <Property Name="FirstDocumentStructure" Type="Int32" DefaultValue="1" ed:ValidateRequired="false" ed:Guid="40a16888-9987-428a-8068-3b6f1caf3ae2" />
           <Property Name="FirstTaskBoard" Type="Int32" DefaultValue="1" ed:ValidateRequired="false" ed:Guid="a0e62ad3-9b5c-4b7a-ae93-91f9fbf360a6" />
           <Property Name="FirstWritingContent" Type="Int32" DefaultValue="1" ed:ValidateRequired="false" ed:Guid="19894307-9cb3-4bfc-9934-c31897ca86f4" />
+          <Property Name="CanBeMentor" Type="Int32" DefaultValue="0" ed:ValidateRequired="false" ed:Guid="5b15a03d-cd26-4fd9-b98b-483f340bd9ab" />
+          <Property Name="IsAdmin" Type="Int32" DefaultValue="0" ed:ValidateRequired="false" ed:Guid="145076a0-a96b-40b4-9a4d-ce291e384ad3" />
           <NavigationProperty Name="DOCUMENTs_MentorId" Relationship="MtcModel.FK_DocumentMentor_ID" FromRole="USER_MentorId" ToRole="DOCUMENTs_MentorId" ed:Guid="7551516b-cd8a-451d-aefc-95a05ac23bc7" />
           <NavigationProperty Name="DOCUMENTs_UserId" Relationship="MtcModel.FK_DocumentUser_ID" FromRole="USER_UserId" ToRole="DOCUMENTs_UserId" ed:Guid="956bc570-140f-49c6-a407-89a71a6775ad" />
           <NavigationProperty Name="TASKs" Relationship="MtcModel.FK_TaskUser_Id" FromRole="USER" ToRole="TASKs" ed:Guid="2e09641a-a93e-47e1-8477-3029e1967789" />
@@ -718,6 +724,7 @@
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="CurrentProgress" ColumnName="CurrentProgress" />
                 <ScalarProperty Name="MinWordCount" ColumnName="MinWordCount" />
+                <ScalarProperty Name="HtmlContent" ColumnName="HtmlContent" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -763,6 +770,8 @@
                 <ScalarProperty Name="FirstDocumentStructure" ColumnName="FirstDocumentStructure" />
                 <ScalarProperty Name="FirstTaskBoard" ColumnName="FirstTaskBoard" />
                 <ScalarProperty Name="FirstWritingContent" ColumnName="FirstWritingContent" />
+                <ScalarProperty Name="CanBeMentor" ColumnName="CanBeMentor" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

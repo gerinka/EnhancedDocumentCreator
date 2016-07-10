@@ -45,5 +45,15 @@ namespace Edc.Domain.Services
         {
             throw new NotImplementedException();
         }
+
+        public IList<Person> GetAllAvailableMentors()
+        {
+            return _userRepository.Get(u => u.CanBeMentor == 1).Select(ModelHelper.Mapper).ToList();
+        }
+
+        public IList<Person> GetAllAdmins()
+        {
+            return _userRepository.Get(u => u.IsAdmin == 1).Select(ModelHelper.Mapper).ToList();
+        }
     }
 }

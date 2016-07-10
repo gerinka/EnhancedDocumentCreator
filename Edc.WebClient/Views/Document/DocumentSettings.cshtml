@@ -1,9 +1,41 @@
-﻿
+﻿@model Edc.WebClient.Models.DocumentViewModel
 @{
     ViewBag.Title = "Настройки на документ";
 }
 
-<h2>Настройки на документ</h2>
+<div class="panel panel-primary">
+    <div class="panel-heading"><h3 class="panel-title">Настройки на документа</h3></div>
+    <div class="panel-body">
+        @using (Html.BeginForm("UpdateDocumentSettings", "Document", FormMethod.Post, new { id = "updateDocumentSettingsForm", @class = "form-horizontal" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, new { @class = "col-lg-2 label-panel control-label" })
+                <div class="col-lg-9">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = @Model.Title } })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="col-lg-3">
+                    <button type="submit" class="btn btn-primary pull-right" id="save">
+                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                        <span>Запазване</span>
+                    </button>
+                    <button type="submit" class="btn btn-primary pull-right" id="save">
+                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                        <span>Запазване</span> 
+                    </button>
+                </div>
+            </div>
+
+            @Html.HiddenFor(x => x.MentorId, new { id = "CurrentTaskId" })
+            @Html.HiddenFor(x => x.AuthorId, new { id = "CurrentSectionContentId" })
+            @Html.HiddenFor(x => x.Id, new { id = "DocumentId" })
+        }
+    </div>
+</div>
 
 @section scripts{
     

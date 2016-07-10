@@ -22,9 +22,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="@Html.IsSelected(actions: "Index", controllers: "Home")">@Html.ActionLink("Начало", "Index", "Home")</li>
-                    <li class="@Html.IsSelected(actions: "About", controllers: "Home")">@Html.ActionLink("За приложението", "About", "Home")</li>
-                    <li class="@Html.IsSelected(actions: "Contact", controllers: "Home")">@Html.ActionLink("Контакти", "Contact", "Home")</li>
                     @if (Request.IsAuthenticated)
                     {
                         <li class="@Html.IsSelected(actions: "GenerateMainStructure", controllers: "Document")">@Html.ActionLink("Генерирай структура", "GenerateMainStructure", "Document")</li>
@@ -33,6 +30,12 @@
                         {
                             <li class="@Html.IsSelected(actions: "DocumentsForCheck", controllers: "Document")">@Html.ActionLink("Списък с документи", "DocumentsForCheck", "Document")</li>
                         }
+                    }
+                    else
+                    {
+                        <li class="@Html.IsSelected(actions: "Index", controllers: "Home")">@Html.ActionLink("Начало", "Index", "Home")</li>
+                        <li class="@Html.IsSelected(actions: "About", controllers: "Home")">@Html.ActionLink("За приложението", "About", "Home")</li>
+                        <li class="@Html.IsSelected(actions: "Contact", controllers: "Home")">@Html.ActionLink("Контакти", "Contact", "Home")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

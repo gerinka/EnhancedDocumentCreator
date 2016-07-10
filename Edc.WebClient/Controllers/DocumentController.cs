@@ -54,7 +54,7 @@ namespace Edc.WebClient.Controllers
             return View("Index", documentGenerator);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Mentor")]
         public ActionResult DocumentsForCheck()
         {
             var username = User.Identity.Name;
@@ -64,6 +64,45 @@ namespace Edc.WebClient.Controllers
             return View(new DocumentsViewModel{Documents = documents});
         }
 
+        public ActionResult UpdateDocumentSettings(int documentId)
+        {
+            var document = _documentService.GetById(documentId);
+            IList<Person> availableMentors = _personService.GetAllAvailableMentors();
+            return View(new DocumentViewModel
+            {
+                ActiveTasksCount = document.ActiveTasksCount,
+                AuthorId = document.Author.Id,
+                MentorId = document.Mentor.Id,
+                Mentor = document.Mentor,
+                AvailableMentors = availableMentors,
+                Title = document.Title,
+                Deadline = document.Deadline,
+                Id = documentId
+            });
+        }
+
+        //
+        // POST: /Document/CreateDocument
+        [HttpPost]
+        public ActionResult UpdateDocumentSettings(DocumentViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string username = User.Identity.Name;
+                Person author = _personService.GetByName(username);
+                Person mentor = _personService.GetById(model.MentorId);
+                var document = _documentService.GetById(model.Id);
+                if (document.Author.Id == author.Id)
+                {
+                    document.ActiveTasksCount = model.ActiveTasksCount;
+                    document.Mentor = mentor;
+                    document.Title = document.Title;
+                    document.Deadline = document.Deadline;
+                    _documentService.Update(document);
+                }
+            }
+            return View("Index", model);
+        }
         //
         // POST: /Document/CreateDocument
         [HttpPost]
