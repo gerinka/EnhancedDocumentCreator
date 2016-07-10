@@ -52,12 +52,13 @@ namespace Edc.Domain.Services
             throw new NotImplementedException();
         }
 
-        public void UpdateSectionContent(int sectionContentId, string title, string mainText, IEnumerable<Keyword> keywords)
+        public void UpdateSectionContent(int sectionContentId, string title, string mainText, string comments, IEnumerable<Keyword> keywords)
         {
             SectionContent sectionContent = ModelHelper.Mapper(
                 _structureContentRepository.GetById(sectionContentId));
             sectionContent.Title = title;
             sectionContent.MainText = mainText;
+            sectionContent.Comments = comments;
             sectionContent.CurrentProgress = CalculateProgress(mainText, sectionContent.MinWordCount);
             sectionContent.Keywords = keywords.ToList();
            _structureContentRepository.Update(ModelHelper.Mapper(sectionContent));

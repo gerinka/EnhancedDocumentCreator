@@ -28,6 +28,7 @@ namespace Edc.WebClient.Models
         public int MinWordsNeeded { get; set; }
         public bool IsHelpOn { get; set; }
         [Display(Name = "Коментари")]
+        [DataType(DataType.MultilineText)]
         public string Comments { get; set; }
         public bool IsMentorEdit { get; set; }
     }

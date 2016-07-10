@@ -290,3 +290,6 @@ input[type="radio"].styled:checked label:after,
    background-color:#d9534f !important;
    background-image: none !important;
 }
+.mentor-style {
+     cursor: pointer;
+}

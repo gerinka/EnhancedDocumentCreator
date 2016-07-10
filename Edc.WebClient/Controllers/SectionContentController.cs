@@ -68,10 +68,10 @@ namespace Edc.WebClient.Controllers
                 var sectionContent = _sectionContentService.GetById(model.CurrentSectionContentId);
                 IEnumerable<Keyword> updatedKeywords = _keywordService.AddOrUpdateKeywords(keywords, sectionContent);
                 _sectionContentService.UpdateSectionContent(model.CurrentSectionContentId, model.Title,
-                    model.MainText, updatedKeywords);
+                    model.MainText, model.Comments, updatedKeywords);
                
             }
-            return RedirectToAction("TaskBoard", "Tasks", new { documentId = model.DocumentId });
+            return RedirectToAction("TaskBoard", "Tasks", new { documentId = model.DocumentId, isAdmin = model.IsMentorEdit });
         }
 
         public ActionResult GetTags(string term)

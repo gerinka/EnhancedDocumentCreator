@@ -88,7 +88,7 @@ else
                     <div class="panel @task.TaskState.ToString().ToLower()">
                         @if (Model.IsMentorEdit)
                         {
-                            <div class="panel-heading" data-taskid="@task.Id" onclick="navigateToWritingModuleInMentorEdit(this)">@task.Number) @task.Title <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span></div>
+                            <div class="panel-heading mentor-style" data-taskid="@task.Id" onclick="navigateToWritingModuleInMentorEdit(this)">@task.Number) @task.Title <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span></div>
                         }
                         else
                         {
@@ -114,7 +114,14 @@ else
                     task = Model.ToDoTasks[i * 2 + 1];
                     <div class="col-lg-6">
                         <div class="panel @task.TaskState.ToString().ToLower()">
-                            <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                            @if (Model.IsMentorEdit)
+                            {
+                                <div class="panel-heading mentor-style" data-taskid="@task.Id" onclick="navigateToWritingModuleInMentorEdit(this)">@task.Number) @task.Title <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span></div>
+                            }
+                            else
+                            {
+                                <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                            }
                             <div class="panel-body taskbody"
                                  data-toggle="modal"
                                  data-target="#taskModal"
@@ -150,7 +157,14 @@ else
             <div class="col-lg-4">
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
-                        <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                        @if (Model.IsMentorEdit)
+                        {
+                            <div class="panel-heading mentor-style" data-taskid="@task.Id" onclick="navigateToWritingModuleInMentorEdit(this)">@task.Number) @task.Title <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span></div>
+                        }
+                        else
+                        {
+                            <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                        }
                         <div class="panel-body taskbody"
                              data-toggle="modal"
                              data-target="#taskModal"
@@ -171,7 +185,14 @@ else
                     task = Model.InProgressTasks[i * 2 + 1];
                     <div class="col-lg-6">
                         <div class="panel @task.TaskState.ToString().ToLower()">
-                            <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                            @if (Model.IsMentorEdit)
+                            {
+                                <div class="panel-heading mentor-style" data-taskid="@task.Id" onclick="navigateToWritingModuleInMentorEdit(this)">@task.Number) @task.Title <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span></div>
+                            }
+                            else
+                            {
+                                <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                            }
                             <div class="panel-body taskbody"
                                  data-toggle="modal"
                                  data-target="#taskModal"
@@ -207,7 +228,14 @@ else
             <div class="col-lg-4">
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
-                        <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                        @if (Model.IsMentorEdit)
+                        {
+                            <div class="panel-heading mentor-style" data-taskid="@task.Id" onclick="navigateToWritingModuleInMentorEdit(this)">@task.Number) @task.Title <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span></div>
+                        }
+                        else
+                        {
+                            <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                        }
                         <div class="panel-body taskbody"
                              data-toggle="modal"
                              data-target="#taskModal"
@@ -228,7 +256,14 @@ else
                     task = Model.DoneTasks[i * 2 + 1];
                     <div class="col-lg-6">
                         <div class="panel @task.TaskState.ToString().ToLower()">
-                            <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                            @if (Model.IsMentorEdit)
+                            {
+                                <div class="panel-heading mentor-style" data-taskid="@task.Id" onclick="navigateToWritingModuleInMentorEdit(this)">@task.Number) @task.Title <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span></div>
+                            }
+                            else
+                            {
+                                <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                            }
                             <div class="panel-body taskbody"
                                  data-toggle="modal"
                                  data-target="#taskModal"

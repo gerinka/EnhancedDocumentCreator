@@ -8,7 +8,7 @@ namespace Edc.Domain.Services.Interfaces
 {
     public interface ISectionContentService : IBaseService<SectionContent>
     {
-        void UpdateSectionContent(int sectionContentId, string title, string mainText, IEnumerable<Keyword> keywords);
+        void UpdateSectionContent(int sectionContentId, string title, string mainText, string comments, IEnumerable<Keyword> keywords);
         MemoryStream GenerateSimpleDocument(int sectionId, ExportDocumentType exportDocumentType);
         string GenerateDummyText(string title, IList<Keyword> keywords);
     }

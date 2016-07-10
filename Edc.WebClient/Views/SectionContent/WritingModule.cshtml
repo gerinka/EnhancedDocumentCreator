@@ -15,30 +15,57 @@
                     @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = @Model.SectionTitle } })
                 </div>
             </div>
-   
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Keywords, new { @class = "col-lg-2 label-panel control-label" })
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="tokenfield" name="keywords" value="@keywords"/>
+                    <input type="text" class="form-control" id="tokenfield" name="keywords" value="@keywords" />
                 </div>
                 <button type="button" class="btn btn-primary" onclick="getPlaceholderText()"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span></button>
             </div>
-            
-            if(Model.IsMentorEdit || !Model.Comments.IsNullOrWhiteSpace())
+
+            if (Model.IsMentorEdit || !Model.Comments.IsNullOrWhiteSpace())
             {
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Comments, new { @class = "col-lg-2 label-panel control-label" })
+                    @Html.LabelFor(model => model.Comments, new
+                    {
+                        @class = "col-lg-2 label-panel control-label",
+                    })
+                   
                     <div class="col-lg-9">
-                        @Html.EditorFor(model => model.Comments, new { htmlAttributes = new { rows = 20, @class = "form-control", @placeholder = @Model.Comments } })
+                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" data-toggle="collapse" href="#collapseComments" aria-expanded="false" aria-controls="collapseComments"></span>
+                        @Html.EditorFor(model => model.Comments, new
+                        {
+                            htmlAttributes = new
+                            {
+                                rows = 20,
+                                @class = "form-control collapse",
+                                @placeholder = @Model.Comments,
+                                @id = "collapseComments"
+                               
+                            }
+                        })
                     </div>
                 </div>
             }
-            <div class="form-group">
-                @Html.LabelFor(model => model.MainText, new { @class = "col-lg-2 label-panel control-label" })
-                <div class="col-lg-9">
-                    @Html.EditorFor(model => model.MainText, new { htmlAttributes = new { rows = 20, @class = "form-control", @placeholder = @Model.MainText } })
+            if (Model.IsMentorEdit || Model.IsDisabled)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MainText, new { @class = "col-lg-2 label-panel control-label" })
+                    <div class="col-lg-9">
+                        @Html.Raw("<pre>"+@Model.MainText+"</pre>")
+                    </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                 <div class="form-group">
+                     @Html.LabelFor(model => model.MainText, new {@class = "col-lg-2 label-panel control-label"})
+                     <div class="col-lg-9">
+                         @Html.EditorFor(model => model.MainText, new {htmlAttributes = new {rows = 20, @class = "form-control", @placeholder = @Model.MainText}})
+                     </div>
+                 </div>
+             }
             <div class="form-group">
                 <div class="col-lg-8">
                     <div style="float:left;" class="pull-right">
@@ -68,6 +95,7 @@
             @Html.HiddenFor(x => x.CurrentSectionContentId, new { id = "CurrentSectionContentId" })
             @Html.HiddenFor(x => x.IsDisabled, new { id = "IsDisabled" })
             @Html.HiddenFor(x => x.DocumentId, new { id = "DocumentId" })
+            @Html.HiddenFor(x => x.IsMentorEdit, new { id = "IsMentorEdit" })
         }
     </div>
 </div>
