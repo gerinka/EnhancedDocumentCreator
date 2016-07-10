@@ -11,6 +11,7 @@
             <th>Email адрес</th>
             <th data-checkbox="true">Админ</th>
             <th data-checkbox="true">Ръководител</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -20,10 +21,13 @@
                 <td>@Model.AllUsers[i].Name</td>
                 <td>@Model.AllUsers[i].Email</td>
                 <td>
-                        @Html.CheckBoxFor(m => @Model.AllUsers[i].IsAdmin)
+                        @Html.CheckBoxFor(m => @Model.AllUsers[i].IsAdmin,  new { @class = "isAdmin" } )
                 </td>
                 <td>
-                        @Html.CheckBoxFor(m => @Model.AllUsers[i].CanBeMentor)
+                    @Html.CheckBoxFor(m => @Model.AllUsers[i].CanBeMentor, new { @class = "canBeMentor"} )
+                </td>
+                <td data-userid="@Model.AllUsers[i].Id">
+                    <button type="button" class="btn btn-primary" onclick="UpdateRow(this) "><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Запази</button>
                 </td>
             </tr>
         }
@@ -31,4 +35,30 @@
 </table>
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function UpdateRow(button) {
+            var cellToUpdate = $(button).parent();
+            var userId = cellToUpdate.data("userid");
+            var rowToUpdate = cellToUpdate.parent();
+            var canBeMentor = rowToUpdate.find(".canBeMentor")[0];
+            var isAdmin = rowToUpdate.find(".isAdmin")[0];
+            $.ajax({
+                url: "/Person/Update/",
+                type: "POST",
+                data: JSON.stringify({ 'userId': userId, 'canBeMentor': canBeMentor.checked, 'isAdmin': isAdmin.checked }),
+                dataType: "json",
+                traditional: true,
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                  
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    if (xhr.status == 417) {
+                        $("#error-message").text("Този потребител не може да се промени!");
+                    }
+                }
+            });
+        
+        }
+    </script>
 }

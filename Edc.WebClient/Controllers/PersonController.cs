@@ -74,6 +74,23 @@ namespace Edc.WebClient.Controllers
             return RedirectToAction("TaskBoard", "Tasks", new {documentId = model.Id});
         }
 
+        //
+        // POST: /Document/CreateDocument
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult Update(int userId, bool canBeMentor = false, bool isAdmin = false)
+        {
+            if (ModelState.IsValid)
+            {
+                Person person = _personService.GetById(userId);
+                person.CanBeMentor = canBeMentor;
+                person.IsAdmin = isAdmin;
+                _personService.Update(person);
+                return Json(new { Success = true, Message = "Ок" });
+            }
+            return Json(new { Success = false, Message = "Има проблем." });
+        }
+
         #endregion
     }
 }
