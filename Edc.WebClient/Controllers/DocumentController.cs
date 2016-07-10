@@ -117,18 +117,16 @@ namespace Edc.WebClient.Controllers
         {
             if (ModelState.IsValid)
             {
-                string username = User.Identity.Name;
-                Person author = _personService.GetByName(username);
-                Person mentor = _personService.GetById(model.MentorId);
-                var document = _documentService.GetById(model.Id);
-                if (document.Author.Id == author.Id)
+                var currentDocument = _documentService.GetById(model.Id);
+                var tasks = _taskService.GetTasksByDocumentId(model.Id);
+                foreach (var task in tasks)
                 {
-                    document.ActiveTasksCount = model.ActiveTasksCount;
-                    document.Mentor = mentor;
-                    document.Title = document.Title;
-                    document.Deadline = document.Deadline;
-                    _documentService.Update(document);
+                    task.TaskAction = TaskAction.Nothing;
+                    task.TaskState = TaskState.Rejected;
+                    _taskService.Update(task);
                 }
+                currentDocument.DocumentState = DocumentState.Rejected;
+                _documentService.Update(currentDocument);
             }
             return RedirectToAction("TaskBoard", "Tasks", new { documentId = model.Id });
         }

@@ -81,8 +81,12 @@
     </div>
     <div class="form-group">
 
-        <div class="col-lg-3 pull-right">
+        <div class="col-lg-6 pull-right">
 
+            <button type="button" class="btn btn-primary pull-right" onclick="@("window.location.href='" + @Url.Action("TaskBoard", "Tasks") + "'");">
+                <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                <span>Обратно към задачите</span>
+            </button>
             <button type="submit" class="btn btn-primary pull-right" name="action:Save">
                 <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
                 <span>Запазване</span>
