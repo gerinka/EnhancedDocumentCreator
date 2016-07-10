@@ -33,7 +33,7 @@ namespace Edc.WebClient.Controllers
         }
 
         [Route("WritingModule/{taskId?}/{isDisabled}")]
-        public ActionResult GoToWritingModule(int taskId, bool isDisabled = false)
+        public ActionResult GoToWritingModule(int taskId, bool isDisabled = false, bool isMentorEdit = false)
         {
             var username = User.Identity.Name;
             var user = _personService.GetByName(username);
@@ -52,7 +52,8 @@ namespace Edc.WebClient.Controllers
                 Keywords = _keywordService.GetKeywordsPerSectionContent(currentTask.Section.Content.Id),
                 MinWordsNeeded = currentTask.Section.MinWordCount,
                 IsHelpOn = user.FirstTimeContent,
-                Comments = currentTask.Section.Content.Comments
+                Comments = currentTask.Section.Content.Comments,
+                IsMentorEdit = isMentorEdit
             };
             return View("WritingModule", writingContent);
         }

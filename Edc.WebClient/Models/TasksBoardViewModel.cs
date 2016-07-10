@@ -15,5 +15,6 @@ namespace Edc.WebClient.Models
         public bool DocumentIsActive { get; set; }
         public bool IsHelpOn { get; set; }
         public string DocumentTopic { get; set; }
+        public bool IsMentorEdit { get; set; }
     }
 }

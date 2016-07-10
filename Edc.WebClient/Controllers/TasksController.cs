@@ -61,7 +61,8 @@ namespace Edc.WebClient.Controllers
                 DocumentId = intDocumentId,
                 DocumentIsActive = hasActiveDocument,
                 IsHelpOn = user.FirstTimeTasks,
-                DocumentTopic = documentTitle
+                DocumentTopic = documentTitle,
+                IsMentorEdit = isAdmin
             };
             if (isAdmin)
             {

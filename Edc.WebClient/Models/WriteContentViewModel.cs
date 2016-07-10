@@ -27,6 +27,8 @@ namespace Edc.WebClient.Models
         public IEnumerable<Keyword> Keywords { get; set; }
         public int MinWordsNeeded { get; set; }
         public bool IsHelpOn { get; set; }
+        [Display(Name = "Коментари")]
         public string Comments { get; set; }
+        public bool IsMentorEdit { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿@using Edc.Domain.Models
+@using iTextSharp.text.pdf.qrcode
 @model Edc.WebClient.Models.TasksBoardViewModel
 @{
     ViewBag.Title = "Дъска със задачи";
@@ -85,7 +86,14 @@ else
             <div class="col-lg-4">
                 <div class="col-lg-6">
                     <div class="panel @task.TaskState.ToString().ToLower()">
-                        <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                        @if (Model.IsMentorEdit)
+                        {
+                            <div class="panel-heading" data-taskid="@task.Id" onclick="navigateToWritingModuleInMentorEdit(this)">@task.Number) @task.Title <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span></div>
+                        }
+                        else
+                        {
+                            <div class="panel-heading">@task.Number) @task.Title <span class="glyphicon @task.TaskState.ToString().ToLower()-icon pull-right" aria-hidden="true"></span></div>
+                        }
                         <div class="panel-body taskbody"
                              data-toggle="modal"
                              data-target="#taskModal"
@@ -285,7 +293,11 @@ else
             var disabled = goToButton.data('disabled');
             window.location.href = '@Url.Action("GoToWritingModule", "SectionContent")?taskId=' + currentTaskId + '&isDisabled=' + disabled;
         };
-
+        function navigateToWritingModuleInMentorEdit(button) {
+            var goToButton = $(button);
+            var currentTaskId = goToButton.data('taskid');
+            window.location.href = '@Url.Action("GoToWritingModule", "SectionContent")?taskId=' + currentTaskId + '&isMentorEdit=true';
+        };
         function getGeneratedDocument(documentId, type) {
             if (type == 'docx') {
                 window.location = "/Tasks/GetDocxDocument?documentId=" + documentId;
@@ -296,8 +308,8 @@ else
             }
         }
 
-        $(document).ready(function() {
-            $('#taskModal').on('show.bs.modal', function(event) {
+        $(document).ready(function () {
+            $('#taskModal').on('show.bs.modal', function (event) {
                 $("#error-message").text("");
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 var taskId = button.data('taskid');
@@ -366,7 +378,7 @@ else
                 actionButton.data('action', taskaction);
             });
 
-            $('#action').click(function(e) {
+            $('#action').click(function (e) {
                 e.preventDefault(); // <------------------ stop default behaviour of button
 
                 var buttonAction = $(this);
@@ -379,14 +391,14 @@ else
                     dataType: "json",
                     traditional: true,
                     contentType: "application/json; charset=utf-8",
-                    success: function(data) {
+                    success: function (data) {
                         if (data.Success) {
                             window.location.href = data.Message;
                         } else {
                             $("#error-message").text(data.Message);
                         }
                     },
-                    error: function(xhr, ajaxOptions, thrownError) {
+                    error: function (xhr, ajaxOptions, thrownError) {
                         if (xhr.status == 417) {
                             $("#error-message").text("Задачата не може да се финишира все още!");
                         }
