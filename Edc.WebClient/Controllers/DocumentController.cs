@@ -99,10 +99,8 @@ namespace Edc.WebClient.Controllers
                 var document = _documentService.GetById(model.Id);
                 if (document.Author.Id == author.Id)
                 {
-                    document.ActiveTasksCount = model.ActiveTasksCount;
                     document.Mentor = mentor;
                     document.Title = model.Title;
-                    document.Deadline = model.Deadline;
                     document.MaxCycle = model.Cycles;
                     document.ActiveTasksCount = model.ActiveTasksCount;
                     _documentService.Update(document);
