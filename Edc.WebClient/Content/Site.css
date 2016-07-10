@@ -259,6 +259,10 @@ input[type="radio"].styled:checked label:after,
     right: 25px;
     top: 10px;
 }
+.inprogress-progress-document {
+   background-color:#f0ad4e !important;
+   background-image: none !important;
+}
 .finished-document-icon:before {
   content: "\e013";
 }
@@ -268,7 +272,10 @@ input[type="radio"].styled:checked label:after,
     right: 25px;
     top: 10px;
 }
-
+.finished-progress-document {
+   background-color:#5cb85c !important;
+   background-image: none !important;
+}
 .started-document-icon:before {
     content:"\e074";
 }
@@ -278,7 +285,10 @@ input[type="radio"].styled:checked label:after,
     right: 25px;
     top: 10px;
 }
-
+.started-progress-document {
+   background-color:#428bca !important;
+   background-image: none !important;
+}
 .rejected-document-icon:before {
    content:"\e020";
 }
@@ -287,4 +297,8 @@ input[type="radio"].styled:checked label:after,
   font-size: 1.2em;
     right: 25px;
     top: 10px;
+}
+.rejected-progress-document {
+   background-color:#d9534f !important;
+   background-image: none !important;
 }

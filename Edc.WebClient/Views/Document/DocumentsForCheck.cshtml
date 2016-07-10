@@ -19,7 +19,13 @@
             <tr>
                 <td><div><span class="glyphicon @document.DocumentState.ToString().ToLower()-document-icon pull-right" aria-hidden="true"></span></div>@document.Title</td>
                 <td>@document.Author</td>
-                <td>@document.CurrentProgress</td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar @document.DocumentState.ToString().ToLower()-progress-document" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: @document.CurrentProgress%;">
+                            @document.CurrentProgress%
+                        </div>
+                        </div>
+                </td>
                 <td>@Html.ActionLink("Виж задачи", "TaskBoard", "Tasks", new { documentId = document.Id }, null)</td>
             </tr>
         }
