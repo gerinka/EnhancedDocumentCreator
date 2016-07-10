@@ -60,8 +60,8 @@ namespace Edc.WebClient.Controllers
         {
             var username = User.Identity.Name;
             Person mentor = _personService.GetByName(username);
-            IList<Document> documents = _documentService.GetAllForCheck(mentor.Id);
-           // IList<Document> documents = _documentService.GetAll().ToList();
+            IList<Document> documents = mentor.IsAdmin ? _documentService.GetAll().ToList() : _documentService.GetAllForCheck(mentor.Id);
+            
             return View(new DocumentsViewModel{Documents = documents});
         }
 
