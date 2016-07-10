@@ -57,7 +57,11 @@ namespace Edc.WebClient.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult DocumentsForCheck()
         {
-            return View();
+            var username = User.Identity.Name;
+            Person mentor = _personService.GetByName(username);
+           // IList<Document> documents = _documentService.GetAllForCheck(mentor.Id);
+            IList<Document> documents = _documentService.GetAll().ToList();
+            return View(new DocumentsViewModel{Documents = documents});
         }
 
         //

@@ -198,6 +198,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InitDocumentViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\DocumentsViewModel.cs" />
     <Compile Include="Models\TasksBoardViewModel.cs" />
     <Compile Include="Models\WriteContentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -869,6 +870,7 @@
     <Content Include="Views\Tasks\TaskBoard.cshtml" />
     <Content Include="Views\SectionContent\WritingModule.cshtml" />
     <Content Include="Views\Document\DocumentsForCheck.cshtml" />
+    <Content Include="Views\Document\DocumentSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

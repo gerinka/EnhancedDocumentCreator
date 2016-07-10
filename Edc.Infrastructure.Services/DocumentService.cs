@@ -133,5 +133,13 @@ namespace Edc.Domain.Services
                 return documents.First().ID;
             return -1;
         }
+
+        public IList<Document> GetAllForCheck(int mentorId)
+        {
+            IEnumerable<DOCUMENT> documents = _documentRepository.Get(
+                d => d.MentorId == mentorId).OrderByDescending(d => d.ID).ToList();
+
+            return documents.Select(ModelHelper.Mapper).ToList();
+        }
     }
 }

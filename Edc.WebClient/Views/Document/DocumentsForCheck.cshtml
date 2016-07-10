@@ -1,10 +1,32 @@
-﻿
+﻿@model Edc.WebClient.Models.DocumentsViewModel
 @{
     ViewBag.Title = "Документи за проверка";
 }
 
 <h2>Документи за проверка</h2>
-
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Заглавие</th>
+            <th>Автор</th>
+            <th>Състояние</th>
+            <th>Настоящ прогрес</th>
+            <th>Прегледай задачи</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var document in Model.Documents)
+        {
+            <tr>
+                <td>@document.Title</td>
+                <td>@document.Author</td>
+                <td>@document.DocumentState</td>
+                <td>@document.CurrentProgress</td>
+                <td>@Html.ActionLink("Виж задачи", "TaskBoard", "Tasks", new { documentId = document.Id }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>
 @section scripts{
-    
+
 }
