@@ -180,21 +180,25 @@ namespace Edc.Domain.Services
 
         public static USER Mapper(Person person)
         {
-            return new USER
+            if (person != null)
             {
-                Email = person.Email,
-                FamilyName = person.LastName,
-                FirstName = person.FirstName,
-                Id = person.Id,
-                ExperiencePoints = person.ExperiencePoints,
-                Level = person.Level,
-                Password = person.Password,
-                FirstDocumentStructure = person.FirstTimeDocument?1:0,
-                FirstTaskBoard = person.FirstTimeTasks?1:0,
-                FirstWritingContent = person.FirstTimeContent?1:0,
-                IsAdmin = person.IsAdmin?1:0,
-                CanBeMentor = person.CanBeMentor?1:0,
-            };
+                return new USER
+                {
+                    Email = person.Email,
+                    FamilyName = person.LastName,
+                    FirstName = person.FirstName,
+                    Id = person.Id,
+                    ExperiencePoints = person.ExperiencePoints,
+                    Level = person.Level,
+                    Password = person.Password,
+                    FirstDocumentStructure = person.FirstTimeDocument ? 1 : 0,
+                    FirstTaskBoard = person.FirstTimeTasks ? 1 : 0,
+                    FirstWritingContent = person.FirstTimeContent ? 1 : 0,
+                    IsAdmin = person.IsAdmin ? 1 : 0,
+                    CanBeMentor = person.CanBeMentor ? 1 : 0,
+                };
+            }
+            return null;
         }
 
         public static Task Mapper(TASK task)

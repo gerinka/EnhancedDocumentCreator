@@ -68,11 +68,11 @@ namespace Edc.WebClient.Controllers
         {
             var document = _documentService.GetById(documentId);
             IList<Person> availableMentors = _personService.GetAllAvailableMentors();
-            return View(new DocumentViewModel
+            return View("DocumentSettings", new DocumentViewModel
             {
                 ActiveTasksCount = document.ActiveTasksCount,
                 AuthorId = document.Author.Id,
-                MentorId = document.Mentor.Id,
+                MentorId = document.Mentor != null ?document.Mentor.Id: -1,
                 Mentor = document.Mentor,
                 AvailableMentors = availableMentors,
                 Title = document.Title,

@@ -255,9 +255,6 @@ input[type="radio"].styled:checked label:after,
 }
 .inprogress-document-icon {
   color: #f0ad4e;
-  font-size: 1.2em;
-    right: 25px;
-    top: 10px;
 }
 .inprogress-progress-document {
    background-color:#f0ad4e !important;
@@ -268,9 +265,6 @@ input[type="radio"].styled:checked label:after,
 }
 .finished-document-icon {
   color: #5cb85c; 
-  font-size: 1.2em;
-    right: 25px;
-    top: 10px;
 }
 .finished-progress-document {
    background-color:#5cb85c !important;
@@ -281,9 +275,6 @@ input[type="radio"].styled:checked label:after,
 }
 .started-document-icon {
     color: #428bca;
-  font-size: 1.2em;
-    right: 25px;
-    top: 10px;
 }
 .started-progress-document {
    background-color:#428bca !important;
@@ -294,9 +285,6 @@ input[type="radio"].styled:checked label:after,
 }
 .rejected-document-icon {
   color: #fa8072; 
-  font-size: 1.2em;
-    right: 25px;
-    top: 10px;
 }
 .rejected-progress-document {
    background-color:#d9534f !important;
