@@ -149,6 +149,8 @@ CREATE TABLE `structurecontent` (
   `Order` int(11) NOT NULL,
   `CurrentProgress` int(11) NOT NULL DEFAULT '0',
   `MinWordCount` int(11) NOT NULL DEFAULT '1',
+  `HtmlContent` longblob,
+  `Comments` blob,
   PRIMARY KEY (`Id`),
   KEY `FK_StructureElement_ID_idx` (`StructureElementId`),
   KEY `FK_User_ID_idx` (`DocumentId`),
@@ -261,7 +263,10 @@ CREATE TABLE `user` (
   `FirstDocumentStructure` int(2) DEFAULT '1',
   `FirstTaskBoard` int(2) DEFAULT '1',
   `FirstWritingContent` int(2) DEFAULT '1',
-  PRIMARY KEY (`Id`)
+   `CanBeMentor` int(2) DEFAULT '0',
+  `IsAdmin` int(2) DEFAULT '0',
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `Email_UNIQUE` (`Email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
