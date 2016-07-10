@@ -109,7 +109,8 @@ namespace Edc.Domain.Services
                 TASKs = document.Tasks!=null ? document.Tasks.Select(Mapper).ToList() : null,
                 CurrentCycle = document.CurrentCycle,
                 MaxCycle = document.MaxCycle,
-                ActiveTasksCount = document.ActiveTasksCount
+                ActiveTasksCount = document.ActiveTasksCount,
+                MentorId = document.Mentor!=null?document.Mentor.Id:(int?) null
             };
         }
 
@@ -130,7 +131,8 @@ namespace Edc.Domain.Services
                     Tasks = document.TASKs != null ? document.TASKs.Select(Mapper).ToList() : null,
                     CurrentCycle = document.CurrentCycle,
                     MaxCycle = document.MaxCycle,
-                    ActiveTasksCount = document.ActiveTasksCount
+                    ActiveTasksCount = document.ActiveTasksCount,
+                    Mentor = Mapper(document.USER_MentorId)
                 };
             }
             return new Document();

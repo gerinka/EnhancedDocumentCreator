@@ -1,6 +1,13 @@
-﻿@model Edc.WebClient.Models.DocumentViewModel
+﻿@using System.Globalization
+@using System.Runtime.InteropServices.ComTypes
+@model Edc.WebClient.Models.DocumentViewModel
 @{
     ViewBag.Title = "Настройки на документ";
+    List<SelectListItem> items = Model.AvailableMentors.Select(mentor => new SelectListItem
+    {
+        Text = mentor.ToString(),
+        Value = mentor.Id.ToString(CultureInfo.InvariantCulture)
+    }).ToList();
 }
 
 <div class="panel panel-primary">
@@ -12,27 +19,84 @@
                 @Html.LabelFor(model => model.Title, new { @class = "col-lg-2 label-panel control-label" })
                 <div class="col-lg-9">
                     @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = @Model.Title } })
+                    @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
                 </div>
             </div>
 
 
+           
+        <div class="form-group">
+            @Html.LabelFor(model => model.Deadline, new { @class = "col-sm-2 control-label label-panel", @id = "labelForDeadline" })
+            <div class="col-sm-3">
+                <div class="input-group date" id='deadline'>
+                    @Html.EditorFor(model => model.Deadline, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    @Html.ValidationMessageFor(m => m.Deadline, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
             <div class="form-group">
-
-                <div class="col-lg-3">
-                    <button type="submit" class="btn btn-danger pull-right" name="action:Reject">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        <span>Изтриване</span>
-                    </button>
-                    <button type="submit" class="btn btn-primary pull-right" name="action:Save">
-                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-                        <span>Запазване</span>
-                    </button>
+                @Html.LabelFor(model => model.SelectedDocumentTemplateId, new { @class = "col-sm-2 control-label label-panel", @id = "labelForTemplate" })
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(
+                        model => model.SelectedDocumentTemplateId,
+                        new List<SelectListItem>(){new SelectListItem(){Selected = true,Text = Model.SelectedDocumentTemplateName, Value = Model.SelectedDocumentTemplateId.ToString(),Disabled = true}},
+                        string.Empty,
+                        new
+                        {
+                            @class = "selectpicker",
+                            @area_labelledby = "templateDropdownMenu",
+                            @id = "templateDropdown",
+                            @disabled = "disabled"
+                        })
+                    @Html.ValidationMessageFor(m => m.SelectedDocumentTemplateId, "", new { @id = "templateDropdownError", @class = "text-danger" })
                 </div>
             </div>
+    <div class="form-group active">
+        @Html.LabelFor(model => model.Mentor, new { @class = "col-sm-2 control-label label-panel", @id = "labelForDropdown" })
+        <div class="col-sm-10">
+            @Html.DropDownListFor(
+                            model => model.MentorId,
+                            items,
+                            string.Empty,
+                            new
+                            {
+                                @class = "selectpicker",
+                                @area_labelledby = "mentorDropdownMenu",
+                                @id = "mentorDropdown",
+                            })
+            @Html.ValidationMessageFor(m => m.Mentor, "", new { @id = "mentorDropdownMenuError", @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ActiveTasksCount, new { @class = "col-sm-2 control-label label-panel", @id = "labelForActiveTasksCount" })
+        <div class="col-sm-3">
+            <div class="col-lg-9">
+                @Html.EditorFor(model => model.ActiveTasksCount, new { htmlAttributes = new { @class = "form-control", @placeholder = @Model.ActiveTasksCount } })
+                @Html.ValidationMessageFor(m => m.ActiveTasksCount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
 
-            @Html.HiddenFor(x => x.MentorId, new { id = "CurrentTaskId" })
-            @Html.HiddenFor(x => x.AuthorId, new { id = "CurrentSectionContentId" })
-            @Html.HiddenFor(x => x.Id, new { id = "DocumentId" })
+        <div class="col-lg-3 pull-right">
+
+            <button type="submit" class="btn btn-primary pull-right" name="action:Save">
+                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                <span>Запазване</span>
+            </button>
+            <button type="submit" class="btn btn-danger pull-right" name="action:Reject">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span>Изтриване</span>
+            </button>
+        </div>
+    </div>
+
+            @Html.HiddenFor(x => x.MentorId, new { id = "MentorId" })
+            @Html.HiddenFor(x => x.AuthorId, new { id = "AuthorId" })
+            @Html.HiddenFor(x => x.Id, new { id = "Id" })
         }
     </div>
 </div>

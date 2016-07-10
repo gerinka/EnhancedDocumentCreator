@@ -20,10 +20,15 @@ namespace Edc.WebClient.Models
         public Person Mentor { get; set; }
         public int MentorId { get; set; }
         public int AuthorId { get; set; }
+        [Required(ErrorMessage = "Максималният брой активни задачи е задължителен")]
         [Range(1, 3, ErrorMessage = "Максималният брой активни задачи може да е между 1 и 3")]
         [Display(Name = "Максимален брой активни задачи")]
         public int ActiveTasksCount { get; set; }
-
-        public IList<Person> AvailableMentors { get; set; } 
+        [Display(Name = "Шаблон")]
+        public int SelectedDocumentTemplateId { get; set; }
+        public string SelectedDocumentTemplateName { get; set; }
+        public IList<Person> AvailableMentors { get; set; }
+        [Display(Name = "Цикли от задачи")]
+        public int Cycles { get; set; }
     }
 }

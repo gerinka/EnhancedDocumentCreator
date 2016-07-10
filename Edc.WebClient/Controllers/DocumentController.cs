@@ -78,7 +78,10 @@ namespace Edc.WebClient.Controllers
                 AvailableMentors = availableMentors,
                 Title = document.Title,
                 Deadline = document.Deadline,
-                Id = documentId
+                Id = documentId,
+                SelectedDocumentTemplateId = document.Template.Id,
+                SelectedDocumentTemplateName = document.Template.Name,
+                Cycles = document.MaxCycle
             });
         }
 
@@ -98,8 +101,10 @@ namespace Edc.WebClient.Controllers
                 {
                     document.ActiveTasksCount = model.ActiveTasksCount;
                     document.Mentor = mentor;
-                    document.Title = document.Title;
-                    document.Deadline = document.Deadline;
+                    document.Title = model.Title;
+                    document.Deadline = model.Deadline;
+                    document.MaxCycle = model.Cycles;
+                    document.ActiveTasksCount = model.ActiveTasksCount;
                     _documentService.Update(document);
                 }
             }
