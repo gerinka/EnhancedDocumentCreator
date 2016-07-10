@@ -54,6 +54,12 @@ namespace Edc.WebClient.Controllers
             return View("Index", documentGenerator);
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult DocumentsForCheck()
+        {
+            return View();
+        }
+
         //
         // POST: /Document/CreateDocument
         [HttpPost]

@@ -868,6 +868,7 @@
     <Content Include="Views\Document\Index.cshtml" />
     <Content Include="Views\Tasks\TaskBoard.cshtml" />
     <Content Include="Views\SectionContent\WritingModule.cshtml" />
+    <Content Include="Views\Document\DocumentsForCheck.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

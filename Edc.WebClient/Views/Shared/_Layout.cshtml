@@ -29,6 +29,10 @@
                     {
                         <li class="@Html.IsSelected(actions: "GenerateMainStructure", controllers: "Document")">@Html.ActionLink("Генерирай структура", "GenerateMainStructure", "Document")</li>
                         <li class="@Html.IsSelected(actions: "TaskBoard", controllers: "Tasks")">@Html.ActionLink("Дъска със задачи", "TaskBoard", "Tasks")</li>
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li class="@Html.IsSelected(actions: "TaskBoard", controllers: "Tasks")">@Html.ActionLink("Списък с документи", "DocumentsForCheck", "Document")</li>
+                        }
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
