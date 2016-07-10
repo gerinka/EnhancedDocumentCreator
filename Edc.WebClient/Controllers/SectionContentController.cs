@@ -51,7 +51,8 @@ namespace Edc.WebClient.Controllers
                 DocumentId = currentTask.Section.Content.DocumentId,
                 Keywords = _keywordService.GetKeywordsPerSectionContent(currentTask.Section.Content.Id),
                 MinWordsNeeded = currentTask.Section.MinWordCount,
-                IsHelpOn = user.FirstTimeContent
+                IsHelpOn = user.FirstTimeContent,
+                Comments = currentTask.Section.Content.Comments
             };
             return View("WritingModule", writingContent);
         }

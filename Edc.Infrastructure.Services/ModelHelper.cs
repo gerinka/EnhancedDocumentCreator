@@ -57,7 +57,8 @@ namespace Edc.Domain.Services
                     CurrentProgress = structurecontent.CurrentProgress,
                     SectionId = structurecontent.StructureElementId,
                     MinWordCount = structurecontent.MinWordCount,
-                    Keywords= structurecontent.KEYWORDs != null ? structurecontent.KEYWORDs.Select(Mapper).ToList() : null
+                    Keywords= structurecontent.KEYWORDs != null ? structurecontent.KEYWORDs.Select(Mapper).ToList() : null,
+                    Comments = GetString(structurecontent.Comments)
                 };
             }
             return null;
@@ -74,7 +75,8 @@ namespace Edc.Domain.Services
                 CurrentProgress = sectionContent.CurrentProgress,
                 StructureElementId = section.Id,
                 MinWordCount = sectionContent.MinWordCount,
-                KEYWORDs = sectionContent.Keywords != null ? sectionContent.Keywords.Select(k => Mapper(k, sectionContent)).ToList() : null
+                KEYWORDs = sectionContent.Keywords != null ? sectionContent.Keywords.Select(k => Mapper(k, sectionContent)).ToList() : null,
+                Comments = GetBytes(sectionContent.Comments)
             };
         }
 
@@ -90,7 +92,8 @@ namespace Edc.Domain.Services
                 CurrentProgress = sectionContent.CurrentProgress,
                 StructureElementId = sectionContent.SectionId,
                 MinWordCount = sectionContent.MinWordCount,
-                KEYWORDs = sectionContent.Keywords != null? sectionContent.Keywords.Select(Mapper).ToList() : null
+                KEYWORDs = sectionContent.Keywords != null? sectionContent.Keywords.Select(Mapper).ToList() : null,
+                Comments = GetBytes(sectionContent.Comments)
             };
         }
 

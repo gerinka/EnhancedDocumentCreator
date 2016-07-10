@@ -27,5 +27,6 @@ namespace Edc.WebClient.Models
         public IEnumerable<Keyword> Keywords { get; set; }
         public int MinWordsNeeded { get; set; }
         public bool IsHelpOn { get; set; }
+        public string Comments { get; set; }
     }
 }

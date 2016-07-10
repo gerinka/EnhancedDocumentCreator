@@ -120,6 +120,7 @@
           <Property Name="CurrentProgress" Type="int" Nullable="false" DefaultValue="0" />
           <Property Name="MinWordCount" Type="int" Nullable="false" DefaultValue="1" />
           <Property Name="HtmlContent" Type="longblob" />
+          <Property Name="Comments" Type="blob" />
         </EntityType>
         <EntityType Name="structureelement">
           <Key>
@@ -461,6 +462,7 @@
           <Property Name="CurrentProgress" Type="Int32" Nullable="false" DefaultValue="0" ed:ValidateRequired="true" ed:Guid="a9308848-d63d-49f7-b5ed-14fa3d490969" />
           <Property Name="MinWordCount" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="5c90b950-44dd-4965-ae60-132918596ed8" />
           <Property Name="HtmlContent" Type="Binary" ed:ValidateRequired="false" ed:Guid="3948144f-0289-40bb-b97b-c639f695065e" />
+          <Property Name="Comments" Type="Binary" ed:ValidateRequired="false" ed:Guid="d11d4652-00f9-4dde-8f69-36bd1c5a1d43" />
           <NavigationProperty Name="DOCUMENT" Relationship="MtcModel.FK_StructureContentDocument_Id" FromRole="STRUCTURECONTENTs" ToRole="DOCUMENT" ed:Guid="21f8c64b-3bcf-4f21-ab6e-ce2e193a6266" />
           <NavigationProperty Name="STRUCTUREELEMENT" Relationship="MtcModel.FK_StructureElementDocument_Id" FromRole="STRUCTURECONTENTs" ToRole="STRUCTUREELEMENT" ed:Guid="c6b03497-458d-4862-a536-76226a71f1a2" />
           <NavigationProperty Name="TASKs" Relationship="MtcModel.FK_TaskStructureContent_Id" FromRole="STRUCTURECONTENT" ToRole="TASKs" ed:Guid="c919c061-a826-4c03-b72b-7acc5e9bd396" />
@@ -725,6 +727,7 @@
                 <ScalarProperty Name="CurrentProgress" ColumnName="CurrentProgress" />
                 <ScalarProperty Name="MinWordCount" ColumnName="MinWordCount" />
                 <ScalarProperty Name="HtmlContent" ColumnName="HtmlContent" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

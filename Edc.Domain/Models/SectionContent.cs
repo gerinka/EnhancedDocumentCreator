@@ -11,6 +11,7 @@ namespace Edc.Domain.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string MainText { get; set; }
+        public string Comments { get; set; }
         public int DocumentId { get; set; }
         public int CurrentProgress { get; set; }
         public int SectionId { get; set; }
