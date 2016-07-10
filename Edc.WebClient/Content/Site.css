@@ -247,3 +247,44 @@ input[type="radio"].styled:checked label:after,
 .tipso_style {
     border-bottom: none !important; 
 }
+
+/*document list state*/
+
+.inprogress-document-icon:before {
+  content: "\e072";
+}
+.inprogress-document-icon {
+  color: #f0ad4e;
+  font-size: 1.2em;
+    right: 25px;
+    top: 10px;
+}
+.finished-document-icon:before {
+  content: "\e013";
+}
+.finished-document-icon {
+  color: #5cb85c; 
+  font-size: 1.2em;
+    right: 25px;
+    top: 10px;
+}
+
+.started-document-icon:before {
+    content:"\e074";
+}
+.started-document-icon {
+    color: #428bca;
+  font-size: 1.2em;
+    right: 25px;
+    top: 10px;
+}
+
+.rejected-document-icon:before {
+   content:"\e020";
+}
+.rejected-document-icon {
+  color: #fa8072; 
+  font-size: 1.2em;
+    right: 25px;
+    top: 10px;
+}
