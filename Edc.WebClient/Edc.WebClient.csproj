@@ -186,6 +186,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\SectionContentController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
@@ -195,6 +196,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\PersonViewModel.cs" />
     <Compile Include="Models\DocumentViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InitDocumentViewModel.cs" />
@@ -872,6 +874,7 @@
     <Content Include="Views\SectionContent\WritingModule.cshtml" />
     <Content Include="Views\Document\DocumentsForCheck.cshtml" />
     <Content Include="Views\Document\DocumentSettings.cshtml" />
+    <Content Include="Views\Person\AllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

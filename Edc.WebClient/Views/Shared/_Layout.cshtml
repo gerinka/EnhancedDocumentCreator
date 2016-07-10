@@ -26,9 +26,13 @@
                     {
                         <li class="@Html.IsSelected(actions: "GenerateMainStructure", controllers: "Document")">@Html.ActionLink("Генерирай структура", "GenerateMainStructure", "Document")</li>
                         <li class="@Html.IsSelected(actions: "TaskBoard", controllers: "Tasks")">@Html.ActionLink("Дъска със задачи", "TaskBoard", "Tasks")</li>
-                        if (User.IsInRole("Admin"))
+                        if (User.IsInRole("Admin") || User.IsInRole("Mentor"))
                         {
                             <li class="@Html.IsSelected(actions: "DocumentsForCheck", controllers: "Document")">@Html.ActionLink("Списък с документи", "DocumentsForCheck", "Document")</li>
+                            if (User.IsInRole("Admin"))
+                            {
+                                <li class="@Html.IsSelected(actions: "GetUsers", controllers: "Person")">@Html.ActionLink("Списък с потребители", "GetUsers", "Person")</li>
+                            }
                         }
                     }
                     else

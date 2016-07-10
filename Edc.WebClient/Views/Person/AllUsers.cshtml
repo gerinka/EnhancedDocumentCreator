@@ -1,0 +1,38 @@
+﻿@model Edc.WebClient.Models.PersonsViewModel
+@{
+    ViewBag.Title = "Регистрирани потребители";
+}
+
+<h2>Документи за проверка</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Име</th>
+            <th>Email адрес</th>
+            <th>Админ</th>
+            <th>Ръководител</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model.AllUsers)
+        {
+            <tr>
+                <td>@person.Name</td>
+                <td>@person.Email</td>
+                <td>
+                    <div class="checkbox checkbox-primary">
+                        <input type="checkbox" name="isAdmin" value="isAdmin" checked>
+                    </div> 
+                </td>
+                <td>
+                    <div class="checkbox checkbox-primary">
+                        <input type="checkbox" name="canBeMentor" value="canBeMentor" >
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

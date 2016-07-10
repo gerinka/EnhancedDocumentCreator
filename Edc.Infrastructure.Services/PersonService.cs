@@ -43,7 +43,7 @@ namespace Edc.Domain.Services
 
         public IEnumerable<Person> GetAll()
         {
-            throw new NotImplementedException();
+            return _userRepository.Get().Select(ModelHelper.Mapper);
         }
 
         public IList<Person> GetAllAvailableMentors()
