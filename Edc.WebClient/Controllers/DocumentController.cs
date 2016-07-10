@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
+using Edc.Domain.Common;
 using Microsoft.AspNet.Identity;
 using Edc.Domain.Models;
 using Edc.Domain.Services.Interfaces;
@@ -84,7 +85,8 @@ namespace Edc.WebClient.Controllers
         //
         // POST: /Document/CreateDocument
         [HttpPost]
-        public ActionResult UpdateDocumentSettings(DocumentViewModel model)
+        [MultipleButton(Name = "action", Argument = "Save")]
+        public ActionResult Save(DocumentViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -101,8 +103,33 @@ namespace Edc.WebClient.Controllers
                     _documentService.Update(document);
                 }
             }
-            return View("Index", model);
+            return RedirectToAction("TaskBoard", "Tasks", new { documentId = model.Id });
         }
+
+        //
+        // POST: /Document/CreateDocument
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "Reject")]
+        public ActionResult Reject(DocumentViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string username = User.Identity.Name;
+                Person author = _personService.GetByName(username);
+                Person mentor = _personService.GetById(model.MentorId);
+                var document = _documentService.GetById(model.Id);
+                if (document.Author.Id == author.Id)
+                {
+                    document.ActiveTasksCount = model.ActiveTasksCount;
+                    document.Mentor = mentor;
+                    document.Title = document.Title;
+                    document.Deadline = document.Deadline;
+                    _documentService.Update(document);
+                }
+            }
+            return RedirectToAction("TaskBoard", "Tasks", new { documentId = model.Id });
+        }
+
         //
         // POST: /Document/CreateDocument
         [HttpPost]

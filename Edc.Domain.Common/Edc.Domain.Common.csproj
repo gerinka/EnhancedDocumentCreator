@@ -92,6 +92,7 @@
     <Compile Include="DateTimeModelBinder.cs" />
     <Compile Include="DeadlineCalculator.cs" />
     <Compile Include="IsSelectedHelper.cs" />
+    <Compile Include="MultipleButtonAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
