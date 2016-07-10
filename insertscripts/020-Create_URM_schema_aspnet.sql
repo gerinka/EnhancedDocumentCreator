@@ -32,6 +32,16 @@ CREATE TABLE `aspnetroles` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `aspnetroles`
+--
+
+LOCK TABLES `aspnetroles` WRITE;
+/*!40000 ALTER TABLE `aspnetroles` DISABLE KEYS */;
+INSERT INTO `aspnetroles` (`Id`, `Name`) VALUES ('0db569d3-7a59-4bd0-b015-1097c86be89e','Writer'),('78671152-60b4-42b3-b334-6d3593d40048','Admin');
+/*!40000 ALTER TABLE `aspnetroles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `aspnetuserclaims`
 --
 
