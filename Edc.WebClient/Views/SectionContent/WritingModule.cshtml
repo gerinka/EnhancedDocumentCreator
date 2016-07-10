@@ -34,17 +34,24 @@
                    
                     <div class="col-lg-9">
                         <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" data-toggle="collapse" href="#collapseComments" aria-expanded="false" aria-controls="collapseComments"></span>
-                        @Html.EditorFor(model => model.Comments, new
+                        @if (Model.IsMentorEdit)
                         {
-                            htmlAttributes = new
+                            @Html.EditorFor(model => model.Comments, new
                             {
-                                rows = 5,
-                                @class = "form-control collapse",
-                                @placeholder = @Model.Comments,
-                                @id = "collapseComments"
-                               
-                            }
-                        })
+                                htmlAttributes = new
+                                {
+                                    rows = 5,
+                                    @class = "form-control collapse",
+                                    @placeholder = @Model.Comments,
+                                    @id = "collapseComments"
+
+                                }
+                            })
+                        }
+                        else
+                        {
+                            <span class="collapse" id="collapseComments">@Html.Raw("<pre>" + @Model.Comments + "</pre>")</span>
+                        }
                     </div>
                 </div>
             }
